@@ -111,7 +111,7 @@ const Header = props => {
                                 </Grid>
                             </Grid>
                             {width === 'lg' ? < Grid item xs>
-                                <Grid container alignItems="center" justify="center">
+                                <Grid container alignItems="center" justify="flex-end">
                                 <StoreSetting/>
                                 </Grid>
                             </Grid> : null}
