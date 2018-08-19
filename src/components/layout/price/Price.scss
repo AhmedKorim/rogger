@@ -1,0 +1,32 @@
+.priceContainer {
+  position: relative;
+  width: 100%;
+  > div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .currentPrice {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #FF1744;
+
+  }
+  .cPrice {
+    width: 100%;
+  }
+  .offer {
+    text-align: center;
+    width: 100%;
+    height: .8rem;
+    .oldPrice {
+      text-align: left;
+      text-indent: 2.5rem;
+      text-decoration: line-through;
+      color: #9E9E9E;
+    }
+
+  }
+
+}

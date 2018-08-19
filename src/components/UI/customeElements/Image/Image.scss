@@ -1,0 +1,16 @@
+.custom-img-wrapper {
+  position: relative;
+  width: auto;
+  min-width: 400px;
+  img {
+    width: 100%;
+    min-width: 100%;
+    opacity: 0;
+    transition-delay: 1s;
+    transition: opacity ease-in 1s;
+    // showing the image if it has class loaded
+    &.loaded {
+      opacity: 1;
+    }
+  }
+}

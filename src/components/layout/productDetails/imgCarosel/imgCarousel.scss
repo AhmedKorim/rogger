@@ -1,0 +1,20 @@
+.pi {
+  max-height: 100%;
+  li {
+    cursor: pointer;
+    &.thumb {
+      transition: all ease-in-out .5s;
+      &:hover {
+        border: none;
+        opacity: 1;
+      }
+      border: none;
+      opacity: .5;
+      width: 85px;
+      &.selected {
+        border: none;
+        opacity: 1;
+      }
+    }
+  }
+}
