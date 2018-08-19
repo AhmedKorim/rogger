@@ -10,6 +10,7 @@ import InputAdornment from "@material-ui/core/InputAdornment/InputAdornment";
 import Navigation from "../Navigation/Navigation";
 import AKmenu from "../../UI/Menu/Menu";
 import StoreSetting from "../StoreSetting/StoreSetting";
+import CategoriseMenu from "../CategoryMenu/CatergoryMenu";
 
 const styles = theme => {
     console.log(theme);
@@ -112,7 +113,7 @@ const Header = props => {
                             </Grid>
                             {width === 'lg' ? < Grid item xs>
                                 <Grid container alignItems="center" justify="flex-end">
-                                <StoreSetting/>
+                                    <StoreSetting/>
                                 </Grid>
                             </Grid> : null}
                         </Grid>
@@ -146,6 +147,7 @@ const Header = props => {
                         </Grid>
                     </div>
                 </Toolbar>
+                <CategoriseMenu/>
             </AppBar>
         </header>
     )

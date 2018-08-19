@@ -1,0 +1,16 @@
+.hoverMenu {
+  .categContainer {
+    display: flex;
+    padding: 1rem;
+    .carHeader {
+      font-size: 1rem;
+      color: transparentize(black, .5);
+      font-weight: 600!important;
+      text-transform: capitalize;
+    }
+    .catGroup {
+      width: 300px;
+      padding: 1rem;
+    }
+  }
+}
