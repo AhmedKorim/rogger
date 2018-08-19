@@ -3,10 +3,9 @@ import PoductImgaes from "./imgCarosel/imgCarousel";
 import "./ProductDetails.scss"
 import Typography from "@material-ui/core/Typography/Typography";
 import Divider from "@material-ui/core/Divider/Divider";
-import Rating from "../rateing/Rateing";
+import Rating from "../Rateing/Rateing";
 import Price from "../price/Price";
 import ProductActions from "../productActions/ProdcutsAcitons";
-import Card from "@material-ui/core/Card/Card";
 
 const ProductDetails = props => {
     return (

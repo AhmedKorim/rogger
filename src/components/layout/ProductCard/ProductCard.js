@@ -8,9 +8,9 @@ import CardMedia from "@material-ui/core/CardMedia/CardMedia";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 import Divider from "@material-ui/core/Divider/Divider";
 import Price from "../price/Price";
-import Rating from "../rateing/Rateing";
 import ProductActions from "../productActions/ProdcutsAcitons";
 import Chip from "@material-ui/core/Chip/Chip";
+import Rating from "../Rateing/Rateing";
 
 const styles = theme => {
         console.log(theme);
