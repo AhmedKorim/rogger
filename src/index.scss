@@ -4,10 +4,13 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  &.pa {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
   margin-right: auto;
   margin-left: auto
 }
@@ -42,4 +45,7 @@ body {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto
+}
+.TWhite{
+  color: #fff;
 }

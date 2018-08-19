@@ -3,6 +3,7 @@ import './App.scss';
 import ProductDetails from "../components/layout/productDetails/ProductDetails";
 import ProductCard from "../components/layout/ProductCard/ProductCard";
 import Header from "../components/layout/Header/Header";
+import AKmenu from "../components/UI/Menu/Menu";
 
 class App extends Component {
     render() {
@@ -15,6 +16,7 @@ class App extends Component {
                 }}>
                     <ProductDetails/>
                 </div>
+                <AKmenu/>
             </div>
         );
     }

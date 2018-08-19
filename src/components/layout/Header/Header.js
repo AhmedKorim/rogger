@@ -6,35 +6,61 @@ import {withStyles, withWidth} from '@material-ui/core'
 import Typography from "@material-ui/core/Typography/Typography";
 import TextField from "@material-ui/core/TextField/TextField";
 import Icon from "@material-ui/core/Icon/Icon";
+import InputAdornment from "@material-ui/core/InputAdornment/InputAdornment";
+import Navigation from "../Navigation/Navigation";
+import AKmenu from "../../UI/Menu/Menu";
+import StoreSetting from "../StoreSetting/StoreSetting";
 
 const styles = theme => {
     console.log(theme);
     return ({
-
         mini: {
-            maxHeight: 30,
-            minHeight: 30,
-            boxShadow: theme.shadows[5],
+            maxHeight: 38,
+            minHeight: 38,
+            boxShadow: theme.shadows[0],
             position: 'relative',
-            zIndex: 2
-
+            zIndex: 2,
+            padding: 0
         },
         grid: {
-            [theme.breakpoints.down('md')]: {
-                margin: '5px 0'
+            maxHeight: "100%",
+            padding: "0 .4rem",
+        },
+        hidden: {
+            [theme.breakpoints.down('sm')]: {
+                display: 'none'
             }
+
         },
         shadow: {
             boxShadow: theme.shadows[5]
         },
         richToolbar: {
-            backgroundColor: theme.palette.background.default
+            backgroundColor: theme.palette.background.paper,
+            paddingTop: "1rem",
+            paddingBottom: "1rem"
         },
         flex: {
             justifyContent: "center",
-            alignItems: "baseline"
-        }
+            alignItems: "center"
+        },
+        input: {
+            width: "100%"
+        },
+        brand: {
+            textTransform: 'uppercase',
+            fontWeight: 600,
+            color: theme.palette.action.active
+        },
+        iconButton: {
+            position: "absolute",
+            top: "-10px",
+            color: theme.palette.action.active,
 
+        },
+        Gray: {
+            color: "#ffe"
+        }
     });
 }
 const Header = props => {
@@ -48,19 +74,47 @@ const Header = props => {
             <AppBar position="fixed" className={[classes.shadow].join(' ')}>
                 <Toolbar variant="dense" className={classes.mini}>
                     <div className="container">
-                        <Grid container>
-                            <Grid item xs className={classes.grid}>
-                                currency
+                        <Grid container alignItems="center" justify="center">
+                            <Grid item xs>
+                                <Grid container alignItems="center" justify="center">
+                                    <Grid item className={classes.hidden}>
+                                        <div>
+                                            <Typography className={classes.Gray}>
+                                                Welcome to Rogger store
+                                            </Typography>
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs className={classes.grid}>
+                                        <AKmenu
+                                            listItems={["login", 'logout']}
+                                            icon="shopping_cart"
+                                            count={5}
+                                            bLabel="cart">
+                                        </AKmenu>
+                                    </Grid>
+                                    <Grid item xs className={classes.grid}>
+                                        <AKmenu
+                                            listItems={["login", 'logout']}
+                                            icon="list-alt"
+                                            count={5}
+                                            bLabel="wishlist">
+                                        </AKmenu>
+                                    </Grid>
+                                    <Grid item xs className={classes.grid}>
+                                        <AKmenu
+                                            listItems={["login", 'logout']}
+                                            icon="compare"
+                                            count={5}
+                                            bLabel="compare">
+                                        </AKmenu>
+                                    </Grid>
+                                </Grid>
                             </Grid>
-                            <Grid item xs className={classes.grid}>
-                                language
-                            </Grid>
-                            <Grid item xs className={classes.grid}>
-                                account
-                            </Grid>
-                            <Grid item xs className={classes.grid}>
-                                location
-                            </Grid>
+                            {width === 'lg' ? < Grid item xs>
+                                <Grid container alignItems="center" justify="center">
+                                <StoreSetting/>
+                                </Grid>
+                            </Grid> : null}
                         </Grid>
                     </div>
                 </Toolbar>
@@ -68,23 +122,26 @@ const Header = props => {
                     <div className="container">
                         <Grid container className={classes.flex}>
                             <Grid item xs={3} md={2}>
-                                <Typography variant="headline">
+                                <Typography variant="headline" className={classes.brand}>
                                     Rogger
                                 </Typography>
                             </Grid>
-                            <Grid item xs={9} md>
-                                <div>
-                                    <Grid container spacing={8} alignItems="flex-end" >
-                                        <Grid item>
-                                            <Icon color="primary">search</Icon>
-                                        </Grid>
-                                        <Grid item>
-                                            <TextField id="input-with-icon-grid" label="search evey thing"/>
-                                        </Grid>
-                                    </Grid>
-                                </div>
-                            </Grid>
                             <Grid item md>
+                                <Navigation/>
+                            </Grid>
+                            <Grid item xs={9} md={3}>
+                                <TextField
+                                    className={classes.input}
+                                    id="input-with-icon-textfield"
+                                    placeholder="search.."
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <Icon color="primary">search</Icon>
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
                             </Grid>
                         </Grid>
                     </div>

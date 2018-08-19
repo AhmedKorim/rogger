@@ -9,11 +9,15 @@ import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 import thunk from "redux-thunk";
+import {lightBlue} from "@material-ui/core/colors";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const theme = createMuiTheme({
     palette: {
-        type: 'light'
+        type: 'light',
+        primary: {
+            main: lightBlue[800]
+        }
     }
 })
 
