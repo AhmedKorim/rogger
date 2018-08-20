@@ -43,7 +43,7 @@ const categories = [
 ]
 const styles = theme => ({
     Toolbar: {
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: theme.palette.background.default,
         minHeight: 'unset'
     },
     listContaienr: {

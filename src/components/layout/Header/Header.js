@@ -13,6 +13,7 @@ import StoreSetting from "../StoreSetting/StoreSetting";
 import CategoriseMenu from "../CategoryMenu/CatergoryMenu";
 import {HEADER_DIM} from "../../../dux/actions/uiActions";
 import {getStyle} from "../../../tools/tools";
+import {connect} from "react-redux";
 
 const styles = theme => {
     console.log(theme);
@@ -39,7 +40,7 @@ const styles = theme => {
             boxShadow: theme.shadows[5]
         },
         richToolbar: {
-            backgroundColor: theme.palette.background.default,
+            backgroundColor: theme.palette.background.paper,
             paddingTop: "1rem",
             paddingBottom: "1rem"
         },
@@ -74,8 +75,14 @@ class Header extends React.Component {
 
 
     componentDidMount() {
-        this.props.setHeight(getStyle(this.headerRef,"height"))
-        console.log(getStyle(this.headerRef,"height"));
+        this.cacHeight();
+        window.addEventListener('resize', this.cacHeight)
+    }
+
+    cacHeight = () => {
+        if (!this.headerRef) return;
+        this.props.setHeight(getStyle(this.headerRef, "height"))
+        console.log(getStyle(this.headerRef, "height"));
     }
 
     // if width is lower than md show hamburger menu
@@ -84,6 +91,7 @@ class Header extends React.Component {
             classes,
             width
         } = this.props;
+
         return (
             <AppBar position="fixed" className={[classes.shadow].join(' ')}>
                 <div ref={(node) => this.headerRef = node}>
@@ -174,4 +182,5 @@ const mapDispatchToProps = dispatch => {
         setHeight: (dim) => dispatch({type: HEADER_DIM, dim})
     }
 }
-export default withWidth()(withStyles(styles)(Header));
+
+export default connect(null, mapDispatchToProps)(withWidth()(withStyles(styles)(Header)));
