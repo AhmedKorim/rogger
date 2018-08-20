@@ -1,24 +1,20 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import './App.scss';
-import ProductDetails from "../components/layout/productDetails/ProductDetails";
-import ProductCard from "../components/layout/ProductCard/ProductCard";
 import Header from "../components/layout/Header/Header";
-import AKmenu from "../components/UI/Menu/Menu";
+import {Route} from "react-router-dom";
+import Home from "./Home/Home";
 
 class App extends Component {
+
     render() {
         return (
-            <div>
+            <Fragment>
                 <Header/>
-                <ProductCard/>
-                <div style={{
-                    width:"100%"
-                }}>
-                    <ProductDetails/>
-                </div>
-                <AKmenu/>
-            </div>
-        );
+                <Fragment>
+                    <Route path="/home" component={Home}/>
+                </Fragment>
+            </Fragment>
+        )
     }
 }
 

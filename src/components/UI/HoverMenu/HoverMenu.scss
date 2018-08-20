@@ -1,16 +1,29 @@
 .hoverMenu {
+  .carHeader {
+    font-size: .85rem;
+    color: transparentize(black, .4);
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 36px;
+    width: 100%;
+    text-align: left;
+  }
+  .HMenuItem {
+    padding: .3rem .5rem;
+    font-weight:600;
+    color: transparentize(black, .4);
+  }
+
   .categContainer {
     display: flex;
     padding: 1rem;
     .carHeader {
-      font-size: 1rem;
-      color: transparentize(black, .5);
-      font-weight: 600!important;
-      text-transform: capitalize;
+      text-indent: .3rem;
+      color: transparentize(black, .3);
     }
     .catGroup {
-      width: 300px;
-      padding: 1rem;
+      width: 170px;
+      padding: .5rem;
     }
   }
 }

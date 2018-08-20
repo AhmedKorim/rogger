@@ -45,7 +45,8 @@ class MenuListComposition extends React.Component {
             <div className={[classes.root,"hoverMenu"].join(' ')}>
                 <div>
                     <Button
-                        size="small"
+                      variant="text"
+                      size="small"
                         buttonRef={node => {
                             this.anchorEl = node;
                         }}
@@ -70,11 +71,15 @@ class MenuListComposition extends React.Component {
                                                     const key = Object.keys(item)[0];
                                                     return (
                                                         <div key={key} className="catGroup">
-                                                            <Typography className="carHeader" variant="subheading">{key}</Typography>
+                                                            <Button
+                                                                size="small"
+                                                                style={{padding:0,width:'100%'}}
+                                                            >
+                                                                <Typography className="carHeader" variant="body1">{key}</Typography></Button>
                                                             <Divider/>
                                                             <MenuList>
                                                                 {item[key].map(cat => (
-                                                                    <MenuItem key={cat} onClick={this.handleClose}>{cat}</MenuItem>
+                                                                    <MenuItem className="HMenuItem" key={cat} onClick={this.handleClose}><Typography>{cat}</Typography></MenuItem>
                                                                 ))}
                                                             </MenuList>
                                                         </div>

@@ -11,6 +11,8 @@ import Navigation from "../Navigation/Navigation";
 import AKmenu from "../../UI/Menu/Menu";
 import StoreSetting from "../StoreSetting/StoreSetting";
 import CategoriseMenu from "../CategoryMenu/CatergoryMenu";
+import {HEADER_DIM} from "../../../dux/actions/uiActions";
+import {getStyle} from "../../../tools/tools";
 
 const styles = theme => {
     console.log(theme);
@@ -37,7 +39,7 @@ const styles = theme => {
             boxShadow: theme.shadows[5]
         },
         richToolbar: {
-            backgroundColor: theme.palette.background.paper,
+            backgroundColor: theme.palette.background.default,
             paddingTop: "1rem",
             paddingBottom: "1rem"
         },
@@ -61,95 +63,115 @@ const styles = theme => {
         },
         Gray: {
             color: "#ffe"
+        },
+        mainHeader: {
+            overflow: 'hidden'
         }
     });
 }
-const Header = props => {
-    const {
-        classes,
-        width
-    } = props;
+
+class Header extends React.Component {
+
+
+    componentDidMount() {
+        this.props.setHeight(getStyle(this.headerRef,"height"))
+        console.log(getStyle(this.headerRef,"height"));
+    }
+
     // if width is lower than md show hamburger menu
-    return (
-        <header>
+    render() {
+        const {
+            classes,
+            width
+        } = this.props;
+        return (
             <AppBar position="fixed" className={[classes.shadow].join(' ')}>
-                <Toolbar variant="dense" className={classes.mini}>
-                    <div className="container">
-                        <Grid container alignItems="center" justify="center">
-                            <Grid item xs>
-                                <Grid container alignItems="center" justify="center">
-                                    <Grid item className={classes.hidden}>
-                                        <div>
-                                            <Typography className={classes.Gray}>
-                                                Welcome to Rogger store
-                                            </Typography>
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs className={classes.grid}>
-                                        <AKmenu
-                                            listItems={["login", 'logout']}
-                                            icon="shopping_cart"
-                                            count={5}
-                                            bLabel="cart">
-                                        </AKmenu>
-                                    </Grid>
-                                    <Grid item xs className={classes.grid}>
-                                        <AKmenu
-                                            listItems={["login", 'logout']}
-                                            icon="list-alt"
-                                            count={5}
-                                            bLabel="wishlist">
-                                        </AKmenu>
-                                    </Grid>
-                                    <Grid item xs className={classes.grid}>
-                                        <AKmenu
-                                            listItems={["login", 'logout']}
-                                            icon="compare"
-                                            count={5}
-                                            bLabel="compare">
-                                        </AKmenu>
+                <div ref={(node) => this.headerRef = node}>
+                    <Toolbar variant="dense" className={classes.mini}>
+                        <div className="container">
+                            <Grid container alignItems="center" justify="center">
+                                <Grid item xs>
+                                    <Grid container alignItems="center" justify="center">
+                                        <Grid item className={classes.hidden}>
+                                            <div>
+                                                <Typography className={classes.Gray}>
+                                                    Welcome to Rogger store
+                                                </Typography>
+                                            </div>
+                                        </Grid>
+                                        <Grid item xs className={classes.grid}>
+                                            <AKmenu
+                                                listItems={["login", 'logout']}
+                                                icon="shopping_cart"
+                                                count={5}
+                                                bLabel="cart">
+                                            </AKmenu>
+                                        </Grid>
+                                        <Grid item xs className={classes.grid}>
+                                            <AKmenu
+                                                listItems={["login", 'logout']}
+                                                icon="list-alt"
+                                                count={5}
+                                                bLabel="wishlist">
+                                            </AKmenu>
+                                        </Grid>
+                                        <Grid item xs className={classes.grid}>
+                                            <AKmenu
+                                                listItems={["login", 'logout']}
+                                                icon="compare"
+                                                count={5}
+                                                bLabel="compare">
+                                            </AKmenu>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
+                                {width === 'lg' ? < Grid item xs>
+                                    <Grid container alignItems="center" justify="flex-end">
+                                        <StoreSetting/>
+                                    </Grid>
+                                </Grid> : null}
                             </Grid>
-                            {width === 'lg' ? < Grid item xs>
-                                <Grid container alignItems="center" justify="flex-end">
-                                    <StoreSetting/>
+                        </div>
+                    </Toolbar>
+                    <Toolbar variant="regular" className={[classes.richToolbar].join(' ')}>
+                        <div className="container">
+                            <Grid container className={classes.flex}>
+                                <Grid item xs={3} md={2}>
+                                    <Typography variant="headline" className={classes.brand}>
+                                        Rogger
+                                    </Typography>
                                 </Grid>
-                            </Grid> : null}
-                        </Grid>
-                    </div>
-                </Toolbar>
-                <Toolbar variant="regular" className={classes.richToolbar}>
-                    <div className="container">
-                        <Grid container className={classes.flex}>
-                            <Grid item xs={3} md={2}>
-                                <Typography variant="headline" className={classes.brand}>
-                                    Rogger
-                                </Typography>
+                                <Grid item md>
+                                    <Navigation/>
+                                </Grid>
+                                <Grid item xs={9} md={3}>
+                                    <TextField
+                                        className={classes.input}
+                                        id="input-with-icon-textfield"
+                                        placeholder="search.."
+                                        InputProps={{
+                                            startAdornment: (
+                                                <InputAdornment position="start">
+                                                    <Icon color="primary">search</Icon>
+                                                </InputAdornment>
+                                            ),
+                                        }}
+                                    />
+                                </Grid>
                             </Grid>
-                            <Grid item md>
-                                <Navigation/>
-                            </Grid>
-                            <Grid item xs={9} md={3}>
-                                <TextField
-                                    className={classes.input}
-                                    id="input-with-icon-textfield"
-                                    placeholder="search.."
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <Icon color="primary">search</Icon>
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </div>
-                </Toolbar>
-                <CategoriseMenu/>
+                        </div>
+                    </Toolbar>
+                    <CategoriseMenu/>
+                </div>
             </AppBar>
-        </header>
-    )
+        )
+    }
+
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setHeight: (dim) => dispatch({type: HEADER_DIM, dim})
+    }
 }
 export default withWidth()(withStyles(styles)(Header));

@@ -27,17 +27,24 @@ const categories = [
             {electronic: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
             {metal: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
         ]
-    },{
-        furnature: [
+    }, {
+        furniture: [
             {classic: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
             {metal: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-            {modren: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {modern: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+        ]
+    }, {
+        jewellery: [
+            {gold: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {gem: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {modern: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
         ]
     }
 ]
 const styles = theme => ({
     Toolbar: {
-        backgroundColor: "#fff"
+        backgroundColor: theme.palette.background.paper,
+        minHeight: 'unset'
     },
     listContaienr: {
         width: '100%',
@@ -51,7 +58,7 @@ const CategoriseMenu = props => {
     const {classes} = props;
     return (
         <div>
-            <Toolbar className={classes.Toolbar}>
+            <Toolbar className={[classes.Toolbar].join(' ')}>
                 <div className="container">
                     <Grid container justify="center" alignItems="center">
                         {categories.map(item => {
