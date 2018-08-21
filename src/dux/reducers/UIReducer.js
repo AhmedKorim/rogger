@@ -1,17 +1,30 @@
-import {HEADER_DIM} from "../actions/uiActions";
+import {HEADER_DIM, PRODCUT_CARD_DETIALSDETAILS} from "../actions/uiActions";
 
 
 const initialState = {
-    headerHeight: null
+    headerHeight: null,
+    productCard: {
+        activeCard: null,
+        open: false
+    }
 }
 export default (state = initialState, action) => {
-    switch (action.types) {
+    switch (action.type) {
         case HEADER_DIM:
             return {
-                ...state, headerHeight: action.dim
+                ...state,
+                headerHeight: action.dim
+            };
+        case PRODCUT_CARD_DETIALSDETAILS:
+            return {
+                ...state,
+                productCard: {
+                    open: action.payload.open,
+                    activeCard: action.payload.activeCard
+                }
             };
 
         default :
-            return {   ...state, headerHeight: action.dim};
+            return state;
     }
 }

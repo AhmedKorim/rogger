@@ -3,6 +3,7 @@ import './App.scss';
 import Header from "../components/layout/Header/Header";
 import {Route} from "react-router-dom";
 import Home from "./Home/Home";
+import RDialog from '../components/UI/Dialog/Dialog'
 
 class App extends Component {
 
@@ -11,8 +12,9 @@ class App extends Component {
             <Fragment>
                 <Header/>
                 <Fragment>
-                    <Route path="/home" component={Home}/>
+                    <Route path="/" exact component={Home}/>
                 </Fragment>
+                <RDialog/>
             </Fragment>
         )
     }

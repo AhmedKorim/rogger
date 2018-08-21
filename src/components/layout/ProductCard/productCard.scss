@@ -1,10 +1,13 @@
+.productCardWrapper{
+  padding: .5rem;
+}
 .productCard {
-  .viewDetailsB{
+  .viewDetailsB {
   }
-  max-width: 240px;
-  margin: auto;
+  min-width: 240px;
+  max-width: 250px;
   position: relative;
-  .pcChip{
+  .pcChip {
     position: absolute;
     right: 1rem;
     top: .5rem;
@@ -13,8 +16,8 @@
     display: flex;
     justify-content: center;
     margin: .7rem;
-  & > div{
-    //margin: .7rem;
-  }
+    & > div {
+      //margin: .7rem;
+    }
   }
 }

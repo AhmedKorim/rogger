@@ -11,6 +11,8 @@ import Price from "../price/Price";
 import ProductActions from "../productActions/ProdcutsAcitons";
 import Chip from "@material-ui/core/Chip/Chip";
 import Rating from "../Rateing/Rateing";
+import {PRODCUT_CARD_DETIALSDETAILS} from "../../../dux/actions/uiActions";
+import {connect} from "react-redux";
 
 const styles = theme => {
         console.log(theme);
@@ -44,6 +46,10 @@ const styles = theme => {
 
 
 class ProductCard extends React.Component {
+    openDetailes = () => {
+        console.log('clicked');
+        this.props.openProductDetails({})
+    }
 
     render() {
         const {
@@ -51,48 +57,62 @@ class ProductCard extends React.Component {
                 classes
             },
 
+            openDetailes
+
         } = this;
         return (
-            <div className="productCard">
-                <div className="pcChip">
-                    <Chip className={classes.chip}
-                          label="15% off"
-                    />
-                </div>
-                <Card>
-                    <CardMedia
-                        className={classes.media}
-                        image="//via.placeholder.com/300"
-                        title="Contemplative Reptile"
-                    />
-                    <CardHeader
-                        className={classes.cardHeader}
-                        title={"Product name"}
-                        subheader={"electronics"}
-                        action={
-                            <div className="viewDetailsB">
-                                <Tooltip title="quick view item denials" placement="bottom-start">
-                                    <IconButton aria-label="quick view item denials" size="small">
-                                        <i className="material-icons">
-                                            remove_red_eye
-                                        </i>
-                                    </IconButton>
-                                </Tooltip>
-                            </div>
-                        }
-                    />
-                    <div className="priceARate">
-                        <Price/>
-                        <Rating/>
+
+            <div className="productCardWrapper">
+                <div className="productCard">
+                    <div className="pcChip">
+                        <Chip className={classes.chip}
+                              label="15% off"
+                        />
                     </div>
-                    <Divider className={classes.divider}/>
-                    <ProductActions/>
-                </Card>
+                    <Card>
+                        <CardMedia
+                            className={classes.media}
+                            image="//via.placeholder.com/300"
+                            title="Contemplative Reptile"
+                        />
+                        <CardHeader
+                            className={classes.cardHeader}
+                            title={"Product name"}
+                            subheader={"electronics"}
+                            action={
+                                <div className="viewDetailsB">
+                                    <Tooltip title="quick view item denials" placement="bottom-start">
+                                        <IconButton aria-label="quick view item denials" size="small">
+                                            <i className="material-icons">
+                                                remove_red_eye
+                                            </i>
+                                        </IconButton>
+                                    </Tooltip>
+                                </div>
+                            }
+                        />
+                        <div className="priceARate">
+                            <Price/>
+                            <Rating/>
+                        </div>
+                        <Divider className={classes.divider}/>
+                        <ProductActions openDetailes={openDetailes}/>
+                    </Card>
+                </div>
             </div>
+
+
         )
     }
 
 }
 
+const mapDispachToProps = dispatch => {
+    return {
+        openProductDetails: (activeCard) => dispatch({
+            type: PRODCUT_CARD_DETIALSDETAILS, payload: {open: true, activeCard}
+        })
+    }
+}
 
-export default withStyles(styles)(ProductCard)
+export default connect(null, mapDispachToProps)(withStyles(styles)(ProductCard));

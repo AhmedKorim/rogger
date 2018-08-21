@@ -3,14 +3,14 @@ import {connect} from "react-redux";
 
 
 const withPadding = (WrappedComponent) => {
-    const mapStateToprops = state => {
+    const mapStateToProps = state => {
         return {
             headerHeight: state.UI.headerHeight
         }
     }
-    return connect(mapStateToprops)(class extends React.Component {
+    return connect(mapStateToProps)(class extends React.Component {
         render() {
-
+        console.log(this.props.headerHeight);
             return <div style={{
                 paddingTop: this.props.headerHeight
             }}>

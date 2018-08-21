@@ -9,6 +9,7 @@ const styles = {
         flexGrow: 1,
     },
 };
+const routering = ["home", "products", "offers"]
 
 class Navigation extends React.Component {
     state = {
@@ -16,6 +17,7 @@ class Navigation extends React.Component {
     };
 
     handleChange = (event, value) => {
+        // routing here TODO
         this.setState({value});
     }
 
@@ -30,9 +32,7 @@ class Navigation extends React.Component {
                     textColor="primary"
                     centered
                 >
-                    <Tab label="home"/>
-                    <Tab label="products"/>
-                    <Tab label="offers"/>
+                    {routering.map(route => <Tab label={route} key={route}/>)}
                 </Tabs>
             </div>
         )

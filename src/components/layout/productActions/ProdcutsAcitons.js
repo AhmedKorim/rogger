@@ -13,6 +13,9 @@ const ProductActions = props => {
             padding: "8px 4px"
         }
     };
+    const {
+        openDetailes
+    } = props;
     return (
         <CardActions style={classes.actions} disableActionSpacing>
             <Tooltip title="Add to favorites" placement="bottom-start">
@@ -37,7 +40,7 @@ const ProductActions = props => {
                 </IconButton>
             </Tooltip>
             <Tooltip title="more details" placement="bottom-start">
-                <IconButton aria-label="more details">
+                <IconButton aria-label="more details" onClick={openDetailes}>
                     <i className="material-icons">
                         list_alt
                     </i>

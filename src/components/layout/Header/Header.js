@@ -15,8 +15,7 @@ import {HEADER_DIM} from "../../../dux/actions/uiActions";
 import {getStyle} from "../../../tools/tools";
 import {connect} from "react-redux";
 
-const styles = theme => {
-    console.log(theme);
+const styles = theme => {;
     return ({
         mini: {
             maxHeight: 38,
@@ -77,12 +76,13 @@ class Header extends React.Component {
     componentDidMount() {
         this.cacHeight();
         window.addEventListener('resize', this.cacHeight)
+
     }
 
     cacHeight = () => {
-        if (!this.headerRef) return;
         this.props.setHeight(getStyle(this.headerRef, "height"))
         console.log(getStyle(this.headerRef, "height"));
+
     }
 
     // if width is lower than md show hamburger menu

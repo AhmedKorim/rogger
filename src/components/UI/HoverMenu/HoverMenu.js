@@ -11,6 +11,7 @@ import {withStyles} from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography/Typography";
 import "./HoverMenu.scss"
 import Divider from "@material-ui/core/Divider/Divider";
+
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -42,11 +43,11 @@ class MenuListComposition extends React.Component {
         const {open} = this.state;
 
         return (
-            <div className={[classes.root,"hoverMenu"].join(' ')}>
+            <div className={[classes.root, "hoverMenu"].join(' ')}>
                 <div>
                     <Button
-                      variant="text"
-                      size="small"
+                        variant="text"
+                        size="small"
                         buttonRef={node => {
                             this.anchorEl = node;
                         }}
@@ -66,27 +67,24 @@ class MenuListComposition extends React.Component {
                                 <Paper>
                                     <ClickAwayListener onClickAway={this.handleClose}>
                                         <div className="categContainer">
-                                            {
-                                                items.map(item => {
-                                                    const key = Object.keys(item)[0];
-                                                    return (
-                                                        <div key={key} className="catGroup">
-                                                            <Button
-                                                                size="small"
-                                                                style={{padding:0,width:'100%'}}
-                                                            >
-                                                                <Typography className="carHeader" variant="body1">{key}</Typography></Button>
-                                                            <Divider/>
-                                                            <MenuList>
-                                                                {item[key].map(cat => (
-                                                                    <MenuItem className="HMenuItem" key={cat} onClick={this.handleClose}><Typography>{cat}</Typography></MenuItem>
-                                                                ))}
-                                                            </MenuList>
-                                                        </div>
-
-                                                    );
-                                                })
-                                            }
+                                            {items.map(item => {
+                                                const key = Object.keys(item)[0];
+                                                return (
+                                                    <div key={key} className="catGroup">
+                                                        <Button
+                                                            size="small"
+                                                            style={{padding: 0, width: '100%'}}
+                                                        >
+                                                            <Typography className="carHeader" variant="body1">{key}</Typography></Button>
+                                                        <Divider/>
+                                                        <MenuList>
+                                                            {item[key].map(cat => (
+                                                                <MenuItem className="HMenuItem" key={cat}
+                                                                          onClick={this.handleClose}><Typography>{cat}</Typography></MenuItem>
+                                                            ))}
+                                                        </MenuList>
+                                                    </div>);
+                                            })  }
                                         </div>
                                     </ClickAwayListener>
                                 </Paper>
