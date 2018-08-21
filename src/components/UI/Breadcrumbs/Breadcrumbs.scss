@@ -1,0 +1,23 @@
+.breadcrumbs {
+  width: 90%;
+  margin: auto;
+  padding: 0 .5rem;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  .breadcrumbsLink {
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: .8;
+  }
+  .chevronWrapper {
+    span {
+      display: block;
+      opacity: .8;
+    }
+  }
+  .breadcrumbsButton{
+    padding: 0!important;
+
+  }
+}
