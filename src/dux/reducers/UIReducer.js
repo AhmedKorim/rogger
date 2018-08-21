@@ -6,6 +6,9 @@ const initialState = {
     productCard: {
         activeCard: null,
         open: false
+    },
+    aside :{
+        open: false
     }
 }
 export default (state = initialState, action) => {

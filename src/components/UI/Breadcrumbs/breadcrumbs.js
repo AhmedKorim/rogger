@@ -6,6 +6,7 @@ import Icon from "@material-ui/core/es/Icon/Icon";
 import Button from "@material-ui/core/es/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
 import {withRouter} from "react-router-dom";
+import Container from "../../../HOC/Container/Container";
 
 const styles = theme => ({
     paper: {
@@ -20,6 +21,7 @@ const Breadcrumbs = props => {
     const pathes = pathname.split('/').filter(item => item.length > 0);
     console.log(pathes);
     return (
+        <Container>
             <Paper className={[classes.paper, 'breadcrumbs']}>
                 <div>
                     <Button
@@ -45,6 +47,7 @@ const Breadcrumbs = props => {
                     </div>}
                 </Fragment>)}
             </Paper>
+        </Container>
     )
 }
 export default withRouter(withStyles(styles)(Breadcrumbs));
