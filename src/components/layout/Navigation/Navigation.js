@@ -2,7 +2,7 @@ import React from 'react'
 import {withStyles} from "@material-ui/core";
 import Tab from "@material-ui/core/Tab/Tab";
 import Tabs from "@material-ui/core/Tabs/Tabs";
-import Paper from "@material-ui/core/Paper/Paper";
+import {withRouter} from "react-router-dom";
 
 const styles = {
     root: {
@@ -12,14 +12,23 @@ const styles = {
 const routering = ["home", "products", "offers"]
 
 class Navigation extends React.Component {
-    state = {
-        value: 0,
-    };
+    constructor(props) {
+        super(props);
+        let activePassname = this.props.location.pathname;
+        activePassname = activePassname.slice(1, activePassname.length);
+        this.state = {
+            value: routering.indexOf(activePassname) || 0,
+        }
+
+    }
+
 
     handleChange = (event, value) => {
-        // routing here TODO
+
+        this.props.history.push(`/${routering[value]}`)
         this.setState({value});
     }
+
 
     render() {
         const {classes} = this.props;
@@ -40,4 +49,4 @@ class Navigation extends React.Component {
 
 }
 
-export default withStyles(styles)(Navigation);
+export default withRouter(withStyles(styles)(Navigation));
