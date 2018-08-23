@@ -61,7 +61,7 @@ class VitrineControler extends React.Component {
         return (
             <div>
                 <Pannel
-                    heading="Price Range"
+                    heading="categories"
                 >
                     <div className="flex">
                         <div>
@@ -79,9 +79,27 @@ class VitrineControler extends React.Component {
                     </div>
                 </Pannel>
                 <Pannel
+                heading="Price Range"
+            >
+                <div className="flex">
+                    <div>
+                        <div className={classes.fullWidthController}>
+                            <Typography id="label">from {from} $</Typography>
+                            <Slider value={from} aria-labelledby="label" onChange={this.handleChangeFrom} reverse/>
+                        </div>
+                    </div>
+                    <div>
+                        <div className={classes.fullWidthController}>
+                            <Typography id="label">to {to} $</Typography>
+                            <Slider value={to} aria-labelledby="label" onChange={this.handleChangeTo} min={100} max={200000}/>
+                        </div>
+                    </div>
+                </div>
+            </Pannel>
+                <Pannel
                     heading="delivery"
                 >
-                    <div className={classes.fullWidthController}>
+                    <div className="AlignmentFlex">
                         <div className={classes.fullWidthController}>
                             <Typography id="label">{deleveryTime} working days</Typography>
                             <Slider value={deleveryTime} aria-labelledby="label" onChange={this.handelDeliveyTime} min={1} max={15}/>
@@ -91,7 +109,7 @@ class VitrineControler extends React.Component {
                 <Pannel
                     heading="product state"
                 >
-                    <div className="flex">
+                    <div className="AlignmentFlex">
                         <Select
                             value={this.state.productState}
                             onChange={this.handleChange}

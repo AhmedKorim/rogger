@@ -9,15 +9,16 @@ const styles = {
         flexGrow: 1,
     },
 };
-const routering = ["home", "products", "offers"]
+const routering = ["home", "products", "dashboard"]
 
 class Navigation extends React.Component {
     constructor(props) {
         super(props);
         let activePassname = this.props.location.pathname;
         activePassname = activePassname.slice(1, activePassname.length);
+
         this.state = {
-            value: routering.indexOf(activePassname) || 0,
+            value: routering.indexOf(activePassname) > -1 ? routering.indexOf(activePassname) : 0,
         }
 
     }

@@ -18,7 +18,10 @@ const theme = createMuiTheme({
         type: 'light',
         primary: {
             main: lightBlue[800]
-        }
+        },
+    },
+    shape:{
+        borderRadius:0
     }
 })
 

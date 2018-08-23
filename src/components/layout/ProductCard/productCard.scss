@@ -1,11 +1,13 @@
 .productCardWrapper{
-  padding: .5rem;
+  margin: auto;
+  padding: .4rem;
+  min-width: 240px;
+  max-width: 250px;
 }
 .productCard {
   .viewDetailsB {
   }
-  min-width: 240px;
-  max-width: 250px;
+
   position: relative;
   .pcChip {
     position: absolute;

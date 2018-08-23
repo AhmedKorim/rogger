@@ -21,6 +21,9 @@ const styles = theme => ({
     },
     details: {
         padding: 0
+    },
+    radius: {
+        borderRadius: "0 !important"
     }
 });
 
@@ -30,7 +33,9 @@ const Pannel = props => {
     const {classes, children, heading} = props;
     return (
         <div className={classes.root}>
-            <ExpansionPanel className={[classes.panel, 'VCpanel'].join(' ')}>
+            <ExpansionPanel className={[classes.panel, 'VCpanel'].join(' ')} classes={{
+                root: classes.radius
+            }}>
                 <ExpansionPanelSummary expandIcon={<Icon>expand_less</Icon>}>
                     <Typography className={classes.heading}>{heading}</Typography>
                 </ExpansionPanelSummary>

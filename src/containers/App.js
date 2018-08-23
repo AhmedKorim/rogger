@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import './App.scss';
 import Header from "../components/layout/Header/Header";
-import {Route, withRouter} from "react-router-dom";
+import {Redirect, Route, withRouter ,Switch} from "react-router-dom";
 import Home from "./Home/Home";
 import RDialog from '../components/UI/Dialog/Dialog'
 import PerfectScrollbar from 'react-perfect-scrollbar'
@@ -17,8 +17,12 @@ class App extends Component {
                 <Header/>
                 <PerfectScrollbar>
                     <main style={{height: window.innerHeight}}>
-                        <Route path="/home" component={Home}/>
+                        <Switch>
+
                         <Route path="/products" component={Products}/>
+                        <Redirect from="/" to="/home" exact/>
+                        <Route path="/home" component={Home}/>
+                        </Switch>
                     </main>
                 </PerfectScrollbar>
                 <RDialog/>

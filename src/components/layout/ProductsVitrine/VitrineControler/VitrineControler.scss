@@ -1,12 +1,20 @@
-.VCpanel{
+.VCpanel {
 
 }
-.flex{
+
+.AlignmentFlex {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  >div{
+  width: 90%;
+  margin: auto;
+
+
+}
+
+.flex {
+  @extend .AlignmentFlex;
+  > div {
     width: 50%;
   }
 }
