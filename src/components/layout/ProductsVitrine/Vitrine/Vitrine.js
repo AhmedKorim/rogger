@@ -51,11 +51,11 @@ const Vitrine = props => {
             </header>
             <div>
                 <Grid container alignItems="center" className="productCardContainer">
-                    {[1, 2, 3, 4, 5, 6, 6, 7, 8, 2].map(i => <Grid className="productCardItem" key={i}><ProductCard/></Grid>)}
+                    {[1, 2, 3, 4, 5, 6, 6, 7, 8, 2].map(i => <Grid item className="productCardItem" key={i}><ProductCard/></Grid>)}
                 </Grid>
             </div>
             <footer>
-                <Toolbar className={[classes.header,'compactToolbar'].join(' ')}>
+                <Toolbar className={[classes.header,'l'].join(' ')}>
                     <Grid container alignItems="center" className="upperNavigation">
                         {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => <Fragment>
                             {index < 3 ? < Button variant="small" className="smallButton">{i}</Button> :

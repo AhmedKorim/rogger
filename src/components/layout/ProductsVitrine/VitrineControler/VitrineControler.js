@@ -2,14 +2,45 @@ import React from 'react'
 import './VitrineControler.scss';
 import {withStyles} from "@material-ui/core";
 import Typography from "@material-ui/core/es/Typography/Typography";
-import ExpansionPanelSummary from "@material-ui/core/es/ExpansionPanelSummary/ExpansionPanelSummary";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel/ExpansionPanel";
-import ExpansionPanelDetails from "@material-ui/core/es/ExpansionPanelDetails/ExpansionPanelDetails";
-import Icon from "@material-ui/core/Icon/Icon";
 import Slider from '@material-ui/lab/Slider';
 import Pannel from "../../../UI/Pannel/Pannel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
+import NestedList from "../../../UI/nestedList/NestList";
+
+export const categories = [
+    {
+        closes: [
+            {men: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {women: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {kids: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+        ]
+    }, {
+        electronics: [
+            {houseGadgets: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {phones: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {laptops: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+        ]
+    }, {
+        music: [
+            {gaz: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {electronic: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {metal: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+        ]
+    }, {
+        furniture: [
+            {classic: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {metal: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {modern: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+        ]
+    }, {
+        jewellery: [
+            {gold: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {gem: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {modern: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+        ]
+    }
+]
 
 const styles = theme => ({
     root: {
@@ -63,6 +94,13 @@ class VitrineControler extends React.Component {
                 <Pannel
                     heading="categories"
                 >
+                    <div className={classes.root}>
+                        <NestedList categories={categories}/>
+                    </div>
+                </Pannel>
+                <Pannel
+                    heading="Price Range"
+                >
                     <div className="flex">
                         <div>
                             <div className={classes.fullWidthController}>
@@ -78,24 +116,6 @@ class VitrineControler extends React.Component {
                         </div>
                     </div>
                 </Pannel>
-                <Pannel
-                heading="Price Range"
-            >
-                <div className="flex">
-                    <div>
-                        <div className={classes.fullWidthController}>
-                            <Typography id="label">from {from} $</Typography>
-                            <Slider value={from} aria-labelledby="label" onChange={this.handleChangeFrom} reverse/>
-                        </div>
-                    </div>
-                    <div>
-                        <div className={classes.fullWidthController}>
-                            <Typography id="label">to {to} $</Typography>
-                            <Slider value={to} aria-labelledby="label" onChange={this.handleChangeTo} min={100} max={200000}/>
-                        </div>
-                    </div>
-                </div>
-            </Pannel>
                 <Pannel
                     heading="delivery"
                 >

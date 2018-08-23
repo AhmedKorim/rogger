@@ -20,7 +20,8 @@ const styles = theme => ({
 
     },
     details: {
-        padding: 0
+        padding: 0,
+        width:"100%"
     },
     radius: {
         borderRadius: "0 !important"

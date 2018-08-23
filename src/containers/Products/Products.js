@@ -14,10 +14,10 @@ class Products extends React.Component {
                 <Breadcrumbs/>
                 <Container>
                     <Grid container>
-                        <Grid item md={3}>
+                        <Grid item md={3} lg={2}>
                             <VitrineControler/>
                         </Grid>
-                        <Grid item md>
+                        <Grid item md lg>
                             <Vitrine/>
                         </Grid>
                     </Grid>
