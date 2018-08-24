@@ -13,6 +13,7 @@ import Chip from "@material-ui/core/Chip/Chip";
 import Rating from "../Rateing/Rateing";
 import {PRODCUT_CARD_DETIALSDETAILS} from "../../../dux/actions/uiActions";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 const styles = theme => {
         console.log(theme);
@@ -51,13 +52,23 @@ class ProductCard extends React.Component {
         this.props.openProductDetails({})
     }
 
+    navigateToProductPage = (PId) => {
+console.log(this.props);
+        this.props.history.push({
+            pathname: '/products/page',
+
+        })
+    }
+
+
     render() {
         const {
             props: {
                 classes
             },
 
-            openDetailes
+            openDetailes,
+            navigateToProductPage
 
         } = this;
         return (
@@ -82,7 +93,7 @@ class ProductCard extends React.Component {
                             action={
                                 <div className="viewDetailsB">
                                     <Tooltip title="quick view item denials" placement="bottom-start">
-                                        <IconButton aria-label="quick view item denials" size="small">
+                                        <IconButton aria-label="quick view item denials" size="small" onClick={() => navigateToProductPage()}>
                                             <i className="material-icons">
                                                 remove_red_eye
                                             </i>
@@ -115,4 +126,4 @@ const mapDispachToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispachToProps)(withStyles(styles)(ProductCard));
+export default withRouter(connect(null, mapDispachToProps)(withStyles(styles)(ProductCard)));

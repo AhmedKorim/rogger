@@ -6,15 +6,17 @@ import Divider from "@material-ui/core/Divider/Divider";
 import Rating from "../Rateing/Rateing";
 import Price from "../price/Price";
 import ProductActions from "../productActions/ProdcutsAcitons";
+import Grid from "@material-ui/core/Grid/Grid";
 
 const ProductDetails = props => {
     return (
         <div className="productDetailsWrapper">
-            <div className="proDetails">
-                <div className="courouselWrapper">
+            <Grid container className="proDetails">
+                <Grid xs={12} md={6}  item className="courouselWrapper">
                     <PoductImgaes/>
-                </div>
-                <div className="aboutPro">
+                </Grid >
+
+                <Grid xs={12} md={6} item className="aboutPro">
                     <header>
                         <Typography className="poHeading" variant="display1">
                             product name
@@ -36,8 +38,8 @@ const ProductDetails = props => {
                     </div>
                     <Divider className="proDivider"/>
                     <ProductActions/>
-                </div>
-            </div>
+                </Grid>
+            </Grid>
         </div>
     )
 }

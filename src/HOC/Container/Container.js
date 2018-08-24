@@ -3,9 +3,9 @@ import connect from "react-redux/es/connect/connect";
 import './Container.scss';
 
 const Container = props => {
-    const {children, open} = props;
+    const {children, open, className} = props;
     return (
-        <div className={['flexContainer', !open ? 'center' : ''].join(' ')}>
+        <div className={['flexContainer', className, !open ? 'center' : ''].join(' ')}>
             {children}
         </div>
     )

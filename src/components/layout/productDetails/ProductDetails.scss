@@ -1,6 +1,8 @@
 .productDetailsWrapper {
+  max-width: 100%;
   header {
     width: 100%;
+
     text-align: left;
     .poHeading {
       color: black;
@@ -9,8 +11,7 @@
     }
   }
   .proDetails {
-    .courouselWrapper{
-      max-height: 350px;
+    .courouselWrapper {
     }
     padding-top: 1rem;
     display: flex;

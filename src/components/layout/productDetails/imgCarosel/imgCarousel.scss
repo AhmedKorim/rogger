@@ -1,5 +1,10 @@
 .pi {
   max-height: 100%;
+  ul[class^="thumb"] {
+    display: flex;
+    justify-content: center;
+  }
+
   li {
     cursor: pointer;
     &.thumb {

@@ -51,24 +51,24 @@ const Vitrine = props => {
             </header>
             <div>
                 <Grid container alignItems="center" className="productCardContainer">
-                    {[1, 2, 3, 4, 5, 6, 6, 7, 8, 2].map(i => <Grid item className="productCardItem" key={i}><ProductCard/></Grid>)}
+                    {[1, 2, 3, 4, 5, 6, 6, 7, 8, 2].map(i => <Grid item className="productCardItem" key={Math.random()+i*2+'lj9'}><ProductCard/></Grid>)}
                 </Grid>
             </div>
             <footer>
                 <Toolbar className={[classes.header,'l'].join(' ')}>
                     <Grid container alignItems="center" className="upperNavigation">
-                        {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => <Fragment>
+                        {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => <div key={i*i+'l'}>
                             {index < 3 ? < Button variant="small" className="smallButton">{i}</Button> :
                                 (index === 4 && <Button variant="small" className="smallButton">...</Button>)}
-                        </Fragment>)}
+                        </div>)}
                         <Button variant="raised" color="primary">
                             5
                         </Button>
-                        {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index, array) => <Fragment>
+                        {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index, array) => <div key={i*index/.5 +'lio'}>
                             {array.length >= 3 ? (index >= (array.length - 3) ? < Button variant="small" className="smallButton">{i}</Button> :
                                 (index === 4 && <Button variant="small" className="smallButton">...</Button>))
                                 : < Button variant="small" className="smallButton">{i}</Button>}
-                        </Fragment>)}
+                        </div>)}
                     </Grid>
                 </Toolbar>
             </footer>

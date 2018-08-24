@@ -7,6 +7,7 @@ import RDialog from '../components/UI/Dialog/Dialog'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import {connect} from "react-redux";
 import Products from "./Products/Products";
+import ProductPage from "../components/layout/productDetails/ProductPage/ProductPage";
 
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
                 <PerfectScrollbar>
                     <main style={{height: '100vh'}}>
                         <Switch>
+                            <Route path="/products/page" component={ProductPage}/>
                             <Route path="/products" component={Products}/>
                             <Redirect from="/" to="/home" exact/>
                             <Route path="/home" component={Home}/>

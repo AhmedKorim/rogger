@@ -19,10 +19,9 @@ const Breadcrumbs = props => {
         location: {pathname}
     } = props;
     const pathes = pathname.split('/').filter(item => item.length > 0);
-    console.log(pathes);
     return (
         <Container>
-            <Paper className={[classes.paper, 'breadcrumbs']}>
+            <Paper className={[classes.paper, 'breadcrumbs'].join(' ')}>
                 <div>
                     <Button
                         className="breadcrumbsButton"
