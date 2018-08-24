@@ -6,12 +6,12 @@ import "./ProductHeader.scss"
 const ProductHeader = props => {
     return (
         <div>
-            <header>
-                <Typography variant="subheading">
+            <div className="ProductHeader">
+                <Typography className="productTitle" variant="subheading">
                     Product name
                 </Typography>
                 <Rating/>
-            </header>
+            </div>
         </div>
     )
 }
