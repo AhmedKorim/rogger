@@ -19,6 +19,7 @@ import Tab from "@material-ui/core/Tab/Tab";
 import Card from "@material-ui/core/Card/Card";
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import SwipeableViews from "react-swipeable-views";
+import Panner from "../../Panner/Panner";
 
 
 const styles = theme => ({
@@ -27,6 +28,9 @@ const styles = theme => ({
     },
     shadow: {
         boxShadow: theme.shadows[3]
+    },
+    pannerCont: {
+        marginTop: '1rem'
     }
 })
 
@@ -57,7 +61,7 @@ class ProductPage extends React.Component {
             <div className="productPage">
                 <Breadcrumbs/>
                 <Container>
-                    <Grid container>
+                    <Grid container alignItems="flex-start">
                         <Grid item container xs lg={10}>
                             <Grid item className="GridItemD" xs={12} md={5} lg={6}>
                                 <PoductImgaes/>
@@ -111,12 +115,12 @@ class ProductPage extends React.Component {
                                             index={value}
                                             onChangeIndex={handleChangeIndex}
                                         >
-                                           <div>
-                                               <Typography variant="subheading">About</Typography>
-                                           </div>
                                             <div>
-                                               <Typography variant="subheading">reviews</Typography>
-                                           </div>
+                                                <Typography variant="subheading">About</Typography>
+                                            </div>
+                                            <div>
+                                                <Typography variant="subheading">reviews</Typography>
+                                            </div>
                                             <div>
                                                 <Typography variant="subheading">FQA</Typography>
                                             </div>
@@ -126,8 +130,8 @@ class ProductPage extends React.Component {
                             </Grid>
                         </Grid>
                         {(width === 'lg' || width === 'xl') ? (
-                            <Grid item lg>
-                                recommnded items
+                            <Grid item lg className={classes.pannerCont}>
+                                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => <div key={i * index + Math.random().toFixed(2)}><Panner/></div>)}
                             </Grid>
                         ) : null}
                     </Grid>
