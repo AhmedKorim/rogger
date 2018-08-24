@@ -1,11 +1,7 @@
 import React from 'react'
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import HoverMenu from "../../UI/HoverMenu/HoverMenu";
-import List from "@material-ui/core/List/List";
 import {withStyles} from "@material-ui/core";
-import ListItemText from "@material-ui/core/ListItemText/ListItemText";
-import ListItem from "@material-ui/core/es/ListItem/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon";
 import Grid from "@material-ui/core/Grid/Grid";
 
 const categories = [

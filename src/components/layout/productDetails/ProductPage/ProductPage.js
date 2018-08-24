@@ -14,12 +14,9 @@ import ProductHeader from "../ProdcutHeader/ProdcutHeader";
 import {withStyles, withWidth} from "@material-ui/core";
 import Category from "../category/category";
 import CartActions from "../../Cart/CartActions/CartActions";
-import Tabs from "@material-ui/core/Tabs/Tabs";
-import Tab from "@material-ui/core/Tab/Tab";
 import Card from "@material-ui/core/Card/Card";
-import Toolbar from "@material-ui/core/Toolbar/Toolbar";
-import SwipeableViews from "react-swipeable-views";
 import Panner from "../../Panner/Panner";
+import AkTabs from "../../../UI/Taps/Taps";
 
 
 const styles = theme => ({
@@ -35,15 +32,8 @@ const styles = theme => ({
 })
 
 class ProductPage extends React.Component {
-    state = {
-        value: 0
-    }
-    handleChange = (event, value) => {
-        this.setState({value})
-    };
-    handleChangeIndex = index => {
-        this.setState({value: index});
-    };
+
+
 
     render() {
         const {
@@ -51,11 +41,6 @@ class ProductPage extends React.Component {
                 width,
                 classes
             },
-            state: {
-                value
-            },
-            handleChangeIndex,
-            handleChange
         } = this;
         return (
             <div className="productPage">
@@ -98,22 +83,14 @@ class ProductPage extends React.Component {
                             <Grid container>
                                 <Grid xs>
                                     <Card className={classes.root}>
-                                        <Toolbar className={["toolBar", classes.shadow].join(' ')}>
-                                            <Tabs
-                                                value={value}
-                                                onChange={handleChange}
-                                                indicatorColor="primary"
-                                                textColor="primary"
-                                                centered
-                                            >
-                                                <Tab label="About" key='About'/>
-                                                <Tab label="reviews" key='reviews'/>
-                                                <Tab label="FQA" key='FQA'/>
-                                            </Tabs>
-                                        </Toolbar>
-                                        <SwipeableViews
-                                            index={value}
-                                            onChangeIndex={handleChangeIndex}
+                                        <AkTabs
+                                            value={0}
+                                            toolbarClasses={["toolBar", classes.shadow]}
+                                            tab={[
+                                                {label: 'about'},
+                                                {label: 'reviews'},
+                                                {label: 'FQA'}
+                                            ]}
                                         >
                                             <div>
                                                 <Typography variant="subheading">About</Typography>
@@ -124,7 +101,7 @@ class ProductPage extends React.Component {
                                             <div>
                                                 <Typography variant="subheading">FQA</Typography>
                                             </div>
-                                        </SwipeableViews>
+                                        </AkTabs>
                                     </Card>
                                 </Grid>
                             </Grid>
