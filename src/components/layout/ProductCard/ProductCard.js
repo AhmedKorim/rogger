@@ -35,7 +35,9 @@ const styles = theme => {
                 },
                 cardHeader: {
                     textAlign: 'center',
-                    position: 'relative'
+                    position: 'relative',
+                    display: 'flex',
+                    justifyContent: 'center'
                 },
                 chip: {
                     backgroundColor: '#FF1744',
@@ -68,7 +70,6 @@ class ProductCard extends React.Component {
             props: {
                 classes
             },
-
             openDetailes,
             navigateToProductPage
 
@@ -90,6 +91,10 @@ class ProductCard extends React.Component {
                         />
                         <CardHeader
                             className={classes.cardHeader}
+                            classes={{
+                                root: 'cardHeaderRoot'
+
+                            }}
                             title={<ProductHeader/>}
                             subheader={<Category/>}
                             action={
