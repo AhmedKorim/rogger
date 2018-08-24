@@ -9,18 +9,18 @@
     margin-right: auto;
   }
   @media (min-width: 576px) {
-    max-width: calc(93vw - 25px);
+    max-width: calc(100vw - 25px);
 
   }
   @media (min-width: 768px) {
-    max-width: calc(93vw - 50px);
+    max-width: calc(100vw - 50px);
   }
   @media (min-width: 992px) {
-    max-width: calc(93vw - 240px);
+    max-width: calc(100vw - 120px);
 
   }
   @media (min-width: 1200px) {
-    max-width: calc(93vw - 240px);
+    max-width: calc(100vw - 240px);
   }
   &.center {
     @media (min-width: 1200px) {

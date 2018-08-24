@@ -23,7 +23,7 @@ class ProductPage extends React.Component {
                         <Grid item className="GridItemD" xs={12} md={5}>
                             <PoductImgaes/>
                         </Grid>
-                        <Grid item className="GridItemD" xs={12} md={5}>
+                        <Grid item className="GridItemD" xs={12} md>
                             <div className="ProductDescription">
                                 <ProductHeader/>
                                 <div className="status">
