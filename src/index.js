@@ -9,7 +9,7 @@ import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 import thunk from "redux-thunk";
-import {lightBlue} from "@material-ui/core/colors";
+import {lightBlue, pink} from "@material-ui/core/colors";
 import UIReducer from "./dux/reducers/UIReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -17,8 +17,10 @@ const theme = createMuiTheme({
     palette: {
         type: 'light',
         primary: {
-            main: lightBlue[800]
+            main: lightBlue[800],
+            secondary:pink.A400
         },
+
     },
     shape:{
         borderRadius:0

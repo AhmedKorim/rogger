@@ -19,7 +19,7 @@ const ProductActions = props => {
     return (
         <CardActions style={classes.actions} disableActionSpacing>
             <Tooltip title="Add to favorites" placement="bottom-start">
-                <IconButton aria-label="Add to favorites" size="small">
+                <IconButton aria-label="Add to favorites" size="small" color='secondary'>
                     <i className="material-icons" color={red[500]}>
                         favorite
                     </i>

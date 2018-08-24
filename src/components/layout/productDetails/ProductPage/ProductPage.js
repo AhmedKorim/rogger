@@ -18,6 +18,7 @@ import Tabs from "@material-ui/core/Tabs/Tabs";
 import Tab from "@material-ui/core/Tab/Tab";
 import Card from "@material-ui/core/Card/Card";
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
+import SwipeableViews from "react-swipeable-views";
 
 
 const styles = theme => ({
@@ -36,6 +37,9 @@ class ProductPage extends React.Component {
     handleChange = (event, value) => {
         this.setState({value})
     };
+    handleChangeIndex = index => {
+        this.setState({value: index});
+    };
 
     render() {
         const {
@@ -46,7 +50,7 @@ class ProductPage extends React.Component {
             state: {
                 value
             },
-
+            handleChangeIndex,
             handleChange
         } = this;
         return (
@@ -103,7 +107,20 @@ class ProductPage extends React.Component {
                                                 <Tab label="FQA" key='FQA'/>
                                             </Tabs>
                                         </Toolbar>
-
+                                        <SwipeableViews
+                                            index={value}
+                                            onChangeIndex={handleChangeIndex}
+                                        >
+                                           <div>
+                                               <Typography variant="subheading">About</Typography>
+                                           </div>
+                                            <div>
+                                               <Typography variant="subheading">reviews</Typography>
+                                           </div>
+                                            <div>
+                                                <Typography variant="subheading">FQA</Typography>
+                                            </div>
+                                        </SwipeableViews>
                                     </Card>
                                 </Grid>
                             </Grid>
@@ -116,7 +133,6 @@ class ProductPage extends React.Component {
                     </Grid>
                 </Container>
             </div>
-
         )
     }
 }
