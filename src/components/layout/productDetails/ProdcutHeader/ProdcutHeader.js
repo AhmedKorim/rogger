@@ -10,7 +10,6 @@ const ProductHeader = props => {
                 <Typography className="productTitle" variant="subheading">
                     Product name
                 </Typography>
-                <Rating/>
             </div>
         </div>
     )

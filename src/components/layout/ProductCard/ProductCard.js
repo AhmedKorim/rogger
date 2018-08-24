@@ -14,6 +14,8 @@ import Rating from "../Rateing/Rateing";
 import {PRODCUT_CARD_DETIALSDETAILS} from "../../../dux/actions/uiActions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import ProductHeader from "../productDetails/ProdcutHeader/ProdcutHeader";
+import Category from "../productDetails/category/category";
 
 const styles = theme => {
         console.log(theme);
@@ -53,7 +55,7 @@ class ProductCard extends React.Component {
     }
 
     navigateToProductPage = (PId) => {
-console.log(this.props);
+        console.log(this.props);
         this.props.history.push({
             pathname: '/products/page',
 
@@ -88,8 +90,8 @@ console.log(this.props);
                         />
                         <CardHeader
                             className={classes.cardHeader}
-                            title={"Product name"}
-                            subheader={"electronics"}
+                            title={<ProductHeader/>}
+                            subheader={<Category/>}
                             action={
                                 <div className="viewDetailsB">
                                     <Tooltip title="quick view item denials" placement="bottom-start">

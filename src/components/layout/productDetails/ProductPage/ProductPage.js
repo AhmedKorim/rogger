@@ -35,6 +35,7 @@ class ProductPage extends React.Component {
                             <Grid item className="GridItemD" xs={12} md={7} lg={6}>
                                 <div className="ProductDescription">
                                     <ProductHeader/>
+                                    <Rating/>
                                     <div className="status">
                                         <div><Typography> <span className="poLandmark">Category</span> : <span
                                             className="poValue">electronics</span></Typography>
