@@ -26,4 +26,9 @@
       padding: 1rem 0 ;
     }
   }
+  .toolBar{
+    min-height: unset;
+    display: flex;
+    justify-content: center;
+  }
 }

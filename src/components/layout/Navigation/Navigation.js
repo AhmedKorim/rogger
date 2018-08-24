@@ -25,7 +25,6 @@ class Navigation extends React.Component {
 
 
     handleChange = (event, value) => {
-
         this.props.history.push(`/${routering[value]}`)
         this.setState({value});
     }

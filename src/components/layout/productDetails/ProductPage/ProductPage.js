@@ -11,18 +11,44 @@ import Rating from "../../Rateing/Rateing";
 import Divider from "@material-ui/core/Divider/Divider";
 import ProductActions from "../../productActions/ProdcutsAcitons";
 import ProductHeader from "../ProdcutHeader/ProdcutHeader";
-import {withWidth} from "@material-ui/core";
+import {withStyles, withWidth} from "@material-ui/core";
 import Category from "../category/category";
+import CartActions from "../../Cart/CartActions/CartActions";
+import Tabs from "@material-ui/core/Tabs/Tabs";
+import Tab from "@material-ui/core/Tab/Tab";
+import Card from "@material-ui/core/Card/Card";
+import Toolbar from "@material-ui/core/Toolbar/Toolbar";
+
+
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    shadow: {
+        boxShadow: theme.shadows[3]
+    }
+})
 
 class ProductPage extends React.Component {
+    state = {
+        value: 0
+    }
+    handleChange = (event, value) => {
+        this.setState({value})
+    };
+
     render() {
         const {
             props: {
-                width
-            }
+                width,
+                classes
+            },
+            state: {
+                value
+            },
 
+            handleChange
         } = this;
-        console.log(width);
         return (
             <div className="productPage">
                 <Breadcrumbs/>
@@ -50,17 +76,36 @@ class ProductPage extends React.Component {
                                         </Typography>
                                     </div>
                                     <div className="priceAndAction">
-                                        <Grid container>
-                                        <Grid item><Price/></Grid>
-                                        <Grid item>
-                                            <CartActions/>
+                                        <Grid container alignItems="center" justify="flex-start">
+                                            <Grid item xs><Price/></Grid>
+                                            <Grid item xs>
+                                                <CartActions/>
+                                            </Grid>
                                         </Grid>
-                                        </Grid>
-
                                     </div>
                                     <Divider className="proDivider"/>
                                 </div>
                                 <ProductActions/>
+                            </Grid>
+                            <Grid container>
+                                <Grid xs>
+                                    <Card className={classes.root}>
+                                        <Toolbar className={["toolBar", classes.shadow].join(' ')}>
+                                            <Tabs
+                                                value={value}
+                                                onChange={handleChange}
+                                                indicatorColor="primary"
+                                                textColor="primary"
+                                                centered
+                                            >
+                                                <Tab label="About" key='About'/>
+                                                <Tab label="reviews" key='reviews'/>
+                                                <Tab label="FQA" key='FQA'/>
+                                            </Tabs>
+                                        </Toolbar>
+
+                                    </Card>
+                                </Grid>
                             </Grid>
                         </Grid>
                         {(width === 'lg' || width === 'xl') ? (
@@ -76,4 +121,4 @@ class ProductPage extends React.Component {
     }
 }
 
-export default withWidth()(withPadding(ProductPage));
+export default withStyles(styles)(withWidth()(withPadding(ProductPage)));

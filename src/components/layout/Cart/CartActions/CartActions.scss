@@ -1,0 +1,25 @@
+.cartActions {
+  width: 15rem;
+  .orderCountController {
+    padding: 0;
+    min-height: unset;
+    max-height: unset;
+    height: 100%;
+  }
+  .orderPrice {
+    text-align: center;
+    display: inline-block;
+    padding: .25rem 1.5rem;
+  }
+  .CAWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    > div {
+      margin: .2rem;
+      .orderCountController {
+        min-width: 3rem;
+      }
+    }
+  }
+}
