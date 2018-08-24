@@ -19,7 +19,7 @@ class ProductPage extends React.Component {
             <div className="productPage">
                 <Breadcrumbs/>
                 <Container>
-                    <Grid container>
+                    <Grid container  >
                         <Grid item className="GridItemD" xs={12} md={5}>
                             <PoductImgaes/>
                         </Grid>

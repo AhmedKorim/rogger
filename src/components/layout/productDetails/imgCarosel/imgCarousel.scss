@@ -2,8 +2,13 @@
   max-height: 100%;
   ul[class^="thumb"] {
     display: flex;
-    padding: 0;
+    padding: 0 !important;
     justify-content: center;
+  }
+  .carousel {
+    .thumbs-wrapper.axis-vertical {
+      margin: 0;
+    }
   }
 
   li {
