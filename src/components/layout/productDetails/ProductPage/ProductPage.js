@@ -1,6 +1,5 @@
 import React from 'react';
 import './ProuductPage.scss';
-import ProductDetails from "../ProductDetails";
 import withPadding from "../../../../HOC/WithPadding/WithPadding";
 import Breadcrumbs from "../../../UI/Breadcrumbs/breadcrumbs";
 import Container from "../../../../HOC/Container/Container";
@@ -13,6 +12,7 @@ import Divider from "@material-ui/core/Divider/Divider";
 import ProductActions from "../../productActions/ProdcutsAcitons";
 import ProductHeader from "../ProdcutHeader/ProdcutHeader";
 import {withWidth} from "@material-ui/core";
+import Category from "../category/category";
 
 class ProductPage extends React.Component {
     render() {
@@ -37,24 +37,26 @@ class ProductPage extends React.Component {
                                     <ProductHeader/>
                                     <Rating/>
                                     <div className="status">
-                                        <div><Typography> <span className="poLandmark">Category</span> : <span
-                                            className="poValue">electronics</span></Typography>
-                                        </div>
-                                        <div><Typography> <span className="poLandmark">Available</span> : <span className="poValue"> 5 pieces</span>
-                                        </Typography>
-                                        </div>
+                                        <div><Typography className="typoG">Category</Typography> : <Category/></div>
+                                        <div><Typography className="typoG">Availability</Typography> : <Typography className="typoG matchCat ">5
+                                            pieces</Typography></div>
                                     </div>
-                                    <div className="priceARate">
-                                        <Price/>
-                                        <Rating/>
-                                    </div>
-                                    <div>
+                                    <div className="aboutProduct">
                                         <Typography variant="body2" className="proDescription">
                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad alias assumenda cum delectus deserunt eius
                                             esse
                                             eveniet fuga
                                             hic illum, ipsam iste magni modi, necessitatibus praesentium quia quis tempore!
                                         </Typography>
+                                    </div>
+                                    <div className="priceAndAction">
+                                        <Grid container>
+                                        <Grid item><Price/></Grid>
+                                        <Grid item>
+                                            <CartActions/>
+                                        </Grid>
+                                        </Grid>
+
                                     </div>
                                     <Divider className="proDivider"/>
                                 </div>

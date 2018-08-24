@@ -96,7 +96,7 @@ class ProductCard extends React.Component {
 
                             }}
                             title={<ProductHeader/>}
-                            subheader={<Category/>}
+                            subheader={<div><Category/></div>}
                             action={
                                 <div className="viewDetailsB">
                                     <Tooltip title="quick view item denials" placement="bottom-start">

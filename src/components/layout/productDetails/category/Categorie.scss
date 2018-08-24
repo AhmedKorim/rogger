@@ -1,17 +1,17 @@
 .category {
+  display: inline-block;
   text-align: center;
   .catIcon {
     color: #C7A500;
     text-align: center;
     font-size: 1rem;
   }
-  .catBut{
+  .catBut {
     padding: 0;
     min-height: unset;
   }
   .categoryTitle {
     text-align: center;
-
     font-size: 1rem;
     color: transparentize(black, .3);
     font-weight: 500;
