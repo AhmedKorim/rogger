@@ -3,22 +3,36 @@ import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import Tabs from "@material-ui/core/Tabs/Tabs";
 import Tab from "@material-ui/core/Tab/Tab";
 import SwipeableViews from "react-swipeable-views";
-
+import {withRouter} from 'react-router-dom';
 
 class AkTabs extends React.Component {
     constructor(props) {
-
         super(props);
+        const links = props.location.pathname.split('/');
+        const intialIndex = props.tab.findIndex(item => item.label === links[links.length - 1]);
+        console.log(props.tab, links, intialIndex);
         this.state = {
-            value : props.value || 0
+            value: intialIndex > 0 ? intialIndex : (props.history.push(props.match.url + '/' + props.tab[0].label), 0)
+
         }
     }
+
     handleChange = (event, value) => {
         this.setState({value})
+        this.props.history.push(this.props.match.url + '/' + this.props.tab[value].label);
     };
     handleChangeIndex = index => {
         this.setState({value: index});
     };
+
+    componentWillUpdate(nextProps, nextState) {
+        if (nextProps.location.pathname === this.props.location.pathname) return;
+        const links = nextProps.location.pathname.split('/');
+        const intialIndex = nextProps.tab.findIndex(item => item.label === links[links.length - 1]);
+        this.setState({value: intialIndex})
+
+    }
+
     render() {
         const {
             state: {
@@ -35,7 +49,6 @@ class AkTabs extends React.Component {
         } = this;
 
         return (
-
             <Fragment>
                 <Toolbar className={toolbarClasses.join(' ')}>
                     <Tabs
@@ -60,4 +73,4 @@ class AkTabs extends React.Component {
 }
 
 
-export default AkTabs;
+export default withRouter(AkTabs);

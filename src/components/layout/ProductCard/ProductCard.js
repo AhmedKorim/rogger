@@ -61,8 +61,7 @@ class ProductCard extends React.Component {
     navigateToProductPage = (PId) => {
         console.log(this.props);
         this.props.history.push({
-            pathname: '/products/page',
-
+            pathname: '/product/page',
         })
     }
 
@@ -83,7 +82,7 @@ class ProductCard extends React.Component {
 
 
         } = this;
-        const priceRatio = preDiscount ? (100 - ((productPrice / preDiscount) * 100) ).toFixed(2) : 0
+        const priceRatio = preDiscount ? (100 - ((productPrice / preDiscount) * 100)).toFixed(2) : 0
         return (
             <div className="productCardWrapper">
                 <div className="productCard">
@@ -104,7 +103,6 @@ class ProductCard extends React.Component {
                             className={classes.cardHeader}
                             classes={{
                                 root: 'cardHeaderRoot'
-
                             }}
                             title={<ProductHeader productName={productName}/>}
                             subheader={<div><Category productCategory={productCategory}/></div>}

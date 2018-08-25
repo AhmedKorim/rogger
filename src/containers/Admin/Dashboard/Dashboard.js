@@ -28,7 +28,6 @@ class Dashboard extends React.Component {
                 classes
             }
 
-
         } = this;
         return (
             <Fragment>
@@ -37,7 +36,6 @@ class Dashboard extends React.Component {
                 <Container className="dashboard">
                     <Card>
                         <AkTabs
-                            value={0}
                             toolbarClasses={["toolBar", classes.shadow]}
                             tab={[
                                 {label: 'Orders'},
@@ -56,7 +54,6 @@ class Dashboard extends React.Component {
                     </Card>
                 </Container>
             </Fragment>
-
         )
     }
 }

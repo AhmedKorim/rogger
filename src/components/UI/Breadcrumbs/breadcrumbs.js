@@ -13,40 +13,61 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.default
     }
 })
-const Breadcrumbs = props => {
-    const {
-        classes,
-        location: {pathname}
-    } = props;
-    const pathes = pathname.split('/').filter(item => item.length > 0);
-    return (
-        <Container>
-            <Paper className={[classes.paper, 'breadcrumbs'].join(' ')}>
-                <div>
-                    <Button
-                        className="breadcrumbsButton"
-                        size="small">
-                        <Icon>home</Icon>
-                        <Typography className="breadcrumbsLink">home</Typography>
-                    </Button>
-                </div>
-                <div className="chevronWrapper">
-                    <Icon>chevron_right</Icon>
-                </div>
-                {pathes.map((path, index) => <Fragment>
+
+class Breadcrumbs extends React.Component {
+
+    getPathes = () => this.pathes = this.props.location.pathname.split('/').filter(item => item.length > 0);
+
+
+    handelRoute = route => {
+        const newPath = this.pathes.reduce((acc, item) => {
+            return acc.concat(item + '/')
+        }, '')
+        console.log(newPath);
+    }
+
+    render() {
+        this.getPathes();
+        const {
+            props: {
+                classes,
+                location: {pathname}
+            },
+            pathes ,
+            handelRoute
+        } = this;
+
+        return (
+            <Container>
+                <Paper className={[classes.paper, 'breadcrumbs'].join(' ')}>
                     <div>
                         <Button
                             className="breadcrumbsButton"
                             size="small">
-                            <Typography className="breadcrumbsLink">{path}</Typography>
+                            <Icon>home</Icon>
+                            <Typography className="breadcrumbsLink">home</Typography>
                         </Button>
                     </div>
-                    {index === pathes.length - 1 ? null : <div className="chevronWrapper">
+                    <div className="chevronWrapper">
                         <Icon>chevron_right</Icon>
-                    </div>}
-                </Fragment>)}
-            </Paper>
-        </Container>
-    )
+                    </div>
+                    {pathes.map((path, index) => <Fragment>
+                        <div>
+                            <Button
+                                className="breadcrumbsButton"
+                                onClick={() => handelRoute()}
+                                size="small">
+                                <Typography className="breadcrumbsLink">{path}</Typography>
+                            </Button>
+                        </div>
+                        {index === pathes.length - 1 ? null : <div className="chevronWrapper">
+                            <Icon>chevron_right</Icon>
+                        </div>}
+                    </Fragment>)}
+                </Paper>
+            </Container>
+        )
+    }
 }
+
 export default withRouter(withStyles(styles)(Breadcrumbs));

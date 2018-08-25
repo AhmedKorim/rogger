@@ -21,7 +21,7 @@ class App extends Component {
                 <PerfectScrollbar>
                     <main style={{height: '100vh'}}>
                         <Switch>
-                            <Route path="/products/page" component={ProductPage}/>
+                            <Route path="/product/:productId" component={ProductPage}/>
                             <Route path="/products" component={Products}/>
                             <Redirect from="/" to="/home" exact/>
                             <Route path="/home" component={Home}/>
