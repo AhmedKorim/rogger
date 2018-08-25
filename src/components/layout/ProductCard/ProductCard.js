@@ -83,7 +83,7 @@ class ProductCard extends React.Component {
 
 
         } = this;
-        const priceRatio = preDiscount ? 100 - (productPrice / preDiscount).toFixed(2) * 100 : 0
+        const priceRatio = preDiscount ? (100 - ((productPrice / preDiscount) * 100) ).toFixed(2) : 0
         return (
             <div className="productCardWrapper">
                 <div className="productCard">
