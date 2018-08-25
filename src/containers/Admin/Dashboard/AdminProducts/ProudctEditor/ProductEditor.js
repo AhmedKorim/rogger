@@ -22,10 +22,6 @@ class ProductEditor extends React.Component {
         ]
     }
     classes = ['input']
-    sendData = (event) => {
-        event.preventDefault();
-        axiosOrders.put()
-    }
 
 
     changeHandler = ({target: {value}}, id) => {
@@ -47,8 +43,14 @@ class ProductEditor extends React.Component {
         }, {})
     }
 
+    sendData = (event) => {
+        event.preventDefault();
+        console.log(this.productData);
+        axiosOrders.post('/products.json', this.productData)
+    }
 
     render() {
+        this.getProductData();
         const {
             state: {
                 controllers

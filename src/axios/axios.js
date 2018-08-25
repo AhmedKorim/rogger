@@ -1,6 +1,7 @@
-import axios from 'axions';
+import axios from "axios";
+
 
 const axiosOrders = axios.create({
-    baseUrl: 'https://react-1cfd5.firebaseio.com/'
+    baseURL: 'https://react-1cfd5.firebaseio.com'
 })
 export default axiosOrders;

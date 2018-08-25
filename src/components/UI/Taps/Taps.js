@@ -4,6 +4,7 @@ import Tabs from "@material-ui/core/Tabs/Tabs";
 import Tab from "@material-ui/core/Tab/Tab";
 import SwipeableViews from "react-swipeable-views";
 import {withRouter} from 'react-router-dom';
+import {withWidth} from "@material-ui/core";
 
 class AkTabs extends React.Component {
     constructor(props) {
@@ -43,6 +44,7 @@ class AkTabs extends React.Component {
                 toolbarClasses,
                 tab,
                 centered,
+                width
             },
             handleChange,
             handleChangeIndex
@@ -56,7 +58,9 @@ class AkTabs extends React.Component {
                         onChange={handleChange}
                         indicatorColor="primary"
                         textColor="primary"
-                        centered={centered}>
+                        scrollable={ width === 'xs' }
+                        scrollButtons="auto"
+                        centered={false}>
                         >
                         {tab.map(tab => <Tab label={tab.label} key={tab.key}/>)}
                     </Tabs>
@@ -73,4 +77,4 @@ class AkTabs extends React.Component {
 }
 
 
-export default withRouter(AkTabs);
+export default withRouter(withWidth()(AkTabs));
