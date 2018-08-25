@@ -51,6 +51,8 @@ const styles = theme => {
 
 
 class ProductCard extends React.Component {
+
+
     openDetailes = () => {
         console.log('clicked');
         this.props.openProductDetails({})
@@ -68,25 +70,34 @@ class ProductCard extends React.Component {
     render() {
         const {
             props: {
-                classes
+                classes,
+                productImg,
+                productName,
+                productPrice,
+                preDiscount,
+                productCategory
+
             },
             openDetailes,
-            navigateToProductPage
+            navigateToProductPage,
+
 
         } = this;
+        const priceRatio = preDiscount ? 100 - (productPrice / preDiscount).toFixed(2) * 100 : 0
         return (
-
             <div className="productCardWrapper">
                 <div className="productCard">
-                    <div className="pcChip">
+                    {(priceRatio > 0)
+                    && <div className="pcChip">
                         <Chip className={classes.chip}
-                              label="15% off"
+                              label={priceRatio + '% off'}
                         />
                     </div>
+                    }
                     <Card>
                         <CardMedia
                             className={classes.media}
-                            image="//via.placeholder.com/300"
+                            image={productImg || "//via.placeholder.com/300"}
                             title="Contemplative Reptile"
                         />
                         <CardHeader
@@ -95,8 +106,8 @@ class ProductCard extends React.Component {
                                 root: 'cardHeaderRoot'
 
                             }}
-                            title={<ProductHeader/>}
-                            subheader={<div><Category/></div>}
+                            title={<ProductHeader productName={productName}/>}
+                            subheader={<div><Category productCategory={productCategory}/></div>}
                             action={
                                 <div className="viewDetailsB">
                                     <Tooltip title="quick view item denials" placement="bottom-start">
@@ -110,8 +121,13 @@ class ProductCard extends React.Component {
                             }
                         />
                         <div className="priceARate">
-                            <Price/>
-                            <Rating/>
+                            <Price
+                                productPrice={productPrice}
+                                preDiscount={preDiscount}
+                                priceRatio={priceRatio}
+                            />
+                            <Rating
+                            />
                         </div>
                         <Divider className={classes.divider}/>
                         <ProductActions openDetailes={openDetailes}/>

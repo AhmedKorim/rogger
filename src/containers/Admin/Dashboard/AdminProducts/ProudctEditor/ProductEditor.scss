@@ -1,0 +1,55 @@
+.productEditor {
+  .input {
+    width: 100%;
+    height: auto;
+    max-width: unset;
+    input {
+      display: block;
+      width: 100%;
+      min-width: unset;
+      max-width: unset;
+    }
+  }
+  .Gpadding {
+    padding: 1rem;
+    .subHeader {
+      text-transform: capitalize;
+      font-weight: bold;
+      color: transparentize(black, .2);
+    }
+  }
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-around;
+    margin: 1%;
+    .normal {
+      width: 48%;
+    }
+    .fullWidth {
+      width: 98%
+    }
+    .restButton {
+      background-color: #FF6F00;
+    }
+    .restLabel {
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .actions {
+      .button {
+        margin: 0 .3rem
+      }
+      padding: .5rem;
+      margin-left: auto;
+      margin-right: 1rem;
+    }
+    .textArea {
+      textarea {
+        height: auto
+
+      }
+    }
+  }
+}

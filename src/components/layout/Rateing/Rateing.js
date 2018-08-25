@@ -5,14 +5,15 @@ import Typography from "@material-ui/core/Typography/Typography";
 import Grid from "@material-ui/core/Grid/Grid";
 
 const Rating = props => {
+    const {rate, reviews} = props;
     return (
         <div className="ratingComponent">
             <Tooltip title="15 reviews" placement="bottom-end">
-                <Grid container  alignItems="center" justify="center">
-                    <Grid item className="rateingGrid" >
+                <Grid container alignItems="center" justify="center">
+                    <Grid item className="rateingGrid">
                         <div className="ratingWrapper">
                             <div className="rate">
-                                <div className="stars value ">
+                                <div className="stars value " style={{width: rate ? rate + '%' : 100 + '%'}}>
                                     <div className="rateValue">
                                         <i className="material-icons starRate">star</i>
                                         <i className="material-icons starRate">star</i>
@@ -33,10 +34,10 @@ const Rating = props => {
                     </Grid>
                     <Grid item className="rateingGrid">
                         <div>
-                            <Typography
+                            {(reviews || reviews > 0)&& <Typography
                                 className="reviewsCounter">
-                                14 reviews
-                            </Typography>
+                                {reviews} reviews
+                            </Typography>}
                         </div>
                     </Grid>
                 </Grid>

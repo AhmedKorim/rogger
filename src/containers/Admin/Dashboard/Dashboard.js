@@ -7,6 +7,7 @@ import AkTabs from "../../../components/UI/Taps/Taps";
 import './Dashboard.scss'
 import Card from "@material-ui/core/Card/Card";
 import Breadcrumbs from "../../../components/UI/Breadcrumbs/breadcrumbs";
+import AdminProducts from "./AdminProducts/AdminProducts";
 
 const styles = theme => ({
     root: {
@@ -46,7 +47,7 @@ class Dashboard extends React.Component {
                             ]}
                         >
                             <div>Orders</div>
-                            <div>Products</div>
+                            <div><AdminProducts/></div>
                             <div>Clients</div>
                             <div>Statics</div>
                             <div>Plans</div>

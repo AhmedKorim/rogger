@@ -5,11 +5,12 @@ import Icon from "@material-ui/core/Icon/Icon";
 import "./Categorie.scss";
 
 const Category = props => {
+    const {productCategory}=props;
     return (
         <div className="category">
             <Button className="catBut" onClick={() => console.log('clicked')}>
                 <Icon className="catIcon">loyalty</Icon>
-                <Typography variant="subheading" className="categoryTitle">electoronics</Typography>
+                <Typography variant="subheading" className="categoryTitle">{productCategory || 'category'}</Typography>
             </Button>
         </div>
     )

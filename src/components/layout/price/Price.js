@@ -17,22 +17,22 @@ const styles = theme => ({
 });
 const Price = props => {
     const {
-        price,
-        odPrice,
-        classes
-
+        productPrice,
+        preDiscount,
+        classes,
+        priceRatio
     } = props;
     return (
         <div className="priceContainer">
             <div>
-                <div className="offer">
+                {(priceRatio > 0) && <div className="offer">
                     <div className="oldPriceW">
-                        <Typography className="oldPrice" variant="body1">25$
+                        <Typography className="oldPrice" variant="body1">{preDiscount || '0'}$
                         </Typography>
                     </div>
-                </div>
+                </div>}
                 <div className="cPrice">
-                    <Typography className="currentPrice" variant="body1">15$</Typography>
+                    <Typography className="currentPrice" variant="body1">{productPrice || '0'}$</Typography>
                 </div>
             </div>
         </div>
