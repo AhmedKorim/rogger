@@ -8,7 +8,7 @@ const Rating = props => {
     const {rate, reviews} = props;
     return (
         <div className="ratingComponent">
-            <Tooltip title="15 reviews" placement="bottom-end">
+            <Tooltip title={(reviews || reviews > 0) ? reviews + 'reviews' : "no reviews yet"} placement="bottom-end">
                 <Grid container alignItems="center" justify="center">
                     <Grid item className="rateingGrid">
                         <div className="ratingWrapper">
@@ -34,7 +34,7 @@ const Rating = props => {
                     </Grid>
                     <Grid item className="rateingGrid">
                         <div>
-                            {(reviews || reviews > 0)&& <Typography
+                            {(reviews || reviews > 0) && <Typography
                                 className="reviewsCounter">
                                 {reviews} reviews
                             </Typography>}
