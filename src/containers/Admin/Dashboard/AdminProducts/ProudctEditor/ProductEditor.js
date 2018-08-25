@@ -5,6 +5,7 @@ import ProductCard from "../../../../../components/layout/ProductCard/ProductCar
 import './ProductEditor.scss';
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
+import axiosOrders from "../../../../../axios/axios";
 
 class ProductEditor extends React.Component {
     state = {
@@ -20,6 +21,13 @@ class ProductEditor extends React.Component {
             {value: '', label: 'Product description', id: 'productDescription', multiline: true},
         ]
     }
+    classes = ['input']
+    sendData = (event) => {
+        event.preventDefault();
+        axiosOrders.put()
+    }
+
+
     changeHandler = ({target: {value}}, id) => {
         console.log(value);
         this.setState({
@@ -28,7 +36,17 @@ class ProductEditor extends React.Component {
             })
         })
     }
-    classes = ['input']
+
+
+    getProductData = () => {
+        this.productData = this.state.controllers.reduce((acc, item) => {
+            return {
+                ...acc,
+                [item.id]: item.value
+            }
+        }, {})
+    }
+
 
     render() {
         const {
@@ -36,28 +54,26 @@ class ProductEditor extends React.Component {
                 controllers
             },
             changeHandler,
-            classes
-        } = this;
-        const {productName, productImg ,productPrice ,preDiscount ,productCategory} = controllers.reduce((acc, item) => {
-            return {
-                ...acc,
-                [item.id]: item.value
+            classes,
+            sendData,
+            productData: {
+                productName, productImg, productPrice, preDiscount, productCategory
             }
-        }, {})
+        } = this;
 
         return (
             <div className="productEditor">
                 <Grid container>
                     <Grid className="Gpadding" item md={8}>
                         <Typography className="subHeader" variant="subheading">Product Editor</Typography>
-                        <form>
+                        <form onSubmit={sendData}>
                             {controllers.map(controller => <div className={controller.multiline ? 'fullWidth' : 'normal'}><FormController
                                     changeHandler={changeHandler}
                                     payload={{...controller, classes}}
                                 /></div>
                             )}
                             <div className="actions">
-                                <Button className="button" variant="raised" color="primary">
+                                <Button type="submit" className="button" variant="raised" color="primary">
                                     Add item
                                 </Button>
                                 <Button type="button" className="button" variant="raised" classes={{
