@@ -7,6 +7,9 @@
     text-transform: uppercase;
     font-weight: 600;
     opacity: .8;
+    &.activeBreadcrumbItem{
+      opacity: .6;
+    }
   }
   .chevronWrapper {
     span {

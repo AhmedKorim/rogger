@@ -23,7 +23,7 @@ class Breadcrumbs extends React.Component {
         const newPath = this.pathes.reduce((acc, item) => {
             return acc.concat(item + '/')
         }, '')
-        console.log(newPath);
+        console.log(route);
     }
 
     render() {
@@ -33,7 +33,7 @@ class Breadcrumbs extends React.Component {
                 classes,
                 location: {pathname}
             },
-            pathes ,
+            pathes,
             handelRoute
         } = this;
 
@@ -43,7 +43,9 @@ class Breadcrumbs extends React.Component {
                     <div>
                         <Button
                             className="breadcrumbsButton"
-                            size="small">
+                            size="small"
+                            onClick={() => handelRoute('home')}
+                        >
                             <Icon>home</Icon>
                             <Typography className="breadcrumbsLink">home</Typography>
                         </Button>
@@ -55,9 +57,12 @@ class Breadcrumbs extends React.Component {
                         <div>
                             <Button
                                 className="breadcrumbsButton"
-                                onClick={() => handelRoute()}
+                                onClick={() => handelRoute(path)}
+
+                                disabled={index === pathes.length - 1}
                                 size="small">
-                                <Typography className="breadcrumbsLink">{path}</Typography>
+                                <Typography
+                                    className={["breadcrumbsLink", index === pathes.length - 1 ? 'activeBreadcrumbItem' : null].join(' ')}>{path}</Typography>
                             </Button>
                         </div>
                         {index === pathes.length - 1 ? null : <div className="chevronWrapper">
