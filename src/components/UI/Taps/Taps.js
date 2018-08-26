@@ -5,6 +5,9 @@ import Tab from "@material-ui/core/Tab/Tab";
 import SwipeableViews from "react-swipeable-views";
 import {withRouter} from 'react-router-dom';
 import {withWidth} from "@material-ui/core";
+import Zoom from "@material-ui/core/Zoom/Zoom";
+import Button from "@material-ui/core/Button/Button";
+import Icon from "@material-ui/core/Icon/Icon";
 
 class AkTabs extends React.Component {
     constructor(props) {
@@ -47,10 +50,12 @@ class AkTabs extends React.Component {
                 toolbarClasses,
                 tab,
                 centered,
-                width
+                width,
+                withFap
             },
             handleChange,
             handleChangeIndex
+
         } = this;
 
         return (

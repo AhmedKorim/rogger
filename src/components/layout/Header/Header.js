@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import Grid from "@material-ui/core/Grid/Grid";
@@ -14,8 +14,10 @@ import CategoriseMenu from "../CategoryMenu/CatergoryMenu";
 import {HEADER_DIM} from "../../../dux/actions/uiActions";
 import {getStyle} from "../../../tools/tools";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
-const styles = theme => {;
+const styles = theme => {
+    ;
     return ({
         mini: {
             maxHeight: 38,
@@ -74,24 +76,37 @@ class Header extends React.Component {
 
 
     componentDidMount() {
-        this.cacHeight();
-        window.addEventListener('resize', this.cacHeight)
+        this.calcHeight();
+        window.addEventListener('resize', this.calcHeight)
 
     }
 
-    cacHeight = () => {
+    calcHeight = () => {
         this.props.setHeight(getStyle(this.headerRef, "height"))
         console.log(getStyle(this.headerRef, "height"));
 
     }
 
+    componentDidUpdate() {
+        this.calcHeight();
+    }
+
+    loadRichHeader = () => {
+        const hasHome = this.props.location.pathname.indexOf('home') > 0;
+        const hasProducts = this.props.location.pathname.indexOf('products') > 0;
+        return (hasHome || hasProducts)
+    }
+
+
     // if width is lower than md show hamburger menu
     render() {
         const {
-            classes,
-            width
-        } = this.props;
-
+            props: {
+                classes,
+                width
+            },
+            loadRichHeader
+        } = this;
         return (
             <AppBar position="fixed" className={[classes.shadow].join(' ')}>
                 <div ref={(node) => this.headerRef = node}>
@@ -141,35 +156,37 @@ class Header extends React.Component {
                             </Grid>
                         </div>
                     </Toolbar>
-                    <Toolbar variant="regular" className={[classes.richToolbar].join(' ')}>
-                        <div className="container">
-                            <Grid container className={classes.flex}>
-                                <Grid item xs={3} md={2}>
-                                    <Typography variant="headline" className={classes.brand}>
-                                        Rogger
-                                    </Typography>
+                    {loadRichHeader() && <Fragment>
+                        <Toolbar variant="regular" className={[classes.richToolbar].join(' ')}>
+                            <div className="container">
+                                <Grid container className={classes.flex}>
+                                    <Grid item xs={3} md={2}>
+                                        <Typography variant="headline" className={classes.brand}>
+                                            Rogger
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item md>
+                                        <Navigation/>
+                                    </Grid>
+                                    <Grid item xs={9} md={3}>
+                                        <TextField
+                                            className={classes.input}
+                                            id="input-with-icon-textfield"
+                                            placeholder="search.."
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <Icon color="primary">search</Icon>
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        />
+                                    </Grid>
                                 </Grid>
-                                <Grid item md>
-                                    <Navigation/>
-                                </Grid>
-                                <Grid item xs={9} md={3}>
-                                    <TextField
-                                        className={classes.input}
-                                        id="input-with-icon-textfield"
-                                        placeholder="search.."
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <Icon color="primary">search</Icon>
-                                                </InputAdornment>
-                                            ),
-                                        }}
-                                    />
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </Toolbar>
-                    <CategoriseMenu/>
+                            </div>
+                        </Toolbar> <CategoriseMenu/></Fragment>
+
+                    }
                 </div>
             </AppBar>
         )
@@ -183,4 +200,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(withWidth()(withStyles(styles)(Header)));
+export default withRouter(connect(null, mapDispatchToProps)(withWidth()(withStyles(styles)(Header))));

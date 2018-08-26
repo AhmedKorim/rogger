@@ -12,7 +12,7 @@ const withPadding = (WrappedComponent) => {
         render() {
         console.log(this.props.headerHeight);
             return <div style={{
-                paddingTop: this.props.headerHeight
+                    paddingTop: this.props.headerHeight
             }}>
                 <WrappedComponent {...this.props}/>
             </div>

@@ -43,8 +43,6 @@ class AkTable extends React.Component {
                 classes,
                 data
             },
-
-
         } = this;
         return (
             <div className="Table">
@@ -123,19 +121,7 @@ class AkTable extends React.Component {
                                     </TableBody>
                                 </Table>
                             </PerfectScrollbar>
-                            <TablePagination
-                                component="div"
-                                count={data.length}
-                                rowsPerPage={5}
-                                page={1}
-                                backIconButtonProps={{
-                                    'aria-label': 'Previous Page',
-                                }}
-                                nextIconButtonProps={{
-                                    'aria-label': 'Next Page',
-                                }}
 
-                            />
                         </Paper>
                     </Grid>
                 </Grid>

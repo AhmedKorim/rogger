@@ -31,7 +31,8 @@ class Breadcrumbs extends React.Component {
         const {
             props: {
                 classes,
-                location: {pathname}
+                location: {pathname},
+
             },
             pathes,
             handelRoute
@@ -71,6 +72,7 @@ class Breadcrumbs extends React.Component {
                     </div>)}
                 </Paper>
             </Container>
+
         )
     }
 }

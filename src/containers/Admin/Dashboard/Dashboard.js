@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react';
-import WithDarkTheme from "../../../HOC/DarkTheme/DarkTheme";
 import {withStyles} from "@material-ui/core";
 import withPadding from "../../../HOC/WithPadding/WithPadding";
 import Container from "../../../HOC/Container/Container";
@@ -8,6 +7,7 @@ import './Dashboard.scss'
 import Card from "@material-ui/core/Card/Card";
 import Breadcrumbs from "../../../components/UI/Breadcrumbs/breadcrumbs";
 import AdminProducts from "./AdminProducts/AdminProducts";
+import WithHeight from "../../../HOC/WithHeight";
 
 const styles = theme => ({
     root: {
@@ -22,20 +22,24 @@ const styles = theme => ({
 });
 
 class Dashboard extends React.Component {
+
+
     render() {
         const {
             props: {
-                classes
-            }
-
+                classes,
+                headerHeight
+            },
         } = this;
+        console.log(headerHeight);
         return (
+
             <Fragment>
                 <Breadcrumbs/>
-                <br/>
                 <Container className="dashboard">
                     <Card>
                         <AkTabs
+                            withFap={[1,2,3,4]}
                             toolbarClasses={["toolBar", classes.shadow]}
                             tab={[
                                 {label: 'Orders'},
@@ -44,10 +48,9 @@ class Dashboard extends React.Component {
                                 {label: 'Statics'},
                             ]}
                         >
-                            <div>Orders</div>
-                            <div>
-                                <AdminProducts/>
-                            </div>
+
+                            <WithHeight maxHeight={headerHeight + 90}> <div>Orders</div></WithHeight>
+                            <WithHeight maxHeight={headerHeight + 90}><AdminProducts/></WithHeight>
                             <div>Clients</div>
                             <div>Statics</div>
                             <div>Plans</div>
