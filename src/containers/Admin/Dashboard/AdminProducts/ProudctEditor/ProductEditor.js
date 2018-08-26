@@ -6,27 +6,43 @@ import './ProductEditor.scss';
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
 import axiosOrders from "../../../../../axios/axios";
+import {getData} from "../../../../../dux/actions/productsActions";
+import {connect} from "react-redux";
+
+const inputSchema = [
+    {value: '', label: 'Product Name', id: 'productName'},
+    {value: '', label: 'Product img', id: 'productImg'},
+
+    {value: '', label: 'Product price', id: 'productPrice'},
+    {value: '', label: 'Product price before discount', id: 'preDiscount'},
+
+    {value: '', label: 'Items available', id: 'productAvailability'},
+    {
+        value: 'men',
+        type: "select",
+        label: 'Product Category',
+        id: 'productCategory',
+        options: ['closes', 'electronics', 'music', 'furniture', 'jewellery']
+    },
+    {value: '', label: 'Product description', id: 'productDescription', multiline: true},
+]
+
 
 class ProductEditor extends React.Component {
-    state = {
-        controllers: [
-            {value: '', label: 'Product Name', id: 'productName'},
-            {value: '', label: 'Product img', id: 'productImg'},
-
-            {value: '', label: 'Product price', id: 'productPrice'},
-            {value: '', label: 'Product price before discount', id: 'preDiscount'},
-
-            {value: '', label: 'Items available', id: 'productAvailability'},
-            {
-                value: 'men',
-                type: "select",
-                label: 'Product Category',
-                id: 'productCategory',
-                options: ['closes', 'electronics', 'music', 'furniture', 'jewellery']
-            },
-            {value: '', label: 'Product description', id: 'productDescription', multiline: true},
-        ]
+    constructor(props) {
+        super(props);
+        this.state = {
+            controllers: [...inputSchema].map(controller => {
+                if (!props.data) return controller;
+                const newController = {...controller};
+                const value = props.data[newController.id];
+                newController.value = value ? value : controller.value
+                return newController;
+            }),
+            editmood: !!props.data
+        }
     }
+
     classes = ['input']
 
 
@@ -52,16 +68,25 @@ class ProductEditor extends React.Component {
     sendData = (event) => {
         event.preventDefault();
         const dataToSend = {...this.productData};
-        dataToSend.liked = false;
-
-        axiosOrders.post('/products.json', dataToSend).then(resp => console.log(resp))
+        if (!this.state.editmood) {
+            dataToSend.liked = false;
+            console.log('edit mood false');
+            axiosOrders.post('/products.json', dataToSend).then(resp => console.log(resp))
+            return;
+        }
+        const id = this.props.data.id;
+        const data = {...this.props.data};
+        delete  data.id;
+        const mergedData = {...data, ...dataToSend}
+        axiosOrders.put(`/products/${id}.json`, mergedData).then(resp => this.props.getData())
     }
 
     render() {
         this.getProductData();
         const {
             state: {
-                controllers
+                controllers,
+                editmood
             },
             changeHandler,
             classes,
@@ -84,13 +109,13 @@ class ProductEditor extends React.Component {
                             )}
                             <div className="actions">
                                 <Button type="submit" className="button" variant="raised" color="primary">
-                                    Add item
+                                    {editmood ? 'Edit' : "Add Item"}
                                 </Button>
                                 <Button type="button" className="button" variant="raised" classes={{
                                     root: 'restButton',
                                     label: "restLabel"
                                 }}>
-                                    Reset
+                                    {editmood ? 'reset' : "Cancel"}
                                 </Button>
                             </div>
                         </form>
@@ -109,5 +134,9 @@ class ProductEditor extends React.Component {
         )
     }
 }
-
-export default ProductEditor;
+const mapDispatchToProps = dispatch => {
+    return {
+        getData: () => dispatch(getData())
+    }
+}
+export default connect(null,mapDispatchToProps)(ProductEditor);

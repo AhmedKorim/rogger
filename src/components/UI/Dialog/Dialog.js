@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import ProductDetails from "../../layout/productDetails/ProductDetails";
 import Dialog from "@material-ui/core/Dialog/Dialog";
 import {PRODCUT_CARD_DETIALSDETAILS} from "../../../dux/actions/uiActions";
+import ProductEditor from "../../../containers/Admin/Dashboard/AdminProducts/ProudctEditor/ProductEditor";
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -15,9 +16,11 @@ class RDialog extends React.Component {
     };
 
     render() {
-        const {open ,card}  = this.props;
+        const {open, data, component} = this.props;
+        console.log(component);
+        const componentToLoad = component === 'ProductDetails' ? <ProductDetails product={data}/> : <ProductEditor data={data}/>
 
-        console.log(card);
+            console.log(componentToLoad);
         return (
             <Dialog
                 open={open}
@@ -27,7 +30,7 @@ class RDialog extends React.Component {
                 fullWidth={true}
                 maxWidth={false}
             >
-                <ProductDetails product={card}/>
+                {data && componentToLoad}
             </Dialog>
         )
     }
@@ -36,8 +39,9 @@ class RDialog extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        card: state.UI.productCard.activeCard,
-        open: state.UI.productCard.open
+        data: state.UI.dialog.data,
+        component: state.UI.dialog.component,
+        open: state.UI.dialog.open
     }
 }
 const mapDispatchToProps = dispatch => {

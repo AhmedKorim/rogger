@@ -51,7 +51,6 @@ class ProductCard extends React.Component {
 
     openDetailes = (cardData) => {
         this.props.openProductDetails(cardData)
-        console.log(cardData);
     }
 
     navigateToProductPage = (PId) => {
@@ -149,7 +148,7 @@ class ProductCard extends React.Component {
 const mapDispachToProps = dispatch => {
     return {
         openProductDetails: (activeCard) => dispatch({
-            type: PRODCUT_CARD_DETIALSDETAILS, payload: {open: true, activeCard}
+            type: PRODCUT_CARD_DETIALSDETAILS, payload: {open: true, data: activeCard,component :'ProductDetails'}
         })
     }
 }

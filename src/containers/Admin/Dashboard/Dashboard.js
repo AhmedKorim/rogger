@@ -50,7 +50,9 @@ class Dashboard extends React.Component {
                         >
 
                             <WithHeight maxHeight={headerHeight + 90}> <div>Orders</div></WithHeight>
-                            <WithHeight maxHeight={headerHeight + 90}><AdminProducts/></WithHeight>
+                            <WithHeight maxHeight={headerHeight + 90}>
+                                <AdminProducts/>
+                            </WithHeight>
                             <div>Clients</div>
                             <div>Statics</div>
                             <div>Plans</div>

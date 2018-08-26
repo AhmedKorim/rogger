@@ -41,7 +41,9 @@ class AkTable extends React.Component {
         const {
             props: {
                 classes,
-                data
+                data,
+                actionA,
+                actionB
             },
         } = this;
         return (
@@ -105,12 +107,16 @@ class AkTable extends React.Component {
                                                                     classes={{
                                                                         root: 'waining'
                                                                     }}
+                                                                    onClick={() => actionA(item.id)}
                                                                     className={classes.slightMargin} mini>
                                                                 <Icon>edit</Icon>
                                                             </Button>
+
                                                         </Tooltip>
                                                         <Tooltip title={"move to item page"}>
-                                                            <Button variant="fab" color="primary" className={classes.slightMargin} mini>
+                                                            <Button variant="fab" color="primary" className={classes.slightMargin} mini
+                                                                    onClick={() => actionB(item.id)}
+                                                            >
                                                                 <Icon>remove_red_eye</Icon>
                                                             </Button>
                                                         </Tooltip>
