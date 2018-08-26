@@ -1,0 +1,21 @@
+.Table {
+  .tableRow{
+    td,th{
+      padding: .5rem .5rem ;
+      @media(max-width:400px){
+        padding: .1rem .1rem ;
+
+      }
+      text-align: center;
+
+    }
+  }
+  .waining {
+    background-color: #FF9100;
+    color: #fff;
+    &:hover{
+      background-color: #FF9100;
+
+    }
+  }
+}

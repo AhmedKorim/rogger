@@ -1,19 +1,15 @@
 import {GET_DATA} from "../actions/productsActions";
 
 const initalState = {
-    products: {},
+    products: [],
 }
 const productsReducer = (state = initalState, action) => {
     switch (action.type) {
         case GET_DATA:
             return {
                 ...state,
-                products: {
-                    ...state.products,
-                    ...action.data
-                }
+                products: [...state.products, ...action.data]
             }
-
         default :
             return state;
     }

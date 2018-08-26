@@ -14,13 +14,12 @@ const styles = theme => ({
         boxShadow: theme.shadows[2]
     }
 })
+
 const Vitrine = props => {
     const {classes, products} = props;
-    const data = Object.entries(products).map(product => {
-        const item = product[1];
-            item.id = product[0]
-        return item;
-    })
+    console.log(products);
+    const data = products || [];
+
     return (
         <div className="vitrine">
             <header className={classes.header}>

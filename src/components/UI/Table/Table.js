@@ -9,6 +9,12 @@ import Table from "@material-ui/core/Table/Table";
 import Grid from "@material-ui/core/Grid/Grid";
 import TableSortLabel from "@material-ui/core/es/TableSortLabel/TableSortLabel";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
+import Button from "@material-ui/core/Button/Button";
+import Icon from "@material-ui/core/Icon/Icon";
+import './Table.scss'
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import TablePagination from "@material-ui/core/TablePagination/TablePagination";
+
 
 const styles = theme => ({
     root: {
@@ -21,6 +27,11 @@ const styles = theme => ({
     },
     GridPadding: {
         padding: '1rem .5rem'
+    },
+    slightMargin: {
+        margin: " 0 .2rem"
+    }, actions: {
+        padding: 0
     }
 
 })
@@ -29,45 +40,106 @@ class AkTable extends React.Component {
     render() {
         const {
             props: {
-                classes
+                classes,
+                data
             },
 
 
         } = this;
-
         return (
-            <Fragment>
+            <div className="Table">
                 <Grid container justify="center" alignItems="center">
-                    <Grid xs md={8} lg={6} className={classes.GridPadding}>
+                    <Grid xs md={9} lg={8} className={classes.GridPadding}>
                         <Paper className={classes.root}>
-                            <Table className="table" aria-label="label">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>
-                                            <Tooltip
+                            <PerfectScrollbar>
+                                <Table className="table" aria-label="label">
+                                    <TableHead>
+                                        <TableRow className="tableRow">
+                                            <TableCell>
+                                                <Tooltip
+                                                    title="Sort"
+                                                    enterDelay={300}>
+                                                    <TableSortLabel active>Name</TableSortLabel>
+                                                </Tooltip>
+                                            </TableCell>
+                                            <TableCell><Tooltip
                                                 title="Sort"
-                                                enterDelay={300}
-                                            >
-                                                <TableSortLabel
-                                                    active
-                                                >
-                                                    Name
-                                                </TableSortLabel>
+                                                enterDelay={300}>
+                                                <TableSortLabel active>Price</TableSortLabel>
                                             </Tooltip>
-                                        </TableCell>
-                                        <TableCell>Price</TableCell>
-                                        <TableCell>Off ratio</TableCell>
-                                        <TableCell>Sables</TableCell>
-                                        <TableCell>Actions</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                </TableBody>
-                            </Table>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Tooltip
+                                                    title="Sort"
+                                                    enterDelay={300}>
+                                                    <TableSortLabel active>discount</TableSortLabel>
+                                                </Tooltip>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Tooltip
+                                                    title="Sort"
+                                                    enterDelay={300}>
+                                                    <TableSortLabel active>Category</TableSortLabel>
+                                                </Tooltip>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Tooltip
+                                                    title="Sort"
+                                                    enterDelay={300}>
+                                                    <TableSortLabel active>Actions</TableSortLabel>
+                                                </Tooltip>
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {
+                                            data.slice(0, 6).map(item => {
+                                                let cells = Object.values(item);
+                                                cells = cells.slice(0, cells.length - 1);
+                                                console.log(cells);
+                                                return <TableRow hover className='tableRow' key={item.id}>
+                                                    {cells.map(cell => <TableCell key={item.id + cell}>
+                                                        {cell}
+                                                    </TableCell>)}
+                                                    <TableCell className={classes.actions}>
+                                                        <Tooltip title={"edit"}>
+                                                            <Button variant="fab"
+                                                                    classes={{
+                                                                        root: 'waining'
+                                                                    }}
+                                                                    className={classes.slightMargin} mini>
+                                                                <Icon>edit</Icon>
+                                                            </Button>
+                                                        </Tooltip>
+                                                        <Tooltip title={"move to item page"}>
+                                                            <Button variant="fab" color="primary" className={classes.slightMargin} mini>
+                                                                <Icon>remove_red_eye</Icon>
+                                                            </Button>
+                                                        </Tooltip>
+                                                    </TableCell>
+                                                </TableRow>
+                                            })
+                                        }
+                                    </TableBody>
+                                </Table>
+                            </PerfectScrollbar>
+                            <TablePagination
+                                component="div"
+                                count={data.length}
+                                rowsPerPage={5}
+                                page={1}
+                                backIconButtonProps={{
+                                    'aria-label': 'Previous Page',
+                                }}
+                                nextIconButtonProps={{
+                                    'aria-label': 'Next Page',
+                                }}
+
+                            />
                         </Paper>
                     </Grid>
                 </Grid>
-            </Fragment>
+            </div>
         )
     }
 }
