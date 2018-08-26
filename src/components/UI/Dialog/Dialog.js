@@ -17,8 +17,7 @@ class RDialog extends React.Component {
 
     render() {
         const {open, data, component} = this.props;
-        console.log(component);
-        const componentToLoad = component === 'ProductDetails' ? <ProductDetails product={data}/> : <ProductEditor data={data}/>
+        const componentToLoad = component === 'ProductDetails' ? <ProductDetails product={data}/> : <ProductEditor  data={data}/>
 
             console.log(componentToLoad);
         return (

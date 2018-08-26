@@ -13,6 +13,10 @@ class AdminProducts extends React.Component {
         console.log(itemData);
         this.props.editItem(itemData)
     }
+    addItem = () => {
+        this.props.editItem({})
+    }
+
     showItemDetails = (id) => {
 
     }
@@ -23,7 +27,7 @@ class AdminProducts extends React.Component {
                 products,
                 maxHeight
             },
-            productCategory, showItemDetails, editItem
+            productCategory, showItemDetails, editItem,addItem
         } = this;
 
 
@@ -44,7 +48,7 @@ class AdminProducts extends React.Component {
                     <AkTable data={tableData} actionA={editItem} actionB={showItemDetails}/>
                 </div>
                 <div>
-                    <Button variant="fab" color="primary" className="fabButton">
+                    <Button variant="fab" color="primary" className="fabButton" onClick={addItem}>
                         <Icon>add</Icon>
                     </Button>
                 </div>

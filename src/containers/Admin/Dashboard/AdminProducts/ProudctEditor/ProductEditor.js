@@ -6,7 +6,7 @@ import './ProductEditor.scss';
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
 import axiosOrders from "../../../../../axios/axios";
-import {getData} from "../../../../../dux/actions/productsActions";
+import {getData, UPDATE_ITEM} from "../../../../../dux/actions/productsActions";
 import {connect} from "react-redux";
 
 const inputSchema = [
@@ -39,7 +39,7 @@ class ProductEditor extends React.Component {
                 newController.value = value ? value : controller.value
                 return newController;
             }),
-            editmood: !!props.data
+            editmood: !!props.data.id
         }
     }
 
@@ -78,7 +78,9 @@ class ProductEditor extends React.Component {
         const data = {...this.props.data};
         delete  data.id;
         const mergedData = {...data, ...dataToSend}
-        axiosOrders.put(`/products/${id}.json`, mergedData).then(resp => this.props.getData())
+        axiosOrders.put(`/products/${id}.json`, mergedData).then(resp => {
+            this.props.updateIem(id, {...mergedData, id: id})
+        })
     }
 
     render() {
@@ -100,7 +102,7 @@ class ProductEditor extends React.Component {
             <div className="productEditor">
                 <Grid container>
                     <Grid className="Gpadding" item md={8}>
-                        <Typography className="subHeader" variant="subheading">Product Editor</Typography>
+                        <Typography className="subHeader" variant="subheading"> {this.state.editmood ? 'Edit Product' : 'Add Product'}</Typography>
                         <form onSubmit={sendData}>
                             {controllers.map(controller => <div className={controller.multiline ? 'fullWidth' : 'normal'}><FormController
                                     changeHandler={changeHandler}
@@ -134,9 +136,10 @@ class ProductEditor extends React.Component {
         )
     }
 }
+
 const mapDispatchToProps = dispatch => {
     return {
-        getData: () => dispatch(getData())
+        updateIem: (id, data) => dispatch({type: UPDATE_ITEM, id, data})
     }
 }
-export default connect(null,mapDispatchToProps)(ProductEditor);
+export default connect(null, mapDispatchToProps)(ProductEditor);

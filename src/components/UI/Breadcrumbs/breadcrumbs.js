@@ -24,6 +24,8 @@ class Breadcrumbs extends React.Component {
             return acc.concat(item + '/')
         }, '')
         console.log(route);
+        this.props.history.push('/' +route)
+
     }
 
     render() {

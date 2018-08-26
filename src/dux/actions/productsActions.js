@@ -1,8 +1,10 @@
 import axiosOrders from "../../axios/axios";
 
 export const GET_DATA = 'GET_DATA';
+export const UPDATE_ITEM ='UPDATE_ITEM';
 
 export const getData = () => {
+    console.log('getting Data');
     return dispatch => {
         axiosOrders.get('/products.json').then(({data}) => {
             const enhancedData = Object.entries(data).map(product => {
@@ -15,4 +17,5 @@ export const getData = () => {
         })
     }
 }
+
 
