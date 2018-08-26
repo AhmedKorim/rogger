@@ -15,8 +15,9 @@ class RDialog extends React.Component {
     };
 
     render() {
-        const {open} = this.props;
-        console.log(open);
+        const {open ,card}  = this.props;
+
+        console.log(card);
         return (
             <Dialog
                 open={open}
@@ -26,7 +27,7 @@ class RDialog extends React.Component {
                 fullWidth={true}
                 maxWidth={false}
             >
-                <ProductDetails/>
+                <ProductDetails product={card}/>
             </Dialog>
         )
     }

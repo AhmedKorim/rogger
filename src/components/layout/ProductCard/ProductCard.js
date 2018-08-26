@@ -17,45 +17,41 @@ import {withRouter} from "react-router-dom";
 import ProductHeader from "../productDetails/ProdcutHeader/ProdcutHeader";
 import Category from "../productDetails/category/category";
 
-const styles = theme => {
-        console.log(theme);
-        return (
-            {
-                card: {
-                    maxWidth: 400,
-                },
-                media: {
-                    height: 0,
-                    paddingTop: '90%', // 16:9
-                },
+const styles = theme => ({
+        card: {
+            maxWidth: 400,
+        },
+        media: {
+            height: 0,
+            paddingTop: '90%', // 16:9
+        },
 
-                divider: {
-                    width: "80%",
-                    margin: 'auto'
-                },
-                cardHeader: {
-                    textAlign: 'center',
-                    position: 'relative',
-                    display: 'flex',
-                    justifyContent: 'center'
-                },
-                chip: {
-                    backgroundColor: '#FF1744',
-                    color: "#fff",
-                    fontWeight: "600",
-                    boxShadow: theme.shadows[1]
-                }
-            });
-    }
+        divider: {
+            width: "80%",
+            margin: 'auto'
+        },
+        cardHeader: {
+            textAlign: 'center',
+            position: 'relative',
+            display: 'flex',
+            justifyContent: 'center'
+        },
+        chip: {
+            backgroundColor: '#FF1744',
+            color: "#fff",
+            fontWeight: "600",
+            boxShadow: theme.shadows[1]
+        }
+    })
 ;
 
 
 class ProductCard extends React.Component {
 
 
-    openDetailes = () => {
-        console.log('clicked');
-        this.props.openProductDetails({})
+    openDetailes = (cardData) => {
+        this.props.openProductDetails(cardData)
+        console.log(cardData);
     }
 
     navigateToProductPage = (PId) => {
@@ -74,16 +70,16 @@ class ProductCard extends React.Component {
                 productName,
                 productPrice,
                 preDiscount,
-                productCategory
-
+                productCategory,
+                productDescription,
+                liked,
+                id
             },
             openDetailes,
             navigateToProductPage,
 
-
         } = this;
-        const priceRatio = preDiscount ? (100 - ((productPrice / preDiscount) * 100)).toFixed(2) : 0
-
+        const priceRatio = preDiscount ? (100 - ((productPrice / preDiscount) * 100)).toFixed(2) : 0;
         return (
             <div className="productCardWrapper">
                 <div className="productCard">
@@ -129,7 +125,17 @@ class ProductCard extends React.Component {
                             />
                         </div>
                         <Divider className={classes.divider}/>
-                        <ProductActions openDetailes={openDetailes}/>
+                        <ProductActions openDetailes={() => openDetailes({
+                                productImg,
+                                productName,
+                                productPrice,
+                                preDiscount,
+                                productCategory,
+                                productDescription,
+                                liked,
+                                id
+                            }
+                        )} liked={liked}/>
                     </Card>
                 </div>
             </div>

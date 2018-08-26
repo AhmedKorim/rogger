@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import PoductImgaes from "./imgCarosel/imgCarousel";
 import "./ProductDetails.scss"
 import Typography from "@material-ui/core/Typography/Typography";
@@ -9,17 +9,17 @@ import ProductActions from "../productActions/ProdcutsAcitons";
 import Grid from "@material-ui/core/Grid/Grid";
 
 const ProductDetails = props => {
+    const {product} = props;
     return (
-        <div className="productDetailsWrapper">
+        <Fragment> {product && <div className="productDetailsWrapper">
             <Grid container className="proDetails">
-                <Grid xs={12} md={6}  item className="courouselWrapper">
+                <Grid xs={12} md={6} item className="courouselWrapper">
                     <PoductImgaes/>
-                </Grid >
-
+                </Grid>
                 <Grid xs={12} md={6} item className="aboutPro">
                     <header>
                         <Typography className="poHeading" variant="display1">
-                            product name
+                            {product.productName}
                         </Typography>
                     </header>
                     <div className="status">
@@ -27,20 +27,19 @@ const ProductDetails = props => {
                         <div><Typography> <span className="poLandmark">Available</span> : <span className="poValue"> 5 pieces</span> </Typography></div>
                     </div>
                     <div className="priceARate">
-                        <Price/>
+                        <Price {...product} />
                         <Rating/>
                     </div>
                     <div>
                         <Typography variant="body2" className="proDescription">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad alias assumenda cum delectus deserunt eius esse eveniet fuga
-                            hic illum, ipsam iste magni modi, necessitatibus praesentium quia quis tempore!
+                            {product.productDescription}
                         </Typography>
                     </div>
                     <Divider className="proDivider"/>
                     <ProductActions/>
                 </Grid>
             </Grid>
-        </div>
+        </div>}</Fragment>
     )
 }
 export default ProductDetails

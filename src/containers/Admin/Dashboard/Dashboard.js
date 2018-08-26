@@ -45,7 +45,9 @@ class Dashboard extends React.Component {
                             ]}
                         >
                             <div>Orders</div>
-                            <div><AdminProducts/></div>
+                            <div>
+                                <AdminProducts/>
+                            </div>
                             <div>Clients</div>
                             <div>Statics</div>
                             <div>Plans</div>

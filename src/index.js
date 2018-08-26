@@ -11,6 +11,7 @@ import {BrowserRouter} from "react-router-dom";
 import thunk from "redux-thunk";
 import {lightBlue, pink} from "@material-ui/core/colors";
 import UIReducer from "./dux/reducers/UIReducer";
+import productsReducer from "./dux/reducers/prodcutsReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const theme = createMuiTheme({
@@ -30,6 +31,7 @@ const theme = createMuiTheme({
 const store = createStore(
     combineReducers({
         UI: UIReducer,
+        products:productsReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
 );

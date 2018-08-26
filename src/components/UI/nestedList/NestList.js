@@ -41,7 +41,6 @@ class NestedList extends React.Component {
                             }
                         }, {})
                     }
-
                 }
             }, {})
         }
@@ -103,7 +102,7 @@ class NestedList extends React.Component {
                                                         {
                                                             item[key].map(section => {
                                                                 const nestedKey = Object.keys(section)[0];
-                                                                return <Fragment>
+                                                                return <div key={key}>
                                                                     <ListItem component="li" className="listItem" button
                                                                               onClick={() => this.handleNestedClick(key, nestedKey)}
                                                                     >
@@ -112,12 +111,12 @@ class NestedList extends React.Component {
                                                                     </ListItem>
                                                                     <Collapse in={open[key].nest[nestedKey]} timeout="auto" unmountOnExit>
                                                                         <List component="ul" className="bottomLevel" disablePadding>
-                                                                            {section[nestedKey].map(item => <ListItem component="li" className="listItem" button>
+                                                                            {section[nestedKey].map(item => <ListItem key={nestedKey} component="li" className="listItem" button>
                                                                                 <ListItemText inset primary={item}/>
                                                                             </ListItem>)}
                                                                         </List>
                                                                     </Collapse>
-                                                                </Fragment>
+                                                                </div>
                                                             })
                                                         }
                                                     </List>

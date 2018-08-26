@@ -9,20 +9,27 @@ const styles = {
         flexGrow: 1,
     },
 };
+let xx = null;
 const routering = ["home", "products", "dashboard"]
 
 class Navigation extends React.Component {
     constructor(props) {
         super(props);
-        let activePassname = this.props.location.pathname;
-        activePassname = activePassname.slice(1, activePassname.length);
-
+        let activePassname = props.location.pathname.split('/')[1];
         this.state = {
             value: routering.indexOf(activePassname) > -1 ? routering.indexOf(activePassname) : 0,
         }
 
     }
 
+    componentWillUpdate() {
+        if(this.state.value !== routering.indexOf(this.props.match.url.split('/')[1]) ){
+            console.log( routering.indexOf(this.props.match.url.split('/')[1] ), this.props.location);
+
+        }        console.log( routering.indexOf(this.props.match.url.split('/')[1] ) , this.props.match.url);
+
+
+    }
 
     handleChange = (event, value) => {
         this.props.history.push(`/${routering[value]}`)
@@ -31,6 +38,7 @@ class Navigation extends React.Component {
 
 
     render() {
+        console.log('render');
         const {classes} = this.props;
         return (
             <div className={classes.root}>
@@ -49,4 +57,4 @@ class Navigation extends React.Component {
 
 }
 
-export default withRouter(withStyles(styles)(Navigation));
+export default withStyles(styles)(withRouter(Navigation));

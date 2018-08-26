@@ -17,7 +17,13 @@ class ProductEditor extends React.Component {
             {value: '', label: 'Product price before discount', id: 'preDiscount'},
 
             {value: '', label: 'Items available', id: 'productAvailability'},
-            {value: 'men', type: "select", label: 'Product Category', id: 'productCategory', options: ['men', 'women', 'electronics']},
+            {
+                value: 'men',
+                type: "select",
+                label: 'Product Category',
+                id: 'productCategory',
+                options: ['closes', 'electronics', 'music', 'furniture', 'jewellery']
+            },
             {value: '', label: 'Product description', id: 'productDescription', multiline: true},
         ]
     }
@@ -45,8 +51,10 @@ class ProductEditor extends React.Component {
 
     sendData = (event) => {
         event.preventDefault();
-        console.log(this.productData);
-        axiosOrders.post('/products.json', this.productData)
+        const dataToSend = {...this.productData};
+        dataToSend.liked = false;
+
+        axiosOrders.post('/products.json', dataToSend).then(resp => console.log(resp))
     }
 
     render() {

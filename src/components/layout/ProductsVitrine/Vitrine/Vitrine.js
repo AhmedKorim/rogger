@@ -1,13 +1,13 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import './Vitrine.scss';
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
-import Card from "@material-ui/core/Card/Card";
 import {withStyles} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid/Grid";
 import Icon from "@material-ui/core/es/Icon/Icon";
 import Button from "@material-ui/core/Button/Button";
 import ProductCard from "../../ProductCard/ProductCard";
 import Typography from "@material-ui/core/Typography/Typography";
+import {connect} from "react-redux";
 
 const styles = theme => ({
     header: {
@@ -15,7 +15,12 @@ const styles = theme => ({
     }
 })
 const Vitrine = props => {
-    const {classes} = props;
+    const {classes, products} = props;
+    const data = Object.entries(products).map(product => {
+        const item = product[1];
+            item.id = product[0]
+        return item;
+    })
     return (
         <div className="vitrine">
             <header className={classes.header}>
@@ -51,22 +56,24 @@ const Vitrine = props => {
             </header>
             <div>
                 <Grid container alignItems="center" className="productCardContainer">
-                    {[1, 2, 3, 4, 5, 6, 6, 7, 8, 2].map(i => <Grid item className="productCardItem" key={Math.random()+i*2+'lj9'}><ProductCard/></Grid>)}
+                    {data.map(product => <Grid item className="productCardItem"
+                                               key={product.id}><ProductCard {...product} />
+                    </Grid>)}
                 </Grid>
             </div>
             <footer>
-                <Toolbar className={[classes.header,'l'].join(' ')}>
+                <Toolbar className={[classes.header, 'l'].join(' ')}>
                     <Grid container alignItems="center" className="upperNavigation">
-                        {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => <div key={i*i+'l'}>
-                            {index < 3 ? < Button variant="small" className="smallButton">{i}</Button> :
-                                (index === 4 && <Button variant="small" className="smallButton">...</Button>)}
+                        {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => <div key={i * i + 'l'}>
+                            {index < 3 ? < Button size="small" className="smallButton">{i}</Button> :
+                                (index === 4 && <Button size="small" className="smallButton">...</Button>)}
                         </div>)}
                         <Button variant="raised" color="primary">
                             5
                         </Button>
-                        {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index, array) => <div key={i*index/.5 +'lio'}>
-                            {array.length >= 3 ? (index >= (array.length - 3) ? < Button variant="small" className="smallButton">{i}</Button> :
-                                (index === 4 && <Button variant="small" className="smallButton">...</Button>))
+                        {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index, array) => <div key={i * index / .5 + 'lio'}>
+                            {array.length >= 3 ? (index >= (array.length - 3) ? < Button size="small" className="smallButton">{i}</Button> :
+                                (index === 4 && <Button size="small" className="smallButton">...</Button>))
                                 : < Button variant="small" className="smallButton">{i}</Button>}
                         </div>)}
                     </Grid>
@@ -75,4 +82,9 @@ const Vitrine = props => {
         </div>
     )
 }
-export default withStyles(styles)(Vitrine);
+const mapStateToProps = state => {
+    return {
+        products: state.products.products
+    }
+}
+export default connect(mapStateToProps)(withStyles(styles)(Vitrine));

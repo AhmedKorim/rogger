@@ -14,13 +14,14 @@ const ProductActions = props => {
         }
     };
     const {
-        openDetailes
+        openDetailes,
+        liked
     } = props;
     return (
         <CardActions style={classes.actions} disableActionSpacing>
             <Tooltip title="Add to favorites" placement="bottom-start">
-                <IconButton aria-label="Add to favorites" size="small" color='secondary'>
-                    <i className="material-icons" color={red[500]}>
+                <IconButton aria-label="Add to favorites" size="small" color={liked ? "secondary" : 'default'}>
+                    <i className="material-icons">
                         favorite
                     </i>
                 </IconButton>

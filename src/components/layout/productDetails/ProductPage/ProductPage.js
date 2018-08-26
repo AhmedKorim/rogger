@@ -34,7 +34,6 @@ const styles = theme => ({
 class ProductPage extends React.Component {
 
 
-
     render() {
         const {
             props: {

@@ -30,8 +30,11 @@ class AkTabs extends React.Component {
         if (nextProps.location.pathname === this.props.location.pathname) return;
         const links = nextProps.location.pathname.split('/');
         const intialIndex = nextProps.tab.findIndex(item => item.label === links[links.length - 1]);
-        this.setState({value: intialIndex})
-
+        if (intialIndex > -1) {
+            this.setState({value: intialIndex})
+            return;
+        }
+        console.log('ok' , this.props);
     }
 
     render() {
@@ -58,7 +61,7 @@ class AkTabs extends React.Component {
                         onChange={handleChange}
                         indicatorColor="primary"
                         textColor="primary"
-                        scrollable={ width === 'xs' }
+                        scrollable={width === 'xs'}
                         scrollButtons="auto"
                         centered={false}>
                         >

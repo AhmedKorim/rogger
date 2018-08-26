@@ -53,7 +53,7 @@ class Breadcrumbs extends React.Component {
                     <div className="chevronWrapper">
                         <Icon>chevron_right</Icon>
                     </div>
-                    {pathes.map((path, index) => <Fragment>
+                    {pathes.map((path, index) => <div className="wrapper" key={path}>
                         <div>
                             <Button
                                 className="breadcrumbsButton"
@@ -68,7 +68,7 @@ class Breadcrumbs extends React.Component {
                         {index === pathes.length - 1 ? null : <div className="chevronWrapper">
                             <Icon>chevron_right</Icon>
                         </div>}
-                    </Fragment>)}
+                    </div>)}
                 </Paper>
             </Container>
         )

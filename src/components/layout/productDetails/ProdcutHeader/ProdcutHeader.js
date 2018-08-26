@@ -4,7 +4,6 @@ import "./ProductHeader.scss"
 
 const ProductHeader = props => {
     const { productName } =props;
-    console.log(productName);
     return (
         <div>
             <div className="ProductHeader">
