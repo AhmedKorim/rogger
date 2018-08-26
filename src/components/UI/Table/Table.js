@@ -37,6 +37,16 @@ const styles = theme => ({
 })
 
 class AkTable extends React.Component {
+    state = {
+        page: 0,
+        rowsPerPage: 5,
+    }
+    handleChangePage = (event, page) => {
+        this.setState({ page });
+    };
+    handleChangeRowsPerPage = event => {
+        this.setState({ rowsPerPage: event.target.value });
+    };
     render() {
         const {
             props: {
@@ -45,7 +55,16 @@ class AkTable extends React.Component {
                 actionA,
                 actionB
             },
+            state:{
+                rowsPerPage,
+                page
+            },
+            handleChangePage,
+            handleChangeRowsPerPage
         } = this;
+
+
+
         return (
             <div className="Table">
                 <Grid container justify="center" alignItems="center">
@@ -83,17 +102,13 @@ class AkTable extends React.Component {
                                                 </Tooltip>
                                             </TableCell>
                                             <TableCell>
-                                                <Tooltip
-                                                    title="Sort"
-                                                    enterDelay={300}>
-                                                    <TableSortLabel active>Actions</TableSortLabel>
-                                                </Tooltip>
+                                                Actions
                                             </TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
                                         {
-                                            data.slice(0, 6).map(item => {
+                                            data.slice((page*rowsPerPage), ((page*rowsPerPage)+rowsPerPage)).map(item => {
                                                 let cells = Object.values(item);
                                                 cells = cells.slice(0, cells.length - 1);
                                                 console.log(cells);
@@ -128,6 +143,20 @@ class AkTable extends React.Component {
                                 </Table>
                             </PerfectScrollbar>
 
+                            <TablePagination
+                                component="div"
+                                count={data.length}
+                                 rowsPerPage={rowsPerPage}
+                                page={page}
+                                backIconButtonProps={{
+                                    'aria-label': 'Previous Page',
+                                }}
+                                nextIconButtonProps={{
+                                    'aria-label': 'Next Page',
+                                }}
+                                onChangePage={handleChangePage}
+                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                            />
                         </Paper>
                     </Grid>
                 </Grid>
