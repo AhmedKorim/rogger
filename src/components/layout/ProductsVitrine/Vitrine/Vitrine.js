@@ -23,7 +23,7 @@ const Vitrine = props => {
         <div className="vitrine">
             <div>
                 <Grid container alignItems="center" className="productCardContainer">
-                    {data.slice(0, 12).map(product => <Grid item className="productCardItem"
+                    {data.map(product => <Grid item className="productCardItem"
                                                             key={product.id}><ProductCard {...product} />
                     </Grid>)}
                 </Grid>
