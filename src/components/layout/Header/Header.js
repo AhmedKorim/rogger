@@ -94,7 +94,7 @@ class Header extends React.Component {
     loadRichHeader = () => {
         const hasHome = this.props.location.pathname.indexOf('home') > 0;
         const hasProducts = this.props.location.pathname.indexOf('products') > 0;
-        return (hasHome || hasProducts)
+        return (hasHome   )
     }
 
 

@@ -1,0 +1,30 @@
+
+.products {
+  .pageController {
+    margin-left: auto;
+    margin-right: auto;
+    flex: 2 1 0;
+  }
+  .sort,
+  .layoutController{
+    flex: 1 1 0;
+  }
+  .toolbar{
+    min-height: 40px;
+    max-height: 50px;
+  }
+  .smallButton {
+    padding: 0;
+    min-width: 45px;
+  }
+  .upperNavigation {
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+  .itemsPerPage {
+    font-size: .8rem;
+    font-weight: normal;
+  }
+
+
+}

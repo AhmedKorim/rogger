@@ -7,6 +7,7 @@ import Pannel from "../../../UI/Pannel/Pannel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import NestedList from "../../../UI/nestedList/NestList";
+import WithHeight from "../../../../HOC/WithHeight";
 
 export const categories = [
     {
@@ -65,6 +66,10 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 2,
         minWidth: 150
     },
+    margin: {
+        margin: '1rem auto 0',
+        width:"90%",
+    }
 
 });
 
@@ -90,7 +95,7 @@ class VitrineControler extends React.Component {
         const {classes} = this.props;
         const {from, to, deleveryTime} = this.state;
         return (
-            <div>
+            <div className={classes.margin}>
                 <Pannel
                     heading="categories"
                 >
@@ -147,6 +152,7 @@ class VitrineControler extends React.Component {
                     </div>
                 </Pannel>
             </div>
+
 
         )
     }
