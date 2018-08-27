@@ -9,14 +9,14 @@ import ListItem from "@material-ui/core/ListItem/ListItem";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 
 const ShoppingCart = props => {
-    const {} = props;
+
     return (
         <div className="shoppingCart">
-            <Grid alignItems="center" container className="cartItem">
-                <Grid container item xs={10}>
-                    <List component="ul" className="cartItemsList">
-                        <Tooltip title="more to page details" placement="bottom-end">
-                            <ListItem component="li" button className="cartListItem">
+            <List component="ul" className="cartItemsList">
+                <Tooltip title="more to page details" placement="bottom-end">
+                    <ListItem component="li" button className="cartListItem" onClick={() => console.log('list item clicked')}>
+                        <Grid alignItems="center" container className="cartItem" justify="center">
+                            <Grid container item xs={10}>
                                 <Grid container justify="center" alignItems="center">
                                     <Grid item xs={4}>
                                         <img src="//via.placeholder.com/300" alt="productName"/>
@@ -34,21 +34,25 @@ const ShoppingCart = props => {
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                            </ListItem>
-                        </Tooltip>
-                    </List>
-                </Grid>
-                <Grid xs={2} item container alignItems="center" justify="center">
-                    <div>
-                        <Tooltip title="remove item from the cart" placement="bottom-end">
-                            <IconButton className="cartItemButton">
-                                <Icon>delete</Icon>
-                            </IconButton>
-                        </Tooltip>
-                    </div>
-                </Grid>
-            </Grid>
+                            </Grid>
+                            <Grid xs={2} item container alignItems="center" justify="center">
+                                <div className="actionWrapper">
+                                    <div className="buttonFlooter">
+                                        <Tooltip title="remove item from the cart" placement="bottom-end">
+                                            <IconButton className="cartItemButton" onClick={(event) => (event.stopPropagation(),console.log('clicked'))}>
+                                                <Icon>delete</Icon>
+                                            </IconButton>
+                                        </Tooltip>
+                                    </div>
+                                </div>
+                            </Grid>
+                        </Grid>
+                    </ListItem>
+                </Tooltip>
+            </List>
         </div>
     )
+
 }
+
 export default ShoppingCart
