@@ -7,39 +7,67 @@ import Rating from "../Rateing/Rateing";
 import Price from "../price/Price";
 import ProductActions from "../productActions/ProdcutsAcitons";
 import Grid from "@material-ui/core/Grid/Grid";
+import ProductHeader from "./ProdcutHeader/ProdcutHeader";
+import Category from "./category/category";
+import CartActions from "../Cart/CartActions/CartActions";
+import Card from "@material-ui/core/Card/Card";
+import AkTabs from "../../UI/Taps/Taps";
+import Panner from "../Panner/Panner";
+import Container from "../../../HOC/Container/Container";
+import {withStyles} from "@material-ui/core";
+
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    shadow: {
+        boxShadow: theme.shadows[3]
+    },
+    pannerCont: {
+        marginTop: '1rem'
+    }
+})
 
 const ProductDetails = props => {
-    const {product} = props;
+    const {product, classes} = props;
     return (
-        <Fragment> {product && <div className="productDetailsWrapper">
-            <Grid container className="proDetails">
-                <Grid xs={12} md={6} item className="courouselWrapper">
+        <div className="productDetailsc">
+            <Grid container alignItems="stretch">
+                <Grid item className="GridItemD" xs={12} md={5} lg={6}>
                     <PoductImgaes/>
                 </Grid>
-                <Grid xs={12} md={6} item className="aboutPro">
-                    <header>
-                        <Typography className="poHeading" variant="display1">
-                            {product.productName}
-                        </Typography>
-                    </header>
-                    <div className="status">
-                        <div><Typography> <span className="poLandmark">Category</span> : <span className="poValue">electronics</span></Typography></div>
-                        <div><Typography> <span className="poLandmark">Available</span> : <span className="poValue"> 5 pieces</span> </Typography></div>
-                    </div>
-                    <div className="priceARate">
-                        <Price {...product} />
+                <Grid item className="GridItemD productDetails" xs={12} md={7} lg={6}>
+                    <div className="ProductDescription">
+                        <ProductHeader/>
                         <Rating/>
+                        <div className="status">
+                            <div><Typography className="typoG">Category</Typography> : <Category/></div>
+                            <div><Typography className="typoG">Availability</Typography> : <Typography className="typoG matchCat ">5
+                                pieces</Typography></div>
+                        </div>
+                        <div className="aboutProduct">
+                            <Typography variant="body2" className="proDescription">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad alias assumenda cum delectus deserunt eius
+                                esse
+                                eveniet fuga
+                                hic illum, ipsam iste magni modi, necessitatibus praesentium quia quis tempore!
+                            </Typography>
+                        </div>
+                        <div className="priceAndAction">
+                            <Grid container alignItems="center" justify="flex-start">
+                                <Grid item xs><Price/></Grid>
+                                <Grid item xs>
+                                    <CartActions/>
+                                </Grid>
+                            </Grid>
+                        </div>
+                        <Divider className="proDivider"/>
                     </div>
-                    <div>
-                        <Typography variant="body2" className="proDescription">
-                            {product.productDescription}
-                        </Typography>
-                    </div>
-                    <Divider className="proDivider"/>
                     <ProductActions/>
                 </Grid>
             </Grid>
-        </div>}</Fragment>
+        </div>
+
     )
 }
-export default ProductDetails
+export default withStyles(styles)(ProductDetails)

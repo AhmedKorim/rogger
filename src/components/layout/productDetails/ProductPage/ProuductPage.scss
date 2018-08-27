@@ -2,31 +2,33 @@
   .GridItemD {
     padding: 1rem;
   }
-  .ProductDescription {
-    .status {
-      padding: 1rem 0 0;
-      .typoG {
-        display: inline-block;
-        padding: .3rem 0;
-      }
-      .matchCat {
-        text-align: center;
-        font-size: 1rem;
-        color: transparentize(black, .3);
-        font-weight: 500;
-        padding: 0 .2rem;
-        text-transform: capitalize;
-      }
+  .productDetails {
+    .ProductDescription {
+      .status {
+        padding: 1rem 0 0;
+        .typoG {
+          display: inline-block;
+          padding: .3rem 0;
+        }
+        .matchCat {
+          text-align: center;
+          font-size: 1rem;
+          color: transparentize(black, .3);
+          font-weight: 500;
+          padding: 0 .2rem;
+          text-transform: capitalize;
+        }
 
-    }
-    .aboutProduct {
-      padding: 1rem 0 0;
-    }
-    .priceAndAction {
-      padding: 1rem 0 ;
+      }
+      .aboutProduct {
+        padding: 1rem 0 0;
+      }
+      .priceAndAction {
+        padding: 1rem 0;
+      }
     }
   }
-  .toolBar{
+  .toolBar {
     min-height: unset;
     display: flex;
     justify-content: center;

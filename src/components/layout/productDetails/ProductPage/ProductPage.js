@@ -50,7 +50,7 @@ class ProductPage extends React.Component {
                             <Grid item className="GridItemD" xs={12} md={5} lg={6}>
                                 <PoductImgaes/>
                             </Grid>
-                            <Grid item className="GridItemD" xs={12} md={7} lg={6}>
+                            <Grid item className="GridItemD productDetails" xs={12} md={7} lg={6}>
                                 <div className="ProductDescription">
                                     <ProductHeader/>
                                     <Rating/>

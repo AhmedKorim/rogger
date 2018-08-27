@@ -1,60 +1,29 @@
-.productDetailsWrapper {
-  max-width: 100%;
-  header {
-    width: 100%;
-
-    text-align: left;
-    .poHeading {
-      color: black;
-      text-transform: capitalize;
-      margin-bottom: 1rem;
-    }
+.productDetailsc {
+  .GridItemD {
+    padding: 1rem;
   }
-  .proDetails {
-    .courouselWrapper {
-    }
-    padding-top: 1rem;
-    display: flex;
-    & > div {
-      width: 50%;
-      padding: 0 1rem;
-    }
-    .aboutPro {
-      .status {
-        padding-bottom: .5rem;
-        & > div {
-          padding-bottom: .25rem;
-          .poLandmark {
-            font-weight: 700;
-            opacity: .8;
-          }
-          .poValue {
-            text-transform: capitalize;
-            font-weight: 500;
-          }
-        }
+  .ProductDescription {
+    .status {
+      padding: 1rem 0 0;
+      .typoG {
+        display: inline-block;
+        padding: .3rem 0;
       }
-      .proDescription {
-        margin-top: 2rem;
-        font-weight: 400;
-        font-size: .9rem;
-        line-height: 27px;
-        letter-spacing: normal;
-        color: transparentize(black, .4);
+      .matchCat {
+        text-align: center;
+        font-size: 1rem;
+        color: transparentize(black, .3);
+        font-weight: 500;
+        padding: 0 .2rem;
+        text-transform: capitalize;
       }
-      .proDivider {
-        margin: 1rem 0;
-      }
-      .priceARate {
-        margin: 1rem 0;
-        display: flex;
-        justify-content: center;
-        width: 240px;
-        & > div {
-          margin: .7rem;
-        }
-      }
-    }
 
+    }
+    .aboutProduct {
+      padding: 1rem 0 0;
+    }
+    .priceAndAction {
+      padding: 1rem 0;
+    }
   }
 }

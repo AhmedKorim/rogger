@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import Slide from "@material-ui/core/Slide/Slide";
 import {connect} from "react-redux";
 import ProductDetails from "../../layout/productDetails/ProductDetails";
@@ -6,6 +6,10 @@ import Dialog from "@material-ui/core/Dialog/Dialog";
 import {PRODUCT_CARD_DETAILS} from "../../../dux/actions/uiActions";
 import ProductEditor from "../../../containers/Admin/Dashboard/AdminProducts/ProudctEditor/ProductEditor";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import './dialog.scss'
+import Button from "@material-ui/core/Button/Button";
+import Icon from "@material-ui/core/Icon/Icon";
+import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -18,9 +22,9 @@ class RDialog extends React.Component {
 
     render() {
         const {open, data, component} = this.props;
-        const componentToLoad = component === 'ProductDetails' ? <ProductDetails product={data}/> : <ProductEditor  data={data}/>
+        const componentToLoad = component === 'ProductDetails' ? <ProductDetails product={data}/> : <ProductEditor data={data}/>
 
-            console.log(componentToLoad);
+        console.log(componentToLoad);
         return (
             <Dialog
                 open={open}
@@ -29,10 +33,23 @@ class RDialog extends React.Component {
                 onClose={this.handleClose}
                 fullWidth={true}
                 maxWidth={false}
+                className="dialog"
+                PaperProps={{
+                    classes: {
+                        root: 'paperViable'
+                    }
+                }}
             >
-                <PerfectScrollbar>
-                    {data && componentToLoad}
-                </PerfectScrollbar>
+                <div className="dialogWrapper">
+                    <Tooltip title='close dialog'>
+                        <Button variant="fab" color="secondary" className="dialogFloatButton" onClick={() => this.props.close()}>
+                            <Icon>close</Icon>
+                        </Button>
+                    </Tooltip>
+                    <PerfectScrollbar>
+                        {data && componentToLoad}
+                    </PerfectScrollbar>
+                </div>
             </Dialog>
         )
     }
