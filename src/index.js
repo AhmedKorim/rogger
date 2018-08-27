@@ -12,6 +12,7 @@ import thunk from "redux-thunk";
 import {lightBlue, pink} from "@material-ui/core/colors";
 import UIReducer from "./dux/reducers/UIReducer";
 import productsReducer from "./dux/reducers/prodcutsReducer";
+import userReducer from "./dux/reducers/userReucer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const theme = createMuiTheme({
@@ -19,19 +20,20 @@ const theme = createMuiTheme({
         type: 'light',
         primary: {
             main: lightBlue[800],
-            secondary:pink.A400
+            secondary: pink.A400
         },
 
     },
-    shape:{
-        borderRadius:0
+    shape: {
+        borderRadius: 0
     }
 })
 
 const store = createStore(
     combineReducers({
         UI: UIReducer,
-        products:productsReducer
+        products: productsReducer,
+        user: userReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
 );

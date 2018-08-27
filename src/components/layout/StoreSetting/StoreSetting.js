@@ -2,16 +2,18 @@ import React, {Fragment} from 'react'
 import AKmenu from "../../UI/Menu/Menu";
 import Grid from "@material-ui/core/Grid/Grid";
 import ShoppingCart from "../Cart/Cart";
+import UserWidget from "../UserWidget/UserWidget";
 
 const StoreSetting = props => {
+
     return (
         <Fragment>
             <Grid item xs>
                 <AKmenu
-                    icon="shopping_cart"
-                    count={5}
-                    tip="shopping cart">
-                    <ShoppingCart/>
+                    icon="account_circle"
+                    count={0}
+                    tip="account">
+                    <UserWidget/>
                 </AKmenu>
             </Grid>
             <Grid item xs>

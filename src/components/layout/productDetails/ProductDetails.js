@@ -25,7 +25,10 @@ const styles = theme => ({
 })
 
 const ProductDetails = props => {
+
     const {product, classes} = props;
+    const priceRatio = product.preDiscount ? (100 - ((product.productPrice / product.preDiscount) * 100)).toFixed(2) : 0;
+
     return (
         <div className="productDetailsc">
             <Grid container alignItems="stretch">
@@ -34,24 +37,25 @@ const ProductDetails = props => {
                 </Grid>
                 <Grid item className="GridItemD productDetails" xs={12} md={7} lg={6}>
                     <div className="ProductDescription">
-                        <ProductHeader/>
+                        <ProductHeader productName={product.productName}/>
                         <Rating/>
                         <div className="status">
-                            <div><Typography className="typoG">Category</Typography> : <Category/></div>
+                            <div><Typography className="typoG">Category</Typography> : <Category productCategory={product.productCategory}/></div>
                             <div><Typography className="typoG">Availability</Typography> : <Typography className="typoG matchCat ">5
                                 pieces</Typography></div>
                         </div>
                         <div className="aboutProduct">
                             <Typography variant="body2" className="proDescription">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad alias assumenda cum delectus deserunt eius
-                                esse
-                                eveniet fuga
-                                hic illum, ipsam iste magni modi, necessitatibus praesentium quia quis tempore!
+                                {product.productDescription}
                             </Typography>
                         </div>
                         <div className="priceAndAction">
                             <Grid container alignItems="center" justify="flex-start">
-                                <Grid item xs><Price/></Grid>
+                                <Grid item xs><Price
+                                    productPrice={product.productPrice}
+                                    preDiscount={product.preDiscount}
+                                    priceRatio={priceRatio}
+                                /></Grid>
                                 <Grid item xs>
                                     <CartActions/>
                                 </Grid>

@@ -104,7 +104,11 @@ class Header extends React.Component {
         const {
             props: {
                 classes,
-                width
+                width,
+                userInfo,
+                compared,
+                wishList,
+                cartCount
             },
             loadRichHeader
         } = this;
@@ -133,10 +137,10 @@ class Header extends React.Component {
                                     </Grid>
                                     <Grid xs item>
                                         <AKmenu
-                                            icon="account_circle"
-                                            count={0}
-                                            tip="account">
-                                            <UserWidget/>
+                                            icon="shopping_cart"
+                                            count={cartCount}
+                                            tip="shopping cart">
+                                            <ShoppingCart/>
                                         </AKmenu>
                                     </Grid>
                                 </Grid>
@@ -189,5 +193,12 @@ const mapDispatchToProps = dispatch => {
         setHeight: (dim) => dispatch({type: HEADER_DIM, dim})
     }
 }
-
-export default withRouter(connect(null, mapDispatchToProps)(withWidth()(withStyles(styles)(Header))));
+const mapStateToProps = state => {
+    return {
+        userInfo: state.user.info,
+        compared: state.user.compared,
+        wishList: state.user.wishList,
+        cartCount: state.user.cart.length
+    }
+}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withWidth()(withStyles(styles)(Header))));

@@ -5,7 +5,8 @@ const initalState = {
         admin: false,
         anonymous: true,
         name: 'anonymous',
-        avatar: 'An',
+        email:'anonymous@rogger.com',
+        avatar: 'A',
         balance: '0',
         paymentVerified: false,
 
@@ -86,5 +87,9 @@ const userReducer = (state = initalState, action) => {
                 ...state,
                 cart: filterCart(action, state)
             }
+        default:
+            return state;
     }
 }
+
+export default userReducer;

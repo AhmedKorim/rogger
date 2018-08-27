@@ -6,7 +6,8 @@ const initialState = {
     dialog: {
         data: null,
         component: null,
-        open: false
+        open: false,
+        prevRoute:null
     },
     aside: {
         open: false
@@ -21,12 +22,12 @@ export default (state = initialState, action) => {
                 headerHeight: action.dim
             };
         case PRODUCT_CARD_DETAILS:
-            console.log(action);
             return {
                 ...state,
                 dialog: {
                     open: action.payload.open,
                     data: action.payload.data,
+                    prevRoute:action.payload.prevRoute,
                     component: action.payload.component
                 }
             };

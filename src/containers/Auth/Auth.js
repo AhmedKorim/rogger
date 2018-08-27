@@ -9,7 +9,7 @@ class Auth extends React.Component {
         return (
 
             <div className="auth">
-                <AkTabs tab={[{label: 'Login'}, {label: 'SignUp'}]}>
+                <AkTabs disableRouting tab={[{label: 'Login'}, {label: 'SignUp'}]}>
                     <div>
                         <LoginForm/>
                     </div>

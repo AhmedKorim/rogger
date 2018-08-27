@@ -2,6 +2,22 @@
   width: 210px;
   header {
     padding: .4rem;
+    .userMetaData{
+      overflow: hidden;
+      .typo2{
+    font-size:.8rem;
+        color: transparentize(black, .3);
+      }
+    }
+    .typo1, .typo2 {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+      text-indent: .2rem;
+      white-space: nowrap;
+    }
+
 
   }
   .smallButton {
@@ -19,11 +35,14 @@
   }
 
   .userListItem {
-    padding: .4rem .1rem  ;
+    padding: .4rem .1rem;
     margin: 0;
     .iconCol {
-      color: transparentize(black,.4);
-      font-size:.97rem;
+      color: transparentize(black, .4);
+      font-size: .97rem;
     }
+  }
+  .noWrapper {
+    flex-wrap: nowrap;
   }
 }

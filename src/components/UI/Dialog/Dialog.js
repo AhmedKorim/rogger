@@ -20,6 +20,9 @@ function Transition(props) {
 class RDialog extends React.Component {
     handleClose = () => {
         this.props.close();
+        const prevRoute = this.props.prevRoute;
+        if (!prevRoute) return;
+        this.props.history.goBack();
     };
 
     render() {
@@ -33,7 +36,7 @@ class RDialog extends React.Component {
                 componentToLoad = <ProductEditor data={data}/>
                 break;
             case 'AuthComponent' :
-                this.props.history.push('auth');
+                console.log('dilog opend');
                 componentToLoad = <Auth data={data}/>
                 break;
             default:
@@ -56,7 +59,7 @@ class RDialog extends React.Component {
             >
                 <div className="dialogWrapper">
                     <Tooltip title='close dialog'>
-                        <Button variant="fab" color="secondary" className="dialogFloatButton" onClick={() => this.props.close()}>
+                        <Button variant="fab" color="secondary" className="dialogFloatButton" onClick={this.handleClose}>
                             <Icon>close</Icon>
                         </Button>
                     </Tooltip>
@@ -74,12 +77,13 @@ const mapStateToProps = state => {
     return {
         data: state.UI.dialog.data,
         component: state.UI.dialog.component,
-        open: state.UI.dialog.open
+        open: state.UI.dialog.open,
+        prevRoute: state.UI.dialog.prevRoute
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        close: () => dispatch({type: PRODUCT_CARD_DETAILS, payload: {open: false, activeCard: null}})
+        close: () => dispatch({type: PRODUCT_CARD_DETAILS, payload: {open: false, activeCard: null, prevRoute: null}})
     }
 }
 
