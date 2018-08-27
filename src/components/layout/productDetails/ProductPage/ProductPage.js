@@ -17,6 +17,7 @@ import CartActions from "../../Cart/CartActions/CartActions";
 import Card from "@material-ui/core/Card/Card";
 import Panner from "../../Panner/Panner";
 import AkTabs from "../../../UI/Taps/Taps";
+import ProductDetails from "../ProductDetails";
 
 
 const styles = theme => ({
@@ -47,38 +48,7 @@ class ProductPage extends React.Component {
                 <Container>
                     <Grid container alignItems="flex-start">
                         <Grid item container xs lg={10}>
-                            <Grid item className="GridItemD" xs={12} md={5} lg={6}>
-                                <PoductImgaes/>
-                            </Grid>
-                            <Grid item className="GridItemD productDetails" xs={12} md={7} lg={6}>
-                                <div className="ProductDescription">
-                                    <ProductHeader/>
-                                    <Rating/>
-                                    <div className="status">
-                                        <div><Typography className="typoG">Category</Typography> : <Category/></div>
-                                        <div><Typography className="typoG">Availability</Typography> : <Typography className="typoG matchCat ">5
-                                            pieces</Typography></div>
-                                    </div>
-                                    <div className="aboutProduct">
-                                        <Typography variant="body2" className="proDescription">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad alias assumenda cum delectus deserunt eius
-                                            esse
-                                            eveniet fuga
-                                            hic illum, ipsam iste magni modi, necessitatibus praesentium quia quis tempore!
-                                        </Typography>
-                                    </div>
-                                    <div className="priceAndAction">
-                                        <Grid container alignItems="center" justify="flex-start">
-                                            <Grid item xs><Price/></Grid>
-                                            <Grid item xs>
-                                                <CartActions/>
-                                            </Grid>
-                                        </Grid>
-                                    </div>
-                                    <Divider className="proDivider"/>
-                                </div>
-                                <ProductActions/>
-                            </Grid>
+                            <ProductDetails/>
                             <Grid container>
                                 <Grid xs>
                                     <Card className={classes.root}>
