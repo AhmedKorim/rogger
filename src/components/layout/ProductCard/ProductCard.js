@@ -11,7 +11,7 @@ import Price from "../price/Price";
 import ProductActions from "../productActions/ProdcutsAcitons";
 import Chip from "@material-ui/core/Chip/Chip";
 import Rating from "../Rateing/Rateing";
-import {PRODCUT_CARD_DETIALSDETAILS} from "../../../dux/actions/uiActions";
+import {PRODUCT_CARD_DETAILS} from "../../../dux/actions/uiActions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import ProductHeader from "../productDetails/ProdcutHeader/ProdcutHeader";
@@ -148,7 +148,7 @@ class ProductCard extends React.Component {
 const mapDispachToProps = dispatch => {
     return {
         openProductDetails: (activeCard) => dispatch({
-            type: PRODCUT_CARD_DETIALSDETAILS, payload: {open: true, data: activeCard,component :'ProductDetails'}
+            type: PRODUCT_CARD_DETAILS, payload: {open: true, data: activeCard,component :'ProductDetails'}
         })
     }
 }

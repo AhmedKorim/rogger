@@ -4,7 +4,7 @@ import AkTable from "../../../../components/UI/Table/Table";
 import {connect} from "react-redux";
 import Button from "@material-ui/core/Button/Button";
 import Icon from "@material-ui/core/Icon/Icon";
-import {PRODCUT_CARD_DETIALSDETAILS} from "../../../../dux/actions/uiActions";
+import {PRODUCT_CARD_DETAILS} from "../../../../dux/actions/uiActions";
 
 class AdminProducts extends React.Component {
 
@@ -65,7 +65,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        editItem: (itemData) => dispatch({type: PRODCUT_CARD_DETIALSDETAILS, payload: {open: true, data: itemData, component: 'ProductEditor'}})
+        editItem: (itemData) => dispatch({type: PRODUCT_CARD_DETAILS, payload: {open: true, data: itemData, component: 'ProductEditor'}})
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AdminProducts)

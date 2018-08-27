@@ -6,7 +6,7 @@ import './ProductEditor.scss';
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
 import axiosOrders from "../../../../../axios/axios";
-import {getData, UPDATE_ITEM} from "../../../../../dux/actions/productsActions";
+import {ADD_ITEM, getData, UPDATE_ITEM} from "../../../../../dux/actions/productsActions";
 import {connect} from "react-redux";
 
 const inputSchema = [
@@ -70,8 +70,10 @@ class ProductEditor extends React.Component {
         const dataToSend = {...this.productData};
         if (!this.state.editmood) {
             dataToSend.liked = false;
-            console.log('edit mood false');
-            axiosOrders.post('/products.json', dataToSend).then(resp => console.log(resp))
+            axiosOrders.post('/products.json', dataToSend).then(resp => {
+                    this.props.addItem({id: resp.data.name, ...dataToSend})
+                }
+            )
             return;
         }
         const id = this.props.data.id;
@@ -139,7 +141,8 @@ class ProductEditor extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateIem: (id, data) => dispatch({type: UPDATE_ITEM, id, data})
+        updateIem: (id, data) => dispatch({type: UPDATE_ITEM, id, data}),
+        addItem: (data) => dispatch({type: ADD_ITEM, data})
     }
 }
 export default connect(null, mapDispatchToProps)(ProductEditor);

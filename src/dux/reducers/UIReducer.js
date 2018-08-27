@@ -1,4 +1,4 @@
-import {HEADER_DIM, PRODCUT_CARD_DETIALSDETAILS} from "../actions/uiActions";
+import {HEADER_DIM, PRODUCT_CARD_DETAILS} from "../actions/uiActions";
 
 
 const initialState = {
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
                 ...state,
                 headerHeight: action.dim
             };
-        case PRODCUT_CARD_DETIALSDETAILS:
+        case PRODUCT_CARD_DETAILS:
             console.log(action);
             return {
                 ...state,

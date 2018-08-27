@@ -1,4 +1,4 @@
-import {GET_DATA, UPDATE_ITEM} from "../actions/productsActions";
+import {ADD_ITEM, GET_DATA, UPDATE_ITEM} from "../actions/productsActions";
 
 const initalState = {
     products: [],
@@ -16,6 +16,11 @@ const productsReducer = (state = initalState, action) => {
                 products: state.products.map(product => {
                     return product.id === action.id ? action.data : product
                 })
+            }
+        case ADD_ITEM:
+            return {
+                ...state,
+                products: [...state.products, action.data]
             }
         default :
             return state;

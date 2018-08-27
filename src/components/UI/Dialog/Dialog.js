@@ -3,8 +3,9 @@ import Slide from "@material-ui/core/Slide/Slide";
 import {connect} from "react-redux";
 import ProductDetails from "../../layout/productDetails/ProductDetails";
 import Dialog from "@material-ui/core/Dialog/Dialog";
-import {PRODCUT_CARD_DETIALSDETAILS} from "../../../dux/actions/uiActions";
+import {PRODUCT_CARD_DETAILS} from "../../../dux/actions/uiActions";
 import ProductEditor from "../../../containers/Admin/Dashboard/AdminProducts/ProudctEditor/ProductEditor";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -29,7 +30,9 @@ class RDialog extends React.Component {
                 fullWidth={true}
                 maxWidth={false}
             >
-                {data && componentToLoad}
+                <PerfectScrollbar>
+                    {data && componentToLoad}
+                </PerfectScrollbar>
             </Dialog>
         )
     }
@@ -45,7 +48,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        close: () => dispatch({type: PRODCUT_CARD_DETIALSDETAILS, payload: {open: false, activeCard: null}})
+        close: () => dispatch({type: PRODUCT_CARD_DETAILS, payload: {open: false, activeCard: null}})
     }
 }
 
