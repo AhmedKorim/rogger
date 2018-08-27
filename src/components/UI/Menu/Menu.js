@@ -13,6 +13,7 @@ import './Menu.scss';
 import NotificationIndicator from "../NotificationIndicator/NotificationIndicator";
 import {withWidth} from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
+import Badge from "@material-ui/core/Badge/Badge";
 
 const styles = theme => ({
     root: {
@@ -50,12 +51,13 @@ class AKmenu extends React.Component {
     };
 
     render() {
-        const {classes, count, icon, bLabel, listItems, width } = this.props;
+        const {classes, count, icon, bLabel, tip, listItems, width, children} = this.props;
         const {open} = this.state;
+        console.log(children);
         return (
             <div className={[classes.root, 'akMenu'].join(" ")}>
                 <div>
-                    <Tooltip  title={bLabel} placement="bottom-end">
+                    <Tooltip title={bLabel || tip} placement="bottom-end">
                         <Button
                             className={["TWhite", classes.button].join(' ')}
                             size="small"
@@ -66,9 +68,11 @@ class AKmenu extends React.Component {
                             aria-haspopup="true"
                             onClick={this.handleToggle}
                         >
-                            <Icon className={[classes.leftIcon, "TWhite", classes.iconSmall].join(" ")}>{icon}</Icon>{width === 'xs' ? null :
-                            <span className="TWhite">{bLabel}</span>}
-                            <NotificationIndicator count={count}/>
+                            <Badge badgeContent={count} color="secondary">
+                                {width === 'xs' ? <Icon className={[classes.leftIcon, "TWhite", classes.iconSmall].join(" ")}>{icon}</Icon> :
+                                    <span className="TWhite">{bLabel || null} <Icon
+                                        className={[classes.leftIcon, "TWhite", classes.iconSmall].join(" ")}>{icon}</Icon></span>}
+                            </Badge>
                         </Button>
                     </Tooltip>
                     <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
@@ -80,11 +84,10 @@ class AKmenu extends React.Component {
                             >
                                 <Paper>
                                     <ClickAwayListener onClickAway={this.handleClose}>
-                                        <MenuList>
-                                            {
-                                                listItems.map(item => <MenuItem onClick={this.handleClose}>{item}</MenuItem>)
-                                            }
-                                        </MenuList>
+                                        {listItems ? <MenuList>
+                                            {listItems.map(item => <MenuItem key={item + ' ' + bLabel || tip} onClick={this.handleClose}>{item}
+                                            </MenuItem>)}
+                                        </MenuList> : children}
                                     </ClickAwayListener>
                                 </Paper>
                             </Grow>

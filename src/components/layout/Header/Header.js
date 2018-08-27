@@ -15,6 +15,9 @@ import {HEADER_DIM} from "../../../dux/actions/uiActions";
 import {getStyle} from "../../../tools/tools";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import Badge from "@material-ui/core/Badge/Badge";
+import Button from "@material-ui/core/Button/Button";
+import ShoppingCart from "../Cart/Cart";
 
 const styles = theme => {
     ;
@@ -25,7 +28,7 @@ const styles = theme => {
             boxShadow: theme.shadows[0],
             position: 'relative',
             zIndex: 2,
-            padding: 0
+            padding: ".2rem 0"
         },
         grid: {
             maxHeight: "100%",
@@ -124,10 +127,10 @@ class Header extends React.Component {
                                         </Grid>
                                         <Grid item xs className={classes.grid}>
                                             <AKmenu
-                                                listItems={["login", 'logout']}
                                                 icon="shopping_cart"
                                                 count={5}
-                                                bLabel="cart">
+                                                tip="shopping cart">
+                                                <ShoppingCart/>
                                             </AKmenu>
                                         </Grid>
                                         <Grid item xs className={classes.grid}>

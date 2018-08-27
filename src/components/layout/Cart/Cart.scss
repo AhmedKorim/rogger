@@ -1,0 +1,42 @@
+.shoppingCart {
+  max-width: 270px;
+  padding: 5px;
+  .cartItem{
+    background-color: #fff;
+    transition: all ease-out .2s;
+    &:hover{
+      background-color: transparentize(#E0E0E0,.4);
+    }
+  }
+  .cartItemsList{
+    padding: 0;
+    .cartListItem{
+      padding: 0;
+    }
+  }
+  .cartItem {
+    img {
+      display: block;
+      max-width: 100%;
+    }
+    .itemData{
+      text-align: center;
+      color: black;
+    }
+    .productPrice,
+    .productTitle{
+      text-transform: capitalize;
+      font-weight: bold;
+      color: transparentize(black, .3);
+      padding: 0;
+    }
+    .cartItemButton{
+      padding: 0;
+      min-height: 35px;
+      min-width: 35px;
+
+      &:hover{
+      }
+    }
+  }
+}
