@@ -4,16 +4,8 @@ import withPadding from "../../../../HOC/WithPadding/WithPadding";
 import Breadcrumbs from "../../../UI/Breadcrumbs/breadcrumbs";
 import Container from "../../../../HOC/Container/Container";
 import Grid from "@material-ui/core/Grid/Grid";
-import PoductImgaes from "../imgCarosel/imgCarousel";
 import Typography from "@material-ui/core/Typography/Typography";
-import Price from "../../price/Price";
-import Rating from "../../Rateing/Rateing";
-import Divider from "@material-ui/core/Divider/Divider";
-import ProductActions from "../../productActions/ProdcutsAcitons";
-import ProductHeader from "../ProdcutHeader/ProdcutHeader";
 import {withStyles, withWidth} from "@material-ui/core";
-import Category from "../category/category";
-import CartActions from "../../Cart/CartActions/CartActions";
 import Card from "@material-ui/core/Card/Card";
 import Panner from "../../Panner/Panner";
 import AkTabs from "../../../UI/Taps/Taps";
@@ -54,7 +46,6 @@ class ProductPage extends React.Component {
                                     <Card className={classes.root}>
                                         <AkTabs
                                             value={0}
-                                            toolbarClasses={["toolBar", classes.shadow]}
                                             tab={[
                                                 {label: 'about'},
                                                 {label: 'reviews'},

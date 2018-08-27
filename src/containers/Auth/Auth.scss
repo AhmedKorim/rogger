@@ -1,0 +1,28 @@
+.auth{
+  .input {
+    width: 100%;
+    height: auto;
+    max-width: unset;
+    input {
+      display: block;
+      width: 100%;
+      min-width: unset;
+      max-width: unset;
+    }
+  }
+  form{
+    padding: .5rem 0 1rem;
+  }
+  .GridPadding{
+    padding: .4rem;
+  }
+  .buttonT{
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #fff;
+  }
+  .sighupButtonGrid{
+    padding: .4rem;
+    text-align: center;
+  }
+}

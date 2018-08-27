@@ -10,14 +10,14 @@ const StoreSetting = props => {
                     listItems={["usd", 'euro']}
                     icon="attach_money"
                     count={0}
-                    bLabel="currency">
+                    tip="currency">
                 </AKmenu>
             </Grid> <Grid item>
                 <AKmenu
                     listItems={["eng", 'fb','ar']}
                     icon="language"
                     count={0}
-                    bLabel="language">
+                    tip="language">
                 </AKmenu>
             </Grid>
         </Fragment>

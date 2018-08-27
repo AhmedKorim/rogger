@@ -138,7 +138,7 @@ class Header extends React.Component {
                                                 listItems={["login", 'logout']}
                                                 icon="list-alt"
                                                 count={5}
-                                                bLabel="wishlist">
+                                                tip="wishlist">
                                             </AKmenu>
                                         </Grid>
                                         <Grid item xs className={classes.grid}>
@@ -146,16 +146,16 @@ class Header extends React.Component {
                                                 listItems={["login", 'logout']}
                                                 icon="compare"
                                                 count={5}
-                                                bLabel="compare">
+                                                tip="compare">
                                             </AKmenu>
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                                {width === 'lg' ? < Grid item xs>
+                                < Grid item xs>
                                     <Grid container alignItems="center" justify="flex-end">
                                         <StoreSetting/>
                                     </Grid>
-                                </Grid> : null}
+                                </Grid>
                             </Grid>
                         </div>
                     </Toolbar>

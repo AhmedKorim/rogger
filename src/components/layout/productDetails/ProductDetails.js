@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import PoductImgaes from "./imgCarosel/imgCarousel";
 import "./ProductDetails.scss"
 import Typography from "@material-ui/core/Typography/Typography";
@@ -10,10 +10,6 @@ import Grid from "@material-ui/core/Grid/Grid";
 import ProductHeader from "./ProdcutHeader/ProdcutHeader";
 import Category from "./category/category";
 import CartActions from "../Cart/CartActions/CartActions";
-import Card from "@material-ui/core/Card/Card";
-import AkTabs from "../../UI/Taps/Taps";
-import Panner from "../Panner/Panner";
-import Container from "../../../HOC/Container/Container";
 import {withStyles} from "@material-ui/core";
 
 const styles = theme => ({

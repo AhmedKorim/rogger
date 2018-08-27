@@ -10,6 +10,7 @@ import Products from "./Products/Products";
 import ProductPage from "../components/layout/productDetails/ProductPage/ProductPage";
 import Dashboard from "./Admin/Dashboard/Dashboard";
 import {getData} from "../dux/actions/productsActions";
+import Auth from "./Auth/Auth";
 
 
 class App extends Component {
@@ -29,7 +30,8 @@ class App extends Component {
                             <Route path="/products" component={Products}/>
                             <Redirect from="/" to="/home" exact/>
                             <Route path="/home" component={Home}/>
-                            <Route path="/dashboard"  component={Dashboard}/>
+                            <Route path="/dashboard" component={Dashboard}/>
+                            <Route path="/auth" component={Auth}/>
                         </Switch>
                     </main>
                 </PerfectScrollbar>
@@ -49,4 +51,4 @@ const mapDispatchToProps = dispatch => {
         getData: () => dispatch(getData())
     }
 }
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

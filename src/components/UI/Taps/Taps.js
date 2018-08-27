@@ -4,10 +4,17 @@ import Tabs from "@material-ui/core/Tabs/Tabs";
 import Tab from "@material-ui/core/Tab/Tab";
 import SwipeableViews from "react-swipeable-views";
 import {withRouter} from 'react-router-dom';
-import {withWidth} from "@material-ui/core";
-import Zoom from "@material-ui/core/Zoom/Zoom";
-import Button from "@material-ui/core/Button/Button";
-import Icon from "@material-ui/core/Icon/Icon";
+import {withStyles, withWidth} from "@material-ui/core";
+
+const styles = theme => ({
+    shadow: {
+        boxShadow: theme.shadows[3],
+        maxHeight:48,
+        minHeight:'unset',
+        display:'flex',
+        justifyContent:'center'
+    },
+})
 
 class AkTabs extends React.Component {
     constructor(props) {
@@ -37,11 +44,11 @@ class AkTabs extends React.Component {
             this.setState({value: intialIndex})
             return;
         }
-        console.log('ok' , this.props);
+        console.log('ok', this.props);
     }
 
     render() {
-        const {
+        let {
             state: {
                 value
             },
@@ -49,6 +56,7 @@ class AkTabs extends React.Component {
                 children,
                 toolbarClasses,
                 tab,
+                classes,
                 centered,
                 width,
                 withFap
@@ -57,7 +65,7 @@ class AkTabs extends React.Component {
             handleChangeIndex
 
         } = this;
-
+        toolbarClasses = toolbarClasses || [classes.shadow,"toolBar"];
         return (
             <Fragment>
                 <Toolbar className={toolbarClasses.join(' ')}>
@@ -85,4 +93,4 @@ class AkTabs extends React.Component {
 }
 
 
-export default withRouter(withWidth()(AkTabs));
+export default withRouter(withWidth()(withStyles(styles)(AkTabs)));

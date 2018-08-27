@@ -68,11 +68,11 @@ class AKmenu extends React.Component {
                             aria-haspopup="true"
                             onClick={this.handleToggle}
                         >
-                            <Badge badgeContent={count} color="secondary">
+                        { count > 0 ?   <Badge badgeContent={count} color="secondary">
                                 {width === 'xs' ? <Icon className={[classes.leftIcon, "TWhite", classes.iconSmall].join(" ")}>{icon}</Icon> :
                                     <span className="TWhite">{bLabel || null} <Icon
                                         className={[classes.leftIcon, "TWhite", classes.iconSmall].join(" ")}>{icon}</Icon></span>}
-                            </Badge>
+                            </Badge>: <Icon className={[classes.leftIcon, "TWhite", classes.iconSmall].join(" ")}>{icon}</Icon>}
                         </Button>
                     </Tooltip>
                     <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
