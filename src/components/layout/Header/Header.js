@@ -18,22 +18,20 @@ import {withRouter} from "react-router-dom";
 import Badge from "@material-ui/core/Badge/Badge";
 import Button from "@material-ui/core/Button/Button";
 import ShoppingCart from "../Cart/Cart";
+import Container from "../../../HOC/Container/Container";
+import UserWidget from "../UserWidget/UserWidget";
 
 const styles = theme => {
     ;
     return ({
         mini: {
-            maxHeight: 38,
-            minHeight: 38,
+
             boxShadow: theme.shadows[0],
             position: 'relative',
             zIndex: 2,
             padding: ".2rem 0"
         },
-        grid: {
-            maxHeight: "100%",
-            padding: "0 .4rem",
-        },
+        grid: {},
         hidden: {
             [theme.breakpoints.down('sm')]: {
                 display: 'none'
@@ -97,7 +95,7 @@ class Header extends React.Component {
     loadRichHeader = () => {
         const hasHome = this.props.location.pathname.indexOf('home') > 0;
         const hasProducts = this.props.location.pathname.indexOf('products') > 0;
-        return (hasHome   )
+        return (hasHome)
     }
 
 
@@ -114,50 +112,39 @@ class Header extends React.Component {
             <AppBar position="fixed" className={[classes.shadow].join(' ')}>
                 <div ref={(node) => this.headerRef = node}>
                     <Toolbar variant="dense" className={classes.mini}>
-                        <div className="container">
-                            <Grid container alignItems="center" justify="center">
-                                <Grid item xs>
-                                    <Grid container alignItems="center" justify="center">
-                                        <Grid item className={classes.hidden}>
-                                            <div>
-                                                <Typography className={classes.Gray}>
-                                                    Welcome to Rogger store
-                                                </Typography>
-                                            </div>
-                                        </Grid>
-                                        <Grid item xs className={classes.grid}>
-                                            <AKmenu
-                                                icon="shopping_cart"
-                                                count={5}
-                                                tip="shopping cart">
-                                                <ShoppingCart/>
-                                            </AKmenu>
-                                        </Grid>
-                                        <Grid item xs className={classes.grid}>
-                                            <AKmenu
-                                                listItems={["login", 'logout']}
-                                                icon="list-alt"
-                                                count={5}
-                                                tip="wishlist">
-                                            </AKmenu>
-                                        </Grid>
-                                        <Grid item xs className={classes.grid}>
-                                            <AKmenu
-                                                listItems={["login", 'logout']}
-                                                icon="compare"
-                                                count={5}
-                                                tip="compare">
-                                            </AKmenu>
-                                        </Grid>
+                        <Container>
+                            <Grid container justify="center" alignItems="center" className="GridToolbar">
+                                <Grid className="leftGrid" item xs={12} sm container justify="flex-start" alignItems="center">
+                                    <Grid xs item>
+                                        <AKmenu
+                                            listItems={["eng", 'fb', 'ar']}
+                                            icon="compare"
+                                            count={0}
+                                            tip="compare">
+                                        </AKmenu>
+                                    </Grid>
+                                    <Grid xs item>
+                                        <AKmenu
+                                            listItems={["eng", 'fb', 'ar']}
+                                            icon="favorite"
+                                            count={0}
+                                            tip="wish list">
+                                        </AKmenu>
+                                    </Grid>
+                                    <Grid xs item>
+                                        <AKmenu
+                                            icon="account_circle"
+                                            count={0}
+                                            tip="account">
+                                            <UserWidget/>
+                                        </AKmenu>
                                     </Grid>
                                 </Grid>
-                                < Grid item xs>
-                                    <Grid container alignItems="center" justify="flex-end">
-                                        <StoreSetting/>
-                                    </Grid>
+                                <Grid className="rightGrid" item xs container justify="flex-end" alignItems="center">
+                                    <StoreSetting/>
                                 </Grid>
                             </Grid>
-                        </div>
+                        </Container>
                     </Toolbar>
                     {loadRichHeader() && <Fragment>
                         <Toolbar variant="regular" className={[classes.richToolbar].join(' ')}>

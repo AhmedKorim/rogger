@@ -10,6 +10,8 @@ import './dialog.scss'
 import Button from "@material-ui/core/Button/Button";
 import Icon from "@material-ui/core/Icon/Icon";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
+import Auth from "../../../containers/Auth/Auth";
+import {withRouter} from "react-router-dom";
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -22,9 +24,21 @@ class RDialog extends React.Component {
 
     render() {
         const {open, data, component} = this.props;
-        const componentToLoad = component === 'ProductDetails' ? <ProductDetails product={data}/> : <ProductEditor data={data}/>
-
-        console.log(componentToLoad);
+        let componentToLoad;
+        switch (component) {
+            case 'ProductDetails':
+                componentToLoad = <ProductDetails product={data}/>;
+                break;
+            case 'ProductEditor':
+                componentToLoad = <ProductEditor data={data}/>
+                break;
+            case 'AuthComponent' :
+                this.props.history.push('auth');
+                componentToLoad = <Auth data={data}/>
+                break;
+            default:
+                componentToLoad = null;
+        }
         return (
             <Dialog
                 open={open}
@@ -69,4 +83,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RDialog);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RDialog));

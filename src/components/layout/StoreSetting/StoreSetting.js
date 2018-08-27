@@ -1,20 +1,30 @@
 import React, {Fragment} from 'react'
 import AKmenu from "../../UI/Menu/Menu";
 import Grid from "@material-ui/core/Grid/Grid";
+import ShoppingCart from "../Cart/Cart";
 
 const StoreSetting = props => {
     return (
         <Fragment>
-            <Grid item>
+            <Grid item xs>
+                <AKmenu
+                    icon="shopping_cart"
+                    count={5}
+                    tip="shopping cart">
+                    <ShoppingCart/>
+                </AKmenu>
+            </Grid>
+            <Grid item xs>
                 <AKmenu
                     listItems={["usd", 'euro']}
                     icon="attach_money"
                     count={0}
                     tip="currency">
                 </AKmenu>
-            </Grid> <Grid item>
+            </Grid>
+            <Grid xs item>
                 <AKmenu
-                    listItems={["eng", 'fb','ar']}
+                    listItems={["eng", 'fb', 'ar']}
                     icon="language"
                     count={0}
                     tip="language">

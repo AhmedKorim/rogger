@@ -1,0 +1,29 @@
+.userWidget {
+  width: 210px;
+  header {
+    padding: .4rem;
+
+  }
+  .smallButton {
+    min-width: unset;
+    min-height: unset;
+  }
+
+  .typo1, .typo2 {
+    text-align: left;
+    font-weight: bold;
+    color: transparentize(black, .3);
+  }
+  .typo2 {
+    text-indent: .5rem;
+  }
+
+  .userListItem {
+    padding: .4rem .1rem  ;
+    margin: 0;
+    .iconCol {
+      color: transparentize(black,.4);
+      font-size:.97rem;
+    }
+  }
+}
