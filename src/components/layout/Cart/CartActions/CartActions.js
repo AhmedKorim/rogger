@@ -20,11 +20,11 @@ const CartActions = props => {
         cart,
         addToCart,
         id,
-        removeFromcCart
+        removeFromCart
     } = props;
     const OnCart = cart.find(item => item.id === id);
     if (OnCart) {
-        OnCart.count < 1 && removeFromcCart(id);
+        OnCart.count < 1 && removeFromCart(id);
     }
     return (
         <div className="cartActions">
@@ -73,7 +73,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         addToCart: (id, action) => dispatch({type: ADD_TO_CART, payload: {item: {id}}, action: action}),
-        removeFromcCart: (id) => dispatch({type: REMOVE_FROM_CART, payload: {item: {id}}})
+        removeFromCart: (id) => dispatch({type: REMOVE_FROM_CART, payload: {item: {id}}})
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(CartActions));

@@ -53,7 +53,8 @@ class AkTable extends React.Component {
                 classes,
                 data,
                 actionA,
-                actionB
+                actionB,
+                labels
             },
             state:{
                 rowsPerPage,
@@ -62,7 +63,6 @@ class AkTable extends React.Component {
             handleChangePage,
             handleChangeRowsPerPage
         } = this;
-
 
 
         return (
@@ -74,33 +74,13 @@ class AkTable extends React.Component {
                                 <Table className="table" aria-label="label">
                                     <TableHead>
                                         <TableRow className="tableRow">
-                                            <TableCell>
+                                            {labels.map(label =><TableCell key={label}>
                                                 <Tooltip
-                                                    title="Sort"
-                                                    enterDelay={300}>
-                                                    <TableSortLabel active>Name</TableSortLabel>
-                                                </Tooltip>
-                                            </TableCell>
-                                            <TableCell><Tooltip
                                                 title="Sort"
                                                 enterDelay={300}>
-                                                <TableSortLabel active>Price</TableSortLabel>
-                                            </Tooltip>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Tooltip
-                                                    title="Sort"
-                                                    enterDelay={300}>
-                                                    <TableSortLabel active>discount</TableSortLabel>
+                                                <TableSortLabel active>{label}</TableSortLabel>
                                                 </Tooltip>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Tooltip
-                                                    title="Sort"
-                                                    enterDelay={300}>
-                                                    <TableSortLabel active>Category</TableSortLabel>
-                                                </Tooltip>
-                                            </TableCell>
+                                                </TableCell>)}
                                             <TableCell>
                                                 Actions
                                             </TableCell>

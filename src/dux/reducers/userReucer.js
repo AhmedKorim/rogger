@@ -7,7 +7,7 @@ const initalState = {
         name: 'anonymous',
         email: 'anonymous@rogger.com',
         avatar: 'A',
-        balance: '0',
+        balance: 0,
         paymentVerified: false,
 
     },
