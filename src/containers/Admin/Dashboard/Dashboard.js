@@ -39,7 +39,6 @@ class Dashboard extends React.Component {
                 <Container className="dashboard">
                     <Card>
                         <AkTabs
-                            withFap={[1,2,3,4]}
                             tab={[
                                 {label: 'Orders'},
                                 {label: 'Products'},
