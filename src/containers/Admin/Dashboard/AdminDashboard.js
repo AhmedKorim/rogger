@@ -8,6 +8,7 @@ import Card from "@material-ui/core/Card/Card";
 import Breadcrumbs from "../../../components/UI/Breadcrumbs/breadcrumbs";
 import AdminProducts from "./AdminProducts/AdminProducts";
 import WithHeight from "../../../HOC/WithHeight";
+import Dashboard from "../../../components/layout/Dashboard/Dashboard";
 
 const styles = theme => ({
     root: {
@@ -33,34 +34,29 @@ class AdminDashboard extends React.Component {
         } = this;
         console.log(headerHeight);
         return (
-
             <Fragment>
-                <Breadcrumbs/>
-                <Container className="dashboard">
-                    <Card>
-                        <EnhancedTabs
-                            tab={[
-                                {label: 'Orders'},
-                                {label: 'Products'},
-                                {label: 'Clients'},
-                                {label: 'Statics'},
-                            ]}
-                        >
-
-                            <WithHeight maxHeight={headerHeight + 90}> <div>Orders</div></WithHeight>
-                            <WithHeight maxHeight={headerHeight + 90}>
-                                <AdminProducts/>
-                            </WithHeight>
-                            <div>Clients</div>
-                            <div>Statics</div>
-                            <div>Plans</div>
-                            <div>issues</div>
-                        </EnhancedTabs>
-                    </Card>
-                </Container>
+                <Dashboard
+                    tabs={[
+                        {label: 'Orders'},
+                        {label: 'Products'},
+                        {label: 'Clients'},
+                        {label: 'Statics'},
+                    ]}
+                >
+                    <WithHeight maxHeight={headerHeight + 90}>
+                        <div>Orders</div>
+                    </WithHeight>
+                    <WithHeight maxHeight={headerHeight + 90}>
+                        <AdminProducts/>
+                    </WithHeight>
+                    <div>Clients</div>
+                    <div>Statics</div>
+                    <div>Plans</div>
+                    <div>issues</div>
+                </Dashboard>
             </Fragment>
         )
     }
 }
 
-export default withStyles(styles)(withPadding(AdminDashboard));
+export default withPadding(AdminDashboard);
