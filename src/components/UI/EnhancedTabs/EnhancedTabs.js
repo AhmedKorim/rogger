@@ -16,7 +16,7 @@ const styles = theme => ({
     },
 })
 
-class AkTabs extends React.Component {
+class EnhancedTabs extends React.Component {
     constructor(props) {
         super(props);
         if (!props.disableRouting) {
@@ -102,4 +102,4 @@ render()
 }
 
 
-export default withRouter(withWidth()(withStyles(styles)(AkTabs)));
+export default withRouter(withWidth()(withStyles(styles)(EnhancedTabs)));

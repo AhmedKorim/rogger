@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 import {withStyles, withWidth} from "@material-ui/core";
 import Card from "@material-ui/core/Card/Card";
 import Panner from "../../Panner/Panner";
-import AkTabs from "../../../UI/Taps/Taps";
+import EnhancedTabs from "../../../UI/EnhancedTabs/EnhancedTabs";
 import ProductDetails from "../ProductDetails";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
@@ -51,7 +51,7 @@ class ProductPage extends React.Component {
                                 <Grid container>
                                     <Grid xs>
                                         <Card className={classes.root}>
-                                            <AkTabs
+                                            <EnhancedTabs
                                                 value={0}
                                                 tab={[
                                                     {label: 'about'},
@@ -68,7 +68,7 @@ class ProductPage extends React.Component {
                                                 <div>
                                                     <Typography variant="subheading">FQA</Typography>
                                                 </div>
-                                            </AkTabs>
+                                            </EnhancedTabs>
                                         </Card>
                                     </Grid>
                                 </Grid>

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Auth.scss'
-import AkTabs from "../../components/UI/Taps/Taps";
+import AkTabs from "../../components/UI/EnhancedTabs/EnhancedTabs";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 

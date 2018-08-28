@@ -2,8 +2,8 @@ import React, {Fragment} from 'react';
 import {withStyles} from "@material-ui/core";
 import withPadding from "../../../HOC/WithPadding/WithPadding";
 import Container from "../../../HOC/Container/Container";
-import AkTabs from "../../../components/UI/Taps/Taps";
-import './Dashboard.scss'
+import EnhancedTabs from "../../../components/UI/EnhancedTabs/EnhancedTabs";
+import './AdminDashboard.scss'
 import Card from "@material-ui/core/Card/Card";
 import Breadcrumbs from "../../../components/UI/Breadcrumbs/breadcrumbs";
 import AdminProducts from "./AdminProducts/AdminProducts";
@@ -21,7 +21,7 @@ const styles = theme => ({
     }
 });
 
-class Dashboard extends React.Component {
+class AdminDashboard extends React.Component {
 
 
     render() {
@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
                 <Breadcrumbs/>
                 <Container className="dashboard">
                     <Card>
-                        <AkTabs
+                        <EnhancedTabs
                             tab={[
                                 {label: 'Orders'},
                                 {label: 'Products'},
@@ -55,7 +55,7 @@ class Dashboard extends React.Component {
                             <div>Statics</div>
                             <div>Plans</div>
                             <div>issues</div>
-                        </AkTabs>
+                        </EnhancedTabs>
                     </Card>
                 </Container>
             </Fragment>
@@ -63,4 +63,4 @@ class Dashboard extends React.Component {
     }
 }
 
-export default withStyles(styles)(withPadding(Dashboard));
+export default withStyles(styles)(withPadding(AdminDashboard));

@@ -45,6 +45,7 @@ const UserWidget = props => {
             </header>
             <Divider/>
             <dig>
+
                 <List component="ul" className="userListItem">
                     <ListItem component="li" button className="userListItem">
                         <Grid container justify="center" alignItems="center">
