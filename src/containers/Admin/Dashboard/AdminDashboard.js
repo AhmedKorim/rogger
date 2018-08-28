@@ -1,11 +1,6 @@
 import React, {Fragment} from 'react';
-import {withStyles} from "@material-ui/core";
 import withPadding from "../../../HOC/WithPadding/WithPadding";
-import Container from "../../../HOC/Container/Container";
-import EnhancedTabs from "../../../components/UI/EnhancedTabs/EnhancedTabs";
 import './AdminDashboard.scss'
-import Card from "@material-ui/core/Card/Card";
-import Breadcrumbs from "../../../components/UI/Breadcrumbs/breadcrumbs";
 import AdminProducts from "./AdminProducts/AdminProducts";
 import WithHeight from "../../../HOC/WithHeight";
 import Dashboard from "../../../components/layout/Dashboard/Dashboard";
@@ -23,8 +18,6 @@ const styles = theme => ({
 });
 
 class AdminDashboard extends React.Component {
-
-
     render() {
         const {
             props: {

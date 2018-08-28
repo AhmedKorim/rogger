@@ -87,7 +87,7 @@ render()
                     scrollButtons="auto"
                     centered={false}>
                     >
-                    {tab.map(tab => <Tab label={tab.label} key={tab.key}/>)}
+                    {tab.map(tab => <Tab label={tab.label} key={tab.key ? tab.key : tab.label}/>)}
                 </Tabs>
             </Toolbar>
             <SwipeableViews
