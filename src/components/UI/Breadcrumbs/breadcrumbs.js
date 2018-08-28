@@ -20,11 +20,17 @@ class Breadcrumbs extends React.Component {
 
 
     handelRoute = route => {
-        const newPath = this.pathes.reduce((acc, item) => {
-            return acc.concat(item + '/')
+        if (route === 'home') {
+            this.props.history.push('/home');
+            return;
+        }
+        const routeIndex = this.pathes.indexOf(route);
+        console.log(routeIndex);
+        const newPath = this.pathes.reduce((acc, item, index) => {
+            return index <= routeIndex ? acc + item + '/' : acc;
         }, '')
-        console.log(route);
-        this.props.history.push('/' +route)
+        console.log(newPath);
+        this.props.history.push('/' + newPath)
 
     }
 
@@ -61,7 +67,6 @@ class Breadcrumbs extends React.Component {
                             <Button
                                 className="breadcrumbsButton"
                                 onClick={() => handelRoute(path)}
-
                                 disabled={index === pathes.length - 1}
                                 size="small">
                                 <Typography
