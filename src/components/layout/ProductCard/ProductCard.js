@@ -54,9 +54,9 @@ class ProductCard extends React.Component {
     }
 
     navigateToProductPage = (PId) => {
-        console.log(this.props);
+        if (!PId) return;
         this.props.history.push({
-            pathname: `/product/${PId}`,
+            pathname: `/products/${PId}`,
         })
     }
 
@@ -149,7 +149,7 @@ class ProductCard extends React.Component {
 const mapDispachToProps = dispatch => {
     return {
         openProductDetails: (activeCard) => dispatch({
-            type: PRODUCT_CARD_DETAILS, payload: {open: true, data: activeCard,component :'ProductDetails'}
+            type: PRODUCT_CARD_DETAILS, payload: {open: true, data: activeCard, component: 'ProductDetails'}
         })
     }
 }

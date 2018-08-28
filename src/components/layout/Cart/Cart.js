@@ -12,6 +12,8 @@ import Button from "@material-ui/core/Button/Button";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import {getStyle} from "../../../tools/tools";
 import {connect} from "react-redux";
+import {REMOVE_FROM_CART} from "../../../dux/actions/userActions";
+import {withRouter} from "react-router-dom";
 
 class ShoppingCart extends React.Component {
     state = {
@@ -27,13 +29,21 @@ class ShoppingCart extends React.Component {
         this.setState({listHeight: listHeight})
     }
 
+    navigateToProductPage = (PId) => {
+        if(!PId) return;
+        this.props.history.push({
+            pathname: `/products/${PId}`,
+        })
+    }
     render() {
         let {
             state: {listHeight},
             props: {
                 cart,
-                products
-            }
+                products,
+                deleteItem
+            },
+            navigateToProductPage
         } = this;
         console.log(products);
 
@@ -56,22 +66,22 @@ class ShoppingCart extends React.Component {
                                 <PerfectScrollbar>
                                     {cartProducts.map((CartItem, index, array) => <Tooltip key={CartItem.id} title="more to page details" placement="bottom-end">
                                             <Fragment>
-                                                <ListItem component="li" button className="cartListItem" onClick={() => console.log('list item clicked')}>
+                                                <ListItem component="li" button className="cartListItem" onClick={() => navigateToProductPage(CartItem.id) }>
                                                     <Grid alignItems="center" container className="cartItem" justify="center">
                                                         <Grid container item xs={10}>
                                                             <Grid container justify="center" alignItems="center">
                                                                 <Grid item xs={4}>
-                                                                    <img src="//via.placeholder.com/300" alt="productName"/>
+                                                                    <img src={CartItem.productImg} alt="productName"/>
                                                                 </Grid>
                                                                 <Grid item container alignItems="center" xs className="itemData">
                                                                     <Grid xs={12} item className="cartItemheader">
                                                                         <Typography variant="subheading" className="productTitle">
-                                                                            product name
+                                                                            {CartItem.productName}
                                                                         </Typography>
                                                                     </Grid>
                                                                     <Grid xs item className="cartItemPrice">
                                                                         <Typography variant="subheading" className="productPrice">
-                                                                            150$
+                                                                            {CartItem.productPrice}
                                                                         </Typography>
                                                                     </Grid>
                                                                 </Grid>
@@ -82,7 +92,7 @@ class ShoppingCart extends React.Component {
                                                                 <div className="buttonFlooter">
                                                                     <Tooltip title="remove item from the cart" placement="bottom-end">
                                                                         <IconButton className="cartItemButton"
-                                                                                    onClick={(event) => (event.stopPropagation(), console.log('clicked'))}>
+                                                                                    onClick={(event) => (event.stopPropagation(), deleteItem(CartItem.id))}>
                                                                             <Icon>delete</Icon>
                                                                         </IconButton>
                                                                     </Tooltip>
@@ -126,4 +136,9 @@ const mapStateToProps = state => {
         products: state.products.products
     }
 }
-export default connect(mapStateToProps)(ShoppingCart)
+const mapDispatchToProps = dispatch => {
+    return {
+        deleteItem: (id) => dispatch({type: REMOVE_FROM_CART, payload:{item: {id}}})
+    }
+}
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(ShoppingCart));

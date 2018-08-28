@@ -15,14 +15,11 @@ import {HEADER_DIM} from "../../../dux/actions/uiActions";
 import {getStyle} from "../../../tools/tools";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import Badge from "@material-ui/core/Badge/Badge";
-import Button from "@material-ui/core/Button/Button";
 import ShoppingCart from "../Cart/Cart";
 import Container from "../../../HOC/Container/Container";
-import UserWidget from "../UserWidget/UserWidget";
-
+import './Header.scss';
 const styles = theme => {
-    ;
+
     return ({
         mini: {
 
@@ -114,9 +111,9 @@ class Header extends React.Component {
             loadRichHeader
         } = this;
         return (
-            <AppBar position="fixed" className={[classes.shadow].join(' ')}>
+            <AppBar position="fixed" className={[classes.shadow,'mainHeader'].join(' ')}>
                 <div ref={(node) => this.headerRef = node}>
-                    <Toolbar variant="dense" className={classes.mini}>
+                    <Toolbar variant="dense" className={[classes.mini,'toolbar'].join(' ')}>
                         <Container>
                             <Grid container justify="center" alignItems="center" className="GridToolbar">
                                 <Grid className="leftGrid" item xs={12} sm container justify="flex-start" alignItems="center">

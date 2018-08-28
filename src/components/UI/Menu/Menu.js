@@ -8,9 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import {withStyles} from '@material-ui/core/styles';
 import Icon from "@material-ui/core/Icon/Icon";
-import Typography from "@material-ui/core/Typography/Typography";
 import './Menu.scss';
-import NotificationIndicator from "../NotificationIndicator/NotificationIndicator";
 import {withWidth} from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 import Badge from "@material-ui/core/Badge/Badge";
@@ -59,7 +57,7 @@ class AKmenu extends React.Component {
                 <div>
                     <Tooltip title={bLabel || tip} placement="bottom-end">
                         <Button
-                            className={["TWhite", classes.button].join(' ')}
+                            className={["TWhite" ,"badgeButton", classes.button].join(' ')}
                             size="small"
                             buttonRef={node => {
                                 this.anchorEl = node;
@@ -68,11 +66,11 @@ class AKmenu extends React.Component {
                             aria-haspopup="true"
                             onClick={this.handleToggle}
                         >
-                        { count > 0 ?   <Badge badgeContent={count} color="secondary">
+                        { count > 0 ?   <Badge badgeContent={count} color="secondary" className="badge">
                                 {width === 'xs' ? <Icon className={[classes.leftIcon, "TWhite", classes.iconSmall].join(" ")}>{icon}</Icon> :
                                     <span className="TWhite">{bLabel || null} <Icon
                                         className={[classes.leftIcon, "TWhite", classes.iconSmall].join(" ")}>{icon}</Icon></span>}
-                            </Badge>: <Icon className={[classes.leftIcon, "TWhite", classes.iconSmall].join(" ")}>{icon}</Icon>}
+                            </Badge>: <Icon className={[classes.leftIcon, "TWhite",'badge', classes.iconSmall].join(" ")}>{icon}</Icon>}
                         </Button>
                     </Tooltip>
                     <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
