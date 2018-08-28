@@ -37,9 +37,11 @@ class UserCart extends React.Component {
                 return {productName, count, productPrice: productPrice * count, saved: preDiscount ? (preDiscount - productPrice) * count : 0, id}
             }
         })
+        const itemCount = cart.reduce((acc, item) => acc + item.count, 0)
         console.log(dataTable);
         return (
             <div className="userCart">
+
                 <Grid container justify="center" alignItems="flex-start">
                     <Grid item container xs sm={10} justify="center" alignItems="center">
                         <Grid item xs={12}>
@@ -48,13 +50,13 @@ class UserCart extends React.Component {
                         <Grid item container xs={11} justify="center">
                             <Grid item xs={12}>
                                 <Typography variant="subheading" className="summery" component="p">
-                                    you have <span className="cartcount">5</span> items on your cart
+                                    you have <span className="cartcount">{itemCount}</span> items on your cart
                                     that casts <span className="priceToPay">150$</span> adn you have saved <span className="savedPrice">32$</span>
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>
                                 <div className="tableWrapper">
-                                    <AkTable data={dataTable} actionA={remvoeFromCart} actionB={showItemDetails} labels={['name', 'count', 'price', 'saved']}/>
+                                    <AkTable data={dataTable} actionA={remvoeFromCart} actionB={showItemDetails} actionAIcon="edit" actionBIcon='remove_red_eye'  labels={['name', 'count', 'price', 'saved']}/>
                                 </div>
                             </Grid>
                         </Grid>

@@ -6,7 +6,7 @@ import './ProductEditor.scss';
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
 import axiosOrders from "../../../../../axios/axios";
-import {ADD_ITEM, getData, UPDATE_ITEM} from "../../../../../dux/actions/productsActions";
+import {ADD_ITEM, UPDATE_ITEM} from "../../../../../dux/actions/productsActions";
 import {connect} from "react-redux";
 
 const inputSchema = [

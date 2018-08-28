@@ -41,7 +41,9 @@ class ShoppingCart extends React.Component {
             props: {
                 cart,
                 products,
-                deleteItem
+                deleteItem,
+                history:{push}
+
             },
             navigateToProductPage
         } = this;
@@ -112,7 +114,7 @@ class ShoppingCart extends React.Component {
                         <div className="cartItemsActions">
                             <Grid container justify="center" alignItems="center">
                                 <Grid xs={8} item className="CIGrid">
-                                    <Button variant="raised" size="small" color="primary" fullWidth>
+                                    <Button variant="raised" size="small" color="primary" fullWidth onClick={() => push('/my_dashboard/cart')}>
                                         <Typography className="actionText">
                                             checkout now
                                         </Typography>

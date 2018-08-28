@@ -17,7 +17,6 @@ const initalState = {
     orders: []
 }
 
-
 const addToCart = (action, state) => {
     const id = action.payload.item.id;
     const hasItem = state.cart.find(item => item.id === id);

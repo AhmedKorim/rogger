@@ -54,7 +54,8 @@ class AkTable extends React.Component {
                 data,
                 actionA,
                 actionB,
-                labels
+                labels,
+                actionBIcon,actionAIcon
             },
             state:{
                 rowsPerPage,
@@ -104,7 +105,7 @@ class AkTable extends React.Component {
                                                                     }}
                                                                     onClick={() => actionA(item.id)}
                                                                     className={classes.slightMargin} mini>
-                                                                <Icon>edit</Icon>
+                                                                <Icon>{actionAIcon}</Icon>
                                                             </Button>
 
                                                         </Tooltip>
@@ -112,7 +113,7 @@ class AkTable extends React.Component {
                                                             <Button variant="fab" color="primary" className={classes.slightMargin} mini
                                                                     onClick={() => actionB(item.id)}
                                                             >
-                                                                <Icon>remove_red_eye</Icon>
+                                                                <Icon>{actionBIcon}</Icon>
                                                             </Button>
                                                         </Tooltip>
                                                     </TableCell>

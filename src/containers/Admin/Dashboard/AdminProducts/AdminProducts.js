@@ -45,7 +45,7 @@ class AdminProducts extends React.Component {
 
             <Fragment>
                 <div>
-                    <AkTable data={tableData} actionA={editItem} actionB={showItemDetails} labels={["Name", "Price" , "discount" , "Category"]
+                    <AkTable data={tableData} actionA={editItem} actionB={showItemDetails} actionAIcon="edit" actionBIcon='remove_red_eye' labels={["Name", "Price" , "discount" , "Category"]
                     }/>
                 </div>
                 <div className="fabWrapper">
