@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import './ProuductPage.scss';
 import withPadding from "../../../../HOC/WithPadding/WithPadding";
 import Breadcrumbs from "../../../UI/Breadcrumbs/breadcrumbs";
@@ -10,6 +10,8 @@ import Card from "@material-ui/core/Card/Card";
 import Panner from "../../Panner/Panner";
 import AkTabs from "../../../UI/Taps/Taps";
 import ProductDetails from "../ProductDetails";
+import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
 
 
 const styles = theme => ({
@@ -31,51 +33,62 @@ class ProductPage extends React.Component {
         const {
             props: {
                 width,
-                classes
+                classes,
+                products,
+                match
             },
         } = this;
+        console.log(products, match.params);
+        const product = products.find(product => product.id === match.params.productId);
         return (
             <div className="productPage">
-                <Breadcrumbs/>
-                <Container>
-                    <Grid container alignItems="flex-start">
-                        <Grid item container xs lg={10}>
-                            <ProductDetails/>
-                            <Grid container>
-                                <Grid xs>
-                                    <Card className={classes.root}>
-                                        <AkTabs
-                                            value={0}
-                                            tab={[
-                                                {label: 'about'},
-                                                {label: 'reviews'},
-                                                {label: 'FQA'}
-                                            ]}
-                                        >
-                                            <div>
-                                                <Typography variant="subheading">About</Typography>
-                                            </div>
-                                            <div>
-                                                <Typography variant="subheading">reviews</Typography>
-                                            </div>
-                                            <div>
-                                                <Typography variant="subheading">FQA</Typography>
-                                            </div>
-                                        </AkTabs>
-                                    </Card>
+                {product && <Fragment>
+                    <Breadcrumbs/>
+                    <Container>
+                        <Grid container alignItems="flex-start">
+                            <Grid item container xs lg={10}>
+                                <ProductDetails product={product}/>
+                                <Grid container>
+                                    <Grid xs>
+                                        <Card className={classes.root}>
+                                            <AkTabs
+                                                value={0}
+                                                tab={[
+                                                    {label: 'about'},
+                                                    {label: 'reviews'},
+                                                    {label: 'FQA'}
+                                                ]}
+                                            >
+                                                <div>
+                                                    <Typography variant="subheading">About</Typography>
+                                                </div>
+                                                <div>
+                                                    <Typography variant="subheading">reviews</Typography>
+                                                </div>
+                                                <div>
+                                                    <Typography variant="subheading">FQA</Typography>
+                                                </div>
+                                            </AkTabs>
+                                        </Card>
+                                    </Grid>
                                 </Grid>
                             </Grid>
+                            {(width === 'lg' || width === 'xl') ? (
+                                <Grid item lg className={classes.pannerCont}>
+                                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => <div key={i * index + Math.random().toFixed(2)}><Panner/></div>)}
+                                </Grid>
+                            ) : null}
                         </Grid>
-                        {(width === 'lg' || width === 'xl') ? (
-                            <Grid item lg className={classes.pannerCont}>
-                                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => <div key={i * index + Math.random().toFixed(2)}><Panner/></div>)}
-                            </Grid>
-                        ) : null}
-                    </Grid>
-                </Container>
+                    </Container>
+                </Fragment>}
             </div>
         )
     }
 }
 
-export default withStyles(styles)(withWidth()(withPadding(ProductPage)));
+const mapStateToProps = state => {
+    return {
+        products: state.products.products
+    }
+}
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(withWidth()(withPadding(ProductPage)))));

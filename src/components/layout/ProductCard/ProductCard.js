@@ -56,7 +56,7 @@ class ProductCard extends React.Component {
     navigateToProductPage = (PId) => {
         console.log(this.props);
         this.props.history.push({
-            pathname: '/product/page',
+            pathname: `/product/${PId}`,
         })
     }
 
@@ -79,6 +79,7 @@ class ProductCard extends React.Component {
 
         } = this;
         const priceRatio = preDiscount ? (100 - ((productPrice / preDiscount) * 100)).toFixed(2) : 0;
+
         return (
             <div className="productCardWrapper">
                 <div className="productCard">
@@ -105,7 +106,7 @@ class ProductCard extends React.Component {
                             action={
                                 <div className="viewDetailsB">
                                     <Tooltip title="quick view item denials" placement="bottom-start">
-                                        <IconButton aria-label="quick view item denials" size="small" onClick={() => navigateToProductPage()}>
+                                        <IconButton aria-label="quick view item denials" size="small" onClick={() => navigateToProductPage(id)}>
                                             <i className="material-icons">
                                                 remove_red_eye
                                             </i>

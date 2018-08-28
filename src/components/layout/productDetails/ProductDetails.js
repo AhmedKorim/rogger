@@ -57,7 +57,7 @@ const ProductDetails = props => {
                                     priceRatio={priceRatio}
                                 /></Grid>
                                 <Grid item xs>
-                                    <CartActions/>
+                                    <CartActions id={product.id}/>
                                 </Grid>
                             </Grid>
                         </div>

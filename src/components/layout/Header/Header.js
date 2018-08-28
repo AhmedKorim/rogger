@@ -83,6 +83,7 @@ class Header extends React.Component {
     }
 
     calcHeight = () => {
+        if (!this.headerRef) return;
         this.props.setHeight(getStyle(this.headerRef, "height"))
         console.log(getStyle(this.headerRef, "height"));
 

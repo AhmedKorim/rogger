@@ -28,13 +28,14 @@ class ShoppingCart extends React.Component {
     }
 
     render() {
-        const {
+        let {
             state: {listHeight},
             props: {
                 cart,
                 products
             }
         } = this;
+        console.log(products);
 
         const cartProducts = [...products].filter(product => {
             return cart.find(cartItem => {
@@ -46,49 +47,52 @@ class ShoppingCart extends React.Component {
             newProduct.count = cartItem.count;
             return product
         })
+        console.log(cartProducts);
         return (
             <div className="shoppingCart">
                 {cartProducts.length > 0 ? <Fragment>
                         <div className="cartItemsWrapper" ref={(node) => this.wrapper = node}>
                             <List component="ul" className="cartItemsList" style={{height: listHeight}}>
                                 <PerfectScrollbar>
-                                    {cartProducts.map((CartItem, index) => <Tooltip key={CartItem.id} title="more to page details" placement="bottom-end">
-                                            <ListItem component="li" button className="cartListItem" onClick={() => console.log('list item clicked')}>
-                                                <Grid alignItems="center" container className="cartItem" justify="center">
-                                                    <Grid container item xs={10}>
-                                                        <Grid container justify="center" alignItems="center">
-                                                            <Grid item xs={4}>
-                                                                <img src="//via.placeholder.com/300" alt="productName"/>
-                                                            </Grid>
-                                                            <Grid item container alignItems="center" xs className="itemData">
-                                                                <Grid xs={12} item className="cartItemheader">
-                                                                    <Typography variant="subheading" className="productTitle">
-                                                                        product name
-                                                                    </Typography>
+                                    {cartProducts.map((CartItem, index, array) => <Tooltip key={CartItem.id} title="more to page details" placement="bottom-end">
+                                            <Fragment>
+                                                <ListItem component="li" button className="cartListItem" onClick={() => console.log('list item clicked')}>
+                                                    <Grid alignItems="center" container className="cartItem" justify="center">
+                                                        <Grid container item xs={10}>
+                                                            <Grid container justify="center" alignItems="center">
+                                                                <Grid item xs={4}>
+                                                                    <img src="//via.placeholder.com/300" alt="productName"/>
                                                                 </Grid>
-                                                                <Grid xs item className="cartItemPrice">
-                                                                    <Typography variant="subheading" className="productPrice">
-                                                                        150$
-                                                                    </Typography>
+                                                                <Grid item container alignItems="center" xs className="itemData">
+                                                                    <Grid xs={12} item className="cartItemheader">
+                                                                        <Typography variant="subheading" className="productTitle">
+                                                                            product name
+                                                                        </Typography>
+                                                                    </Grid>
+                                                                    <Grid xs item className="cartItemPrice">
+                                                                        <Typography variant="subheading" className="productPrice">
+                                                                            150$
+                                                                        </Typography>
+                                                                    </Grid>
                                                                 </Grid>
                                                             </Grid>
                                                         </Grid>
-                                                    </Grid>
-                                                    <Grid xs={2} item container alignItems="center" justify="center">
-                                                        <div className="actionWrapper">
-                                                            <div className="buttonFlooter">
-                                                                <Tooltip title="remove item from the cart" placement="bottom-end">
-                                                                    <IconButton className="cartItemButton"
-                                                                                onClick={(event) => (event.stopPropagation(), console.log('clicked'))}>
-                                                                        <Icon>delete</Icon>
-                                                                    </IconButton>
-                                                                </Tooltip>
+                                                        <Grid xs={2} item container alignItems="center" justify="center">
+                                                            <div className="actionWrapper">
+                                                                <div className="buttonFlooter">
+                                                                    <Tooltip title="remove item from the cart" placement="bottom-end">
+                                                                        <IconButton className="cartItemButton"
+                                                                                    onClick={(event) => (event.stopPropagation(), console.log('clicked'))}>
+                                                                            <Icon>delete</Icon>
+                                                                        </IconButton>
+                                                                    </Tooltip>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        </Grid>
                                                     </Grid>
-                                                </Grid>
-                                            </ListItem>
-                                            {index > 1 && <Divider className="divider"/>}
+                                                </ListItem>
+                                                {array.length > 1 && <Divider className="divider"/>}
+                                            </Fragment>
                                         </Tooltip>
                                     )}
                                 </PerfectScrollbar>

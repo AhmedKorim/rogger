@@ -5,7 +5,7 @@ const initalState = {
         admin: false,
         anonymous: true,
         name: 'anonymous',
-        email:'anonymous@rogger.com',
+        email: 'anonymous@rogger.com',
         avatar: 'A',
         balance: '0',
         paymentVerified: false,
@@ -21,11 +21,16 @@ const initalState = {
 const addToCart = (action, state) => {
     const id = action.payload.item.id;
     const hasItem = state.cart.find(item => item.id === id);
-    if (hasItem) return [...state.cart].map(item => {
-        const newItem = item.id === id ? (item.count = item.count + 1 , item) : item;
-        return newItem;
-    });
-    return [...state.cart, action.payload.item]
+    const cart = [...state.cart];
+    // TODO : outsourse to thnk remove item from cart if it's coutn is ===0;
+    if (action.action !=='add') {
+        const inc = action.action === 'addOne' ? 1 : -1;
+        if (hasItem) return cart.map(item => {
+                const newItem = item.id === id ? (item.count = item.count + inc , item) : item;
+                return newItem;
+            });
+    }
+    return [...cart, {...action.payload.item, count: 1}]
 }
 
 const filterCart = (action, state) => {

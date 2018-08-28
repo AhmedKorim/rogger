@@ -17,8 +17,6 @@ class App extends Component {
 
     componentDidMount() {
         this.props.getData()
-        console.log(this.props.location.pathname);
-
     }
 
 
@@ -31,7 +29,7 @@ class App extends Component {
                     <Route path={this.props.location.pathname.substring(0, this.props.location.pathname.length - 4) + 'auth'} component={AuthDialogOpener}/>
                     <main style={{height: '100vh'}}>
                         <Switch>
-                            <Route path="/product/:productId" component={ProductPage}/>
+                            <Route path="/products/:productId" component={ProductPage}/>
                             <Route path="/products" component={Products}/>
                             <Redirect from="/" to="/home" exact/>
                             <Route path="/home" component={Home}/>
