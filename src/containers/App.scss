@@ -1,4 +1,14 @@
 main {
   box-sizing: border-box;
   overflow: hidden;
+  .scrollingButton {
+    padding: 0;
+    min-height: unset;
+    .MuiTouchRipple-root-216 {
+      .span[class^="MuiTouchRipple"] {
+        background-color: transparentize(green, .5) !important;
+      }
+    }
+
+  }
 }

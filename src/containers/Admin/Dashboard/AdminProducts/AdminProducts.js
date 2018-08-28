@@ -47,7 +47,7 @@ class AdminProducts extends React.Component {
                 <div>
                     <AkTable data={tableData} actionA={editItem} actionB={showItemDetails}/>
                 </div>
-                <div>
+                <div className="fabWrapper">
                     <Button variant="fab" color="primary" className="fabButton" onClick={addItem}>
                         <Icon>add</Icon>
                     </Button>

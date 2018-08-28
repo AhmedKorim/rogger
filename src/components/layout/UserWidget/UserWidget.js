@@ -47,7 +47,7 @@ const UserWidget = props => {
             <dig>
 
                 <List component="ul" className="userListItem">
-                    <ListItem component="li" button className="userListItem">
+                    <ListItem component="li" button className="userListItem" onClick={() => push('/my_dashboard')}>
                         <Grid container justify="center" alignItems="center">
                             <Grid item xs={4}>
                                 <div><Icon className="iconCol">dashboard</Icon></div>

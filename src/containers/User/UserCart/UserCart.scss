@@ -1,0 +1,24 @@
+.userCart{
+  padding-top: 1rem;
+  .header{
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size:1.5rem;
+  }
+  .summery{
+    font-size:1rem;
+    line-height: 36px;
+    text-indent: 1rem;
+
+    .priceToPay{
+      font-weight: bold;
+      text-transform: uppercase;
+      
+    }
+    .savedPrice{
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #43A047;
+    }
+  }
+}

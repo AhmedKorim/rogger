@@ -36,10 +36,10 @@ class AdminDashboard extends React.Component {
                         {label: 'Statics'},
                     ]}
                 >
-                    <WithHeight maxHeight={headerHeight + 90}>
+                    <WithHeight maxHeight={headerHeight + 100}>
                         <div>Orders</div>
                     </WithHeight>
-                    <WithHeight maxHeight={headerHeight + 90}>
+                    <WithHeight maxHeight={headerHeight + 100}>
                         <AdminProducts/>
                     </WithHeight>
                     <div>Clients</div>

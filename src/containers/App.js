@@ -11,6 +11,7 @@ import ProductPage from "../components/layout/productDetails/ProductPage/Product
 import {getData} from "../dux/actions/productsActions";
 import AuthDialogOpener from "./Auth/AuthDialogOpener";
 import AdminDashboard from "./Admin/Dashboard/AdminDashboard";
+import UserDashboard from "./User/Dashboard/UserDashboard";
 
 
 class App extends Component {
@@ -34,6 +35,7 @@ class App extends Component {
                             <Redirect from="/" to="/home" exact/>
                             <Route path="/home" component={Home}/>
                             <Route path="/dashboard" component={AdminDashboard}/>
+                            <Route path="/my_dashboard" component={UserDashboard}/>
                         </Switch>
                     </main>
                 </PerfectScrollbar>

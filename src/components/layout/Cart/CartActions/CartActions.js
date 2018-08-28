@@ -48,7 +48,14 @@ const CartActions = props => {
                         </div>
                     </Fragment> :
                     <Tooltip title="add to cart">
-                        <Button variant="raised" size="smal" color="primary" className="addToCart" fullWidth onClick={() => addToCart(id, 'add')}>
+                        <Button variant="raised" classes={{
+                            TouchRipple:{
+                                classes:{
+                                    root:"ahmedRipple"
+                                }
+                            }
+                        }
+                        } size="smal" color="primary" className="addToCart" fullWidth onClick={() => addToCart(id, 'add')}>
                             <Icon>add_shopping_cart</Icon>
                         </Button>
                     </Tooltip>

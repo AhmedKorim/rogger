@@ -1,8 +1,19 @@
 .dashboard{
+.fabWrapper{
+  position: relative;
+  @media(min-width: 600px){
+    bottom: 3rem;
+    position: fixed;
+  }
+
+  height: 3rem;
+  width: 100%;
+}
 
   .fabButton{
     position: absolute;
-    bottom: 2rem;
-    right: 2rem;
+    top: 0;
+    right: 3rem;
+    z-index: 5555;
   }
 }
