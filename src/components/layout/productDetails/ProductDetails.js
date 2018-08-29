@@ -63,7 +63,7 @@ const ProductDetails = props => {
                         </div>
                         <Divider className="proDivider"/>
                     </div>
-                    <ProductActions/>
+                    <ProductActions id={product.id}/>
                 </Grid>
             </Grid>
         </div>

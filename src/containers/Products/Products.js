@@ -12,12 +12,11 @@ import Typography from "@material-ui/core/Typography/Typography";
 import {withStyles} from "@material-ui/core";
 import './Products.scss';
 import WithHeight from "../../HOC/WithHeight";
-import FormController from "../../components/UI/FormControles/FormControle";
 
 const styles = theme => ({
     header: {
         boxShadow: theme.shadows[2],
-        margin: "1rem 0 .2rem    "
+        margin: ".6rem 0"
     },
 })
 

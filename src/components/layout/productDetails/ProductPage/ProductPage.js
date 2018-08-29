@@ -22,7 +22,7 @@ const styles = theme => ({
         boxShadow: theme.shadows[3]
     },
     pannerCont: {
-        marginTop: '1rem'
+        marginTop: '0 0 .6rem 0'
     }
 })
 

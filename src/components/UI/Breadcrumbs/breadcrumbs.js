@@ -48,7 +48,7 @@ class Breadcrumbs extends React.Component {
 
         return (
             <Container>
-                <Paper className={[classes.paper, 'breadcrumbs'].join(' ')}>
+                <Paper className={[classes.paper, 'breadcrumbs'].join(' ')} elevation={0}>
                     <div>
                         <Button
                             className="breadcrumbsButton"

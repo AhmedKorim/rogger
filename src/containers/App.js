@@ -56,3 +56,27 @@ const mapDispatchToProps = dispatch => {
     }
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+
+
+/*
+*
+*
+*
+* todo: like algorithem
+* todo:compared items
+* todo:table storing algorthem
+* todo:product page breadcuumbs
+* todo:auth
+* todo:reviews
+* todo:add more than one imge to product
+* todo:upload images
+* todo:filter by category
+* refactor radux
+* ----
+* todo reponsivness
+* * todo: reformat the header
+
+*
+*
+*
+* */
