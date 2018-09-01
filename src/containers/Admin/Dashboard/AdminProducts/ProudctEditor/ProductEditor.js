@@ -124,7 +124,7 @@ class ProductEditor extends React.Component {
                             </div>
                         </form>
                     </Grid>
-                    <Grid className="Gpadding" item md lg>
+                    <Grid className="Gpadding" item container justify="center" alignItems="center" md lg>
                         <ProductCard
                             productName={productName}
                             productImg={productImg}
