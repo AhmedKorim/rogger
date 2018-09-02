@@ -26,7 +26,7 @@ const addToCart = (action, state) => {
     if (action.action !== 'add') {
         const inc = action.action === 'addOne' ? 1 : -1;
         if (hasItem) return cart.map(item => {
-            const newItem = item.id === id ? (item.count = item.count + inc , item) : item;
+            const newItem = item.id === id ? (item.count = item.count + inc >= 0 ? item.count + inc : 0  , item) : item;
             return newItem;
         });
     }

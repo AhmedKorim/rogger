@@ -4,17 +4,18 @@ import Typography from "@material-ui/core/Typography/Typography";
 
 import './UserCart.scss'
 import AkTable from "../../../components/UI/Table/Table";
-import {REMOVE_FROM_CART} from "../../../dux/actions/userActions";
+import {ADD_TO_CART, REMOVE_FROM_CART} from "../../../dux/actions/userActions";
 import {connect} from "react-redux";
 
 class UserCart extends React.Component {
 
-    showItemDetails = (id) => {
-
+    addOne = (id) => {
+        this.props.addToCart(id, 'addOne')
     }
 
-    remvoeFromCart = () => {
-        this.props.editItem({})
+    removeOne = (id) => {
+        this.props.addToCart(id, 'removeOne')
+
     }
 
     render() {
@@ -24,8 +25,8 @@ class UserCart extends React.Component {
                 cart,
                 products
             },
-            showItemDetails,
-            remvoeFromCart
+            addOne,
+            removeOne
         } = this;
 
         const productsOnCart = cart.map(item => products.find(product => product.id === item.id));
@@ -41,7 +42,6 @@ class UserCart extends React.Component {
         console.log(dataTable);
         return (
             <div className="userCart">
-
                 <Grid container justify="center" alignItems="flex-start">
                     <Grid item container xs sm={10} justify="center" alignItems="center">
                         <Grid item xs={12}>
@@ -56,7 +56,8 @@ class UserCart extends React.Component {
                             </Grid>
                             <Grid item xs={12}>
                                 <div className="tableWrapper">
-                                    <AkTable data={dataTable} actionA={remvoeFromCart} actionB={showItemDetails} actionAIcon="edit" actionBIcon='remove_red_eye'  labels={['name', 'count', 'price', 'saved']}/>
+                                    <AkTable data={dataTable} actionA={addOne} actionB={removeOne} actionAIcon="add" actionBIcon='remove'
+                                             labels={['name', 'count', 'price', 'saved']}/>
                                 </div>
                             </Grid>
                         </Grid>
@@ -76,7 +77,8 @@ const mapstateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        removeFromCart: (id) => dispatch({type: REMOVE_FROM_CART, payload: {item: {id}}})
+        removeFromCart: (id) => dispatch({type: REMOVE_FROM_CART, payload: {item: {id}}}),
+        addToCart: (id, action) => dispatch({type: ADD_TO_CART, payload: {item: {id}}, action: action}),
     }
 }
 

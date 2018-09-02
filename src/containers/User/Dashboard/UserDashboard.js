@@ -21,7 +21,6 @@ class UserDashboard extends React.Component {
                         {label: 'Profile'},
                         {label: 'cart'},
                         {label: 'Orders'},
-                        {label: 'favourite'},
                         {label: 'wish list'},
                         {label: 'compared'},
 
@@ -37,7 +36,7 @@ class UserDashboard extends React.Component {
                         <div>Orders</div>
                     </WithHeight>
                     <WithHeight maxHeight={headerHeight + 120}>
-                        <div>favourite</div>
+                        <div>wish list</div>
                     </WithHeight>
                     <WithHeight maxHeight={headerHeight + 120}>
                         <div>compared</div>
