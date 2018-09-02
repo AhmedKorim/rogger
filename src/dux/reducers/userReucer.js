@@ -1,4 +1,4 @@
-import {ADD_TO_CART, LIKE, LOGIN, LOGOUT, REMOVE_FROM_CART} from "../actions/userActions";
+import {ADD_TO_CART, LIKE, LOGIN, LOGOUT, MANAGE_COMPARED, REMOVE_FROM_CART} from "../actions/userActions";
 
 const initalState = {
     info: {
@@ -40,13 +40,22 @@ const filterCart = (action, state) => {
 
 const liked = (action, state) => {
     const id = action.payload.item.id;
-    
-   const item = state.liked.find(item => item.id === id);
 
-   if(!item) return [...state.liked,{id:id}];
+    const item = state.liked.find(item => item.id === id);
+
+    if (!item) return [...state.liked, {id: id}];
 
     return state.liked.filter(item => item.id !== id);
 }
+
+const manageCompared = (action, state) => {
+    const id = action.payload.item.id;
+    // item on compared
+    const item = state.compared.find(item => item.id === id);
+    if (!item) return [...state.compared, {id: id}];
+    return state.liked.compared(item => item.id !== id);
+}
+
 
 const userReducer = (state = initalState, action) => {
     switch (action.type) {
@@ -92,7 +101,7 @@ const userReducer = (state = initalState, action) => {
             // {id,}
 
             return {
-                ...initalState,
+                ...state,
                 cart: addToCart(action, state)
             }
 
@@ -106,6 +115,11 @@ const userReducer = (state = initalState, action) => {
             return {
                 ...state,
                 liked: liked(action, state)
+            }
+        case MANAGE_COMPARED:
+            return {
+                ...state,
+                compared: manageCompared(action, state)
             }
         default:
             return state;
