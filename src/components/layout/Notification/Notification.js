@@ -11,7 +11,7 @@ const Notification = props => {
                 rootClass='notificationRoot'
                 tabRootClass='notificaitonTabRoot'
                 indercatorClass='notificationTabIndector'
-                tab={[{label: 'compared'}, {label: 'wish list'}, {label: 'orders'}]}
+                paddges={[{label: 'compared',count:0,icon:'compared'}, {label: 'wish list', count:5, icon:'favourite'}, {label: 'orders',count:5,icon:'list'}]}
             >
                 <div>compared</div>
                 <div>wish list</div>

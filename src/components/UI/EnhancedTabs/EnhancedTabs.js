@@ -5,6 +5,7 @@ import Tab from "@material-ui/core/Tab/Tab";
 import SwipeableViews from "react-swipeable-views";
 import {withRouter} from 'react-router-dom';
 import {withStyles, withWidth} from "@material-ui/core";
+import Badge from "@material-ui/core/Badge/Badge";
 
 const styles = theme => ({
     shadow: {
@@ -13,6 +14,12 @@ const styles = theme => ({
         minHeight: 'unset',
         display: 'flex',
         justifyContent: 'center'
+    },
+    margin: {
+        margin: theme.spacing.unit * 2,
+    },
+    padding: {
+        padding: `0 ${theme.spacing.unit * 2}px`,
     },
 })
 
@@ -71,13 +78,21 @@ class EnhancedTabs extends React.Component {
                 indercatorClass,
                 rootClass,
                 tabRootClass,
-                selectClass
+                selectClass,
+                paddges
             },
             handleChange,
             handleChangeIndex
 
         } = this;
         toolbarClasses = toolbarClasses || [classes.shadow, "toolBar"];
+        paddges = paddges || [];
+
+        /*
+        *
+        * [{label:string,countNumber,icon:icon,color:string}]
+        *
+        * */
         return (
             <Fragment>
                 <Toolbar className={toolbarClasses.concat(classes.shadow).join(' ')}>
@@ -94,12 +109,25 @@ class EnhancedTabs extends React.Component {
                             indicator: indercatorClass
                         }}
                     >
-                        {tab.map(tab => <Tab label={tab.label} key={tab.key ? tab.key : tab.label}
-                                             classes={{
-                                                 root: tabRootClass,
-                                                 selected: selectClass
-                                             }}
-                        />)}
+                        {
+
+                            paddges.length > 0 ? paddges.map(tab => <Tab label={
+                                    tab.count > 0 ? <Badge className={classes.padding} color={tab.color ? tab.color : "primary"} badgeContent={tab.count}>
+                                        {tab.label}
+                                    </Badge> : <span className={classes.padding} > {tab.label}</span>
+                                } key={tab.key ? tab.key : tab.label}
+                                                                         classes={{
+                                                                             root: tabRootClass,
+                                                                             selected: selectClass
+                                                                         }}
+                                />)
+                                :
+                                tab.map(tab => <Tab label={tab.label} key={tab.key ? tab.key : tab.label}
+                                                    classes={{
+                                                        root: tabRootClass,
+                                                        selected: selectClass
+                                                    }}
+                                />)}
                     </Tabs>
                 </Toolbar>
                 <SwipeableViews
