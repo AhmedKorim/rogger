@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {withStyles} from "@material-ui/core";
 import TableHead from "@material-ui/core/TableHead/TableHead";
 import TableCell from "@material-ui/core/TableCell/TableCell";
@@ -9,8 +9,6 @@ import Table from "@material-ui/core/Table/Table";
 import Grid from "@material-ui/core/Grid/Grid";
 import TableSortLabel from "@material-ui/core/es/TableSortLabel/TableSortLabel";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
-import Button from "@material-ui/core/Button/Button";
-import Icon from "@material-ui/core/Icon/Icon";
 import './Table.scss'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import TablePagination from "@material-ui/core/TablePagination/TablePagination";
@@ -28,9 +26,7 @@ const styles = theme => ({
     GridPadding: {
         padding: '1rem .5rem'
     },
-    slightMargin: {
-        margin: " 0 .2rem"
-    }, actions: {
+    actions: {
         padding: 0
     }
 
@@ -42,22 +38,21 @@ class AkTable extends React.Component {
         rowsPerPage: 5,
     }
     handleChangePage = (event, page) => {
-        this.setState({ page });
+        this.setState({page});
     };
     handleChangeRowsPerPage = event => {
-        this.setState({ rowsPerPage: event.target.value });
+        this.setState({rowsPerPage: event.target.value});
     };
+
     render() {
         const {
             props: {
                 classes,
                 data,
-                actionA,
-                actionB,
                 labels,
-                actionBIcon,actionAIcon
+                action
             },
-            state:{
+            state: {
                 rowsPerPage,
                 page
             },
@@ -75,13 +70,13 @@ class AkTable extends React.Component {
                                 <Table className="table" aria-label="label">
                                     <TableHead>
                                         <TableRow className="tableRow">
-                                            {labels.map(label =><TableCell key={label}>
+                                            {labels.map(label => <TableCell key={label}>
                                                 <Tooltip
-                                                title="Sort"
-                                                enterDelay={300}>
-                                                <TableSortLabel active>{label}</TableSortLabel>
+                                                    title="Sort"
+                                                    enterDelay={300}>
+                                                    <TableSortLabel active>{label}</TableSortLabel>
                                                 </Tooltip>
-                                                </TableCell>)}
+                                            </TableCell>)}
                                             <TableCell>
                                                 Actions
                                             </TableCell>
@@ -89,7 +84,7 @@ class AkTable extends React.Component {
                                     </TableHead>
                                     <TableBody>
                                         {
-                                            data.slice((page*rowsPerPage), ((page*rowsPerPage)+rowsPerPage)).map(item => {
+                                            data.slice((page * rowsPerPage), ((page * rowsPerPage) + rowsPerPage)).map(item => {
                                                 let cells = Object.values(item);
                                                 cells = cells.slice(0, cells.length - 1);
                                                 console.log(cells);
@@ -98,24 +93,7 @@ class AkTable extends React.Component {
                                                         {cell}
                                                     </TableCell>)}
                                                     <TableCell className={classes.actions}>
-                                                        <Tooltip title={"edit"}>
-                                                            <Button variant="fab"
-                                                                    classes={{
-                                                                        root: 'waining'
-                                                                    }}
-                                                                    onClick={() => actionA(item.id)}
-                                                                    className={classes.slightMargin} mini>
-                                                                <Icon>{actionAIcon}</Icon>
-                                                            </Button>
-
-                                                        </Tooltip>
-                                                        <Tooltip title={"move to item page"}>
-                                                            <Button variant="fab" color="primary" className={classes.slightMargin} mini
-                                                                    onClick={() => actionB(item.id)}
-                                                            >
-                                                                <Icon>{actionBIcon}</Icon>
-                                                            </Button>
-                                                        </Tooltip>
+                                                        {action(item.id)}
                                                     </TableCell>
                                                 </TableRow>
                                             })
@@ -123,11 +101,10 @@ class AkTable extends React.Component {
                                     </TableBody>
                                 </Table>
                             </PerfectScrollbar>
-
                             <TablePagination
                                 component="div"
                                 count={data.length}
-                                 rowsPerPage={rowsPerPage}
+                                rowsPerPage={rowsPerPage}
                                 page={page}
                                 backIconButtonProps={{
                                     'aria-label': 'Previous Page',

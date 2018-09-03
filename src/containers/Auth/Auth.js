@@ -22,5 +22,9 @@ class Auth extends React.Component {
         )
     }
 }
-
+const mapDispatchToProps = dispatch => {
+    return {
+        login: () => dispatch()
+    }
+}
 export default Auth;

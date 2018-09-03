@@ -161,14 +161,14 @@ class Header extends React.Component {
                                 <Grid className="rightGrid" item xs container justify="flex-start" alignItems="center">
                                     <StoreSetting/>
                                 </Grid>
-                                {marge && <Grid item xs className="list-grid">
+                                {marge ? <Grid item xs className="list-grid">
                                     <Navigation
                                         selected='selectedNav'
                                         indercatorClass='indercatorClass'
                                         rootClass='rootClass'
                                         tabRootClass='tabRootClass'
                                     />
-                                </Grid>}
+                                </Grid> : <Typography variant="subheading"className="welcomeMessage"  component="p"> Welcome To Rogger store</Typography>}
                                 <Grid className="leftGrid" item xs container justify="flex-end" alignItems="center">
                                     <Grid item>
                                         <AKmenu

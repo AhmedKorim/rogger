@@ -5,7 +5,7 @@ import ProductCard from "../../../../../components/layout/ProductCard/ProductCar
 import './ProductEditor.scss';
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
-import axiosOrders from "../../../../../axios/axios";
+import axios from "../../../../../axios/axios";
 import {ADD_ITEM, UPDATE_ITEM} from "../../../../../dux/actions/productsActions";
 import {connect} from "react-redux";
 
@@ -70,7 +70,7 @@ class ProductEditor extends React.Component {
         const dataToSend = {...this.productData};
         if (!this.state.editmood) {
             dataToSend.liked = false;
-            axiosOrders.post('/products.json', dataToSend).then(resp => {
+            axios.post('/products.json', dataToSend).then(resp => {
                     this.props.addItem({id: resp.data.name, ...dataToSend})
                 }
             )
@@ -80,7 +80,7 @@ class ProductEditor extends React.Component {
         const data = {...this.props.data};
         delete  data.id;
         const mergedData = {...data, ...dataToSend}
-        axiosOrders.put(`/products/${id}.json`, mergedData).then(resp => {
+        axios.put(`/products/${id}.json`, mergedData).then(resp => {
             this.props.updateIem(id, {...mergedData, id: id})
         })
     }

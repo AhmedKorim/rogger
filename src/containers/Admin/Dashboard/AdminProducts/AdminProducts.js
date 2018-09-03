@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import Button from "@material-ui/core/Button/Button";
 import Icon from "@material-ui/core/Icon/Icon";
 import {PRODUCT_CARD_DETAILS} from "../../../../dux/actions/uiActions";
+import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 
 class AdminProducts extends React.Component {
 
@@ -27,7 +28,7 @@ class AdminProducts extends React.Component {
                 products,
                 maxHeight
             },
-            productCategory, showItemDetails, editItem,addItem
+            productCategory, showItemDetails, editItem, addItem
         } = this;
 
 
@@ -45,8 +46,31 @@ class AdminProducts extends React.Component {
 
             <Fragment>
                 <div>
-                    <AkTable data={tableData} actionA={editItem} actionB={showItemDetails} actionAIcon="edit" actionBIcon='remove_red_eye' labels={["Name", "Price" , "discount" , "Category"]
-                    }/>
+                    <AkTable
+                        data={tableData} action={(id) => <Fragment>
+                        <Tooltip title={"edit"}>
+                            <Button variant="fab"
+                                    className='actionAP'
+                                    classes={{
+                                        root: 'waining'
+                                    }}
+                                    onClick={() => editItem(id)}
+                                    mini>
+                                <Icon>edit</Icon>
+                            </Button>
+                        </Tooltip>
+                        <Tooltip title={"move to item page"}>
+                            <Button variant="fab" color="primary" mini
+                                    className='actionAP'
+                                    onClick={() => showItemDetails(id)}
+                            >
+                                <Icon>remove_red_eye</Icon>
+                            </Button>
+                        </Tooltip>
+                    </Fragment>
+                    }
+                        labels={["Name", "Price", "discount", "Category"]
+                        }/>
                 </div>
                 <div className="fabWrapper">
                     <Button variant="fab" color="primary" className="fabButton" onClick={addItem}>

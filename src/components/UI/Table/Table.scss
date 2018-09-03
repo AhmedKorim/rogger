@@ -1,20 +1,23 @@
 .Table {
-  .tableRow{
-    td,th{
-      padding: .5rem .5rem ;
-      @media(max-width:400px){
-        padding: .1rem .1rem ;
-        
-
+  .tableRow {
+    td, th {
+      padding: .5rem .5rem;
+      @media(max-width: 400px) {
+        padding: .1rem .1rem;
       }
+
       text-align: center;
 
+    }
+    td:last-of-type {
+      display: flex;
+      justify-content: center;
     }
   }
   .waining {
     background-color: #FBC02D;
     color: #fff;
-    &:hover{
+    &:hover {
       background-color: #FBC02D;
 
     }

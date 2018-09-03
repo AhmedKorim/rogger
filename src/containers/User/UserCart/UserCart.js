@@ -6,6 +6,7 @@ import './UserCart.scss'
 import AkTable from "../../../components/UI/Table/Table";
 import {ADD_TO_CART, REMOVE_FROM_CART} from "../../../dux/actions/userActions";
 import {connect} from "react-redux";
+import CartActions from "../../../components/layout/Cart/CartActions/CartActions";
 
 class UserCart extends React.Component {
 
@@ -56,7 +57,7 @@ class UserCart extends React.Component {
                             </Grid>
                             <Grid item xs={12}>
                                 <div className="tableWrapper">
-                                    <AkTable data={dataTable} actionA={addOne} actionB={removeOne} actionAIcon="add" actionBIcon='remove'
+                                    <AkTable data={dataTable} action={(id) => <CartActions id={id}/>}
                                              labels={['name', 'count', 'price', 'saved']}/>
                                 </div>
                             </Grid>
