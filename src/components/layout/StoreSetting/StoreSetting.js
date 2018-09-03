@@ -8,15 +8,7 @@ const StoreSetting = props => {
 
     return (
         <Fragment>
-            <Grid item xs>
-                <AKmenu
-                    icon="account_circle"
-                    count={0}
-                    tip="account">
-                    <UserWidget/>
-                </AKmenu>
-            </Grid>
-            <Grid item xs>
+            <Grid item >
                 <AKmenu
                     listItems={["usd", 'euro']}
                     icon="attach_money"
@@ -24,7 +16,7 @@ const StoreSetting = props => {
                     tip="currency">
                 </AKmenu>
             </Grid>
-            <Grid xs item>
+            <Grid  item>
                 <AKmenu
                     listItems={["eng", 'fb', 'ar']}
                     icon="language"

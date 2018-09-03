@@ -18,6 +18,9 @@ import {withRouter} from "react-router-dom";
 import ShoppingCart from "../Cart/Cart";
 import Container from "../../../HOC/Container/Container";
 import './Header.scss';
+import UserWidget from "../UserWidget/UserWidget";
+import Notification from "../Notification/Notification";
+
 const styles = theme => {
 
     return ({
@@ -111,29 +114,24 @@ class Header extends React.Component {
             loadRichHeader
         } = this;
         return (
-            <AppBar position="fixed" className={[classes.shadow,'mainHeader'].join(' ')}>
+            <AppBar position="fixed" className={[classes.shadow, 'mainHeader'].join(' ')}>
                 <div ref={(node) => this.headerRef = node}>
-                    <Toolbar variant="dense" className={[classes.mini,'toolbar'].join(' ')}>
+                    <Toolbar variant="dense" className={[classes.mini, 'toolbar'].join(' ')}>
                         <Container>
                             <Grid container justify="center" alignItems="center" className="GridToolbar">
-                                <Grid className="leftGrid" item xs={12} sm container justify="flex-start" alignItems="center">
-                                    <Grid xs item>
+                                <Grid className="rightGrid" item xs container justify="flex-start" alignItems="center">
+                                    <StoreSetting/>
+                                </Grid>
+                                <Grid className="leftGrid" item xs={12} sm container justify="flex-end" alignItems="center">
+                                    <Grid item>
                                         <AKmenu
-                                            listItems={["eng", 'fb', 'ar']}
-                                            icon="compare"
-                                            count={0}
-                                            tip="compare">
+                                            icon="notifications"
+                                            count={cartCount}
+                                            tip="notifications">
+                                            <Notification/>
                                         </AKmenu>
                                     </Grid>
-                                    <Grid xs item>
-                                        <AKmenu
-                                            listItems={["eng", 'fb', 'ar']}
-                                            icon="favorite"
-                                            count={0}
-                                            tip="wish list">
-                                        </AKmenu>
-                                    </Grid>
-                                    <Grid xs item>
+                                    <Grid item>
                                         <AKmenu
                                             icon="shopping_cart"
                                             count={cartCount}
@@ -141,9 +139,14 @@ class Header extends React.Component {
                                             <ShoppingCart/>
                                         </AKmenu>
                                     </Grid>
-                                </Grid>
-                                <Grid className="rightGrid" item xs container justify="flex-end" alignItems="center">
-                                    <StoreSetting/>
+                                    <Grid item>
+                                        <AKmenu
+                                            icon="account_circle"
+                                            count={0}
+                                            tip="account">
+                                            <UserWidget/>
+                                        </AKmenu>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Container>

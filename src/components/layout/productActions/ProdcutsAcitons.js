@@ -36,7 +36,7 @@ const ProductActions = props => {
                 </IconButton>
             </Tooltip>
             <Tooltip title="add to cart" placement="bottom-start">
-                <IconButton aria-label="add to cart" color={onCart ? 'primary' : 'default'} onClick={() => addToCart(id, 'addOne')}>
+                <IconButton aria-label="add to cart" color={onCart ? 'primary' : 'default'} onClick={() => addToCart(id, 'add')}>
                     <i className="material-icons">
                         add_shopping_cart
                     </i>

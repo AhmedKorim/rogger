@@ -76,7 +76,7 @@ class EnhancedTabs extends React.Component {
         toolbarClasses = toolbarClasses || [classes.shadow, "toolBar"];
         return (
             <Fragment>
-                <Toolbar className={toolbarClasses.join(' ')}>
+                <Toolbar className={toolbarClasses.concat(classes.shadow).join(' ')}>
                     <Tabs
                         value={value}
                         onChange={handleChange}
