@@ -103,7 +103,7 @@ class ShoppingCart extends React.Component {
                                                         </Grid>
                                                     </Grid>
                                                 </ListItem>
-                                                {array.length > 1 && <Divider className="divider"/>}
+                                                {(array.length > 1 && index < array.length - 1) && <Divider className="divider"/>}
                                             </Fragment>
                                         </Tooltip>
                                     )}

@@ -16,10 +16,10 @@ const styles = theme => ({
         justifyContent: 'center'
     },
     margin: {
-        margin: theme.spacing.unit * 2,
+        margin: theme.spacing.unit ,
     },
     padding: {
-        padding: `0 ${theme.spacing.unit * 2}px`,
+        padding: `0 ${theme.spacing.unit }px`,
     },
 })
 
@@ -112,9 +112,9 @@ class EnhancedTabs extends React.Component {
                         {
 
                             paddges.length > 0 ? paddges.map(tab => <Tab label={
-                                    tab.count > 0 ? <Badge className={classes.padding} color={tab.color ? tab.color : "primary"} badgeContent={tab.count}>
+                                    tab.count > 0 ? <Badge className={classes.padding} color={tab.color ? tab.color : "secondary"} badgeContent={tab.count}>
                                         {tab.label}
-                                    </Badge> : <span className={classes.padding} > {tab.label}</span>
+                                    </Badge> : <span className={classes.padding}> {tab.label}</span>
                                 } key={tab.key ? tab.key : tab.label}
                                                                          classes={{
                                                                              root: tabRootClass,
@@ -132,6 +132,7 @@ class EnhancedTabs extends React.Component {
                 </Toolbar>
                 <SwipeableViews
                     index={value}
+                    slideClassName="EnhancedTabsSlide"
                     onChangeIndex={handleChangeIndex}
                 >
                     {children}

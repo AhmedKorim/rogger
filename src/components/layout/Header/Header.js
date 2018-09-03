@@ -108,11 +108,13 @@ class Header extends React.Component {
                 width,
                 userInfo,
                 compared,
-                wishList,
-                cartCount
+                liked,
+                cartCount,
+                orders
             },
             loadRichHeader
         } = this;
+        const notificationCount = orders.concat(liked,compared).length;
         return (
             <AppBar position="fixed" className={[classes.shadow, 'mainHeader'].join(' ')}>
                 <div ref={(node) => this.headerRef = node}>
@@ -126,7 +128,7 @@ class Header extends React.Component {
                                     <Grid item>
                                         <AKmenu
                                             icon="notifications"
-                                            count={cartCount}
+                                            count={notificationCount}
                                             tip="notifications">
                                             <Notification/>
                                         </AKmenu>
@@ -198,7 +200,8 @@ const mapStateToProps = state => {
     return {
         userInfo: state.user.info,
         compared: state.user.compared,
-        wishList: state.user.wishList,
+        liked: state.user.liked,
+        orders: state.user.orders,
         cartCount: state.user.cart.length
     }
 }
