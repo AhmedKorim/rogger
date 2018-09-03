@@ -1,4 +1,5 @@
-import {ADD_ITEM, GET_DATA, UPDATE_ITEM} from "../actions/productsActions";
+import {ADD_ITEM, GET_DATA, UPDATE_ITEM} from "../actions/actionTypes";
+
 
 const initalState = {
     products: [],

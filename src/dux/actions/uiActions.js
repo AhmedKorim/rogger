@@ -1,3 +1,0 @@
-export const HEADER_DIM = 'HEADER_DIM';
-export const PRODUCT_CARD_DETAILS = 'PRODUCT_CARD_DETAILS';
-export const SCROLL_Y = 'SCROLL_Y';

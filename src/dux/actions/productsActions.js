@@ -1,8 +1,6 @@
 import axios from "../../axios/axios";
+import {GET_DATA} from "./actionTypes";
 
-export const GET_DATA = 'GET_DATA';
-export const UPDATE_ITEM ='UPDATE_ITEM';
-export const ADD_ITEM ='ADD_ITEM';
 
 export const getData = () => {
 

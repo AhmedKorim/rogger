@@ -1,4 +1,4 @@
-import {ADD_TO_CART, LIKE, LOGIN, LOGOUT, MANAGE_COMPARED, REMOVE_FROM_CART} from "../actions/userActions";
+import {ADD_TO_CART, LIKE, LOGIN, LOGOUT, MANAGE_COMPARED, REMOVE_FROM_CART} from "../actions/actionTypes";
 
 const initalState = {
     info: {

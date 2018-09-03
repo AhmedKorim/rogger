@@ -3,7 +3,7 @@ import Slide from "@material-ui/core/Slide/Slide";
 import {connect} from "react-redux";
 import ProductDetails from "../../layout/productDetails/ProductDetails";
 import Dialog from "@material-ui/core/Dialog/Dialog";
-import {PRODUCT_CARD_DETAILS} from "../../../dux/actions/uiActions";
+import {PRODUCT_CARD_DETAILS} from "../../../dux/actions/actionTypes";
 import ProductEditor from "../../../containers/Admin/Dashboard/AdminProducts/ProudctEditor/ProductEditor";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import './dialog.scss'

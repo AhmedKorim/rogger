@@ -8,7 +8,7 @@ import ListItem from "@material-ui/core/ListItem/ListItem";
 import List from "@material-ui/core/List/List";
 import Icon from "@material-ui/core/Icon/Icon";
 import Button from "@material-ui/core/Button/Button";
-import {PRODUCT_CARD_DETAILS} from "../../../dux/actions/uiActions";
+import {PRODUCT_CARD_DETAILS} from "../../../dux/actions/actionTypes";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";

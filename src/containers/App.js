@@ -12,7 +12,7 @@ import AuthDialogOpener from "./Auth/AuthDialogOpener";
 import AdminDashboard from "./Admin/Dashboard/AdminDashboard";
 import UserDashboard from "./User/Dashboard/UserDashboard";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import {SCROLL_Y} from "../dux/actions/uiActions";
+import {SCROLL_Y} from "../dux/actions/actionTypes";
 
 
 class App extends Component {

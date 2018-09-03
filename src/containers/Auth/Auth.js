@@ -7,7 +7,6 @@ import LoginForm from "./LoginForm";
 class Auth extends React.Component {
     render() {
         return (
-
             <div className="auth">
                 <AkTabs disableRouting tab={[{label: 'Login'}, {label: 'SignUp'}]}>
                     <div>

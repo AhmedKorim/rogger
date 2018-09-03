@@ -3,7 +3,8 @@ import EnhancedTabs from "../../UI/EnhancedTabs/EnhancedTabs";
 import './Notification.scss';
 import {connect} from "react-redux";
 import ItemsList from "./ItemsList";
-import {ADD_TO_COMPARE, ADD_TO_WISHLIST, LIKE, MANAGE_COMPARED} from "../../../dux/actions/userActions";
+import {LIKE, MANAGE_COMPARED} from "../../../dux/actions/actionTypes";
+
 
 const Notification = props => {
     const {

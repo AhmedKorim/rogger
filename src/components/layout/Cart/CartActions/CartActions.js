@@ -1,13 +1,13 @@
 import React, {Fragment} from 'react'
-import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography/Typography";
 import Button from "@material-ui/core/Button/Button";
 import './CartActions.scss';
 import Icon from "@material-ui/core/Icon/Icon";
 import {withStyles} from "@material-ui/core";
 import {connect} from "react-redux";
-import {ADD_TO_CART, REMOVE_FROM_CART} from "../../../../dux/actions/userActions";
+
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
+import {ADD_TO_CART, REMOVE_FROM_CART} from "../../../../dux/actions/actionTypes";
 
 const styles = theme => ({
     shadow: {

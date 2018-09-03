@@ -12,8 +12,8 @@ import Button from "@material-ui/core/Button/Button";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import {getStyle} from "../../../tools/tools";
 import {connect} from "react-redux";
-import {REMOVE_FROM_CART} from "../../../dux/actions/userActions";
 import {withRouter} from "react-router-dom";
+import {REMOVE_FROM_CART} from "../../../dux/actions/actionTypes";
 
 class ShoppingCart extends React.Component {
     state = {

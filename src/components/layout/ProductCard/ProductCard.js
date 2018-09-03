@@ -11,7 +11,7 @@ import Price from "../price/Price";
 import ProductActions from "../productActions/ProdcutsAcitons";
 import Chip from "@material-ui/core/Chip/Chip";
 import Rating from "../Rateing/Rateing";
-import {PRODUCT_CARD_DETAILS} from "../../../dux/actions/uiActions";
+import {PRODUCT_CARD_DETAILS} from "../../../dux/actions/actionTypes";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import ProductHeader from "../productDetails/ProdcutHeader/ProdcutHeader";

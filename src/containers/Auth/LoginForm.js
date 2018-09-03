@@ -5,11 +5,14 @@ import Paper from "@material-ui/core/Paper/Paper";
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
 
+import {connect} from "react-redux";
+import {auth} from "../../dux/actions/authActions";
+
 class LoginForm extends React.Component {
 
     state = {
         controllers: [
-            {value: '', label: 'User Name', id: 'userName', type: 'text'},
+            {value: '', label: 'E-mail', id: 'E-mail', type: 'email'},
             {value: '', label: 'Password', id: "user password", type: 'password'},
             {value: false, label: 'keep login', id: 'keepLogin', type: 'checkBox'}
         ]
@@ -22,13 +25,20 @@ class LoginForm extends React.Component {
         })
     }
 
+    sumbitLogin = (event) => {
+        event.preventDefault();
+        const controllers = this.state.controllers;
+        this.props.onAuth(controllers[0].value, controllers[1].value)
+    }
+
+
     render() {
         const {
             state: {
                 controllers
             },
             changeHandler,
-
+            sumbitLogin
         } = this
         return (
             <div className="loginForm">
@@ -36,7 +46,7 @@ class LoginForm extends React.Component {
                     <Grid container justify="center" alignItems="center">
                         <Grid xs md={10} lg={6} container item justify="center" alignItems="center">
                             <Grid xs item container justify="center" alignItems="center">
-                                <form>
+                                <form onSubmit={sumbitLogin}>
                                     <Paper elevation={2}>
                                         <Grid xs item container justify="center" alignItems="center">
                                             {controllers.map(controller => <Grid item xs={controller.type === 'checkBox' ? 3 : 12} className="GridPadding">
@@ -45,7 +55,8 @@ class LoginForm extends React.Component {
                                                     payload={{...controller, classes: ['input']}}
                                                 /></Grid>)}
                                             <Grid item xs={3}>
-                                                <Button type="submit" fullWidth onClick={void 0} variant="raised" color="primary" className="button login"><Typography className="buttonT">Login In</Typography></Button>
+                                                <Button type="submit" fullWidth onClick={void 0} variant="raised" color="primary"
+                                                        className="button login"><Typography className="buttonT">Login In</Typography></Button>
                                             </Grid>
                                         </Grid>
                                     </Paper>
@@ -59,4 +70,9 @@ class LoginForm extends React.Component {
     }
 }
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (email, password) => dispatch(auth(email, password,false))
+    }
+}
+export default connect(null,mapDispatchToProps)(LoginForm);

@@ -4,7 +4,7 @@ import AkTable from "../../../../components/UI/Table/Table";
 import {connect} from "react-redux";
 import Button from "@material-ui/core/Button/Button";
 import Icon from "@material-ui/core/Icon/Icon";
-import {PRODUCT_CARD_DETAILS} from "../../../../dux/actions/uiActions";
+import {PRODUCT_CARD_DETAILS} from "../../../../dux/actions/actionTypes";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 
 class AdminProducts extends React.Component {

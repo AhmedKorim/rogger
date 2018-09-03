@@ -11,7 +11,7 @@ import Navigation from "../Navigation/Navigation";
 import AKmenu from "../../UI/Menu/Menu";
 import StoreSetting from "../StoreSetting/StoreSetting";
 import CategoriseMenu from "../CategoryMenu/CatergoryMenu";
-import {HEADER_DIM} from "../../../dux/actions/uiActions";
+import {HEADER_DIM} from "../../../dux/actions/actionTypes";
 import {getStyle} from "../../../tools/tools";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";

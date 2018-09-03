@@ -2,8 +2,8 @@ import React from 'react'
 import CardActions from "@material-ui/core/CardActions/CardActions";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 import IconButton from "@material-ui/core/IconButton/IconButton";
-import {ADD_TO_CART, LIKE, MANAGE_COMPARED} from "../../../dux/actions/userActions";
 import {connect} from "react-redux";
+import {ADD_TO_CART, LIKE, MANAGE_COMPARED} from "../../../dux/actions/actionTypes";
 
 const ProductActions = props => {
     const classes = {
@@ -63,7 +63,7 @@ const mapDispatchToProps = dispatch => {
     return {
         toggleLike: (id) => dispatch({type: LIKE, payload: {item: {id}}}),
         addToCart: (id, action) => dispatch({type: ADD_TO_CART, payload: {item: {id}}, action: action}),
-        toggleCompared:(id, action) => dispatch({type: MANAGE_COMPARED, payload: {item: {id}}}),
+        toggleCompared:(id) => dispatch({type: MANAGE_COMPARED, payload: {item: {id}}}),
     }
 }
 const mapStateToProps = state => {

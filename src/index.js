@@ -13,6 +13,7 @@ import {lightBlue, pink} from "@material-ui/core/colors";
 import UIReducer from "./dux/reducers/UIReducer";
 import productsReducer from "./dux/reducers/prodcutsReducer";
 import userReducer from "./dux/reducers/userReucer";
+import authReducer from "./dux/reducers/authReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const theme = createMuiTheme({
@@ -33,7 +34,8 @@ const store = createStore(
     combineReducers({
         UI: UIReducer,
         products: productsReducer,
-        user: userReducer
+        user: userReducer,
+        auth: authReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
 );

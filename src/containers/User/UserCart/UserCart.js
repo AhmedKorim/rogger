@@ -4,9 +4,9 @@ import Typography from "@material-ui/core/Typography/Typography";
 
 import './UserCart.scss'
 import AkTable from "../../../components/UI/Table/Table";
-import {ADD_TO_CART, REMOVE_FROM_CART} from "../../../dux/actions/userActions";
 import {connect} from "react-redux";
 import CartActions from "../../../components/layout/Cart/CartActions/CartActions";
+import {ADD_TO_CART, REMOVE_FROM_CART} from "../../../dux/actions/actionTypes";
 
 class UserCart extends React.Component {
 

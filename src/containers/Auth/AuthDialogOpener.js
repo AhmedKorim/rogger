@@ -1,5 +1,5 @@
 import React from 'react'
-import {PRODUCT_CARD_DETAILS} from "../../dux/actions/uiActions";
+import {PRODUCT_CARD_DETAILS} from "../../dux/actions/actionTypes";
 import {connect} from "react-redux";
 
 const AuthDialogOpener = props => {

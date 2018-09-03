@@ -5,6 +5,9 @@ import Paper from "@material-ui/core/Paper/Paper";
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
 
+import {connect} from "react-redux";
+import {auth} from "../../dux/actions/authActions";
+
 class LoginForm extends React.Component {
 
     state = {
@@ -13,7 +16,7 @@ class LoginForm extends React.Component {
             {value: '', label: 'Password', id: "user passwordLogin", type: 'password'},
             {value: '', label: 're-enter password', id: "userpasswordLogin", type: 'password'},
             {value: '', label: 'email', id: "userEmail", type: 'email'},
-            {value: 'male', label: 'Gender', id: "userGender", type: 'select',options:['male','female','it is secret']},
+            {value: 'male', label: 'Gender', id: "userGender", type: 'select', options: ['male', 'female', 'it is secret']},
 
         ]
     }
@@ -24,6 +27,13 @@ class LoginForm extends React.Component {
             })
         })
     }
+    sumbitLogin = (event) => {
+        event.preventDefault();
+        const controllers = this.state.controllers;
+        this.props.onAuth(controllers[3].value, controllers[1].value)
+
+    }
+
 
     render() {
         const {
@@ -31,7 +41,7 @@ class LoginForm extends React.Component {
                 controllers
             },
             changeHandler,
-
+            sumbitLogin
         } = this;
         return (
             <div className="loginForm authForm">
@@ -39,7 +49,7 @@ class LoginForm extends React.Component {
                     <Grid container justify="center" alignItems="center">
                         <Grid xs md={10} lg={6} container item justify="center" alignItems="center">
                             <Grid xs item container justify="center" alignItems="center">
-                                <form>
+                                <form onSubmit={sumbitLogin}>
                                     <Paper elevation={2}>
                                         <Grid xs item container justify="center" alignItems="center">
                                             {controllers.map(controller => <Grid item xs={12} className="GridPadding">
@@ -48,7 +58,8 @@ class LoginForm extends React.Component {
                                                     payload={{...controller, classes: ['input']}}
                                                 /></Grid>)}
                                             <Grid item xs={5} className="sighupButtonGrid">
-                                                <Button type="submit" fullWidth onClick={void 0} variant="raised" color="primary" className="sighup "><Typography className="buttonT">Sighup</Typography></Button>
+                                                <Button type="submit" fullWidth onClick={void 0} variant="raised" color="primary"
+                                                        className="sighup "><Typography className="buttonT">Sighup</Typography></Button>
                                             </Grid>
                                         </Grid>
                                     </Paper>
@@ -60,6 +71,12 @@ class LoginForm extends React.Component {
             </div>
         )
     }
+
 }
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (email, password) => dispatch(auth(email, password, true))
+    }
+}
+export default connect(null, mapDispatchToProps)(LoginForm);

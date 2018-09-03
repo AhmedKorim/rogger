@@ -1,4 +1,4 @@
-import {HEADER_DIM, PRODUCT_CARD_DETAILS, SCROLL_Y} from "../actions/uiActions";
+import {HEADER_DIM, PRODUCT_CARD_DETAILS, SCROLL_Y} from "../actions/actionTypes";
 
 
 const initialState = {

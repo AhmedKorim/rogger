@@ -19,7 +19,7 @@ const ItemsList = props => {
                     <List component="ul" className="productsList">
                         {listItems.map((CartItem, index, array) => <Tooltip key={CartItem.id} title="more to page details" placement="bottom-end">
                                 <Fragment>
-                                    <ListItem component="li" button className="productsListItem" onClick={push('/products/' + CartItem.id)}>
+                                    <ListItem component="li" button className="productsListItem" onClick={() => push('/products/' + CartItem.id)}>
                                         <Grid alignItems="center" container className="productItem" justify="center">
                                             <Grid container item xs={10}>
                                                 <Grid container justify="center" alignItems="center">
