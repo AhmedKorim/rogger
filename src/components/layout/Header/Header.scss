@@ -1,5 +1,42 @@
-.mainHeader{
-  .toolbar{
-    max-height:38px;
+.mainHeader {
+  .mainToolbarWrapper {
+    position: relative;
+  }
+
+  .toolbar {
+    position: relative;
+    width: 100%;
+    z-index: 55;
+    max-height: 38px;
+  }
+  .richHeaderWrapper {
+    transition: all ease-in-out .6s;
+    position: absolute;
+    width: 100%;
+
+  }
+  .list-grid {
+    flex: 2 1 0;
+    .onStateBar {
+      background-color: transparent;
+      .typoOnHeader {
+        color: #e2e2d1;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .selectedNav {
+    color: #fff !important;
+  }
+  .indercatorClass {
+    background-color: #e2e2d1;
+  }
+  .tabRootClass {
+    color: #fff;
+  }
+  .rootClass {
+    min-height: unset;
+    color: #e2e2d1;
   }
 }

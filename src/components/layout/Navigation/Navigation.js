@@ -22,13 +22,12 @@ class Navigation extends React.Component {
 
     }
 
-    componentWillUpdate() {
-        if(this.state.value !== routering.indexOf(this.props.match.url.split('/')[1]) ){
-            console.log( routering.indexOf(this.props.match.url.split('/')[1] ), this.props.location);
-
-        }        console.log( routering.indexOf(this.props.match.url.split('/')[1] ) , this.props.match.url);
-
-
+    componentWillUpdate(nextProps, State) {
+        const nextPathname = nextProps.location.pathname.split('/')[1];
+        const Pathname = this.props.location.pathname.split('/')[1];
+        if (nextPathname === Pathname) return;
+        console.log(nextPathname.slice(1, nextPathname.length));
+        this.setState({value: routering.indexOf(nextPathname)})
     }
 
     handleChange = (event, value) => {
@@ -38,8 +37,15 @@ class Navigation extends React.Component {
 
 
     render() {
-        console.log('render');
-        const {classes} = this.props;
+
+        const {
+            classes,
+            rootClass,
+            indercatorClass,
+            selected,
+            tabRootClass
+
+        } = this.props;
         return (
             <div className={classes.root}>
                 <Tabs
@@ -48,8 +54,15 @@ class Navigation extends React.Component {
                     indicatorColor="primary"
                     textColor="primary"
                     centered
+                    classes={{
+                        root: rootClass,
+                        indicator: indercatorClass
+                    }}
                 >
-                    {routering.map(route => <Tab label={route} key={route}/>)}
+                    {routering.map(route => <Tab label={route} key={route} classes={{
+                        root: tabRootClass,
+                        selected: selected
+                    }}/>)}
                 </Tabs>
             </div>
         )

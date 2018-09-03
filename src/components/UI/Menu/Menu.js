@@ -51,7 +51,6 @@ class AKmenu extends React.Component {
     render() {
         const {classes, count, icon, bLabel, tip, listItems, width, children} = this.props;
         const {open} = this.state;
-        console.log(children);
         return (
             <div className={[classes.root, 'akMenu'].join(" ")}>
                 <div>

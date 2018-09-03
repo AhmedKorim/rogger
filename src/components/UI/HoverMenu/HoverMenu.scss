@@ -1,6 +1,7 @@
 .hoverMenu {
   .carHeader {
     font-size: .85rem;
+    transition: all .3s ease;
     color: transparentize(black, .4);
     font-weight: 600;
     text-transform: uppercase;
@@ -10,7 +11,7 @@
   }
   .HMenuItem {
     padding: .3rem .5rem;
-    font-weight:600;
+    font-weight: 600;
     color: transparentize(black, .4);
   }
 

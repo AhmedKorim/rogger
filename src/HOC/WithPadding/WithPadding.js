@@ -10,9 +10,10 @@ const withPadding = (WrappedComponent) => {
     }
     return connect(mapStateToProps)(class extends React.Component {
         render() {
-        console.log(this.props.headerHeight);
+            console.log(this.props.headerHeight);
             return <div style={{
-                    paddingTop: this.props.headerHeight
+                transition: ".6s ease all",
+                paddingTop: this.props.headerHeight
             }}>
                 <WrappedComponent {...this.props}/>
             </div>

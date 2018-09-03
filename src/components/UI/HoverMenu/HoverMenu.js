@@ -55,7 +55,7 @@ class MenuListComposition extends React.Component {
                         aria-haspopup="true"
                         onClick={this.handleToggle}
                     >
-                        <Typography variant="subheading" className="carHeader">{label}</Typography>
+                        <Typography variant="subheading" className="carHeader typoOnHeader">{label}</Typography>
                     </Button>
                     <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
                         {({TransitionProps, placement}) => (

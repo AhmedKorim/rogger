@@ -40,7 +40,8 @@ const categories = [
 const styles = theme => ({
     Toolbar: {
         backgroundColor: theme.palette.background.default,
-        minHeight: 'unset'
+        minHeight: 'unset',
+        height:50
     },
     listContaienr: {
         width: '100%',
@@ -54,7 +55,7 @@ const CategoriseMenu = props => {
     const {classes} = props;
     return (
         <div>
-            <Toolbar className={[classes.Toolbar].join(' ')}>
+            <Toolbar className={[classes.Toolbar , 'onStateBar'].join(' ')}>
                 <div className="container">
                     <Grid container justify="center" alignItems="center">
                         {categories.map(item => {

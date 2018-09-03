@@ -25,11 +25,11 @@ const styles = theme => {
 
     return ({
         mini: {
-
             boxShadow: theme.shadows[0],
             position: 'relative',
             zIndex: 2,
-            padding: ".2rem 0"
+            padding: ".2rem 0",
+            backgroundColor: theme.palette.primary.main
         },
         grid: {},
         hidden: {
@@ -43,8 +43,8 @@ const styles = theme => {
         },
         richToolbar: {
             backgroundColor: theme.palette.background.paper,
-            paddingTop: "1rem",
-            paddingBottom: "1rem"
+            paddingTop: ".6rem",
+            paddingBottom: ".6rem"
         },
         flex: {
             justifyContent: "center",
@@ -75,18 +75,30 @@ const styles = theme => {
 
 class Header extends React.Component {
 
+    state = {
+        marge: false
+    }
 
     componentDidMount() {
         this.calcHeight();
         window.addEventListener('resize', this.calcHeight)
-
     }
 
     calcHeight = () => {
         if (!this.headerRef) return;
-        this.props.setHeight(getStyle(this.headerRef, "height"))
-        console.log(getStyle(this.headerRef, "height"));
+        const heaerheight = getStyle(this.headerRef, "height");
+        if (this.props.location.pathname !== '/home') {
+            this.props.setHeight(heaerheight);
+            if (!this.state.marge) {
+                this.setState({marge: true})
+            }
+            return;
+        }
 
+        const scrollY = this.props.scrollY;
+        const transfromPC = scrollY / 450 * 100 < 101 ? scrollY / 450 * 100 : 101;
+        const richHeaderHeight = scrollY ? getStyle(this.richHeader, "height") / transfromPC : getStyle(this.richHeader, "height");
+        this.props.setHeight(heaerheight + richHeaderHeight)
     }
 
     componentDidUpdate() {
@@ -99,10 +111,34 @@ class Header extends React.Component {
         return (hasHome)
     }
 
+    manageScroll = () => {
+        const scrollY = this.props.scrollY || 0;
+        if (this.props.location.pathname !== '/home') {
+            return {transform: `translate3d(0, ${0}%, 0)`}
+        }
+        if (scrollY > 200) {
+            // startScroll the rich header
+            const transfromPC = scrollY / 450 * 100;
+            if (transfromPC >= 100 && !this.state.marge) {
+                this.setState({marge: true})
+            } else if (this.state.marge && transfromPC < 100) {
+                this.setState({marge: false})
+            }
+            if (transfromPC > 101) return {transform: `translate3d(0, ${-101}%, 0)`}
+            return {transform: `translate3d(0, ${-transfromPC}%, 0)`}
+        } else {
+            if (this.state.marge) {
+                console.log('fixhere');
+                this.setState({marge: false})
+            }
+        }
+        return {transform: `translate3d(0, ${0}%, 0)`}
+    }
 
     // if width is lower than md show hamburger menu
     render() {
         const {
+            state: {marge},
             props: {
                 classes,
                 width,
@@ -110,21 +146,30 @@ class Header extends React.Component {
                 compared,
                 liked,
                 cartCount,
-                orders
+                orders,
             },
+            manageScroll,
             loadRichHeader
         } = this;
-        const notificationCount = orders.concat(liked,compared).length;
+        const notificationCount = orders.concat(liked, compared).length;
         return (
             <AppBar position="fixed" className={[classes.shadow, 'mainHeader'].join(' ')}>
-                <div ref={(node) => this.headerRef = node}>
+                <div ref={(node) => this.headerRef = node} className="mainToolbarWrapper">
                     <Toolbar variant="dense" className={[classes.mini, 'toolbar'].join(' ')}>
                         <Container>
                             <Grid container justify="center" alignItems="center" className="GridToolbar">
                                 <Grid className="rightGrid" item xs container justify="flex-start" alignItems="center">
                                     <StoreSetting/>
                                 </Grid>
-                                <Grid className="leftGrid" item xs={12} sm container justify="flex-end" alignItems="center">
+                                {marge && <Grid item xs className="list-grid">
+                                    <Navigation
+                                        selected='selectedNav'
+                                        indercatorClass='indercatorClass'
+                                        rootClass='rootClass'
+                                        tabRootClass='tabRootClass'
+                                    />
+                                </Grid>}
+                                <Grid className="leftGrid" item xs container justify="flex-end" alignItems="center">
                                     <Grid item>
                                         <AKmenu
                                             icon="notifications"
@@ -153,7 +198,7 @@ class Header extends React.Component {
                             </Grid>
                         </Container>
                     </Toolbar>
-                    {loadRichHeader() && <Fragment>
+                    {loadRichHeader() && <div className="richHeaderWrapper" style={manageScroll()} ref={node => this.richHeader = node}>
                         <Toolbar variant="regular" className={[classes.richToolbar].join(' ')}>
                             <div className="container">
                                 <Grid container className={classes.flex}>
@@ -163,7 +208,8 @@ class Header extends React.Component {
                                         </Typography>
                                     </Grid>
                                     <Grid item md>
-                                        <Navigation/>
+                                        <Navigation
+                                        />
                                     </Grid>
                                     <Grid item xs={9} md={3}>
                                         <TextField
@@ -181,8 +227,7 @@ class Header extends React.Component {
                                     </Grid>
                                 </Grid>
                             </div>
-                        </Toolbar> <CategoriseMenu/></Fragment>
-
+                        </Toolbar> <CategoriseMenu/></div>
                     }
                 </div>
             </AppBar>
@@ -198,6 +243,7 @@ const mapDispatchToProps = dispatch => {
 }
 const mapStateToProps = state => {
     return {
+        scrollY: state.UI.scrollY,
         userInfo: state.user.info,
         compared: state.user.compared,
         liked: state.user.liked,

@@ -12,7 +12,7 @@ import AuthDialogOpener from "./Auth/AuthDialogOpener";
 import AdminDashboard from "./Admin/Dashboard/AdminDashboard";
 import UserDashboard from "./User/Dashboard/UserDashboard";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import Container from "../HOC/Container/Container";
+import {SCROLL_Y} from "../dux/actions/uiActions";
 
 
 class App extends Component {
@@ -21,15 +21,18 @@ class App extends Component {
         this.props.getData()
     }
 
+    scrollManger = (container) => {
+        this.props.updateScroll(container.scrollTop)
+    }
+
 
     render() {
-        console.log(this.props.location.pathname.substring(0, this.props.location.pathname.length - 4) + 'auth');
         return (
             <Fragment>
                 <Header/>
                 <Route path={this.props.location.pathname.substring(0, this.props.location.pathname.length - 4) + 'auth'} component={AuthDialogOpener}/>
                 <main style={{height: '100vh'}}>
-                    <PerfectScrollbar>
+                    <PerfectScrollbar onScrollY={(container) => this.scrollManger(container)}>
                         <Switch>
                             <Route path="/products/:productId" component={ProductPage}/>
                             <Route path="/products" component={Products}/>
@@ -55,7 +58,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        getData: () => dispatch(getData())
+        getData: () => dispatch(getData()),
+        updateScroll: (scrollY) => dispatch({type: SCROLL_Y, payload: {scrollY}})
     }
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
