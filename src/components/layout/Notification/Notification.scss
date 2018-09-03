@@ -18,9 +18,13 @@
     min-height: 40px;
     min-width: 4rem;
   }
-.divider{
-  margin: .2rem 0;
-}
+  .tabView {
+    height: 200px;
+
+  }
+  .divider {
+    margin: .2rem 0;
+  }
   .productsList {
     padding: .5rem;
     width: 100%;
@@ -51,6 +55,22 @@
       font-weight: bold;
       color: transparentize(black, .3);
       padding: 0;
+    }
+  }
+  .message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    > div {
+      width: 90%;
+      text-align: center;
+      .ELMessage {
+        font-weight: bold;
+        color: transparentize(black, .2);
+        text-transform: capitalize;
+      }
     }
   }
 
