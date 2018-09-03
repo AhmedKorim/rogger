@@ -55,7 +55,7 @@ const manageCompared = (action, state) => {
     // item on compared
     const item = state.compared.find(item => item.id === id);
     if (!item) return [...state.compared, {id: id}];
-    return state.compared(item => item.id !== id);
+    return state.compared.filter(item => item.id !== id);
 }
 
 

@@ -3,6 +3,7 @@ import EnhancedTabs from "../../UI/EnhancedTabs/EnhancedTabs";
 import './Notification.scss';
 import {connect} from "react-redux";
 import ItemsList from "./ItemsList";
+import {ADD_TO_COMPARE, ADD_TO_WISHLIST, LIKE, MANAGE_COMPARED} from "../../../dux/actions/userActions";
 
 const Notification = props => {
     const {
@@ -10,6 +11,8 @@ const Notification = props => {
         liked,
         orders,
         products
+        , toggleCompared,
+        toggleLike
     } = props;
 
     const wishList = liked.map(likedItem => products.find(product => likedItem.id === product.id)) || [];
@@ -30,10 +33,10 @@ const Notification = props => {
                 }]}
             >
                 <div className="tabView">
-                    <ItemsList listItems={comparedList} message="you have no items on compare yet!"/>
+                    <ItemsList listItems={comparedList} message="you have no items on compare yet!" deleteBtnclick={toggleCompared}/>
                 </div>
                 <div className="tabView">
-                    <ItemsList listItems={wishList} message="your wish list is empty!"/>
+                    <ItemsList listItems={wishList} message="your wish list is empty!" deleteBtnclick={toggleLike}/>
                 </div>
                 <div>orders</div>
             </EnhancedTabs>
@@ -48,4 +51,11 @@ const mapStateToProps = state => {
         products: state.products.products
     }
 }
-export default connect(mapStateToProps)(Notification);
+const mapDispatchToProps = dispatch => {
+    return {
+        toggleLike: (id) => dispatch({type: LIKE, payload: {item: {id}}}),
+        toggleCompared: (id) => dispatch({type: MANAGE_COMPARED, payload: {item: {id}}}),
+
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Notification);
