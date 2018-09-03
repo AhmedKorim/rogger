@@ -22,6 +22,8 @@ const addToCart = (action, state) => {
     const id = action.payload.item.id;
     const hasItem = state.cart.find(item => item.id === id);
     const cart = [...state.cart];
+
+    if (hasItem && action.action === 'add') return cart;
     // TODO : outsourse to thnk remove item from cart if it's coutn is ===0;
     if (action.action !== 'add') {
         const inc = action.action === 'addOne' ? 1 : -1;

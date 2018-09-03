@@ -8,6 +8,9 @@ const Notification = props => {
             <EnhancedTabs
                 toolbarClasses={['NotificaitonToolbar']}
                 disableRouting
+                rootClass='notificationRoot'
+                tabRootClass='notificaitonTabRoot'
+                indercatorClass='notificationTabIndector'
                 tab={[{label: 'compared'}, {label: 'wish list'}, {label: 'orders'}]}
             >
                 <div>compared</div>

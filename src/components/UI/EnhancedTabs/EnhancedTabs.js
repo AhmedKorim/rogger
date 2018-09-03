@@ -67,7 +67,11 @@ class EnhancedTabs extends React.Component {
                 classes,
                 centered,
                 width,
-                withFap
+                withFap,
+                indercatorClass,
+                rootClass,
+                tabRootClass,
+                selectClass
             },
             handleChange,
             handleChangeIndex
@@ -82,14 +86,20 @@ class EnhancedTabs extends React.Component {
                         onChange={handleChange}
                         indicatorColor="primary"
                         textColor="primary"
-                        scrollable={width === 'xs' }
-                        scrollButtons={(width === 'xs' ) ? 'on' : 'off'}
+                        scrollable={width === 'xs'}
+                        scrollButtons={(width === 'xs') ? 'on' : 'off'}
                         classes={{
-                            scrollButtons:'scrollingButton'
+                            scrollButtons: 'scrollingButton',
+                            root: rootClass,
+                            indicator: indercatorClass
                         }}
-
-                        >
-                        {tab.map(tab => <Tab label={tab.label} key={tab.key ? tab.key : tab.label}/>)}
+                    >
+                        {tab.map(tab => <Tab label={tab.label} key={tab.key ? tab.key : tab.label}
+                                             classes={{
+                                                 root: tabRootClass,
+                                                 selected: selectClass
+                                             }}
+                        />)}
                     </Tabs>
                 </Toolbar>
                 <SwipeableViews

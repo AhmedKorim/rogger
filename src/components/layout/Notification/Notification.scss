@@ -2,7 +2,15 @@
   min-height: 300px;
   .NotificaitonToolbar {
     min-height: unset;
-    height: 48px;
-
+    height: 40px;
+    padding: 0;
+  }
+  .notificationRoot {
+    padding: 0;
+    min-height: unset;
+  }
+  .notificaitonTabRoot {
+    min-height: 40px;
+    min-width: 4rem;
   }
 }
