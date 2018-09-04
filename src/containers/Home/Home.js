@@ -15,6 +15,7 @@ import Lettering from "../../components/UI/Lettering/Lettering";
 class Home extends React.Component {
     mainSwiperNav = (action) => {
         if (!this.mainSwiper) return;
+        console.log(this.mainSwiper.params.slidesPerView);
         if (action === 'prev') {
             this.mainSwiper.slidePrev();
             return;
@@ -32,6 +33,7 @@ class Home extends React.Component {
             preloadImages: false,
             loadPrevNext: false,
             loop: true,
+            a11y: true,
             pagination: {
                 el: '.swiper-pagination',
                 type: 'bullets',
@@ -48,11 +50,16 @@ class Home extends React.Component {
             <div className="Home">
                 <Container>
                     <div className="homeSwiper">
-                        <Tooltip title="previous slide"><Button className="slidNavButton prev" variant="fab" color="primary"
-                                                                onClick={() => mainSwiperNav('prev')}
-                                                                mini><Icon>chevron_left</Icon></Button></Tooltip>
-                        <Tooltip title="next slide"><Button className="slidNavButton next" variant="fab" color="primary" onClick={() => mainSwiperNav('next')}
-                                                            mini><Icon>chevron_right</Icon></Button></Tooltip>
+                        <Tooltip title="previous slide">
+                            <Button className="slidNavButton prev"
+                                    variant="fab" color="primary"
+                                    onClick={() => mainSwiperNav('prev')}
+                                    mini><Icon>chevron_left</Icon></Button></Tooltip>
+                        <Tooltip title="next slide">
+                            <Button className="slidNavButton next"
+                                    variant="fab" color="primary"
+                                    onClick={() => mainSwiperNav('next')}
+                                    mini><Icon>chevron_right</Icon></Button></Tooltip>
                         <Swiper {...parms} ref={(node) => node ? this.mainSwiper = node.swiper : void 0}>
                             <div className="SlideItem">
                                 <div data-background="//via.placeholder.com/1201x600" className="swiper-lazy">
@@ -94,13 +101,95 @@ class Home extends React.Component {
                                     </div>
                                 </div>
                             </div>
+
                             <div className="SlideItem">
                                 <div data-background="//via.placeholder.com/1201x600" className="swiper-lazy">
                                     <div className="swiper-lazy-preloader"></div>
                                 </div>
                                 <div className="caption">
                                     <div className="captionTextWrapper">
-                                        <div><Lettering className="Captiontext" variant="display1" letterClass='hello'
+                                        <div>
+                                            <Lettering className="Captiontext" variant="display1" letterClass='hello'
+                                                        component="h3" text='luxuries goodies'/>
+                                        </div>
+                                        <div><Typography variant="subheading" component="h4" className="animatedText">
+                                            JEWELERY
+                                        </Typography></div>
+                                    </div>
+                                    <div className="callToAction">
+                                        <Button variant="raised" color="primary" className="CTAButton"> <Typography className="CTA" variant="body2"
+                                                                                                                    component="span"> shop
+                                            now</Typography></Button>
+                                    </div>
+                                </div>
+                            </div><div className="SlideItem">
+                                <div data-background="//via.placeholder.com/1241x600" className="swiper-lazy">
+                                    <div className="swiper-lazy-preloader"></div>
+                                </div>
+                                <div className="caption">
+                                    <div className="captionTextWrapper">
+                                        <div>
+                                            <Lettering className="Captiontext" variant="display1" letterClass='hello'
+                                                        component="h3" text='luxuries goodies'/>
+                                        </div>
+                                        <div><Typography variant="subheading" component="h4" className="animatedText">
+                                            JEWELERY
+                                        </Typography></div>
+                                    </div>
+                                    <div className="callToAction">
+                                        <Button variant="raised" color="primary" className="CTAButton"> <Typography className="CTA" variant="body2"
+                                                                                                                    component="span"> shop
+                                            now</Typography></Button>
+                                    </div>
+                                </div>
+                            </div><div className="SlideItem">
+                                <div data-background="//via.placeholder.com/1210x600" className="swiper-lazy">
+                                    <div className="swiper-lazy-preloader"></div>
+                                </div>
+                                <div className="caption">
+                                    <div className="captionTextWrapper">
+                                        <div>
+                                            <Lettering className="Captiontext" variant="display1" letterClass='hello'
+                                                        component="h3" text='luxuries goodies'/>
+                                        </div>
+                                        <div><Typography variant="subheading" component="h4" className="animatedText">
+                                            JEWELERY
+                                        </Typography></div>
+                                    </div>
+                                    <div className="callToAction">
+                                        <Button variant="raised" color="primary" className="CTAButton"> <Typography className="CTA" variant="body2"
+                                                                                                                    component="span"> shop
+                                            now</Typography></Button>
+                                    </div>
+                                </div>
+                            </div><div className="SlideItem">
+                                <div data-background="//via.placeholder.com/1231x600" className="swiper-lazy">
+                                    <div className="swiper-lazy-preloader"></div>
+                                </div>
+                                <div className="caption">
+                                    <div className="captionTextWrapper">
+                                        <div>
+                                            <Lettering className="Captiontext" variant="display1" letterClass='hello'
+                                                        component="h3" text='luxuries goodies'/>
+                                        </div>
+                                        <div><Typography variant="subheading" component="h4" className="animatedText">
+                                            JEWELERY
+                                        </Typography></div>
+                                    </div>
+                                    <div className="callToAction">
+                                        <Button variant="raised" color="primary" className="CTAButton"> <Typography className="CTA" variant="body2"
+                                                                                                                    component="span"> shop
+                                            now</Typography></Button>
+                                    </div>
+                                </div>
+                            </div><div className="SlideItem">
+                                <div data-background="//via.placeholder.com/1222x600" className="swiper-lazy">
+                                    <div className="swiper-lazy-preloader"></div>
+                                </div>
+                                <div className="caption">
+                                    <div className="captionTextWrapper">
+                                        <div>
+                                            <Lettering className="Captiontext" variant="display1" letterClass='hello'
                                                         component="h3" text='luxuries goodies'/>
                                         </div>
                                         <div><Typography variant="subheading" component="h4" className="animatedText">
@@ -116,7 +205,7 @@ class Home extends React.Component {
                             </div>
                         </Swiper>
                     </div>
-                 {/*   <div className="cardsCont">
+                    {/*   <div className="cardsCont">
                         <ImgCard/>
                         <ImgCard/>
                         <ImgCard/>

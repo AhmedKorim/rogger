@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 import {withStyles} from "@material-ui/core";
 import './Products.scss';
 import WithHeight from "../../HOC/WithHeight";
+import {withWidth} from "@material-ui/core/es";
 
 const styles = theme => ({
     header: {
@@ -29,7 +30,7 @@ class Products extends React.Component {
     render() {
         const {
             props: {
-                classes, headerHeight
+                classes, headerHeight, width
 
             },
             state: {
@@ -43,8 +44,8 @@ class Products extends React.Component {
                 <Container>
                     <header className={classes.header}>
                         <Toolbar className="toolbar">
-                            <Grid container alignItems="center" className="upperNavigation">
-                                <Grid item className="sort">
+                            <Grid container alignItems="center" className="upperNavigation" justify="center">
+                                <Grid className={(width === 'sm' || width === 'xs') ? null : 'sort'}>
                                     <Button size="small" className="smallButton">
                                         <Icon>sort</Icon>
                                     </Button>
@@ -62,22 +63,24 @@ class Products extends React.Component {
                                         </Button>
                                     </div>
                                 </Grid>
-                                <Grid item className="layoutController" container justify="flex-end">
+                                {!(width === 'xs' || width === 'sm') && <Grid item className="layoutController" container justify="flex-end">
                                     <Grid item>
                                         <Button aria-label="view" size="small" className="smallButton"><Icon>view_headline</Icon></Button>
                                         <Button size="small" className="smallButton"><Icon>view_module</Icon></Button>
                                         <Button size="small" className="smallButton"><Icon>view_comfy</Icon></Button>
                                     </Grid>
                                 </Grid>
+                                }
                             </Grid>
                         </Toolbar>
                     </header>
                     <Grid container>
-                        <Grid item md={3} lg={2}>
-                            <WithHeight maxHeight={300}>
+                        {!(width === 'xs' || width === 'sm') && <Grid item md={3} lg={2}>
+                            <WithHeight maxHeight={350}>
                                 <VitrineControler/>
                             </WithHeight>
                         </Grid>
+                        }
                         <Grid item md lg>
                             <WithHeight maxHeight={headerHeight + 170}>
                                 <Vitrine/>
@@ -108,4 +111,4 @@ class Products extends React.Component {
     }
 }
 
-export default withStyles(styles)(withPadding(Products));
+export default withStyles(styles)(withWidth()(withPadding((Products))));

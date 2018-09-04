@@ -20,6 +20,7 @@ import Container from "../../../HOC/Container/Container";
 import './Header.scss';
 import UserWidget from "../UserWidget/UserWidget";
 import Notification from "../Notification/Notification";
+import IconButton from "@material-ui/core/IconButton/IconButton";
 
 const styles = theme => {
 
@@ -152,23 +153,33 @@ class Header extends React.Component {
             loadRichHeader
         } = this;
         const notificationCount = orders.concat(liked, compared).length;
+        console.log(width === 'xs' || width === 'sm');
         return (
             <AppBar position="fixed" className={[classes.shadow, 'mainHeader'].join(' ')}>
                 <div ref={(node) => this.headerRef = node} className="mainToolbarWrapper">
                     <Toolbar variant="dense" className={[classes.mini, 'toolbar'].join(' ')}>
                         <Container>
                             <Grid container justify="center" alignItems="center" className="GridToolbar">
-                                <Grid className="rightGrid" item xs container justify="flex-start" alignItems="center">
-                                    <StoreSetting/>
-                                </Grid>
-                                {marge ? <Grid item xs className="list-grid">
-                                    <Navigation
-                                        selected='selectedNav'
-                                        indercatorClass='indercatorClass'
-                                        rootClass='rootClass'
-                                        tabRootClass='tabRootClass'
-                                    />
-                                </Grid> : <Typography variant="subheading"className="welcomeMessage"  component="p"> Welcome To Rogger store</Typography>}
+                                {(width === 'xs' || width === 'sm') ?
+                                    <Grid className="rightGrid" item xs container justify="flex-start" alignItems="center">
+                                        <Grid>
+                                            <IconButton color="inherit"><Icon>menu</Icon></IconButton>
+                                        </Grid>
+                                    </Grid>
+                                    : <Fragment>
+                                        <Grid className="rightGrid" item xs container justify="flex-start" alignItems="center">
+                                            <StoreSetting/>
+                                        </Grid>
+                                        {marge ? <Grid item xs className="list-grid">
+                                                <Navigation
+                                                    selected='selectedNav'
+                                                    indercatorClass='indercatorClass'
+                                                    rootClass='rootClass'
+                                                    tabRootClass='tabRootClass'
+                                                />
+                                            </Grid> :
+                                            <Typography variant="subheading" className="welcomeMessage" component="p"> Welcome To Rogger store</Typography>}
+                                    </Fragment>}
                                 <Grid className="leftGrid" item xs container justify="flex-end" alignItems="center">
                                     <Grid item>
                                         <AKmenu
