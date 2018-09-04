@@ -21,6 +21,7 @@ import './Header.scss';
 import UserWidget from "../UserWidget/UserWidget";
 import Notification from "../Notification/Notification";
 import IconButton from "@material-ui/core/IconButton/IconButton";
+import SideDrawe from "../../UI/Sidedrawer/SideDrawer";
 
 const styles = theme => {
 
@@ -77,7 +78,8 @@ const styles = theme => {
 class Header extends React.Component {
 
     state = {
-        marge: false
+        marge: false,
+        open: true
     }
 
     componentDidMount() {
@@ -88,6 +90,7 @@ class Header extends React.Component {
     calcHeight = () => {
         if (!this.headerRef) return;
         const heaerheight = getStyle(this.headerRef, "height");
+        let richHeaderHeight = 0;
         if (this.props.location.pathname !== '/home') {
             this.props.setHeight(heaerheight);
             if (!this.state.marge) {
@@ -95,10 +98,11 @@ class Header extends React.Component {
             }
             return;
         }
-
         const scrollY = this.props.scrollY;
         const transfromPC = scrollY / 450 * 100 < 101 ? scrollY / 450 * 100 : 101;
-        const richHeaderHeight = scrollY ? getStyle(this.richHeader, "height") / transfromPC : getStyle(this.richHeader, "height");
+        if (this.richHeader) {
+            richHeaderHeight = scrollY ? getStyle(this.richHeader, "height") / transfromPC : getStyle(this.richHeader, "height");
+        }
         this.props.setHeight(heaerheight + richHeaderHeight)
     }
 
@@ -109,10 +113,13 @@ class Header extends React.Component {
     loadRichHeader = () => {
         const hasHome = this.props.location.pathname.indexOf('home') > 0;
         const hasProducts = this.props.location.pathname.indexOf('products') > 0;
-        return (hasHome)
+        const mobile = this.props.width === 'xs' || this.props.width === 'sm';
+        return ((hasHome && !mobile))
     }
 
     manageScroll = () => {
+        const mobile = this.props.width === 'xs' || this.props.width === 'sm';
+        if (mobile) return;
         const scrollY = this.props.scrollY || 0;
         if (this.props.location.pathname !== '/home') {
             return {transform: `translate3d(0, ${0}%, 0)`}
@@ -135,11 +142,18 @@ class Header extends React.Component {
         }
         return {transform: `translate3d(0, ${0}%, 0)`}
     }
+    handelDrawerClose = () => {
+        this.setState(prevState => ({open: !prevState.open}))
+    }
+
 
     // if width is lower than md show hamburger menu
     render() {
         const {
-            state: {marge},
+            state: {
+                marge,
+                open
+            },
             props: {
                 classes,
                 width,
@@ -149,6 +163,7 @@ class Header extends React.Component {
                 cartCount,
                 orders,
             },
+            handelDrawerClose,
             manageScroll,
             loadRichHeader
         } = this;
@@ -161,11 +176,14 @@ class Header extends React.Component {
                         <Container>
                             <Grid container justify="center" alignItems="center" className="GridToolbar">
                                 {(width === 'xs' || width === 'sm') ?
-                                    <Grid className="rightGrid" item xs container justify="flex-start" alignItems="center">
-                                        <Grid>
-                                            <IconButton color="inherit"><Icon>menu</Icon></IconButton>
+                                    <Fragment>
+                                        <Grid className="rightGrid" item xs container justify="flex-start" alignItems="center">
+                                            <Grid>
+                                                <IconButton color="inherit" onClick={handelDrawerClose}><Icon>menu</Icon></IconButton>
+                                            </Grid>
                                         </Grid>
-                                    </Grid>
+                                        <SideDrawe open={open} handelDrawerClose={handelDrawerClose}/>
+                                    </Fragment>
                                     : <Fragment>
                                         <Grid className="rightGrid" item xs container justify="flex-start" alignItems="center">
                                             <StoreSetting/>
