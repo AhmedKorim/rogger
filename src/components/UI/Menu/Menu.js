@@ -72,7 +72,7 @@ class AKmenu extends React.Component {
                             </Badge>: <Icon className={[classes.leftIcon, "TWhite",'badge', classes.iconSmall].join(" ")}>{icon}</Icon>}
                         </Button>
                     </Tooltip>
-                    <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
+                    <Popper open={open} anchorEl={this.anchorEl} transition disablePortal className="ppp">
                         {({TransitionProps, placement}) => (
                             <Grow
                                 {...TransitionProps}

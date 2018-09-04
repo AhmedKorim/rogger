@@ -4,6 +4,11 @@
   }
 
 }
+
 .SideBar {
-  width: 240px!important;
+  width: 240px !important;
+  overflow: hidden !important;
+  .slideLink {
+    text-transform: capitalize;
+  }
 }

@@ -1,11 +1,18 @@
 .userWidget {
-  width: 210px;
+  max-width: 270px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > div {
+    width: 95%;
+  }
   header {
     padding: .4rem;
-    .userMetaData{
+    .userMetaData {
       overflow: hidden;
-      .typo2{
-    font-size:.8rem;
+      .typo2 {
+        font-size: .8rem;
         color: transparentize(black, .3);
       }
     }
@@ -17,7 +24,6 @@
       text-indent: .2rem;
       white-space: nowrap;
     }
-
 
   }
   .smallButton {
@@ -33,10 +39,13 @@
   .typo2 {
     text-indent: .5rem;
   }
-
+  .pannelRoot{
+    width:100%;
+  }
   .userListItem {
     padding: .4rem .1rem;
-    margin: 0;
+    width: 98%;
+    margin: auto 0;
     .iconCol {
       color: transparentize(black, .4);
       font-size: .97rem;

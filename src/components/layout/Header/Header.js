@@ -22,6 +22,9 @@ import UserWidget from "../UserWidget/UserWidget";
 import Notification from "../Notification/Notification";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import SideDrawe from "../../UI/Sidedrawer/SideDrawer";
+import ListItem from "@material-ui/core/ListItem/ListItem";
+import List from "@material-ui/core/es/List/List";
+import {Link} from 'react-router-dom'
 
 const styles = theme => {
 
@@ -79,12 +82,19 @@ class Header extends React.Component {
 
     state = {
         marge: false,
-        open: true
+        open: false
     }
 
     componentDidMount() {
         this.calcHeight();
         window.addEventListener('resize', this.calcHeight)
+    }
+
+    activeItem = (path) => this.props.location.pathname.indexOf(path) >= 0;
+
+    navigate = (path) => {
+        if (this.props.location.pathname.indexOf(path) >= 0) return;
+        this.props.history.push(path)
     }
 
     calcHeight = () => {
@@ -163,26 +173,43 @@ class Header extends React.Component {
                 cartCount,
                 orders,
             },
+            activeItem,
+            navigate,
             handelDrawerClose,
             manageScroll,
             loadRichHeader
         } = this;
         const notificationCount = orders.concat(liked, compared).length;
-        console.log(width === 'xs' || width === 'sm');
+        const mobile = (width === 'xs' || width === 'sm');
         return (
             <AppBar position="fixed" className={[classes.shadow, 'mainHeader'].join(' ')}>
                 <div ref={(node) => this.headerRef = node} className="mainToolbarWrapper">
                     <Toolbar variant="dense" className={[classes.mini, 'toolbar'].join(' ')}>
                         <Container>
                             <Grid container justify="center" alignItems="center" className="GridToolbar">
-                                {(width === 'xs' || width === 'sm') ?
+                                {mobile ?
                                     <Fragment>
                                         <Grid className="rightGrid" item xs container justify="flex-start" alignItems="center">
                                             <Grid>
                                                 <IconButton color="inherit" onClick={handelDrawerClose}><Icon>menu</Icon></IconButton>
                                             </Grid>
                                         </Grid>
-                                        <SideDrawe open={open} handelDrawerClose={handelDrawerClose}/>
+                                        <SideDrawe open={open} handelDrawerClose={handelDrawerClose}>
+                                            <Fragment>
+                                                <UserWidget/>
+                                                <List component="nav">
+                                                    {/*<ListItem button component={() => <Link to="products">products</Link>}/>*/}
+                                                    <ListItem button  selected={activeItem('/home')}
+                                                              onClick={() => navigate('/home')}><Typography variant="subheading" component="span" className="slideLink">home</Typography></ListItem>
+
+                                                    <ListItem button  selected={activeItem('/products')}
+                                                              onClick={() => navigate('/products')}><Typography variant="subheading" component="span" className="slideLink">products</Typography></ListItem>
+
+                                                    <ListItem button  selected={activeItem('/dashboard')}
+                                                              onClick={() => navigate('/dashboard')}><Typography variant="subheading" component="span" className="slideLink">dashboard</Typography></ListItem>
+                                                </List>
+                                            </Fragment>
+                                        </SideDrawe>
                                     </Fragment>
                                     : <Fragment>
                                         <Grid className="rightGrid" item xs container justify="flex-start" alignItems="center">
@@ -215,14 +242,15 @@ class Header extends React.Component {
                                             <ShoppingCart/>
                                         </AKmenu>
                                     </Grid>
-                                    <Grid item>
-                                        <AKmenu
-                                            icon="account_circle"
-                                            count={0}
-                                            tip="account">
-                                            <UserWidget/>
-                                        </AKmenu>
-                                    </Grid>
+                                    {mobile ? null :
+                                        <Grid item>
+                                            <AKmenu
+                                                icon="account_circle"
+                                                count={0}
+                                                tip="account">
+                                                <UserWidget/>
+                                            </AKmenu>
+                                        </Grid>}
                                 </Grid>
                             </Grid>
                         </Container>
