@@ -12,8 +12,15 @@
     margin-left: auto;
   }
   .productCardItem {
-    width: 25%;
-    margin-bottom: .3rem;
+    width:25%;
+    transition: 1s ease-in-out all;
+    margin-bottom: .15rem;
+    &.normal{
+      min-width: 220px;
+    }
+    &.large{
+      min-width: 220px;
+    }
   }
 
   .sort,

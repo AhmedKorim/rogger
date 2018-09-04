@@ -13,22 +13,21 @@ const styles = theme => ({
 
 const Vitrine = props => {
 
-    const {
-        classes, products
+    let {
+        classes, products, view
 
     } = props;
     const data = products || [];
-
+    view = view || 'normal';
     return (
         <div className="vitrine">
             <div>
                 <Grid container alignItems="center" className="productCardContainer">
-                    {data.slice(0,12).map(product => <Grid item className="productCardItem"
+                    {data.slice(0, 12).map(product => <Grid item xs className={["productCardItem", view].join(' ')}
                                                             key={product.id}><ProductCard {...product} />
                     </Grid>)}
                 </Grid>
             </div>
-
         </div>
     )
 }

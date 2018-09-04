@@ -83,7 +83,7 @@ class Products extends React.Component {
                         }
                         <Grid item md lg>
                             <WithHeight maxHeight={headerHeight + 170}>
-                                <Vitrine/>
+                                <Vitrine view="normal"/>
                             </WithHeight>
                         </Grid>
                     </Grid>
