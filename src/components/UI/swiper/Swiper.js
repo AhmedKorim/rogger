@@ -5,7 +5,7 @@ import ProductCard from "../../layout/ProductCard/ProductCard";
 const SwiperEl = props => {
     const params = {
         slidesPerView: 5,
-        spaceBetween: 30,
+        spaceBetween: 0,
         clickable: true
     };
     return (
@@ -13,31 +13,19 @@ const SwiperEl = props => {
             <div>
                 <ProductCard/>
             </div>
-            <div>
+          <div>
                 <ProductCard/>
             </div>
-            <div>
+          <div>
                 <ProductCard/>
             </div>
-            <div>
+          <div>
                 <ProductCard/>
             </div>
-            <div>
+          <div>
                 <ProductCard/>
             </div>
-            <div>
-                <ProductCard/>
-            </div>
-            <div>
-                <ProductCard/>
-            </div>
-            <div>
-                <ProductCard/>
-            </div>
-            <div>
-                <ProductCard/>
-            </div>
-            <div>
+          <div>
                 <ProductCard/>
             </div>
             <div>

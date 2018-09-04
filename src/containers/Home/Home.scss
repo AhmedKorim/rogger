@@ -3,7 +3,61 @@
     display: flex;
     flex-wrap: wrap;
   }
+  .nowShadow {
+    box-shadow: none !important;
+  }
   .homeSwiper {
+    position: relative;
+    .slidNavButton {
+      position: absolute;
+      z-index: 44;
+    }
+    .next {
+      right: 0;
+      top: 50%;
+      transform: translate3d(0, -50%, 0);
+    }
+    .prev {
+      left: 0;
+      top: 50%;
+      transform: translate3d(0, -50%, 0);
+    }
+    .SlideItem {
+      position: relative;
+      z-index: 4;
+      height: 550px;
+     .swiper-lazy{
+       width: 100%;
+       height: 100%;
+       background-size: cover;
+     }
+    }
+
+    .caption {
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      left: 0;
+      display: flex;
+      background-color: transparentize(black, .8);
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      .Captiontext {
+        text-transform: capitalize;
+        color: transparentize(#fff, 1);
+        font-weight: bold;
+        transition: all 2s ease-out;
+      }
+    }
+    .swiper-slide-active {
+      .caption {
+        .Captiontext {
+          color: transparentize(#fff, 0)
+        }
+      }
+    }
 
   }
 }
