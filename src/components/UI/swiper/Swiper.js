@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Swiper from 'react-id-swiper';
 import ProductCard from "../../layout/ProductCard/ProductCard";
 import {withWidth} from "@material-ui/core";
+import './Swiper.scss';
 
 class SwiperEl extends Component {
     render() {
@@ -9,7 +10,7 @@ class SwiperEl extends Component {
             slidesPerView: 6,
             spaceBetween: 10,
             clickable: true,
-            a11y:true,
+            a11y: true,
             breakpoints: {
                 639: {
                     slidesPerView: 1,
@@ -41,29 +42,31 @@ class SwiperEl extends Component {
 
         };
         return (
-            <Swiper {...params}>
-                <div>
-                    <ProductCard/>
-                </div>
-                <div>
-                    <ProductCard/>
-                </div>
-                <div>
-                    <ProductCard/>
-                </div>
-                <div>
-                    <ProductCard/>
-                </div>
-                <div>
-                    <ProductCard/>
-                </div>
-                <div>
-                    <ProductCard/>
-                </div>
-                <div>
-                    <ProductCard/>
-                </div>
-            </Swiper>
+            <div className="slider">
+                <Swiper {...params}>
+                    <div>
+                        <ProductCard/>
+                    </div>
+                    <div>
+                        <ProductCard/>
+                    </div>
+                    <div>
+                        <ProductCard/>
+                    </div>
+                    <div>
+                        <ProductCard/>
+                    </div>
+                    <div>
+                        <ProductCard/>
+                    </div>
+                    <div>
+                        <ProductCard/>
+                    </div>
+                    <div>
+                        <ProductCard/>
+                    </div>
+                </Swiper>
+            </div>
         )
     }
 }

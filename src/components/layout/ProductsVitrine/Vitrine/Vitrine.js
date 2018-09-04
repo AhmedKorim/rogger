@@ -1,6 +1,6 @@
 import React from 'react';
 import './Vitrine.scss';
-import {withStyles} from "@material-ui/core";
+import {withStyles, withWidth} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid/Grid";
 import ProductCard from "../../ProductCard/ProductCard";
 import {connect} from "react-redux";
@@ -14,11 +14,15 @@ const styles = theme => ({
 const Vitrine = props => {
 
     let {
-        classes, products, view
+        classes, products, view, width
 
     } = props;
+    if (width === 'sm' || width === 'xs') {
+        view = 'normal';
+    } else {
+        view = view || 'normal';
+    }
     const data = products || [];
-    view = view || 'normal';
     return (
         <div className="vitrine">
             <div>
@@ -38,4 +42,4 @@ const mapStateToProps = state => {
         products: state.products.products
     }
 }
-export default connect(mapStateToProps)(withStyles(styles)(Vitrine));
+export default connect(mapStateToProps)(withStyles(styles)(withWidth()(Vitrine)));

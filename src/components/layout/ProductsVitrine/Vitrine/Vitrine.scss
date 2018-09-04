@@ -1,6 +1,6 @@
 .vitrine {
 
-  .compactToolbar{
+  .compactToolbar {
     min-height: unset;
     padding: .4rem 0;
   }
@@ -12,19 +12,26 @@
     margin-left: auto;
   }
   .productCardItem {
-    width:25%;
+    width: 25%;
     transition: 1s ease-in-out all;
     margin-bottom: .15rem;
-    &.normal{
+    &.normal {
       min-width: 220px;
     }
-    &.large{
-      min-width: 220px;
+    &.large {
+      width: auto;
+      .productCardWrapper {
+        transition: 1s ease-in-out all;
+        max-width: unset;
+      }
+    }
+    @media (max-width: 500px) {
+      width: auto;
     }
   }
 
   .sort,
-  .layoutController{
+  .layoutController {
     flex: 1 1 0;
   }
   .productCardContainer {

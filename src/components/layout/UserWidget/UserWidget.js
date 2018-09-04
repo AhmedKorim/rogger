@@ -77,15 +77,16 @@ const UserWidget = props => {
                     </Grid>
                 </header>
                 <Divider/>
-                {
-                    (width === 'sm' || width === 'xs') ? <Pannel
+               {widgetBody}
+                  {/*  (width === 'sm' || width === 'xs') ?
+                        <Pannel
                         heading="My Actions"
                     >
                         <div className="pannelRoot">
                             {widgetBody}
                         </div>
-                    </Pannel> : widgetBody
-                }
+                    </Pannel> : widgetBody*/}
+
             </div>
         </div>
     )

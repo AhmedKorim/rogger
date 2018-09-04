@@ -13,6 +13,8 @@ import {withStyles} from "@material-ui/core";
 import './Products.scss';
 import WithHeight from "../../HOC/WithHeight";
 import {withWidth} from "@material-ui/core/es";
+import ToggleButton from "@material-ui/lab/ToggleButton/ToggleButton";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButton/ToggleButtonGroup";
 
 const styles = theme => ({
     header: {
@@ -23,9 +25,15 @@ const styles = theme => ({
 
 class Products extends React.Component {
     state = {
+        view: 'normal',
         pages: 0,
         itemPerPage: 15
     }
+
+    handelView = (view) => {
+        this.setState({view})
+    }
+
 
     render() {
         const {
@@ -34,9 +42,11 @@ class Products extends React.Component {
 
             },
             state: {
+                view,
                 pages,
-                itemPerPage
-            }
+                itemPerPage,
+            },
+            handelView
         } = this;
         return (
             <div className="products">
@@ -65,9 +75,17 @@ class Products extends React.Component {
                                 </Grid>
                                 {!(width === 'xs' || width === 'sm') && <Grid item className="layoutController" container justify="flex-end">
                                     <Grid item>
-                                        <Button aria-label="view" size="small" className="smallButton"><Icon>view_headline</Icon></Button>
-                                        <Button size="small" className="smallButton"><Icon>view_module</Icon></Button>
-                                        <Button size="small" className="smallButton"><Icon>view_comfy</Icon></Button>
+                                        <ToggleButtonGroup value={view} exclusive onChange={handelView}>
+                                            <ToggleButton value="expanded">
+                                                <Icon>view_headline</Icon>
+                                            </ToggleButton>
+                                            <ToggleButton value="large">
+                                                <Icon>view_module</Icon>
+                                            </ToggleButton>
+                                            <ToggleButton value="normal">
+                                                <Icon>view_comfy</Icon>
+                                            </ToggleButton>
+                                        </ToggleButtonGroup>
                                     </Grid>
                                 </Grid>
                                 }
@@ -83,7 +101,7 @@ class Products extends React.Component {
                         }
                         <Grid item md lg>
                             <WithHeight maxHeight={headerHeight + 170}>
-                                <Vitrine view="normal"/>
+                                <Vitrine view={view}/>
                             </WithHeight>
                         </Grid>
                     </Grid>
