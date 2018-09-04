@@ -27,7 +27,7 @@ const Vitrine = props => {
         <div className="vitrine">
             <div>
                 <Grid container alignItems="center" className="productCardContainer">
-                    {data.slice(0, 12).map(product => <Grid item xs className={["productCardItem", view].join(' ')}
+                    {data.map(product => <Grid item xs className={["productCardItem", view].join(' ')}
                                                             key={product.id}><ProductCard {...product} />
                     </Grid>)}
                 </Grid>
@@ -37,9 +37,4 @@ const Vitrine = props => {
 }
 
 
-const mapStateToProps = state => {
-    return {
-        products: state.products.products
-    }
-}
-export default connect(mapStateToProps)(withStyles(styles)(withWidth()(Vitrine)));
+export default withStyles(styles)(withWidth()(Vitrine));

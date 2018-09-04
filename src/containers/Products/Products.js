@@ -15,39 +15,86 @@ import WithHeight from "../../HOC/WithHeight";
 import {withWidth} from "@material-ui/core/es";
 import ToggleButton from "@material-ui/lab/ToggleButton/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButton/ToggleButtonGroup";
+import AKmenu from "../../components/UI/Menu/Menu";
+import {connect} from "react-redux";
+import {creatArray} from "../../tools/tools";
 
 const styles = theme => ({
     header: {
         boxShadow: theme.shadows[2],
-        margin: ".6rem 0"
+        margin: ".6rem 0",
+        position: 'relative',
+        zIndex: 865
     },
 })
 
 class Products extends React.Component {
-    state = {
-        view: 'normal',
-        pages: 0,
-        itemPerPage: 15
+    constructor(props) {
+        super(props);
+        this.state = {
+            view: 'normal',
+            pages: props.products ? Math.floor(props.products / 5) : 0,
+            currentPage: 0,
+            itemPerPage: 5,
+
+        };
     }
+
 
     handelView = (view) => {
         this.setState({view})
+    }
+    itemsPerPageChange = (value) => {
+        const pages = Math.floor(this.props.products.length / +value);
+        this.setState({
+            itemPerPage: +value,
+            pages: Math.floor(this.props.products.length / +value),
+            currentPage: this.state.currentPage > pages ? pages : this.state.currentPage
+        })
+    }
+
+    componentWillReceiveProps(nextProps, nextstate) {
+        if (this.props.products.length !== nextProps.products.length) {
+            const items = nextProps.products.length || 0;
+            this.setState({pages: Math.floor(items / this.state.itemPerPage)})
+        }
+    }
+
+    componentWillMount() {
+        console.log('component will mount');
+    }
+
+    goToPage = (pageIndex) => {
+        this.setState({currentPage: pageIndex})
     }
 
 
     render() {
         const {
             props: {
-                classes, headerHeight, width
-
+                classes, headerHeight, width,
+                products
             },
             state: {
                 view,
                 pages,
+                currentPage,
                 itemPerPage,
             },
-            handelView
+            handelView,
+            goToPage,
+            itemsPerPageChange
         } = this;
+
+        const pageCount = creatArray(pages, true);
+
+        const prevItems = currentPage === 0 ? pageCount.slice(0, currentPage) : pageCount.slice(0, currentPage);
+        const nextItems = pageCount.slice(currentPage + 1, pageCount.length);
+        console.log(pageCount, '/n',
+            prevItems, 'next items', nextItems, 'current page', currentPage
+        )
+        ;
+        const slicedProducts = products.slice((itemPerPage * currentPage), (itemPerPage * currentPage) + itemPerPage);
         return (
             <div className="products">
                 <Breadcrumbs/>
@@ -62,12 +109,18 @@ class Products extends React.Component {
                                 </Grid>
                                 <Grid item className="pageController">
                                     <div style={{textAlign: 'center'}}>
-                                        <Button size="small" className="smallButton">
+                                        <Button size="small" className="smallButton" disabled={currentPage === 0}>
                                             <Icon>navigate_before</Icon>
                                         </Button>
-                                        <Button size="small" className="smallButton">
-                                            <Typography className="itemsPerPage" variant="body1">Items per page</Typography>
-                                        </Button>
+                                        <div style={{display: 'inline-block'}}>
+                                            <AKmenu
+                                                listItems={["5", "15", "25"]}
+                                                count={0}
+                                                value={itemPerPage}
+                                                change={itemsPerPageChange}
+                                                label={`${itemPerPage} items/page`}>
+                                            </AKmenu>
+                                        </div>
                                         <Button size="small" className="smallButton">
                                             <Icon>navigate_next</Icon>
                                         </Button>
@@ -101,24 +154,25 @@ class Products extends React.Component {
                         }
                         <Grid item md lg>
                             <WithHeight maxHeight={headerHeight + 170}>
-                                <Vitrine view={view}/>
+                                <Vitrine view={view} products={slicedProducts}/>
                             </WithHeight>
                         </Grid>
                     </Grid>
                     <footer>
                         <Toolbar className={[classes.header, 'toolbar'].join(' ')}>
                             <Grid container alignItems="center" className="upperNavigation">
-                                {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index) => <div key={i * i + 'l'}>
-                                    {index < 3 ? < Button size="small" className="smallButton">{i}</Button> :
+                                {prevItems.map((i, index) => <div key={i * i + 'l'}>
+                                    {index < 3 ? < Button size="small" className="smallButton" onClick={() => goToPage(i)}>{i}</Button> :
                                         (index === 4 && <Button size="small" className="smallButton">...</Button>)}
                                 </div>)}
                                 <Button variant="raised" color="primary">
-                                    5
+                                    {currentPage}
                                 </Button>
-                                {[1, 2, 3, 4, 5, 6, 7, 8].map((i, index, array) => <div key={i * index / .5 + 'lio'}>
-                                    {array.length >= 3 ? (index >= (array.length - 3) ? < Button size="small" className="smallButton">{i}</Button> :
+                                {nextItems.map((i, index, array) => <div key={i * index / .5 + 'lio'}>
+                                    {array.length >= 3 ? (index >= (array.length - 3) ?
+                                        < Button size="small" className="smallButton" onClick={() => goToPage(i)}>{i}</Button> :
                                         (index === 4 && <Button size="small" className="smallButton">...</Button>))
-                                        : < Button variant="small" className="smallButton">{i}</Button>}
+                                        : < Button variant="small" className="smallButton" onClick={() => goToPage(i)}>{i}</Button>}
                                 </div>)}
                             </Grid>
                         </Toolbar>
@@ -129,4 +183,9 @@ class Products extends React.Component {
     }
 }
 
-export default withStyles(styles)(withWidth()(withPadding((Products))));
+const mapStateToProps = state => {
+    return {
+        products: state.products.products
+    }
+}
+export default connect(mapStateToProps)(withStyles(styles)(withWidth()(withPadding((Products)))));
