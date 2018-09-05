@@ -69,7 +69,7 @@ const FormController = props => {
             <Grid container alignItems="center">
                 <Grid item xs> {formField(payload, changeHandler)}</Grid>
                 {(extendable || added) && <Grid item> <IconButton mini color={added ? 'secondary' : 'primary'}
-                                                                  onClick={() => changeControllers(id, controlleriIndex ? 'remove' : 'add', baseid, controlleriIndex)}><Icon>{extendable ? 'add' : 'remove'}</Icon></IconButton></Grid>}
+                                                                  onClick={() => changeControllers(id, added ? 'remove' : 'add', baseid, controlleriIndex)}><Icon>{extendable ? 'add' : 'remove'}</Icon></IconButton></Grid>}
             </Grid>
         </Fragment>
     )

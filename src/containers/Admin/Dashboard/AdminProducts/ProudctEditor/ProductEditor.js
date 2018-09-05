@@ -36,7 +36,7 @@ class ProductEditor extends React.Component {
                 if (!props.data) return controller;
                 const newController = {...controller};
                 if (controller.extendable) {
-                    const keys = Object.keys(props.data).filter(key => key.indexOf(controller.id) >= 0);
+                    const keys = Object.keys(props.data).filter(key => key.indexOf(controller.id) >= 0).filter((key, index) => index > 0);
                     const skeleton = {...controller};
                     const extendedControlllers = keys.map((key, index) => ({
                         ...skeleton,
@@ -46,11 +46,12 @@ class ProductEditor extends React.Component {
                         baseid: skeleton.id,
                         controlleriIndex: index,
                         id: key,
-                        label: skeleton.label + ' ' + index
+                        label: skeleton.label + ' ' + (index + 1)
                     }))
                     const updatedExtendedController = {...controller, count: keys.length}
                     const value = props.data[newController.id];
-                    newController.value = value ? value : controller.value
+                    updatedExtendedController.value = value ? value : controller.value;
+                    const newState = [...accumelator, updatedExtendedController, ...extendedControlllers];
                     return [...accumelator, updatedExtendedController, ...extendedControlllers];
                 }
                 const value = props.data[newController.id];
@@ -77,6 +78,16 @@ class ProductEditor extends React.Component {
                     }
                 })
             }
+            const newCount = (extendedControl) => {
+                let count = extendedControl.count;
+                const id = extendedController.id + count;
+                if (controllers.find(i => i.id === id)) {
+                    return count + 1
+                }
+                return count
+            }
+
+            const count = newCount(extendedController);
             const newController = {
                 ...extendedController,
                 extendable: false,
@@ -84,9 +95,10 @@ class ProductEditor extends React.Component {
                 value: '',
                 baseid: extendedController.id,
                 controlleriIndex: extendedController.count + 1,
-                id: extendedController.id + extendedController.count,
-                label: extendedController.label + ' ' + (++extendedController.count)
-            }
+                id: extendedController.id + count,
+                label: extendedController.label + ' ' + (count + 1)
+            };
+            extendedController.count++;
             // adding the new controller to its place
             controllers.splice(controllerIndex + 1, 0, newController);
 
@@ -97,7 +109,7 @@ class ProductEditor extends React.Component {
             const extendedController = {...controllers.find(controller => controller.id === baseid)};
             const newControllers = controllers.filter(controller => controller.id !== id).map(controller => {
                 if (controller.id === extendedController.id) {
-                    return {...extendedController, count: extendedController.count -1};
+                    return {...extendedController, count: extendedController.count - 1};
                 }
                 return controller;
             })
