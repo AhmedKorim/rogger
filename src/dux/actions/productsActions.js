@@ -11,8 +11,22 @@ export const getData = () => {
                 const item = product[1];
                 item.id = product[0];
                 return item;
-            })
+            }).map(product => {
+                const _products = {...product};
 
+                const keys = Object.keys(_products).filter(key => key.indexOf('productImg') >= 0)
+                    .filter(key => key !== "productImg");
+
+                const imagesArray = keys.map(key => {
+                    const imgUrl = {[key] : _products[key]};
+                    delete _products[key];
+                    return imgUrl;
+                });
+                return {
+                    ..._products,
+                    imagesArray,
+                }
+            })
             dispatch({type: GET_DATA, data: enhancedData})
         })
     }
