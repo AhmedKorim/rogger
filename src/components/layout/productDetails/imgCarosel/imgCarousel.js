@@ -3,13 +3,13 @@ import {Carousel} from "react-responsive-carousel";
 import "./imgCarousel.scss";
 
 const PoductImgaes = props => {
+    const {images}=props;
     return (
         <div className="pi">
             <Carousel showArrows={false} showIndicators={false} emulateTouch>
-                <div><img src="//via.placeholder.com/1200x600" alt=""/></div>
-                <div><img src="//via.placeholder.com/1200x600" alt=""/></div>
-                <div><img src="//via.placeholder.com/1200x600" alt=""/></div>
-                <div><img src="//via.placeholder.com/1200x600" alt=""/></div>
+                {images.map(image=> <div key={Object.keys(image)[0]}>
+                    <img src={Object.values(image)[0]} alt=""/>
+                </div>)}
             </Carousel>
         </div>)
 }
