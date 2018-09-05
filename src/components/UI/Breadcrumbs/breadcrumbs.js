@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import {withStyles} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper/Paper";
 import "./Breadcrumbs.scss"
@@ -39,7 +39,7 @@ class Breadcrumbs extends React.Component {
         const {
             props: {
                 classes,
-                location: {pathname},
+             /*   location: {pathname},*/
 
             },
             pathes,

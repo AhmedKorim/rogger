@@ -7,7 +7,7 @@ import Icon from "@material-ui/core/Icon/Icon";
 import './Sidedrawer.scss';
 
 const SideDrawe = props => {
-    const {open, handelDrawerClose, children, classes} = props;
+    const {open, handelDrawerClose, children} = props;
     return (
         <div className="mainSideDrawer">
             <Hidden mdup>

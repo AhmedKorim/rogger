@@ -5,7 +5,6 @@ import ShoppingCart from "../Cart/Cart";
 import UserWidget from "../UserWidget/UserWidget";
 
 const StoreSetting = props => {
-
     return (
         <Fragment>
             <Grid item >

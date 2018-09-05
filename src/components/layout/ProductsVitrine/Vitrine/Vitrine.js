@@ -13,7 +13,7 @@ const styles = theme => ({
 const Vitrine = props => {
 
     let {
-        classes, products, view, width
+         products, view, width
 
     } = props;
     if (width === 'sm' || width === 'xs') {

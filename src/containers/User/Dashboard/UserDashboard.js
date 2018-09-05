@@ -9,7 +9,6 @@ class UserDashboard extends React.Component {
 
         const {
             props: {
-                classes,
                 headerHeight
             },
         } = this;

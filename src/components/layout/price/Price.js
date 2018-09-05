@@ -1,7 +1,7 @@
 import React from 'react'
 import {withStyles} from "@material-ui/core";
 import "./Price.scss";
-import {green, red, Gray} from "@material-ui/core/colors";
+import { green, red} from "@material-ui/core/colors";
 import Typography from "@material-ui/core/Typography/Typography";
 
 const styles = theme => ({
@@ -19,7 +19,7 @@ const Price = props => {
     const {
         productPrice,
         preDiscount,
-        classes,
+      /*  classes,*/
         priceRatio
     } = props;
     return (

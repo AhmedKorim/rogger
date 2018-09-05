@@ -21,8 +21,8 @@ const UserWidget = props => {
             name,
             avatar,
             anonymous,
-            admin,
-            email
+          /*  admin,
+            email*/
         }
     } = props;
     const HIText = anonymous ? 'login now' : 'welcome MR' + name;

@@ -8,7 +8,6 @@ import Vitrine from "../../components/layout/ProductsVitrine/Vitrine/Vitrine";
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import Button from "@material-ui/core/Button/Button";
 import Icon from "@material-ui/core/es/Icon/Icon";
-import Typography from "@material-ui/core/Typography/Typography";
 import {withStyles} from "@material-ui/core";
 import './Products.scss';
 import WithHeight from "../../HOC/WithHeight";

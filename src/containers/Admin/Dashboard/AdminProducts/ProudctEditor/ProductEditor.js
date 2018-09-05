@@ -11,7 +11,7 @@ import {ADD_ITEM, UPDATE_ITEM} from "../../../../../dux/actions/actionTypes";
 
 const inputSchema = [
     {value: '', label: 'Product Name', id: 'productName'},
-    {value: '', label: 'Product img', id: 'productImg'},
+    {value: '', label: 'Product img', id: 'productImg', extendable: true},
 
     {value: '', label: 'Product price', id: 'productPrice'},
     {value: '', label: 'Product price before discount', id: 'preDiscount'},
@@ -45,6 +45,23 @@ class ProductEditor extends React.Component {
 
     classes = ['input']
 
+    changeControllers = (id, action) => {
+        if (action === 'add') {
+            let newControllers = [...this.state.controllers];
+            let newControllerIndex = 1;
+            const addedController = {
+                ...newControllers.find((controller, index) => {
+                    newControllerIndex = index;
+                    return controller.id === id;
+                }),
+                extendable: false,
+                added: true,
+                value: ''
+            };
+            newControllers = newControllers.splice(newControllerIndex + 1, 0, addedController);
+            this.setState({controllers: [...newControllers]})
+        }
+    }
 
     changeHandler = ({target: {value}}, id) => {
         console.log(value);
@@ -74,6 +91,7 @@ class ProductEditor extends React.Component {
                     this.props.addItem({id: resp.data.name, ...dataToSend})
                 }
             )
+            console.log();
             return;
         }
         const id = this.props.data.id;
@@ -95,6 +113,7 @@ class ProductEditor extends React.Component {
             changeHandler,
             classes,
             sendData,
+            changeControllers,
             productData: {
                 productName, productImg, productPrice, preDiscount, productCategory
             }
@@ -108,6 +127,7 @@ class ProductEditor extends React.Component {
                         <form onSubmit={sendData}>
                             {controllers.map(controller => <div className={controller.multiline ? 'fullWidth' : 'normal'}><FormController
                                     changeHandler={changeHandler}
+                                    changeControllers={changeControllers}
                                     payload={{...controller, classes}}
                                 /></div>
                             )}

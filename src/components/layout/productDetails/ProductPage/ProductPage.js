@@ -12,7 +12,6 @@ import EnhancedTabs from "../../../UI/EnhancedTabs/EnhancedTabs";
 import ProductDetails from "../ProductDetails";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import PerfectScrollbar from 'react-perfect-scrollbar'
 
 
 const styles = theme => ({

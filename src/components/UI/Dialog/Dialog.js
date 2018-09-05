@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import Slide from "@material-ui/core/Slide/Slide";
 import {connect} from "react-redux";
 import ProductDetails from "../../layout/productDetails/ProductDetails";

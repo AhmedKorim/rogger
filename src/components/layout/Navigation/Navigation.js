@@ -9,7 +9,6 @@ const styles = {
         flexGrow: 1,
     },
 };
-let xx = null;
 const routering = ["home", "products", "dashboard"]
 
 class Navigation extends React.Component {

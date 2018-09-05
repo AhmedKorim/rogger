@@ -5,6 +5,9 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import FormGroup from "@material-ui/core/FormGroup/FormGroup";
+import Grid from "@material-ui/core/Grid/Grid";
+import Icon from "@material-ui/core/Icon/Icon";
+import IconButton from "@material-ui/core/IconButton/IconButton";
 
 const FormController = props => {
 
@@ -34,7 +37,7 @@ const FormController = props => {
                     <FormGroup>
                         <FormControlLabel
                             control={
-                                <Checkbox checked={value} onChange={(event) => changeHandler(event, id ,type)} value={value}/>
+                                <Checkbox checked={value} onChange={(event) => changeHandler(event, id, type)} value={value}/>
                             }
                             label={label}
                         />
@@ -60,10 +63,14 @@ const FormController = props => {
                 />)
         }
     }
-    const {payload, changeHandler} = props
+    const {payload, payload: {id,extendable,added}, changeHandler, changeControllers, } = props
     return (
         <Fragment>
-            {formField(payload, changeHandler)}
+            <Grid container alignItems="center">
+                <Grid item xs> {formField(payload, changeHandler)}</Grid>
+                {(extendable || added) && <Grid item> <IconButton mini
+                                                       onClick={() => changeControllers(id, added ? 'remove' : 'add')}><Icon>{extendable ? 'add' : 'remove'}</Icon></IconButton></Grid>}
+            </Grid>
         </Fragment>
     )
 }

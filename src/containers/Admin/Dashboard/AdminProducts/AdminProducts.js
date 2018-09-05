@@ -28,7 +28,8 @@ class AdminProducts extends React.Component {
                 products,
                 maxHeight
             },
-            productCategory, showItemDetails, editItem, addItem
+   /*         productCategory,*/
+            showItemDetails, editItem, addItem
         } = this;
 
 

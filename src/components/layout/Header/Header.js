@@ -24,7 +24,6 @@ import IconButton from "@material-ui/core/IconButton/IconButton";
 import SideDrawe from "../../UI/Sidedrawer/SideDrawer";
 import ListItem from "@material-ui/core/ListItem/ListItem";
 import List from "@material-ui/core/es/List/List";
-import {Link} from 'react-router-dom'
 
 const styles = theme => {
 
@@ -122,7 +121,7 @@ class Header extends React.Component {
 
     loadRichHeader = () => {
         const hasHome = this.props.location.pathname.indexOf('home') > 0;
-        const hasProducts = this.props.location.pathname.indexOf('products') > 0;
+        // const hasProducts = this.props.location.pathname.indexOf('products') > 0;
         const mobile = this.props.width === 'xs' || this.props.width === 'sm';
         return ((hasHome && !mobile))
     }
@@ -167,7 +166,7 @@ class Header extends React.Component {
             props: {
                 classes,
                 width,
-                userInfo,
+              /*  userInfo,*/
                 compared,
                 liked,
                 cartCount,

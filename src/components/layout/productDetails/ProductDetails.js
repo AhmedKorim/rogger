@@ -10,8 +10,8 @@ import Grid from "@material-ui/core/Grid/Grid";
 import ProductHeader from "./ProdcutHeader/ProdcutHeader";
 import Category from "./category/category";
 import CartActions from "../Cart/CartActions/CartActions";
-import {withStyles} from "@material-ui/core";
 
+/*
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -23,10 +23,11 @@ const styles = theme => ({
         marginTop: '1rem'
     }
 })
+*/
 
 const ProductDetails = props => {
 
-    const {product, classes} = props;
+    const {product} = props;
     const priceRatio = product.preDiscount ? (100 - ((product.productPrice / product.preDiscount) * 100)).toFixed(2) : 0;
 
     return (
@@ -70,4 +71,4 @@ const ProductDetails = props => {
 
     )
 }
-export default withStyles(styles)(ProductDetails)
+export default ProductDetails

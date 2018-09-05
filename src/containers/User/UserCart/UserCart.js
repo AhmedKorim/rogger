@@ -22,12 +22,12 @@ class UserCart extends React.Component {
     render() {
         const {
             props: {
-                removeFromCart,
+                // removeFromCart,
                 cart,
                 products
             },
-            addOne,
-            removeOne
+       /*     addOne,
+            removeOne*/
         } = this;
 
         const productsOnCart = cart.map(item => products.find(product => product.id === item.id));
