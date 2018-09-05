@@ -34,7 +34,7 @@ class App extends Component {
                 <Header/>
                 <Route path={this.props.location.pathname.substring(0, this.props.location.pathname.length - 4) + 'auth'} component={AuthDialogOpener}/>
                 <main style={{height: '100vh'}}>
-                    <PerfectScrollbar onScrollY={(container) => this.scrollManger(container)}>
+                    <PerfectScrollbar onScrollY={this.props.location.pathname === '/home' ? (container) => this.scrollManger(container) : void 0} >
                         <Switch>
                             <Route path="/products/:productId" component={ProductPage}/>
                             <Route path="/products" component={Products}/>
