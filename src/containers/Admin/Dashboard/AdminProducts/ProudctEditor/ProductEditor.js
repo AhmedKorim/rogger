@@ -11,7 +11,7 @@ import {ADD_ITEM, UPDATE_ITEM} from "../../../../../dux/actions/actionTypes";
 
 const inputSchema = [
     {value: '', label: 'Product Name', id: 'productName'},
-    {value: '', label: 'Product img', id: 'productImg', extendable: true},
+    {value: '', label: 'Product img', id: 'productImg', extendable: true, count: 0},
 
     {value: '', label: 'Product price', id: 'productPrice'},
     {value: '', label: 'Product price before discount', id: 'preDiscount'},
@@ -47,19 +47,31 @@ class ProductEditor extends React.Component {
 
     changeControllers = (id, action) => {
         if (action === 'add') {
-            let newControllers = [...this.state.controllers];
-            let newControllerIndex = 1;
-            const addedController = {
-                ...newControllers.find((controller, index) => {
-                    newControllerIndex = index;
-                    return controller.id === id;
-                }),
+            const controllers = [...this.state.controllers];
+            let controllerIndex = 0;
+            const extendedController = {
+                ...controllers.find((controller, index) => {
+                    if (controller.id === id) {
+                        controllerIndex = index;
+                        return controller;
+                    }
+
+                })
+            }
+            const newController = {
+                ...extendedController,
                 extendable: false,
                 added: true,
-                value: ''
-            };
-            newControllers = newControllers.splice(newControllerIndex + 1, 0, addedController);
-            this.setState({controllers: [...newControllers]})
+                index: extendedController.count,
+                id: extendedController.id + extendedController.count,
+                label: extendedController.label + ' ' + (++extendedController.count)
+            }
+            // adding the new controller to its place
+            controllers.splice(controllerIndex + 1, 0, newController);
+
+            // updating the extendable contoller count
+            const newControllers = controllers.map(controller => controller.id === id ? extendedController : controller);
+            this.setState({controllers: newControllers});
         }
     }
 
