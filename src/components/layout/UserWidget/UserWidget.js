@@ -11,7 +11,6 @@ import Button from "@material-ui/core/Button/Button";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
-import {withWidth} from "@material-ui/core";
 
 const UserWidget = props => {
     const {
@@ -24,31 +23,30 @@ const UserWidget = props => {
             anonymous,
             admin,
             email
-        },
-        width
+        }
     } = props;
     const HIText = anonymous ? 'login now' : 'welcome MR' + name;
-
-    console.log(width);
     return (
-        <div className="userAWidget">
-            <div>
-                <header>
-                    <Grid container justify="center" alignItems="center" className="noWrapper">
-                        <Grid item xs={3}>
-                            <Avatar>{avatar}</Avatar>
+        <div className="userWidget">
+            <Grid container justify="center">
+                <Grid item xs>
+                    <header>
+                        <Grid container justify="center" alignItems="center" className="noWrapper">
+                            <Grid item xs={3}>
+                                <Avatar>{avatar}</Avatar>
+                            </Grid>
+                            <Grid item container alignItems="center" justify="center" xs={7} className="userMetaData">
+                                <Grid item xs={12}><Typography className="typo1">{name}</Typography></Grid>
+                                <Grid item xs><Tooltip title={HIText}><Typography className="typo2">{HIText}</Typography></Tooltip></Grid>
+                            </Grid>
+                            <Grid item xs>
+                                <Button className="smallButton" size="small"><Icon>settings</Icon></Button>
+                            </Grid>
                         </Grid>
-                        <Grid item container alignItems="center" justify="center" xs={7} className="userMetaData">
-                            <Grid item xs={12}><Typography className="typo1">{name}</Typography></Grid>
-                            <Grid item xs><Tooltip label={HIText}><Typography className="typo2">{HIText}</Typography></Tooltip></Grid>
-                        </Grid>
-                        <Grid item xs>
-                            <Button className="smallButton" size="small"><Icon>settings</Icon></Button>
-                        </Grid>
-                    </Grid>
-                </header>
-                <Divider/>
-                <div>
+                    </header>
+                    <Divider/>
+                </Grid>
+                <Grid item xs>
                     <div>
                         <List component="ul" className="userListItem">
                             <ListItem component="li" button className="userListItem" onClick={() => push('/my_dashboard')}>
@@ -77,8 +75,8 @@ const UserWidget = props => {
                         </ListItem>
                         </List>
                     </div>
-                </div>
-            </div>
+                </Grid>
+            </Grid>
         </div>
     )
 }
@@ -87,4 +85,4 @@ const mapStateToProps = state => {
         userIfo: state.user.info
     }
 }
-export default connect(mapStateToProps)(withRouter(withWidth()(UserWidget)));
+export default connect(mapStateToProps)(withRouter(UserWidget));

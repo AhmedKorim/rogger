@@ -86,7 +86,7 @@ class AKmenu extends React.Component {
                             }
                         </Button>
                     </Tooltip>
-                    <Popper open={open} anchorEl={this.anchorEl} transition disablePortal className="ppp">
+                    <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
                         {({TransitionProps, placement}) => (
                             <Grow
                                 {...TransitionProps}
