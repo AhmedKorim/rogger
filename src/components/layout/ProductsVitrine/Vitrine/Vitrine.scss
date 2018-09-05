@@ -14,7 +14,7 @@
   .productCardItem {
     width: 25%;
     transition: 1s ease-in-out all;
-    margin-bottom: .15rem;
+    margin-bottom: .175rem;
     &.normal {
       min-width: 220px;
     }
@@ -24,6 +24,7 @@
         transition: 1s ease-in-out all;
         max-width: unset;
       }
+      max-width: 33%;
     }
     @media (max-width: 500px) {
       width: auto;
@@ -36,7 +37,8 @@
   }
   .productCardContainer {
     padding: .4rem .2rem;
-    justify-content: stretch;
+    justify-content: flex-start;
+    align-items: center;
   }
   .upperNavigation {
     justify-content: center;

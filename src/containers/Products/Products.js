@@ -33,7 +33,7 @@ class Products extends React.Component {
         super(props);
         this.state = {
             view: 'normal',
-            pages: props.products ? Math.floor(props.products / 5) : 0,
+            pages: props.products ? Math.ceil(props.products / 5) : 0,
             currentPage: 0,
             itemPerPage: 5,
 
@@ -45,18 +45,18 @@ class Products extends React.Component {
         this.setState({view})
     }
     itemsPerPageChange = (value) => {
-        const pages = Math.floor(this.props.products.length / +value);
+        const pages = Math.ceil(this.props.products.length / +value);
         this.setState({
             itemPerPage: +value,
-            pages: Math.floor(this.props.products.length / +value),
-            currentPage: this.state.currentPage > pages ? pages : this.state.currentPage
+            pages: Math.ceil(this.props.products.length / +value),
+            currentPage: this.state.currentPage > pages ? pages - 1 : this.state.currentPage
         })
     }
 
     componentWillReceiveProps(nextProps, nextstate) {
         if (this.props.products.length !== nextProps.products.length) {
             const items = nextProps.products.length || 0;
-            this.setState({pages: Math.floor(items / this.state.itemPerPage)})
+            this.setState({pages: Math.ceil(items / this.state.itemPerPage)})
         }
     }
 
@@ -66,6 +66,11 @@ class Products extends React.Component {
 
     goToPage = (pageIndex) => {
         this.setState({currentPage: pageIndex})
+    }
+    pageNavigate = (action) => {
+        if (!action) return;
+        const accumulator = action === 'next' ? 1 : -1;
+        this.setState(prevState => ({currentPage: prevState.currentPage + accumulator}))
     }
 
 
@@ -83,13 +88,15 @@ class Products extends React.Component {
             },
             handelView,
             goToPage,
+            pageNavigate,
             itemsPerPageChange
         } = this;
 
         const pageCount = creatArray(pages, true);
 
-        const prevItems = currentPage === 0 ? pageCount.slice(0, currentPage) : pageCount.slice(0, currentPage);
-        const nextItems = pageCount.slice(currentPage + 1, pageCount.length);
+        const prevItems = currentPage === 0 ? pageCount.slice(0, currentPage ) : pageCount.slice(0, currentPage);
+
+        const nextItems = currentPage === pageCount.length ? pageCount.slice(currentPage + 1, pageCount.length) : pageCount.slice(currentPage + 1, pageCount.length);
         console.log(pageCount, '/n',
             prevItems, 'next items', nextItems, 'current page', currentPage
         )
@@ -109,7 +116,7 @@ class Products extends React.Component {
                                 </Grid>
                                 <Grid item className="pageController">
                                     <div style={{textAlign: 'center'}}>
-                                        <Button size="small" className="smallButton" disabled={currentPage === 0}>
+                                        <Button size="small" className="smallButton" onClick={() => pageNavigate('prev')} disabled={currentPage === 0}>
                                             <Icon>navigate_before</Icon>
                                         </Button>
                                         <div style={{display: 'inline-block'}}>
@@ -121,7 +128,7 @@ class Products extends React.Component {
                                                 label={`${itemPerPage} items/page`}>
                                             </AKmenu>
                                         </div>
-                                        <Button size="small" className="smallButton">
+                                        <Button size="small" className="smallButton" onClick={() => pageNavigate('next')} disabled={currentPage >= pages -1}>
                                             <Icon>navigate_next</Icon>
                                         </Button>
                                     </div>

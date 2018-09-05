@@ -134,7 +134,7 @@ class Header extends React.Component {
         if (this.props.location.pathname !== '/home') {
             return {transform: `translate3d(0, ${0}%, 0)`}
         }
-        if (scrollY > 200) {
+        if (scrollY > 100) {
             // startScroll the rich header
             const transfromPC = scrollY / 450 * 100;
             if (transfromPC >= 100 && !this.state.marge) {
@@ -212,7 +212,7 @@ class Header extends React.Component {
                                         </SideDrawe>
                                     </Fragment>
                                     : <Fragment>
-                                        <Grid className="rightGrid" item xs container justify="flex-start" alignItems="center">
+                                        <Grid className="rightGrid" item={mobile} xs container justify="flex-start" alignItems="center">
                                             <StoreSetting/>
                                         </Grid>
                                         {marge ? <Grid item xs className="list-grid">

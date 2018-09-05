@@ -43,7 +43,7 @@ class AKmenu extends React.Component {
 
     handelChange = (event, val) => {
         if (this.props.change) {
-            if (this.props.value !== val) this.props.change(val)
+            if (this.props.value === val) this.props.change(val)
 
         }
         this.handleClose(event)

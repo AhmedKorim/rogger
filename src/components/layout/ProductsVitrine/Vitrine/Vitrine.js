@@ -3,7 +3,6 @@ import './Vitrine.scss';
 import {withStyles, withWidth} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid/Grid";
 import ProductCard from "../../ProductCard/ProductCard";
-import {connect} from "react-redux";
 
 const styles = theme => ({
     header: {
@@ -26,10 +25,12 @@ const Vitrine = props => {
     return (
         <div className="vitrine">
             <div>
-                <Grid container alignItems="center" className="productCardContainer">
-                    {data.map(product => <Grid item xs className={["productCardItem", view].join(' ')}
-                                                            key={product.id}><ProductCard {...product} />
-                    </Grid>)}
+                <Grid container justify="center">
+                    <Grid container item className="productCardContainer">
+                        {data.map(product => <Grid item xs className={["productCardItem", view].join(' ')}
+                                                   key={product.id}><ProductCard {...product} />
+                        </Grid>)}
+                    </Grid>
                 </Grid>
             </div>
         </div>
