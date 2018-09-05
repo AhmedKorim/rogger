@@ -63,13 +63,13 @@ const FormController = props => {
                 />)
         }
     }
-    const {payload, payload: {id, extendable, added}, changeHandler, changeControllers,} = props
+    const {payload, payload: {id, extendable, added, baseid, controlleriIndex}, changeHandler, changeControllers,} = props
     return (
         <Fragment>
             <Grid container alignItems="center">
                 <Grid item xs> {formField(payload, changeHandler)}</Grid>
                 {(extendable || added) && <Grid item> <IconButton mini color={added ? 'secondary' : 'primary'}
-                                                                  onClick={() => changeControllers(id, added ? 'remove' : 'add')}><Icon>{extendable ? 'add' : 'remove'}</Icon></IconButton></Grid>}
+                                                                  onClick={() => changeControllers(id, controlleriIndex ? 'remove' : 'add', baseid, controlleriIndex)}><Icon>{extendable ? 'add' : 'remove'}</Icon></IconButton></Grid>}
             </Grid>
         </Fragment>
     )

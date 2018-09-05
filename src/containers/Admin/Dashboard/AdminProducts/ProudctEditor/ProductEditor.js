@@ -45,9 +45,11 @@ class ProductEditor extends React.Component {
 
     classes = ['input']
 
-    changeControllers = (id, action) => {
+
+    // cahnge controllers on real time
+    changeControllers = (id, action, baseid) => {
+        const controllers = [...this.state.controllers];
         if (action === 'add') {
-            const controllers = [...this.state.controllers];
             let controllerIndex = 0;
             const extendedController = {
                 ...controllers.find((controller, index) => {
@@ -55,14 +57,15 @@ class ProductEditor extends React.Component {
                         controllerIndex = index;
                         return controller;
                     }
-
                 })
             }
             const newController = {
                 ...extendedController,
                 extendable: false,
                 added: true,
-                index: extendedController.count,
+                value: '',
+                baseid: extendedController.id,
+                controlleriIndex: extendedController.count + 1,
                 id: extendedController.id + extendedController.count,
                 label: extendedController.label + ' ' + (++extendedController.count)
             }
@@ -72,6 +75,16 @@ class ProductEditor extends React.Component {
             // updating the extendable contoller count
             const newControllers = controllers.map(controller => controller.id === id ? extendedController : controller);
             this.setState({controllers: newControllers});
+        } else if (action === 'remove') {
+            const extendedController = {...controllers.find(controller => controller.id === baseid)};
+            extendedController.count--;
+            const newControllers = controllers.filter(controller => controller.id !== id).map(controller => {
+                if (controller.id === extendedController.id) {
+                    return {...extendedController, count: extendedController.count + 1};
+                }
+                return controller;
+            })
+            this.setState({controllers: newControllers})
         }
     }
 
