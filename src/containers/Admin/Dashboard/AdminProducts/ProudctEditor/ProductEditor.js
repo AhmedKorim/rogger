@@ -32,13 +32,31 @@ class ProductEditor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            controllers: [...inputSchema].map(controller => {
+            controllers: [...inputSchema].reduce((accumelator, controller) => {
                 if (!props.data) return controller;
                 const newController = {...controller};
+                if (controller.extendable) {
+                    const keys = Object.keys(props.data).filter(key => key.indexOf(controller.id) >= 0);
+                    const skeleton = {...controller};
+                    const extendedControlllers = keys.map((key, index) => ({
+                        ...skeleton,
+                        extendable: false,
+                        added: true,
+                        value: props.data[key],
+                        baseid: skeleton.id,
+                        controlleriIndex: index,
+                        id: key,
+                        label: skeleton.label + ' ' + index
+                    }))
+                    const updatedExtendedController = {...controller, count: keys.length}
+                    const value = props.data[newController.id];
+                    newController.value = value ? value : controller.value
+                    return [...accumelator, updatedExtendedController, ...extendedControlllers];
+                }
                 const value = props.data[newController.id];
                 newController.value = value ? value : controller.value
-                return newController;
-            }),
+                return [...accumelator, newController];
+            }, []),
             editmood: !!props.data.id
         }
     }
@@ -77,10 +95,9 @@ class ProductEditor extends React.Component {
             this.setState({controllers: newControllers});
         } else if (action === 'remove') {
             const extendedController = {...controllers.find(controller => controller.id === baseid)};
-            extendedController.count--;
             const newControllers = controllers.filter(controller => controller.id !== id).map(controller => {
                 if (controller.id === extendedController.id) {
-                    return {...extendedController, count: extendedController.count + 1};
+                    return {...extendedController, count: extendedController.count -1};
                 }
                 return controller;
             })
@@ -116,13 +133,13 @@ class ProductEditor extends React.Component {
                     this.props.addItem({id: resp.data.name, ...dataToSend})
                 }
             )
-            console.log();
             return;
         }
         const id = this.props.data.id;
         const data = {...this.props.data};
         delete  data.id;
         const mergedData = {...data, ...dataToSend}
+        console.log(mergedData);
         axios.put(`/products/${id}.json`, mergedData).then(resp => {
             this.props.updateIem(id, {...mergedData, id: id})
         })
