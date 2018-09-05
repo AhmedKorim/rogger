@@ -109,7 +109,7 @@ class Header extends React.Component {
             return;
         }
         const scrollY = this.props.scrollY;
-        const transfromPC = scrollY / 450 * 100 < 101 ? scrollY / 450 * 100 : 101;
+        const transfromPC = scrollY / 300 * 100 < 101 ? scrollY / 300 * 100 : 101;
         if (this.richHeader) {
             richHeaderHeight = scrollY ? getStyle(this.richHeader, "height") / transfromPC : getStyle(this.richHeader, "height");
         }
@@ -136,7 +136,7 @@ class Header extends React.Component {
         }
         if (scrollY > 100) {
             // startScroll the rich header
-            const transfromPC = scrollY / 450 * 100;
+            const transfromPC = scrollY / 300 * 100;
             if (transfromPC >= 100 && !this.state.marge) {
                 this.setState({marge: true})
             } else if (this.state.marge && transfromPC < 100) {
@@ -199,14 +199,15 @@ class Header extends React.Component {
                                                 <UserWidget/>
                                                 <List component="nav">
                                                     {/*<ListItem button component={() => <Link to="products">products</Link>}/>*/}
-                                                    <ListItem button  selected={activeItem('/home')}
-                                                              onClick={() => navigate('/home')}><Typography variant="subheading" component="span" className="slideLink">home</Typography></ListItem>
-
-                                                    <ListItem button  selected={activeItem('/products')}
-                                                              onClick={() => navigate('/products')}><Typography variant="subheading" component="span" className="slideLink">products</Typography></ListItem>
-
-                                                    <ListItem button  selected={activeItem('/dashboard')}
-                                                              onClick={() => navigate('/dashboard')}><Typography variant="subheading" component="span" className="slideLink">dashboard</Typography></ListItem>
+                                                    <ListItem button selected={activeItem('/home')}
+                                                              onClick={() => navigate('/home')}><Typography variant="subheading" component="span"
+                                                                                                            className="slideLink">home</Typography></ListItem>
+                                                    <ListItem button selected={activeItem('/products')}
+                                                              onClick={() => navigate('/products')}><Typography variant="subheading" component="span"
+                                                                                                                className="slideLink">products</Typography></ListItem>
+                                                    <ListItem button selected={activeItem('/dashboard')}
+                                                              onClick={() => navigate('/dashboard')}><Typography variant="subheading" component="span"
+                                                                                                                 className="slideLink">dashboard</Typography></ListItem>
                                                 </List>
                                             </Fragment>
                                         </SideDrawe>
@@ -255,7 +256,9 @@ class Header extends React.Component {
                             </Grid>
                         </Container>
                     </Toolbar>
-                    {loadRichHeader() && <div className="richHeaderWrapper" style={manageScroll()} ref={node => this.richHeader = node}>
+                    {loadRichHeader() && <div className="richHeaderWrapper" style={{
+                        ...manageScroll(), willChange: "transform",
+                    }} ref={node => this.richHeader = node}>
                         <Toolbar variant="regular" className={[classes.richToolbar].join(' ')}>
                             <div className="container">
                                 <Grid container className={classes.flex}>

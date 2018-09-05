@@ -22,7 +22,9 @@ class App extends Component {
     }
 
     scrollManger = (container) => {
-        this.props.updateScroll(container.scrollTop)
+        const scroll = container.scrollTop;
+        if (scroll > 1000) return;
+        this.props.updateScroll(scroll)
     }
 
 
