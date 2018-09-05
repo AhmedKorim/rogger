@@ -60,6 +60,7 @@ class Products extends React.Component {
 
 
     handelView = (view) => {
+        if (!view ) return;
         this.setState({view})
     }
 

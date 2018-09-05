@@ -101,7 +101,6 @@ class Home extends React.Component {
                                     </div>
                                 </div>
                             </div>
-
                             <div className="SlideItem">
                                 <div data-background="//via.placeholder.com/1201x600" className="swiper-lazy">
                                     <div className="swiper-lazy-preloader"></div>
@@ -110,7 +109,7 @@ class Home extends React.Component {
                                     <div className="captionTextWrapper">
                                         <div>
                                             <Lettering className="Captiontext" variant="display1" letterClass='hello'
-                                                        component="h3" text='luxuries goodies'/>
+                                                       component="h3" text='luxuries goodies'/>
                                         </div>
                                         <div><Typography variant="subheading" component="h4" className="animatedText">
                                             JEWELERY
@@ -122,7 +121,8 @@ class Home extends React.Component {
                                             now</Typography></Button>
                                     </div>
                                 </div>
-                            </div><div className="SlideItem">
+                            </div>
+                            <div className="SlideItem">
                                 <div data-background="//via.placeholder.com/1241x600" className="swiper-lazy">
                                     <div className="swiper-lazy-preloader"></div>
                                 </div>
@@ -130,7 +130,7 @@ class Home extends React.Component {
                                     <div className="captionTextWrapper">
                                         <div>
                                             <Lettering className="Captiontext" variant="display1" letterClass='hello'
-                                                        component="h3" text='luxuries goodies'/>
+                                                       component="h3" text='luxuries goodies'/>
                                         </div>
                                         <div><Typography variant="subheading" component="h4" className="animatedText">
                                             JEWELERY
@@ -142,7 +142,8 @@ class Home extends React.Component {
                                             now</Typography></Button>
                                     </div>
                                 </div>
-                            </div><div className="SlideItem">
+                            </div>
+                            <div className="SlideItem">
                                 <div data-background="//via.placeholder.com/1210x600" className="swiper-lazy">
                                     <div className="swiper-lazy-preloader"></div>
                                 </div>
@@ -150,7 +151,7 @@ class Home extends React.Component {
                                     <div className="captionTextWrapper">
                                         <div>
                                             <Lettering className="Captiontext" variant="display1" letterClass='hello'
-                                                        component="h3" text='luxuries goodies'/>
+                                                       component="h3" text='luxuries goodies'/>
                                         </div>
                                         <div><Typography variant="subheading" component="h4" className="animatedText">
                                             JEWELERY
@@ -162,7 +163,8 @@ class Home extends React.Component {
                                             now</Typography></Button>
                                     </div>
                                 </div>
-                            </div><div className="SlideItem">
+                            </div>
+                            <div className="SlideItem">
                                 <div data-background="//via.placeholder.com/1231x600" className="swiper-lazy">
                                     <div className="swiper-lazy-preloader"></div>
                                 </div>
@@ -170,7 +172,7 @@ class Home extends React.Component {
                                     <div className="captionTextWrapper">
                                         <div>
                                             <Lettering className="Captiontext" variant="display1" letterClass='hello'
-                                                        component="h3" text='luxuries goodies'/>
+                                                       component="h3" text='luxuries goodies'/>
                                         </div>
                                         <div><Typography variant="subheading" component="h4" className="animatedText">
                                             JEWELERY
@@ -182,7 +184,8 @@ class Home extends React.Component {
                                             now</Typography></Button>
                                     </div>
                                 </div>
-                            </div><div className="SlideItem">
+                            </div>
+                            <div className="SlideItem">
                                 <div data-background="//via.placeholder.com/1222x600" className="swiper-lazy">
                                     <div className="swiper-lazy-preloader"></div>
                                 </div>
@@ -190,7 +193,7 @@ class Home extends React.Component {
                                     <div className="captionTextWrapper">
                                         <div>
                                             <Lettering className="Captiontext" variant="display1" letterClass='hello'
-                                                        component="h3" text='luxuries goodies'/>
+                                                       component="h3" text='luxuries goodies'/>
                                         </div>
                                         <div><Typography variant="subheading" component="h4" className="animatedText">
                                             JEWELERY
@@ -205,7 +208,7 @@ class Home extends React.Component {
                             </div>
                         </Swiper>
                     </div>
-                    {/*   <div className="cardsCont">
+                    <div className="cardsCont">
                         <ImgCard/>
                         <ImgCard/>
                         <ImgCard/>
@@ -213,7 +216,7 @@ class Home extends React.Component {
                         <ImgCard/>
                         <ImgCard/>
                         <ImgCard/>
-                    </div>*/}
+                    </div>
                     <EnhancedTabs
                         disableRouting
                         toolbarClasses={['nowShadow']}
