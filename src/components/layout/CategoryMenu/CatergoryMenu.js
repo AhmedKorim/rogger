@@ -4,44 +4,13 @@ import HoverMenu from "../../UI/HoverMenu/HoverMenu";
 import {withStyles} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid/Grid";
 
-const categories = [
-    {
-        closes: [
-            {men: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-            {women: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-            {kids: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-        ]
-    }, {
-        electronics: [
-            {houseGadgets: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-            {phones: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-            {laptops: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-        ]
-    }, {
-        music: [
-            {gaz: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-            {electronic: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-            {metal: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-        ]
-    }, {
-        furniture: [
-            {classic: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-            {metal: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-            {modern: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-        ]
-    }, {
-        jewellery: [
-            {gold: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-            {gem: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-            {modern: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
-        ]
-    }
-]
+import {categories} from "../ProductsVitrine/VitrineControler/VitrineControler";
+
 const styles = theme => ({
     Toolbar: {
         backgroundColor: theme.palette.background.default,
         minHeight: 'unset',
-        height:50
+        height: 50
     },
     listContaienr: {
         width: '100%',
@@ -55,7 +24,7 @@ const CategoriseMenu = props => {
     const {classes} = props;
     return (
         <div>
-            <Toolbar className={[classes.Toolbar , 'onStateBar'].join(' ')}>
+            <Toolbar className={[classes.Toolbar, 'onStateBar'].join(' ')}>
                 <div className="container">
                     <Grid container justify="center" alignItems="center">
                         {categories.map(item => {

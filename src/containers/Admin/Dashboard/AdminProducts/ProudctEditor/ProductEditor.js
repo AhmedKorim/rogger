@@ -9,6 +9,11 @@ import axios from "../../../../../axios/axios";
 import {connect} from "react-redux";
 import {ADD_ITEM, UPDATE_ITEM} from "../../../../../dux/actions/actionTypes";
 
+import {categories} from "../../../../../components/layout/ProductsVitrine/VitrineControler/VitrineControler";
+
+
+const mainCategories = categories.map(item => Object.keys(item)[0]);
+
 const inputSchema = [
     {value: '', label: 'Product Name', id: 'productName'},
     {value: '', label: 'Product img', id: 'productImg', extendable: true, count: 0},
@@ -22,7 +27,7 @@ const inputSchema = [
         type: "select",
         label: 'Product Category',
         id: 'productCategory',
-        options: ['closes', 'electronics', 'music', 'furniture', 'jewellery']
+        options: mainCategories
     },
     {value: '', label: 'Product description', id: 'productDescription', multiline: true},
 ]
@@ -140,7 +145,6 @@ class ProductEditor extends React.Component {
         event.preventDefault();
         const dataToSend = {...this.productData};
         if (!this.state.editmood) {
-            dataToSend.liked = false;
             axios.post('/products.json', dataToSend).then(resp => {
                     this.props.addItem({id: resp.data.name, ...dataToSend})
                 }

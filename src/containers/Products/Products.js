@@ -16,8 +16,10 @@ import ToggleButton from "@material-ui/lab/ToggleButton/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButton/ToggleButtonGroup";
 import AKmenu from "../../components/UI/Menu/Menu";
 import {connect} from "react-redux";
-
 import ProductsFooter from "./Footer";
+
+
+
 
 const styles = theme => ({
     header: {
@@ -157,7 +159,7 @@ class Products extends React.Component {
                     </header>
                     <Grid container>
                         {!(width === 'xs' || width === 'sm') && <Grid item md={3} lg={2}>
-                            <WithHeight maxHeight={350}>
+                            <WithHeight maxHeight={400}>
                                 <VitrineControler/>
                             </WithHeight>
                         </Grid>

@@ -8,9 +8,9 @@ import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import NestedList from "../../../UI/nestedList/NestList";
 
-export const categories = [
+export const  categories = [
     {
-        closes: [
+        clothes: [
             {men: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
             {women: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
             {kids: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
@@ -39,8 +39,15 @@ export const categories = [
             {gem: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
             {modern: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
         ]
+    }, {
+        health: [
+            {"medical tools": ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {drugs: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+            {cosmetic: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
+        ]
     }
 ]
+
 
 const styles = theme => ({
     root: {
