@@ -36,30 +36,39 @@ const inputSchema = [
 class ProductEditor extends React.Component {
     constructor(props) {
         super(props);
+        let __data;
+        if (props.data.imagesArray) {
+            const data = {...props.data};
+            const slides = data.imagesArray.reduce((accu, imgUrl) => ({...accu, ...imgUrl}), {});
+            delete data.imagesArray;
+            __data = {...data, ...slides};
+        }else{
+            __data =props.data;
+        }
+
         this.state = {
             controllers: [...inputSchema].reduce((accumelator, controller) => {
                 if (!props.data) return controller;
                 const newController = {...controller};
                 if (controller.extendable) {
-                    const keys = Object.keys(props.data).filter(key => key.indexOf(controller.id) >= 0).filter((key, index) => index > 0);
+                    const keys = Object.keys(__data).filter(key => key.indexOf(controller.id) >= 0).filter((key, index) => index > 0);
                     const skeleton = {...controller};
                     const extendedControlllers = keys.map((key, index) => ({
                         ...skeleton,
                         extendable: false,
                         added: true,
-                        value: props.data[key],
+                        value: __data[key],
                         baseid: skeleton.id,
                         controlleriIndex: index,
                         id: key,
                         label: skeleton.label + ' ' + (index + 1)
                     }))
                     const updatedExtendedController = {...controller, count: keys.length}
-                    const value = props.data[newController.id];
+                    const value = __data[newController.id];
                     updatedExtendedController.value = value ? value : controller.value;
-                    const newState = [...accumelator, updatedExtendedController, ...extendedControlllers];
                     return [...accumelator, updatedExtendedController, ...extendedControlllers];
                 }
-                const value = props.data[newController.id];
+                const value = __data[newController.id];
                 newController.value = value ? value : controller.value
                 return [...accumelator, newController];
             }, []),
