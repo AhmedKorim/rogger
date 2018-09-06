@@ -27,7 +27,7 @@ class Home extends React.Component {
     render() {
         const parms = {
             slidesPerView: 1,
-            spaceBetween: 30,
+            spaceBetween: 0,
             clickable: true,
             lazy: true,
             preloadImages: false,

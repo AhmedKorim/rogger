@@ -1,31 +1,63 @@
-.pi {
-  max-height: 100%;
-  ul[class^="thumb"] {
-    display: flex;
-    padding: 0 !important;
-    justify-content: center;
+
+.productImagesSwiper {
+  overflow: hidden;
+  max-width: 100%;
+  height: 300px;
+  position: relative;
+  .slidNavButton {
+    position: absolute;
+    z-index: 44;
+    background-color: #fff;
   }
-  .carousel {
-    .thumbs-wrapper.axis-vertical {
-      margin: 0;
+  .next {
+    right: 0;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+  .prev {
+    left: 0;
+    top: 50%;
+    transform: translate3d(50%, -50%, 0);
+  }
+  .swiper-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-color: transparent;
+    padding: 0;
+  }
+  .SlideItem {
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .imgWrapper {
+    height: 0;
+    width: 75%;
+    padding-top: 50%;
+    position: relative;
+  }
+  .swiper-pagination-bullets {
+    .swiper-pagination-bullet{
+      transition: all ease-out .5s;
+      transform: scale(1);
+      will-change: transform;
+      &.swiper-pagination-bullet-active {
+        transform: scale(1.5,1.6);
+      }
     }
+
   }
 
-  li {
-    cursor: pointer;
-    &.thumb {
-      transition: all ease-in-out .5s;
-      &:hover {
-        border: none;
-        opacity: 1;
-      }
-      border: none;
-      opacity: .5;
-      width: 85px;
-      &.selected {
-        border: none;
-        opacity: 1;
-      }
-    }
+  .swiper-lazy {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
 }

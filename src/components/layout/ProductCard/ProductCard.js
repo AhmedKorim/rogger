@@ -71,6 +71,7 @@ class ProductCard extends React.Component {
                 preDiscount,
                 productCategory,
                 productDescription,
+                imagesArray,
                 liked,
                 id
             },
@@ -132,6 +133,7 @@ class ProductCard extends React.Component {
                                 preDiscount,
                                 productCategory,
                                 productDescription,
+                                imagesArray,
                                 liked,
                                 id
                             }
