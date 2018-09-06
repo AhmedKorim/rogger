@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import {withStyles} from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core';
 import Icon from "@material-ui/core/Icon/Icon";
 import './Menu.scss';
 import {withWidth} from "@material-ui/core";
