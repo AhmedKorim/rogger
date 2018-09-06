@@ -23,7 +23,7 @@ import Notification from "../Notification/Notification";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import SideDrawe from "../../UI/Sidedrawer/SideDrawer";
 import ListItem from "@material-ui/core/ListItem/ListItem";
-import List from "@material-ui/core/es/List/List";
+import List from "@material-ui/core/List/List";
 
 const styles = theme => {
 

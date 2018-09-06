@@ -7,16 +7,17 @@ import VitrineControler from "../../components/layout/ProductsVitrine/VitrineCon
 import Vitrine from "../../components/layout/ProductsVitrine/Vitrine/Vitrine";
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import Button from "@material-ui/core/Button/Button";
-import Icon from "@material-ui/core/es/Icon/Icon";
+
 import {withStyles} from "@material-ui/core";
 import './Products.scss';
 import WithHeight from "../../HOC/WithHeight";
-import {withWidth} from "@material-ui/core/es";
+import {withWidth} from "@material-ui/core";
 import ToggleButton from "@material-ui/lab/ToggleButton/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButton/ToggleButtonGroup";
 import AKmenu from "../../components/UI/Menu/Menu";
 import {connect} from "react-redux";
 import ProductsFooter from "./Footer";
+import Icon from "@material-ui/core/Icon/Icon";
 
 
 

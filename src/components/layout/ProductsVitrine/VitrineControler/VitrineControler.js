@@ -1,12 +1,12 @@
 import React from 'react'
 import './VitrineControler.scss';
 import {withStyles} from "@material-ui/core";
-import Typography from "@material-ui/core/es/Typography/Typography";
 import Slider from '@material-ui/lab/Slider';
 import Pannel from "../../../UI/Pannel/Pannel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import NestedList from "../../../UI/nestedList/NestList";
+import Typography from "@material-ui/core/Typography/Typography";
 
 export const  categories = [
     {

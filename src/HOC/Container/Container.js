@@ -1,6 +1,7 @@
 import React from 'react'
-import connect from "react-redux/es/connect/connect";
+
 import './Container.scss';
+import {connect} from "react-redux";
 
 const Container = props => {
     const {children, open, className} = props;

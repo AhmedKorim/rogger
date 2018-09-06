@@ -1,10 +1,10 @@
 import React from 'react'
 import {withStyles} from "@material-ui/core";
-import Typography from "@material-ui/core/es/Typography/Typography";
-import ExpansionPanelSummary from "@material-ui/core/es/ExpansionPanelSummary/ExpansionPanelSummary";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel/ExpansionPanel";
-import ExpansionPanelDetails from "@material-ui/core/es/ExpansionPanelDetails/ExpansionPanelDetails";
 import Icon from "@material-ui/core/Icon/Icon";
+import Typography from "@material-ui/core/Typography/Typography";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails/ExpansionPanelDetails";
 
 const styles = theme => ({
     root: {

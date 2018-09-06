@@ -2,11 +2,11 @@ import React from 'react'
 import {withStyles} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper/Paper";
 import "./Breadcrumbs.scss"
-import Icon from "@material-ui/core/es/Icon/Icon";
-import Button from "@material-ui/core/es/Button/Button";
+import Icon from "@material-ui/core/Icon/Icon";
 import Typography from "@material-ui/core/Typography/Typography";
 import {withRouter} from "react-router-dom";
 import Container from "../../../HOC/Container/Container";
+import Button from "@material-ui/core/Button/Button";
 
 const styles = theme => ({
     paper: {

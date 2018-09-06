@@ -7,11 +7,11 @@ import TableBody from "@material-ui/core/TableBody/TableBody";
 import Paper from "@material-ui/core/Paper/Paper";
 import Table from "@material-ui/core/Table/Table";
 import Grid from "@material-ui/core/Grid/Grid";
-import TableSortLabel from "@material-ui/core/es/TableSortLabel/TableSortLabel";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 import './Table.scss'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import TablePagination from "@material-ui/core/TablePagination/TablePagination";
+import TableSortLabel from "@material-ui/core/TableSortLabel/TableSortLabel";
 
 
 const styles = theme => ({
