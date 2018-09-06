@@ -34,7 +34,7 @@ const ProductDetails = props => {
         <div className="productDetailsc">
             <Grid container alignItems="stretch">
                 <Grid item className="GridItemD" xs={12} md={5} lg={6}>
-                    <PoductImgaes product={product} />
+                    <PoductImgaes product={product}/>
                 </Grid>
                 <Grid item className="GridItemD productDetails" xs={12} md={7} lg={6}>
                     <div className="ProductDescription">

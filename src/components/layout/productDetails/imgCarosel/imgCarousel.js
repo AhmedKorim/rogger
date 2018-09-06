@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Carousel} from "react-responsive-carousel";
 import "./imgCarousel.scss";
 import Swiper from 'react-id-swiper';
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
@@ -43,11 +42,11 @@ class PoductImgaes extends Component {
                 product: {
                     imagesArray,
                     productImg
-                },
+                }
             },
             mainSwiperNav
         } = this;
-        console.log(imagesArray);
+        console.log(this.props);
         return (
             <div className="productImagesSwiper">
                 <Tooltip title="previous slide">
