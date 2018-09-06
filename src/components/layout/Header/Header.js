@@ -166,7 +166,7 @@ class Header extends React.Component {
             props: {
                 classes,
                 width,
-              /*  userInfo,*/
+                /*  userInfo,*/
                 compared,
                 liked,
                 cartCount,
@@ -230,6 +230,7 @@ class Header extends React.Component {
                                         <AKmenu
                                             icon="notifications"
                                             count={notificationCount}
+                                            placement="bottom-end"
                                             tip="notifications">
                                             <Notification/>
                                         </AKmenu>

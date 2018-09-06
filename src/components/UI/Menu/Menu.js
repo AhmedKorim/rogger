@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -13,11 +13,10 @@ import {withWidth} from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 import Badge from "@material-ui/core/Badge/Badge";
 import Typography from "@material-ui/core/Typography/Typography";
+import {getCoords, getStyle} from "../../../tools/tools";
 
 const styles = theme => ({
-    root: {
-        display: 'flex',
-    },
+    root: {},
     paper: {
         marginRight: theme.spacing.unit * 2,
     },
@@ -29,36 +28,94 @@ const styles = theme => ({
         fontSize: 20,
     }, leftIcon: {
         marginRight: theme.spacing.unit,
+    },
+
+    popper: {
+        zIndex: 1,
+        '&[x-placement*="bottom"] $arrow': {
+            top: 0,
+            marginTop: '-0.9em',
+            width: '3em',
+            height: '1em',
+            '&::before': {
+                borderWidth: '0 1em 1em 1em',
+                borderColor: `transparent transparent ${theme.palette.common.white} transparent`,
+            },
+        },
+
+    },
+    arrow: {
+        position: 'absolute',
+        fontSize: 7,
+        left: 0,
+        width: '3em',
+        height: '3em',
+        '&::before': {
+            content: '""',
+            margin: 'auto',
+            display: 'block',
+            width: 0,
+            height: 0,
+            borderStyle: 'solid',
+        },
     }
+
+
 });
 
 class AKmenu extends React.Component {
     state = {
         open: false,
+        arrow: null
     };
 
+    componentWillUnmount() {
+        console.log('clear');
+    }
+
+
+    getArrowStyle = () => {
+        const button = this.anchorEl;
+        const arrow = this.state.arrow;
+        if (!(arrow && button)) return;
+        const transformX = getCoords(button).left -
+            getCoords(arrow).left +
+            (getStyle(button, 'width') / 2 - getStyle(arrow, 'width') / 2);
+            console.log(transformX);
+    }
+
+    componentDidMount() {
+    }
+
     handleToggle = () => {
+        this.getArrowStyle()
         this.setState(state => ({open: !state.open}));
+
     };
+    handleArrowRef = (node) => {
+        if (this.state.arrow) return;
+        window.arrowRef = node;
+        this.setState({arrow: node})
+    }
+
 
     handelChange = (event, val) => {
         console.log(val);
         if (this.props.change) {
             if (this.props.value !== val) this.props.change(val)
-
         }
         this.handleClose(event)
     }
+
     handleClose = event => {
         if (this.anchorEl.contains(event.target)) {
             return;
         }
-
         this.setState({open: false});
     };
 
     render() {
-        const {classes, count, icon, bLabel, tip, listItems, width, children, label, value} = this.props;
+        const {classes, count, icon, placement, bLabel, tip, listItems, width, children, label, value} = this.props;
         const {open} = this.state;
         return (
             <div className={[classes.root, 'akMenu'].join(" ")}>
@@ -68,6 +125,7 @@ class AKmenu extends React.Component {
                             className={["TWhite", "badgeButton", classes.button].join(' ')}
                             size="small"
                             buttonRef={node => {
+                                window.buttonRef = node;
                                 this.anchorEl = node;
                             }}
                             aria-owns={open ? 'menu-list-grow' : null}
@@ -87,7 +145,25 @@ class AKmenu extends React.Component {
                             }
                         </Button>
                     </Tooltip>
-                    <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
+                    <Popper
+                        className={classes.popper}
+                        placement={placement ? placement : 'bottom'}
+                        open={open}
+                        anchorEl={this.anchorEl}
+                        modifiers={{
+                            flip: {
+                                enabled: true,
+                            },
+                            preventOverflow: {
+                                enabled: true,
+                                boundariesElement: 'scrollParent',
+                            },
+                            arrow: {
+                                enabled: true,
+                                arrow: this.state.arrow
+                            },
+                        }}
+                        transition disablePortal>
                         {({TransitionProps, placement}) => (
                             <Grow
                                 {...TransitionProps}
@@ -95,6 +171,7 @@ class AKmenu extends React.Component {
                                 style={{transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom'}}
                             >
                                 <Paper>
+                                    <span ref={this.handleArrowRef} className={[classes.arrow, 'AkArrow'].join(' ')}/>
                                     <ClickAwayListener onClickAway={this.handleClose}>
                                         {listItems ? <MenuList>
                                             {listItems.map(item => <MenuItem
