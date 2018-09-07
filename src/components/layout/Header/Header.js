@@ -231,12 +231,14 @@ class Header extends React.Component {
                                             icon="notifications"
                                             count={notificationCount}
                                             placement="bottom-end"
+                                            flootleft
                                             tip="notifications">
                                             <Notification/>
                                         </AKmenu>
                                     </Grid>
                                     <Grid item>
                                         <AKmenu
+                                            flootleft
                                             icon="shopping_cart"
                                             count={cartCount}
                                             tip="shopping cart">
@@ -246,6 +248,7 @@ class Header extends React.Component {
                                     {mobile ? null :
                                         <Grid item>
                                             <AKmenu
+                                                flootleft
                                                 icon="account_circle"
                                                 count={0}
                                                 tip="account">

@@ -1,3 +1,4 @@
+import RootRef from "@material-ui/core/RootRef/RootRef";
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -13,6 +14,7 @@ import {withWidth} from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 import Badge from "@material-ui/core/Badge/Badge";
 import Typography from "@material-ui/core/Typography/Typography";
+import {getCoords, getStyle} from "../../../tools/tools";
 
 const styles = theme => ({
     root: {
@@ -20,6 +22,12 @@ const styles = theme => ({
     },
     paper: {
         marginRight: theme.spacing.unit * 2,
+        zIndex: 50,
+
+    },
+    popper: {
+        left: 'auto',
+        right: 15
     },
     button: {
         margin: theme.spacing.unit,
@@ -32,6 +40,7 @@ const styles = theme => ({
     }
 });
 
+
 class AKmenu extends React.Component {
     state = {
         open: false,
@@ -39,8 +48,25 @@ class AKmenu extends React.Component {
 
     handleToggle = () => {
         this.setState(state => ({open: !state.open}));
-    };
 
+    };
+    applayArrowStyle = (data) => {
+        console.log('failed');
+        if (!this.arrowREf) return;
+        console.log('done');
+        this.arrowREf.style.transform = `translate3d(0,0,0)`;
+        this.arrowREf.style.opacity = `0`;
+
+        this.arrowTimeout = setTimeout(() => {
+            const target = this.anchorEl;
+            const follower = this.arrowREf;
+            if (!(target && follower)) return;
+            const offset = getCoords(target).left - getCoords(follower).left + getStyle(target, 'width') / 2 - getStyle(follower, 'width') / 2;
+            this.arrowREf.style.transform = `translate3d(${offset}px,0,0)`;
+            this.arrowREf.style.opacity = `1`;
+        }, 135)
+
+    }
     handelChange = (event, val) => {
         console.log(val);
         if (this.props.change) {
@@ -53,13 +79,14 @@ class AKmenu extends React.Component {
         if (this.anchorEl.contains(event.target)) {
             return;
         }
-
+        clearTimeout(this.arrowTimeout)
         this.setState({open: false});
     };
 
     render() {
-        const {classes, count, icon, bLabel, tip, listItems, width, children, label, value} = this.props;
-        const {open} = this.state;
+        const {classes, count, icon, bLabel, tip, listItems, width, children, label, value, flootleft} = this.props;
+        const {open,} = this.state;
+        const applayArrowStyle = this.applayArrowStyle;
         return (
             <div className={[classes.root, 'akMenu'].join(" ")}>
                 <div>
@@ -87,15 +114,38 @@ class AKmenu extends React.Component {
                             }
                         </Button>
                     </Tooltip>
-                    <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
+                    <Popper
+                        className={flootleft ? classes.popper : null}
+                        open={open}
+                        onRendered
+                        placement="bottom"
+                        disablePortal
+                        anchorEl={this.anchorEl}
+                        modifiers={flootleft ? {
+                            flip: {
+                                enabled: true,
+                            },
+                            offset: {
+                                enabled: true,
+                                offset: '0 15px'
+                            },
+                            arrow: {
+                                order: 900,
+                                enabled: true,
+                                fn: applayArrowStyle
+                            },
+                        } : null}
+                        transition>
                         {({TransitionProps, placement}) => (
                             <Grow
+                                timeout={260}
                                 {...TransitionProps}
                                 id="menu-list-grow"
                                 style={{transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom'}}
                             >
-                                <Paper>
+                                <Paper onClick={(e) => e.stopPropagation()}>
                                     <ClickAwayListener onClickAway={this.handleClose}>
+                                        {flootleft && <span ref={(node) => this.arrowREf = node} className="menuArrow"/>}
                                         {listItems ? <MenuList>
                                             {listItems.map(item => <MenuItem
                                                 key={item + ' ' + bLabel || tip}
@@ -103,7 +153,7 @@ class AKmenu extends React.Component {
                                                 selected={value == item}
                                             >{item}
                                             </MenuItem>)}
-                                        </MenuList> : children}
+                                        </MenuList> :children}
                                     </ClickAwayListener>
                                 </Paper>
                             </Grow>

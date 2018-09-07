@@ -1,9 +1,17 @@
-.akMenu{
-  .TWhite{
+.akMenu {
+  .TWhite {
     text-wrap: avoid;
   }
-  .badgeButton{
+  .badgeButton {
     position: relative;
   }
-
+  .menuArrow {
+    background-color: #fff;
+    display: block;
+    width: 1.2rem;
+    height: .6rem;
+    top: -.6rem;
+   clip-path: polygon( 50% 0, 100% 100% , 0 100%);
+    position: absolute;
+  }
 }
