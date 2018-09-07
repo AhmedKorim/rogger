@@ -48,7 +48,7 @@ class AKmenu extends React.Component {
 
         }
         this.handleClose(event)
-    }
+    };
     handleClose = event => {
         if (this.anchorEl.contains(event.target)) {
             return;

@@ -26,10 +26,10 @@ export const getData = () => {
                     ..._products,
                     imagesArray,
                 }
-            })
+            });
             dispatch({type: GET_DATA, data: enhancedData})
         })
     }
-}
+};
 
 

@@ -10,8 +10,8 @@ const Container = props => {
             {children}
         </div>
     )
-}
+};
 const mapStateToProps = state => ({
     open: state.UI.aside.open
-})
+});
 export default connect(mapStateToProps)(Container);

@@ -18,7 +18,7 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.paper,
     },
 
-})
+});
 const CategoriseMenu = props => {
 
     const {classes} = props;
@@ -42,5 +42,5 @@ const CategoriseMenu = props => {
             </Toolbar>
         </div>
     )
-}
+};
 export default withStyles(styles)(CategoriseMenu);

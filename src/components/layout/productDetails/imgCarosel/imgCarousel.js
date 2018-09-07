@@ -22,7 +22,7 @@ const parms = {
     autoplay: {
         delay: 5000
     }
-}
+};
 
 class PoductImgaes extends Component {
 
@@ -34,7 +34,7 @@ class PoductImgaes extends Component {
             return;
         }
         this.mainSwiper.slideNext();
-    }
+    };
 
     render() {
         const {

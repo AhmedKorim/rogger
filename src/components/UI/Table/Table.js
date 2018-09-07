@@ -30,13 +30,13 @@ const styles = theme => ({
         padding: 0
     }
 
-})
+});
 
 class AkTable extends React.Component {
     state = {
         page: 0,
         rowsPerPage: 5,
-    }
+    };
     handleChangePage = (event, page) => {
         this.setState({page});
     };

@@ -79,10 +79,10 @@ const UserWidget = props => {
             </Grid>
         </div>
     )
-}
+};
 const mapStateToProps = state => {
     return {
         userIfo: state.user.info
     }
-}
+};
 export default connect(mapStateToProps)(withRouter(UserWidget));

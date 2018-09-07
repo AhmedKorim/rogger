@@ -1,3 +1,4 @@
+import Icon from "@material-ui/core/Icon/Icon";
 import React from 'react';
 import withPadding from "../../HOC/WithPadding/WithPadding";
 import Breadcrumbs from "../../components/UI/Breadcrumbs/breadcrumbs";
@@ -17,7 +18,6 @@ import ToggleButtonGroup from "@material-ui/lab/ToggleButton/ToggleButtonGroup";
 import AKmenu from "../../components/UI/Menu/Menu";
 import {connect} from "react-redux";
 import ProductsFooter from "./Footer";
-import Icon from "@material-ui/core/Icon/Icon";
 
 
 
@@ -29,7 +29,8 @@ const styles = theme => ({
         position: 'relative',
         zIndex: 865
     },
-})
+});
+
 
 class Products extends React.Component {
     constructor(props) {
@@ -64,7 +65,7 @@ class Products extends React.Component {
     handelView = (view) => {
         if (!view ) return;
         this.setState({view})
-    }
+    };
 
     itemsPerPageChange = (value) => {
         console.log(value);
@@ -75,18 +76,18 @@ class Products extends React.Component {
             pages: pages,
             currentPage: this.state.currentPage > pages ? pages - 1 : this.state.currentPage
         })
-    }
+    };
 
 
     goToPage = (pageIndex) => {
         this.setState({currentPage: pageIndex})
-    }
+    };
 
     pageNavigate = (action) => {
         if (!action) return;
         const accumulator = action === 'next' ? 1 : -1;
         this.setState(prevState => ({currentPage: prevState.currentPage + accumulator}))
-    }
+    };
 
 
     render() {
@@ -112,6 +113,7 @@ class Products extends React.Component {
             <div className="products">
                 <Breadcrumbs/>
                 <Container>
+
                     <header className={classes.header}>
                         <Toolbar className="toolbar">
                             <Grid container alignItems="center" className="upperNavigation" justify="center">
@@ -177,10 +179,11 @@ class Products extends React.Component {
         )
     }
 }
+//</editor-fold>
 
 const mapStateToProps = state => {
     return {
         products: state.products.products
     }
-}
+};
 export default connect(mapStateToProps)(withStyles(styles)(withWidth()(withPadding((Products)))));

@@ -43,7 +43,7 @@ const Notification = props => {
             </EnhancedTabs>
         </div>
     )
-}
+};
 const mapStateToProps = state => {
     return {
         compared: state.user.compared,
@@ -51,12 +51,12 @@ const mapStateToProps = state => {
         orders: state.user.orders,
         products: state.products.products
     }
-}
+};
 const mapDispatchToProps = dispatch => {
     return {
         toggleLike: (id) => dispatch({type: LIKE, payload: {item: {id}}}),
         toggleCompared: (id) => dispatch({type: MANAGE_COMPARED, payload: {item: {id}}}),
 
     }
-}
+};
 export default connect(mapStateToProps,mapDispatchToProps)(Notification);

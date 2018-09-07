@@ -13,5 +13,5 @@ const ProductHeader = props => {
             </div>
         </div>
     )
-}
+};
 export default ProductHeader

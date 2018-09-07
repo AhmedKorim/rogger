@@ -14,7 +14,7 @@ const initialState = {
         open: false
     },
 
-}
+};
 export default (state = initialState, action) => {
     switch (action.type) {
         case HEADER_DIM:
@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 scrollY: action.payload.scrollY
-            }
+            };
         default :
             return state;
     }

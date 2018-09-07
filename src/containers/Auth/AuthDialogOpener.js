@@ -8,10 +8,10 @@ const AuthDialogOpener = props => {
     return (
         <div style={{display: 'none'}}>adfa</div>
     )
-}
+};
 const mapDispatchToProps = dispatch => {
     return {
         authOPen: () => dispatch({type: PRODUCT_CARD_DETAILS, payload: {open: true, data: {}, component: 'AuthComponent', prevRoute: true}})
     }
-}
+};
 export default connect(null, mapDispatchToProps)(AuthDialogOpener)

@@ -7,7 +7,7 @@ const withPadding = (WrappedComponent) => {
         return {
             headerHeight: state.UI.headerHeight
         }
-    }
+    };
     return connect(mapStateToProps)(class extends React.Component {
         render() {
             return <div style={{
@@ -19,7 +19,7 @@ const withPadding = (WrappedComponent) => {
             </div>
         }
     })
-}
+};
 
 
 export default withPadding;

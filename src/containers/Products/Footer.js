@@ -30,5 +30,5 @@ const Footer = props => {
             </Toolbar>
         </nav>
     )
-}
+};
 export default Footer

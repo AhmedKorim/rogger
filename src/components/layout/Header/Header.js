@@ -75,14 +75,14 @@ const styles = theme => {
             overflow: 'hidden'
         }
     });
-}
+};
 
 class Header extends React.Component {
 
     state = {
         marge: false,
         open: false
-    }
+    };
 
     componentDidMount() {
         this.calcHeight();
@@ -94,7 +94,7 @@ class Header extends React.Component {
     navigate = (path) => {
         if (this.props.location.pathname.indexOf(path) >= 0) return;
         this.props.history.push(path)
-    }
+    };
 
     calcHeight = () => {
         if (!this.headerRef) return;
@@ -113,7 +113,7 @@ class Header extends React.Component {
             richHeaderHeight = scrollY ? getStyle(this.richHeader, "height") / transfromPC : getStyle(this.richHeader, "height");
         }
         this.props.setHeight(heaerheight + richHeaderHeight)
-    }
+    };
 
     componentDidUpdate() {
         this.calcHeight();
@@ -124,7 +124,7 @@ class Header extends React.Component {
         // const hasProducts = this.props.location.pathname.indexOf('products') > 0;
         const mobile = this.props.width === 'xs' || this.props.width === 'sm';
         return ((hasHome && !mobile))
-    }
+    };
 
     manageScroll = () => {
         const mobile = this.props.width === 'xs' || this.props.width === 'sm';
@@ -141,7 +141,7 @@ class Header extends React.Component {
             } else if (this.state.marge && transfromPC < 100) {
                 this.setState({marge: false})
             }
-            if (transfromPC > 101) return {transform: `translate3d(0, ${-101}%, 0)`}
+            if (transfromPC > 101) return {transform: `translate3d(0, ${-101}%, 0)`};
             return {transform: `translate3d(0, ${-transfromPC}%, 0)`}
         } else {
             if (this.state.marge) {
@@ -150,10 +150,10 @@ class Header extends React.Component {
             }
         }
         return {transform: `translate3d(0, ${0}%, 0)`}
-    }
+    };
     handelDrawerClose = () => {
         this.setState(prevState => ({open: !prevState.open}))
-    }
+    };
 
 
     // if width is lower than md show hamburger menu
@@ -300,7 +300,7 @@ const mapDispatchToProps = dispatch => {
     return {
         setHeight: (dim) => dispatch({type: HEADER_DIM, dim})
     }
-}
+};
 const mapStateToProps = state => {
     return {
         scrollY: state.UI.scrollY,
@@ -310,5 +310,5 @@ const mapStateToProps = state => {
         orders: state.user.orders,
         cartCount: state.user.cart.length
     }
-}
+};
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withWidth()(withStyles(styles)(Header))));

@@ -21,7 +21,7 @@ class Home extends React.Component {
             return;
         }
         this.mainSwiper.slideNext();
-    }
+    };
 
 
     render() {
@@ -42,7 +42,7 @@ class Home extends React.Component {
             autoplay: {
                 delay: 5000
             }
-        }
+        };
         const {
             mainSwiperNav
         } = this;

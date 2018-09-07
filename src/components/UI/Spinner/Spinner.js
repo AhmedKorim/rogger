@@ -8,5 +8,5 @@ export const Spinner = props => {
             <div className="spinner"></div>
         </div>
     )
-}
+};
     

@@ -10,17 +10,17 @@ import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 class AdminProducts extends React.Component {
 
     editItem = (id) => {
-        const itemData = this.props.products.find(product => product.id === id)
+        const itemData = this.props.products.find(product => product.id === id);
         console.log(itemData);
         this.props.editItem(itemData)
-    }
+    };
     addItem = () => {
         this.props.editItem({})
-    }
+    };
 
     showItemDetails = (id) => {
 
-    }
+    };
 
     render() {
         const {
@@ -41,7 +41,7 @@ class AdminProducts extends React.Component {
                 productCategory,
                 id,
             }
-        })
+        });
         console.log(maxHeight);
         return (
 
@@ -87,11 +87,11 @@ const mapStateToProps = state => {
     return {
         products: state.products.products
     }
-}
+};
 
 const mapDispatchToProps = dispatch => {
     return {
         editItem: (itemData) => dispatch({type: PRODUCT_CARD_DETAILS, payload: {open: true, data: itemData, component: 'ProductEditor'}})
     }
-}
+};
 export default connect(mapStateToProps, mapDispatchToProps)(AdminProducts)

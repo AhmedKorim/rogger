@@ -12,12 +12,12 @@ class UserCart extends React.Component {
 
     addOne = (id) => {
         this.props.addToCart(id, 'addOne')
-    }
+    };
 
     removeOne = (id) => {
         this.props.addToCart(id, 'removeOne')
 
-    }
+    };
 
     render() {
         const {
@@ -38,8 +38,8 @@ class UserCart extends React.Component {
                 const count = cartItem.count;
                 return {productName, count, productPrice: productPrice * count, saved: preDiscount ? (preDiscount - productPrice) * count : 0, id}
             }
-        })
-        const itemCount = cart.reduce((acc, item) => acc + item.count, 0)
+        });
+        const itemCount = cart.reduce((acc, item) => acc + item.count, 0);
         console.log(dataTable);
         return (
             <div className="userCart">
@@ -75,12 +75,12 @@ const mapstateToProps = state => {
         info: state.user.info,
         products: state.products.products
     }
-}
+};
 const mapDispatchToProps = dispatch => {
     return {
         removeFromCart: (id) => dispatch({type: REMOVE_FROM_CART, payload: {item: {id}}}),
         addToCart: (id, action) => dispatch({type: ADD_TO_CART, payload: {item: {id}}, action: action}),
     }
-}
+};
 
 export default connect(mapstateToProps, mapDispatchToProps)(UserCart);

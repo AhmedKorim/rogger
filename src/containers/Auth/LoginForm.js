@@ -16,20 +16,20 @@ class LoginForm extends React.Component {
             {value: '', label: 'Password', id: "user password", type: 'password'},
             {value: false, label: 'keep login', id: 'keepLogin', type: 'checkBox'}
         ]
-    }
+    };
     changeHandler = ({target: {checked, value}}, id, type) => {
         this.setState({
             controllers: this.state.controllers.map(controller => {
                 return controller.id === id ? (controller.value = type === 'checkBox' ? checked : value, controller) : controller
             })
         })
-    }
+    };
 
     sumbitLogin = (event) => {
         event.preventDefault();
         const controllers = this.state.controllers;
         this.props.onAuth(controllers[0].value, controllers[1].value)
-    }
+    };
 
 
     render() {
@@ -39,7 +39,7 @@ class LoginForm extends React.Component {
             },
             changeHandler,
             sumbitLogin
-        } = this
+        } = this;
         return (
             <div className="loginForm">
                 <div>
@@ -74,5 +74,5 @@ const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password) => dispatch(auth(email, password,false))
     }
-}
+};
 export default connect(null,mapDispatchToProps)(LoginForm);

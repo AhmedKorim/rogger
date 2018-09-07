@@ -70,5 +70,5 @@ const ProductDetails = props => {
         </div>
 
     )
-}
+};
 export default ProductDetails

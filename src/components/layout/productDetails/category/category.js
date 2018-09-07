@@ -14,5 +14,5 @@ const Category = props => {
             </Button>
         </div>
     )
-}
+};
 export default Category

@@ -31,7 +31,7 @@ const FormController = props => {
                             {option}
                         </MenuItem>)}
                     </TextField>
-                )
+                );
             case 'checkBox':
                 return (<FormControl component="div">
                     <FormGroup>
@@ -42,7 +42,7 @@ const FormController = props => {
                             label={label}
                         />
                     </FormGroup>
-                </FormControl>)
+                </FormControl>);
             default :
                 return (<TextField
                     id={id}
@@ -62,8 +62,8 @@ const FormController = props => {
                     margin="normal"
                 />)
         }
-    }
-    const {payload, payload: {id, extendable, added, baseid, controlleriIndex}, changeHandler, changeControllers,} = props
+    };
+    const {payload, payload: {id, extendable, added, baseid, controlleriIndex}, changeHandler, changeControllers,} = props;
     return (
         <Fragment>
             <Grid container alignItems="center">
@@ -73,5 +73,5 @@ const FormController = props => {
             </Grid>
         </Fragment>
     )
-}
+};
 export default FormController

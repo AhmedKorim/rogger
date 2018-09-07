@@ -13,5 +13,5 @@ const Lettering = props => {
             })}
         </Typography>
     )
-}
+};
 export default Lettering

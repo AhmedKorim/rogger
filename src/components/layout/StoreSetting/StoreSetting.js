@@ -26,5 +26,5 @@ const StoreSetting = props => {
         </Fragment>
 
     )
-}
+};
 export default StoreSetting

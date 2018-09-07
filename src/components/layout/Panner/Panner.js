@@ -17,7 +17,7 @@ const styles = theme => ({
         justifyContent: 'center',
         height: "10rem"
     }
-})
+});
 const Panner = props => {
     const {classes} = props;
     return (
@@ -28,5 +28,5 @@ const Panner = props => {
         </div>
 
     )
-}
+};
 export default withStyles(styles)(Panner);

@@ -51,14 +51,14 @@ class ProductCard extends React.Component {
 
     openDetailes = (cardData) => {
         this.props.openProductDetails(cardData)
-    }
+    };
 
     navigateToProductPage = (PId) => {
         if (!PId) return;
         this.props.history.push({
             pathname: `/products/${PId}`,
         })
-    }
+    };
 
 
     render() {
@@ -154,6 +154,6 @@ const mapDispachToProps = dispatch => {
             type: PRODUCT_CARD_DETAILS, payload: {open: true, data: activeCard, component: 'ProductDetails'}
         })
     }
-}
+};
 
 export default withRouter(connect(null, mapDispachToProps)(withStyles(styles)(ProductCard)));

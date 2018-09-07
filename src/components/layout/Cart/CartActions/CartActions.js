@@ -13,7 +13,7 @@ const styles = theme => ({
     shadow: {
         boxShadow: theme.shadows[2]
     }
-})
+});
 const CartActions = props => {
     const {
         classes,
@@ -64,16 +64,16 @@ const CartActions = props => {
             </div>
         </div>
     )
-}
+};
 const mapStateToProps = state => {
     return {
         cart: state.user.cart
     }
-}
+};
 const mapDispatchToProps = dispatch => {
     return {
         addToCart: (id, action) => dispatch({type: ADD_TO_CART, payload: {item: {id}}, action: action}),
         removeFromCart: (id) => dispatch({type: REMOVE_FROM_CART, payload: {item: {id}}})
     }
-}
+};
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(CartActions));

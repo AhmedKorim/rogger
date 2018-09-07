@@ -18,7 +18,7 @@ import {REMOVE_FROM_CART} from "../../../dux/actions/actionTypes";
 class ShoppingCart extends React.Component {
     state = {
         listHeight: null
-    }
+    };
 
 
     componentDidMount() {
@@ -34,7 +34,7 @@ class ShoppingCart extends React.Component {
         this.props.history.push({
             pathname: `/products/${PId}`,
         })
-    }
+    };
     render() {
         let {
             state: {listHeight},
@@ -54,11 +54,11 @@ class ShoppingCart extends React.Component {
                 return cartItem.id === product.id
             })
         }).map(product => {
-            const cartItem = cart.find(cartItem => product.id === cartItem.id)
+            const cartItem = cart.find(cartItem => product.id === cartItem.id);
             const newProduct = {...product};
             newProduct.count = cartItem.count;
             return product
-        })
+        });
         console.log(cartProducts);
         return (
             <div className="shoppingCart">
@@ -137,10 +137,10 @@ const mapStateToProps = state => {
         cart: state.user.cart,
         products: state.products.products
     }
-}
+};
 const mapDispatchToProps = dispatch => {
     return {
         deleteItem: (id) => dispatch({type: REMOVE_FROM_CART, payload:{item: {id}}})
     }
-}
+};
 export default withRouter(connect(mapStateToProps,mapDispatchToProps)(ShoppingCart));

@@ -67,5 +67,5 @@ const ItemsList = props => {
         </Fragment>
 
     )
-}
+};
 export default withRouter(ItemsList);

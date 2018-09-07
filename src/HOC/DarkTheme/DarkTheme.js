@@ -7,7 +7,7 @@ const DarkTheme = createMuiTheme({
     palette: {
         type: 'dark'
     }
-})
+});
 
 const WithDarkTheme = (WrappedComponent) => {
     return class extends React.Component {
@@ -18,5 +18,5 @@ const WithDarkTheme = (WrappedComponent) => {
                 </MuiThemeProvider>)
         }
     }
-}
+};
 export default WithDarkTheme;

@@ -28,7 +28,7 @@ const theme = createMuiTheme({
     shape: {
         borderRadius: 0
     }
-})
+});
 
 const store = createStore(
     combineReducers({

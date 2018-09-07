@@ -25,5 +25,5 @@ const ImgCard = props => {
             </Card>
         </div>
     )
-}
+};
 export default ImgCard

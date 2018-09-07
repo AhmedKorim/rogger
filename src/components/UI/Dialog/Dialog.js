@@ -33,11 +33,11 @@ class RDialog extends React.Component {
                 componentToLoad = <ProductDetails product={data}/>;
                 break;
             case 'ProductEditor':
-                componentToLoad = <ProductEditor data={data}/>
+                componentToLoad = <ProductEditor data={data}/>;
                 break;
             case 'AuthComponent' :
                 console.log('dilog opend');
-                componentToLoad = <Auth data={data}/>
+                componentToLoad = <Auth data={data}/>;
                 break;
             default:
                 componentToLoad = null;
@@ -80,11 +80,11 @@ const mapStateToProps = state => {
         open: state.UI.dialog.open,
         prevRoute: state.UI.dialog.prevRoute
     }
-}
+};
 const mapDispatchToProps = dispatch => {
     return {
         close: () => dispatch({type: PRODUCT_CARD_DETAILS, payload: {open: false, activeCard: null, prevRoute: null}})
     }
-}
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RDialog));

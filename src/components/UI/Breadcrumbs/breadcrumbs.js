@@ -12,7 +12,7 @@ const styles = theme => ({
     paper: {
         backgroundColor: theme.palette.background.default
     }
-})
+});
 
 class Breadcrumbs extends React.Component {
 
@@ -28,11 +28,11 @@ class Breadcrumbs extends React.Component {
         console.log(routeIndex);
         const newPath = this.pathes.reduce((acc, item, index) => {
             return index <= routeIndex ? acc + item + '/' : acc;
-        }, '')
+        }, '');
         console.log(newPath);
         this.props.history.push('/' + newPath)
 
-    }
+    };
 
     render() {
         this.getPathes();
@@ -45,7 +45,6 @@ class Breadcrumbs extends React.Component {
             pathes,
             handelRoute
         } = this;
-
         return (
             <Container>
                 <Paper className={[classes.paper, 'breadcrumbs'].join(' ')} elevation={0}>
@@ -58,6 +57,7 @@ class Breadcrumbs extends React.Component {
                             <Icon>home</Icon>
                             <Typography className="breadcrumbsLink">home</Typography>
                         </Button>
+
                     </div>
                     <div className="chevronWrapper">
                         <Icon>chevron_right</Icon>
@@ -85,3 +85,11 @@ class Breadcrumbs extends React.Component {
 }
 
 export default withRouter(withStyles(styles)(Breadcrumbs));
+
+
+
+
+
+
+
+

@@ -48,7 +48,7 @@ const Pannel = props => {
 
     )
 
-}
+};
 
 export default withStyles(styles)(Pannel);
 

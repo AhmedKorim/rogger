@@ -21,7 +21,7 @@ const styles = theme => ({
     padding: {
         padding: `0 ${theme.spacing.unit }px`,
     },
-})
+});
 
 class EnhancedTabs extends React.Component {
     constructor(props) {
@@ -43,7 +43,7 @@ class EnhancedTabs extends React.Component {
 
 
     handleChange = (event, value) => {
-        this.setState({value})
+        this.setState({value});
         if (this.props.disableRouting) return;
         this.props.history.push((this.props.match.url !== "/" ? this.props.match.url : this.props.location.pathname) + '/' + this.props.tab[value].label);
     };
@@ -57,8 +57,8 @@ class EnhancedTabs extends React.Component {
         const links = nextProps.location.pathname.split('/');
         const intialIndex = nextProps.tab.findIndex(item => item.label === links[links.length - 1]);
         if (intialIndex > -1) {
-            this.setState({value: intialIndex})
-            return;
+            this.setState({value: intialIndex});
+
         }
     }
 

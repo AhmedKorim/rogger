@@ -58,19 +58,19 @@ const ProductActions = props => {
             </Tooltip>
         </CardActions>
     )
-}
+};
 const mapDispatchToProps = dispatch => {
     return {
         toggleLike: (id) => dispatch({type: LIKE, payload: {item: {id}}}),
         addToCart: (id, action) => dispatch({type: ADD_TO_CART, payload: {item: {id}}, action: action}),
         toggleCompared:(id) => dispatch({type: MANAGE_COMPARED, payload: {item: {id}}}),
     }
-}
+};
 const mapStateToProps = state => {
     return {
         likedAr: state.user.liked,
         cartAr: state.user.cart,
         comparedArr:state.user.compared
     }
-}
+};
 export default connect(mapStateToProps, mapDispatchToProps)(ProductActions)

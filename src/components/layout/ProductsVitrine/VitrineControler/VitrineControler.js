@@ -46,7 +46,7 @@ export const  categories = [
             {cosmetic: ['lorem', 'lorem', 'lorem', 'lorem', 'lorem']},
         ]
     }
-]
+];
 
 
 const styles = theme => ({

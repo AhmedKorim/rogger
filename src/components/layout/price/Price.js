@@ -37,5 +37,5 @@ const Price = props => {
             </div>
         </div>
     )
-}
+};
 export default withStyles(styles)(Price);

@@ -25,7 +25,7 @@ class App extends Component {
         const scroll = container.scrollTop;
         if (scroll > 1000) return;
         this.props.updateScroll(scroll)
-    }
+    };
 
 
     render() {
@@ -57,13 +57,13 @@ const mapStateToProps = state => {
     return {
         headerHeight: state.UI.headerHeight,
     }
-}
+};
 const mapDispatchToProps = dispatch => {
     return {
         getData: () => dispatch(getData()),
         updateScroll: (scrollY) => dispatch({type: SCROLL_Y, payload: {scrollY}})
     }
-}
+};
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 
 

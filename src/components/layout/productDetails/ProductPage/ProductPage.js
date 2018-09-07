@@ -24,7 +24,7 @@ const styles = theme => ({
     pannerCont: {
         marginTop: '0 0 .6rem 0'
     }
-})
+});
 
 class ProductPage extends React.Component {
 
@@ -95,5 +95,5 @@ const mapStateToProps = state => {
     return {
         products: state.products.products
     }
-}
+};
 export default withRouter(connect(mapStateToProps)(withStyles(styles)(withWidth()(withPadding(ProductPage)))));

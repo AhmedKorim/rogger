@@ -10,5 +10,5 @@ const WithHeight = props => {
             </PerfectScrollbar>
         </div>
         )
-}
+};
 export default WithHeight

@@ -8,16 +8,16 @@ const clearToken = (expirationTime) => {
         }, +expirationTime * 1000)
     }
 
-}
+};
 
 const authFail = (response) => {
-    const error = response.data.error.message
+    const error = response.data.error.message;
     console.log(error);
     return {
         type: AUTH_FAIL,
         payload: {error}
     }
-}
+};
 const authSuccess = (response) => {
     const {
         data: {
@@ -30,13 +30,13 @@ const authSuccess = (response) => {
         type: AUTH_SUCCESS,
         payload: {idToken, localId}
     }
-}
+};
 
 
 export const auth = (email, password, signUp) => {
     return dispatch => {
         dispatch({type: AUTH_START});
-        const requestHeaper = {email, password, returnSecureToken: true}
+        const requestHeaper = {email, password, returnSecureToken: true};
         let url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyBUGx-6HjRWtjS7kA4bUCgqr65Ni_J4Olg`;
         if (!signUp) {
             url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyBUGx-6HjRWtjS7kA4bUCgqr65Ni_J4Olg`;
@@ -50,5 +50,5 @@ export const auth = (email, password, signUp) => {
             })
             .catch(err => dispatch(authFail(err.response)))
     }
-}
+};
 

@@ -33,5 +33,5 @@ const SideDrawe = props => {
             </Hidden>
         </div>
     )
-}
+};
 export default SideDrawe;

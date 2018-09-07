@@ -8,7 +8,7 @@ const styles = theme => ({
     header: {
         boxShadow: theme.shadows[2],
     },
-})
+});
 
 const Vitrine = props => {
 
@@ -35,7 +35,7 @@ const Vitrine = props => {
             </div>
         </div>
     )
-}
+};
 
 
 export default withStyles(styles)(withWidth()(Vitrine));

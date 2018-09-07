@@ -30,7 +30,7 @@ const inputSchema = [
         options: mainCategories
     },
     {value: '', label: 'Product description', id: 'productDescription', multiline: true},
-]
+];
 
 
 class ProductEditor extends React.Component {
@@ -62,21 +62,21 @@ class ProductEditor extends React.Component {
                         controlleriIndex: index,
                         id: key,
                         label: skeleton.label + ' ' + (index + 1)
-                    }))
-                    const updatedExtendedController = {...controller, count: keys.length}
+                    }));
+                    const updatedExtendedController = {...controller, count: keys.length};
                     const value = __data[newController.id];
                     updatedExtendedController.value = value ? value : controller.value;
                     return [...accumelator, updatedExtendedController, ...extendedControlllers];
                 }
                 const value = __data[newController.id];
-                newController.value = value ? value : controller.value
+                newController.value = value ? value : controller.value;
                 return [...accumelator, newController];
             }, []),
             editmood: !!props.data.id
         }
     }
 
-    classes = ['input']
+    classes = ['input'];
 
 
     // cahnge controllers on real time
@@ -91,7 +91,7 @@ class ProductEditor extends React.Component {
                         return controller;
                     }
                 })
-            }
+            };
             const newCount = (extendedControl) => {
                 let count = extendedControl.count;
                 const id = extendedController.id + count;
@@ -99,7 +99,7 @@ class ProductEditor extends React.Component {
                     return count + 1
                 }
                 return count
-            }
+            };
 
             const count = newCount(extendedController);
             const newController = {
@@ -126,10 +126,10 @@ class ProductEditor extends React.Component {
                     return {...extendedController, count: extendedController.count - 1};
                 }
                 return controller;
-            })
+            });
             this.setState({controllers: newControllers})
         }
-    }
+    };
 
     changeHandler = ({target: {value}}, id) => {
         console.log(value);
@@ -138,7 +138,7 @@ class ProductEditor extends React.Component {
                 return controller.id === id ? (controller.value = value , controller) : controller
             })
         })
-    }
+    };
 
 
     getProductData = () => {
@@ -148,7 +148,7 @@ class ProductEditor extends React.Component {
                 [item.id]: item.value
             }
         }, {})
-    }
+    };
 
     sendData = (event) => {
         event.preventDefault();
@@ -157,18 +157,18 @@ class ProductEditor extends React.Component {
             axios.post('/products.json', dataToSend).then(resp => {
                     this.props.addItem({id: resp.data.name, ...dataToSend})
                 }
-            )
+            );
             return;
         }
         const id = this.props.data.id;
         const data = {...this.props.data};
         delete  data.id;
-        const mergedData = {...data, ...dataToSend}
+        const mergedData = {...data, ...dataToSend};
         console.log(mergedData);
         axios.put(`/products/${id}.json`, mergedData).then(resp => {
             this.props.updateIem(id, {...mergedData, id: id})
         })
-    }
+    };
 
     render() {
         this.getProductData();
@@ -231,5 +231,5 @@ const mapDispatchToProps = dispatch => {
         updateIem: (id, data) => dispatch({type: UPDATE_ITEM, id, data}),
         addItem: (data) => dispatch({type: ADD_ITEM, data})
     }
-}
+};
 export default connect(null, mapDispatchToProps)(ProductEditor);

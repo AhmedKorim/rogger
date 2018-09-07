@@ -19,20 +19,20 @@ class LoginForm extends React.Component {
             {value: 'male', label: 'Gender', id: "userGender", type: 'select', options: ['male', 'female', 'it is secret']},
 
         ]
-    }
+    };
     changeHandler = ({target: {checked, value}}, id, type) => {
         this.setState({
             controllers: this.state.controllers.map(controller => {
                 return controller.id === id ? (controller.value = type === 'checkBox' ? checked : value, controller) : controller
             })
         })
-    }
+    };
     sumbitLogin = (event) => {
         event.preventDefault();
         const controllers = this.state.controllers;
         this.props.onAuth(controllers[3].value, controllers[1].value)
 
-    }
+    };
 
 
     render() {
@@ -78,5 +78,5 @@ const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password) => dispatch(auth(email, password, true))
     }
-}
+};
 export default connect(null, mapDispatchToProps)(LoginForm);
