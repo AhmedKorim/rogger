@@ -48,7 +48,6 @@ class AKmenu extends React.Component {
 
     handleToggle = () => {
         this.setState(state => ({open: !state.open}));
-
     };
     applayArrowStyle = (data) => {
         console.log('failed');
@@ -73,12 +72,11 @@ class AKmenu extends React.Component {
             if (this.props.value !== val) this.props.change(val)
 
         }
-        this.handleClose(event)
+        this.setState({open: false});
     };
     handleClose = event => {
-        if (this.anchorEl.contains(event.target)) {
-            return;
-        }
+        if (this.anchorEl.contains(event.target)) return;
+        if (this.popperPaper.contains(event.target)) return;
         clearTimeout(this.arrowTimeout)
         this.setState({open: false});
     };
@@ -138,24 +136,25 @@ class AKmenu extends React.Component {
                         transition>
                         {({TransitionProps, placement}) => (
                             <Grow
-                                timeout={260}
                                 {...TransitionProps}
                                 id="menu-list-grow"
                                 style={{transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom'}}
                             >
-                                <Paper onClick={(e) => e.stopPropagation()}>
-                                    <ClickAwayListener onClickAway={this.handleClose}>
-                                        {flootleft && <span ref={(node) => this.arrowREf = node} className="menuArrow"/>}
-                                        {listItems ? <MenuList>
-                                            {listItems.map(item => <MenuItem
-                                                key={item + ' ' + bLabel || tip}
-                                                onClick={(event) => this.handelChange(event, item)}
-                                                selected={value == item}
-                                            >{item}
-                                            </MenuItem>)}
-                                        </MenuList> :children}
-                                    </ClickAwayListener>
-                                </Paper>
+                                <RootRef rootRef={(node) => this.popperPaper = node}>
+                                    <Paper>
+                                        <ClickAwayListener onClickAway={this.handleClose}>
+                                            {flootleft && <span ref={(node) => this.arrowREf = node} className="menuArrow"/>}
+                                            {listItems ? <MenuList>
+                                                {listItems.map(item => <MenuItem
+                                                    key={item + ' ' + bLabel || tip}
+                                                    onClick={(event) => this.handelChange(event, item)}
+                                                    selected={value == item}
+                                                >{item}
+                                                </MenuItem>)}
+                                            </MenuList> : children}
+                                        </ClickAwayListener>
+                                    </Paper>
+                                </RootRef>
                             </Grow>
                         )}
                     </Popper>
