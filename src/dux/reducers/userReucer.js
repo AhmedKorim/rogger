@@ -20,6 +20,7 @@ const initalState = {
 
 const addToCart = (action, state) => {
     const id = action.payload.item.id;
+    if(!id) return state;
     const hasItem = state.cart.find(item => item.id === id);
     const cart = [...state.cart];
 
@@ -37,11 +38,14 @@ const addToCart = (action, state) => {
 
 const filterCart = (action, state) => {
     const id = action.payload.item.id;
+    if(!id) return state;
+
     return [...state.cart].filter(item => item.id !== id)
 };
 
 const liked = (action, state) => {
     const id = action.payload.item.id;
+    if(!id) return state;
 
     const item = state.liked.find(item => item.id === id);
 
@@ -52,6 +56,8 @@ const liked = (action, state) => {
 
 const manageCompared = (action, state) => {
     const id = action.payload.item.id;
+    if(!id) return state;
+
     // item on compared
     const item = state.compared.find(item => item.id === id);
     if (!item) return [...state.compared, {id: id}];

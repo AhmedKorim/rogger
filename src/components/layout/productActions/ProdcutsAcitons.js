@@ -39,7 +39,7 @@ const ProductActions = props => {
             <Tooltip title="add to cart" placement="bottom-start">
                 <IconButton aria-label="add to cart" color={onCart ? 'primary' : 'default'} onClick={() => {
                     addToCart(id, 'add');
-                    message(`add successful to cart` ,'success',2000)
+                    message(`add successful to cart`, 'success', 2000)
                 }}>
                     <i className="material-icons">
                         add_shopping_cart
@@ -54,7 +54,7 @@ const ProductActions = props => {
                 </IconButton>
             </Tooltip>
             <Tooltip title="more details" placement="bottom-start">
-                <IconButton aria-label="more details" onClick={openDetailes}>
+                <IconButton aria-label="more details" onClick={() => id ? openDetailes(id) : void 0}>
                     <i className="material-icons">
                         list_alt
                     </i>
@@ -67,15 +67,15 @@ const mapDispatchToProps = dispatch => {
     return {
         toggleLike: (id) => dispatch({type: LIKE, payload: {item: {id}}}),
         addToCart: (id, action) => dispatch({type: ADD_TO_CART, payload: {item: {id}}, action: action}),
-        toggleCompared:(id) => dispatch({type: MANAGE_COMPARED, payload: {item: {id}}}),
-        message: (message,variant,duration) => dispatch({type:SNACK_BAR_NEW_MESSAGE ,payload:{message,variant,duration}})
+        toggleCompared: (id) => dispatch({type: MANAGE_COMPARED, payload: {item: {id}}}),
+        message: (message, variant, duration) => dispatch({type: SNACK_BAR_NEW_MESSAGE, payload: {message, variant, duration}})
     }
 };
 const mapStateToProps = state => {
     return {
         likedAr: state.user.liked,
         cartAr: state.user.cart,
-        comparedArr:state.user.compared
+        comparedArr: state.user.compared
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ProductActions)

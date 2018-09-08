@@ -1,25 +1,21 @@
-import Icon from "@material-ui/core/Icon/Icon";
-import React from 'react';
-import withPadding from "../../HOC/WithPadding/WithPadding";
-import Breadcrumbs from "../../components/UI/Breadcrumbs/breadcrumbs";
-import Container from "../../HOC/Container/Container";
-import Grid from "@material-ui/core/Grid/Grid";
-import VitrineControler from "../../components/layout/ProductsVitrine/VitrineControler/VitrineControler";
-import Vitrine from "../../components/layout/ProductsVitrine/Vitrine/Vitrine";
-import Toolbar from "@material-ui/core/Toolbar/Toolbar";
+import {withStyles, withWidth} from "@material-ui/core";
 import Button from "@material-ui/core/Button/Button";
-
-import {withStyles} from "@material-ui/core";
-import './Products.scss';
-import WithHeight from "../../HOC/WithHeight";
-import {withWidth} from "@material-ui/core";
+import Grid from "@material-ui/core/Grid/Grid";
+import Icon from "@material-ui/core/Icon/Icon";
+import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import ToggleButton from "@material-ui/lab/ToggleButton/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButton/ToggleButtonGroup";
-import AKmenu from "../../components/UI/Menu/Menu";
+import React from 'react';
 import {connect} from "react-redux";
+import Vitrine from "../../components/layout/ProductsVitrine/Vitrine/Vitrine";
+import VitrineControler from "../../components/layout/ProductsVitrine/VitrineControler/VitrineControler";
+import Breadcrumbs from "../../components/UI/Breadcrumbs/breadcrumbs";
+import AKmenu from "../../components/UI/Menu/Menu";
+import Container from "../../HOC/Container/Container";
+import WithHeight from "../../HOC/WithHeight";
+import withPadding from "../../HOC/WithPadding/WithPadding";
 import ProductsFooter from "./Footer";
-
-
+import './Products.scss';
 
 
 const styles = theme => ({
@@ -63,7 +59,7 @@ class Products extends React.Component {
 
 
     handelView = (view) => {
-        if (!view ) return;
+        if (!view) return;
         this.setState({view})
     };
 
@@ -77,6 +73,7 @@ class Products extends React.Component {
             currentPage: this.state.currentPage > pages ? pages - 1 : this.state.currentPage
         })
     };
+
 
 
     goToPage = (pageIndex) => {
@@ -113,7 +110,6 @@ class Products extends React.Component {
             <div className="products">
                 <Breadcrumbs/>
                 <Container>
-
                     <header className={classes.header}>
                         <Toolbar className="toolbar">
                             <Grid container alignItems="center" className="upperNavigation" justify="center">
@@ -179,6 +175,7 @@ class Products extends React.Component {
         )
     }
 }
+
 //</editor-fold>
 
 const mapStateToProps = state => {
@@ -186,4 +183,4 @@ const mapStateToProps = state => {
         products: state.products.products
     }
 };
-export default connect(mapStateToProps)(withStyles(styles)(withWidth()(withPadding((Products)))));
+export default connect(mapStateToProps)(withStyles(styles)(withWidth()(withPadding(Products))));

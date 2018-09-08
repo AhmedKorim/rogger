@@ -1,20 +1,21 @@
-import Snackbar from "@material-ui/core/Snackbar/Snackbar";
 import React, {Component, Fragment} from 'react';
-import './App.scss';
-import Header from "../components/layout/Header/Header";
-import {Redirect, Route, Switch, withRouter} from "react-router-dom";
-import ToastMessage from "../components/UI/ToastMessage/ToastMessage";
-import Home from "./Home/Home";
-import RDialog from '../components/UI/Dialog/Dialog'
-import {connect} from "react-redux";
-import Products from "./Products/Products";
-import ProductPage from "../components/layout/productDetails/ProductPage/ProductPage";
-import {getData} from "../dux/actions/productsActions";
-import AuthDialogOpener from "./Auth/AuthDialogOpener";
-import AdminDashboard from "./Admin/Dashboard/AdminDashboard";
-import UserDashboard from "./User/Dashboard/UserDashboard";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import {connect} from "react-redux";
+import {Redirect, Route, Switch, withRouter} from "react-router-dom";
+import Header from "../components/layout/Header/Header";
+import ProductPage from "../components/layout/productDetails/ProductPage/ProductPage";
+import RDialog from '../components/UI/Dialog/Dialog'
+import Spinner from "../components/UI/Spinner/Spinner";
+
+import ToastMessage from "../components/UI/ToastMessage/ToastMessage";
 import {SCROLL_Y} from "../dux/actions/actionTypes";
+import {getData} from "../dux/actions/productsActions";
+import AdminDashboard from "./Admin/Dashboard/AdminDashboard";
+import './App.scss';
+import AuthDialogOpener from "./Auth/AuthDialogOpener";
+import Home from "./Home/Home";
+import Products from "./Products/Products";
+import UserDashboard from "./User/Dashboard/UserDashboard";
 
 
 class App extends Component {
@@ -40,7 +41,7 @@ class App extends Component {
                     <PerfectScrollbar onScrollY={this.props.location.pathname === '/home' ? (container) => this.scrollManger(container) : void 0}>
                         <Switch>
                             <Route path="/products/:productId" component={ProductPage}/>
-                            <Route path="/products" component={Products}/>
+                            <Route path="/products/" component={Products}/>
                         </Switch>
                         <Switch>
                             <Redirect from="/" to="/home" exact/>

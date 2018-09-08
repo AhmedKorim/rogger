@@ -1,12 +1,12 @@
+import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
+import React from 'react'
 import './Spinner.scss';
-import React from "react";
 
-export const Spinner = props => {
-    console.log(props.fade);
+const Spinner = props => {
     return (
-        <div className={props.fade ? ["spinner-wrapper ", "hide"].join(' ') : "spinner-wrapper "}>
-            <div className="spinner"></div>
+        <div className="spinner-wrapper">
+            <CircularProgress size={100} thickness={3}/>
         </div>
     )
-};
-    
+}
+export default Spinner

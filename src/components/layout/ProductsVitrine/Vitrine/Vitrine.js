@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Vitrine.scss';
 import {withStyles, withWidth} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid/Grid";
+import withSpinner from "../../../../HOC/WithSpinner/WithSpinner";
 import ProductCard from "../../ProductCard/ProductCard";
 
 const styles = theme => ({
@@ -10,32 +11,37 @@ const styles = theme => ({
     },
 });
 
-const Vitrine = props => {
 
-    let {
-         products, view, width
+class Vitrine extends Component {
 
-    } = props;
-    if (width === 'sm' || width === 'xs') {
-        view = 'normal';
-    } else {
-        view = view || 'normal';
-    }
-    const data = products || [];
-    return (
-        <div className="vitrine">
-            <div>
-                <Grid container justify="center">
-                    <Grid container item className="productCardContainer">
-                        {data.map(product => <Grid item xs className={["productCardItem", view].join(' ')}
-                                                   key={product.id}><ProductCard {...product} />
-                        </Grid>)}
+
+
+    render() {
+        let {
+            products, view, width
+
+        } = this.props;
+        if (width === 'sm' || width === 'xs') {
+            view = 'normal';
+        } else {
+            view = view || 'normal';
+        }
+        const data = products || [];
+        return (
+            <div className="vitrine">
+                <div>
+                    <Grid container justify="center">
+                        <Grid container item className="productCardContainer">
+                            {data.map(product => <Grid item xs className={["productCardItem", view].join(' ')}
+                                                       key={product.id}><ProductCard {...product} />
+                            </Grid>)}
+                        </Grid>
                     </Grid>
-                </Grid>
+                </div>
             </div>
-        </div>
-    )
-};
+        )
+    }
+}
 
 
-export default withStyles(styles)(withWidth()(Vitrine));
+export default withStyles(styles)(withWidth()(withSpinner(Vitrine)));

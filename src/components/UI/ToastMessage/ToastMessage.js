@@ -98,7 +98,7 @@ class ToastMessage extends React.Component {
                                 aria-label="Close"
                                 color="inherit"
                                 className={classes.close}
-                                onClick={onClose}
+                                onClick={handleClose}
                             >
                                 <Icon className={classes.icon}>close</Icon>
                             </IconButton>,

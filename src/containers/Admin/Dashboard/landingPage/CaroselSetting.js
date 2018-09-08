@@ -190,7 +190,9 @@ class CaroselSetting extends React.Component {
                                     </Paper>
                                 )
                             }
-                            <Button type="submit">sava</Button>
+                            <div className="caroselSettingaciton">
+                                <Button color="primary" className="CSAction" variant="raised" type="submit">Save</Button>
+                            </div>
                         </form>
                     </PerfectScrollbar>
                 </Grid>

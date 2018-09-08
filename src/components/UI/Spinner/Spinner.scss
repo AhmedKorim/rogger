@@ -5,12 +5,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
+  z-index: 5555;
   top: 0;
   left: 0;
   opacity: 1;
   transition: all ease-in-out 1.5s;
-  background-color: transparentize(black, .95);
+  background-color: transparentize(black, .8);
   &.hide{
     opacity: 0;
   }

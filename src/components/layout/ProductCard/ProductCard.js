@@ -107,7 +107,7 @@ class ProductCard extends React.Component {
                             action={
                                 <div className="viewDetailsB">
                                     <Tooltip title="quick view item denials" placement="bottom-start">
-                                        <IconButton aria-label="quick view item denials" size="small" onClick={() => navigateToProductPage(id)}>
+                                        <IconButton aria-label="quick view item denials" size="small" onClick={() => id ? navigateToProductPage(id) : void 0}>
                                             <i className="material-icons">
                                                 remove_red_eye
                                             </i>
