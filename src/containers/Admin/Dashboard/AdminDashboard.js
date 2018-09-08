@@ -4,6 +4,7 @@ import './AdminDashboard.scss'
 import AdminProducts from "./AdminProducts/AdminProducts";
 import WithHeight from "../../../HOC/WithHeight";
 import Dashboard from "../../../components/layout/Dashboard/Dashboard";
+import LandingPage from "./landingPage/LandingPage";
 
 const styles = theme => ({
     root: {
@@ -34,6 +35,7 @@ class AdminDashboard extends React.Component {
                         {label: 'Products'},
                         {label: 'Clients'},
                         {label: 'Statics'},
+                        {label: 'landing page'},
                     ]}
                 >
                     <WithHeight maxHeight={headerHeight + 100}>
@@ -44,8 +46,9 @@ class AdminDashboard extends React.Component {
                     </WithHeight>
                     <div>Clients</div>
                     <div>Statics</div>
-                    <div>Plans</div>
-                    <div>issues</div>
+                    <WithHeight>
+                        <LandingPage/>
+                    </WithHeight>
                 </Dashboard>
             </Fragment>
         )

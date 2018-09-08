@@ -9,6 +9,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails/Expan
 const styles = theme => ({
     root: {
         width: '100%',
+        backgroundColor:'red'
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),

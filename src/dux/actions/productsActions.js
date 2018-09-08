@@ -1,5 +1,5 @@
 import axios from "../../axios/axios";
-import {GET_DATA} from "./actionTypes";
+import {EDIT_HOMEPAGE_CAROUSEL, GET_DATA} from "./actionTypes";
 
 
 export const getData = () => {
@@ -18,7 +18,7 @@ export const getData = () => {
                     .filter(key => key !== "productImg");
 
                 const imagesArray = keys.map(key => {
-                    const imgUrl = {[key] : _products[key]};
+                    const imgUrl = {[key]: _products[key]};
                     delete _products[key];
                     return imgUrl;
                 });
@@ -29,6 +29,10 @@ export const getData = () => {
             });
             dispatch({type: GET_DATA, data: enhancedData})
         })
+        axios.get('/homepage/slides/-LLtvPDWdOalG2wBAhCM.json')
+            .then(resp => dispatch({type: EDIT_HOMEPAGE_CAROUSEL, payload: {slides: resp.data}}))
+            .catch(error => console.log(error.response))
+
     }
 };
 

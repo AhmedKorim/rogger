@@ -11,7 +11,17 @@ import IconButton from "@material-ui/core/IconButton/IconButton";
 
 const FormController = props => {
 
-    const formField = ({type = "text", label, multiline = false, value, placeHolder, classes = [], id, defaultValue, helperText, margin = "normal", options = []}, changeHandler) => {
+    const formField = ({type = "text",
+                           label,
+                           multiline = false,
+                           value,
+                           placeHolder,
+                           classes = [],
+                           id,
+                           defaultValue,
+                           helperText,
+                           margin = "normal", options = []},
+                       changeHandler,other) => {
 
         classes = classes || [];
         switch (type) {
@@ -25,7 +35,7 @@ const FormController = props => {
                         className={classes.join(' ')}
                         helperText={helperText}
                         value={value}
-                        onChange={(event) => changeHandler(event, id)}
+                        onChange={(event) => changeHandler(event, id,other)}
                     >
                         {options.map(option => <MenuItem key={option} value={option}>
                             {option}
@@ -37,7 +47,7 @@ const FormController = props => {
                     <FormGroup>
                         <FormControlLabel
                             control={
-                                <Checkbox checked={value} onChange={(event) => changeHandler(event, id, type)} value={value}/>
+                                <Checkbox checked={value} onChange={(event) => changeHandler(event, id, type,other)} value={value}/>
                             }
                             label={label}
                         />
@@ -58,18 +68,21 @@ const FormController = props => {
                     placeholder={placeHolder}
                     className={classes.join(' ')}
                     value={value}
-                    onChange={(event) => changeHandler(event, id)}
+                    onChange={(event) => changeHandler(event, id,other)}
                     margin="normal"
                 />)
         }
     };
-    const {payload, payload: {id, extendable, added, baseid, controlleriIndex}, changeHandler, changeControllers,} = props;
+    const {payload,
+        payload: {id, extendable, added, baseid, controlleriIndex ,other},
+        changeHandler,
+        changeControllers} = props;
     return (
         <Fragment>
             <Grid container alignItems="center">
-                <Grid item xs> {formField(payload, changeHandler)}</Grid>
+                <Grid item xs> {formField(payload, changeHandler,other)}</Grid>
                 {(extendable || added) && <Grid item> <IconButton mini color={added ? 'secondary' : 'primary'}
-                                                                  onClick={() => changeControllers(id, added ? 'remove' : 'add', baseid, controlleriIndex)}><Icon>{extendable ? 'add' : 'remove'}</Icon></IconButton></Grid>}
+                                                                  onClick={() => changeControllers(id, added ? 'remove' : 'add', baseid, controlleriIndex,other)}><Icon>{extendable ? 'add' : 'remove'}</Icon></IconButton></Grid>}
             </Grid>
         </Fragment>
     )
