@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import axiosBase from "../../../../axios/axios";
 import FormController from "../../../../components/UI/FormControles/FormControle";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import {EDIT_HOMEPAGE_CAROUSEL} from "../../../../dux/actions/actionTypes";
+import {EDIT_HOMEPAGE_CAROUSEL, SNACK_BAR_NEW_MESSAGE} from "../../../../dux/actions/actionTypes";
 
 
 const carouselImputSchema = [
@@ -155,8 +155,8 @@ class CaroselSetting extends React.Component {
         }))
         this.props.editSlides(data);
         console.log(data);
-        axiosBase.put('/homepage/slides/-LLtvPDWdOalG2wBAhCM.json', data).then(resp => console.log('done'))
-            .catch(error => console.log(error.response))
+        axiosBase.put('/homepage/slides/-LLtvPDWdOalG2wBAhCM.json', data).then(resp => this.props.message('edits has been saved', 'success'))
+            .catch(error => this.props.message('cannot save setting', 'error'))
     }
 
 
@@ -206,7 +206,9 @@ const mapstateToPrpos = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        editSlides: (slides) => dispatch({type: EDIT_HOMEPAGE_CAROUSEL, payload: {slides}})
+        editSlides: (slides) => dispatch({type: EDIT_HOMEPAGE_CAROUSEL, payload: {slides}}),
+        message: (message, variant) => dispatch({type: SNACK_BAR_NEW_MESSAGE, payload: {open: true, message, variant}})
+
     }
 }
 export default connect(mapstateToPrpos, mapDispatchToProps)(CaroselSetting);

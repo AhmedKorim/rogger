@@ -1,4 +1,4 @@
-import {EDIT_HOMEPAGE_CAROUSEL, HEADER_DIM, PRODUCT_CARD_DETAILS, SCROLL_Y} from "../actions/actionTypes";
+import {CLOSE_TOAST_MESSAGE, EDIT_HOMEPAGE_CAROUSEL, HEADER_DIM, PRODUCT_CARD_DETAILS, SCROLL_Y, SNACK_BAR_NEW_MESSAGE} from "../actions/actionTypes";
 
 
 const initialState = {
@@ -17,6 +17,12 @@ const initialState = {
             slideLabel: '',
             slideWord: ''
         }]
+    },
+    snackbar: {
+        open: false,
+        message: 'success',
+        variant: 'success',
+        duration: 5000
     },
     aside: {
         open: false
@@ -49,6 +55,26 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 homepage: {...state.homepage, slides: action.payload.slides}
+            }
+        case  SNACK_BAR_NEW_MESSAGE:
+            return {
+                ...state,
+                snackbar: {
+                    ...state.snackbar,
+                    duration: action.payload.duration || 5000,
+                    open: action.payload.open || true,
+                    message: action.payload.message,
+                    variant: action.payload.variant
+                }
+            }
+        case CLOSE_TOAST_MESSAGE:
+            return {
+                ...state,
+                snackbar: {
+                    open: false,
+                    message: '',
+                    variant: ''
+                }
             }
         default :
             return state;

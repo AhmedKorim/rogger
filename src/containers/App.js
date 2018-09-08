@@ -1,7 +1,9 @@
+import Snackbar from "@material-ui/core/Snackbar/Snackbar";
 import React, {Component, Fragment} from 'react';
 import './App.scss';
 import Header from "../components/layout/Header/Header";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
+import ToastMessage from "../components/UI/ToastMessage/ToastMessage";
 import Home from "./Home/Home";
 import RDialog from '../components/UI/Dialog/Dialog'
 import {connect} from "react-redux";
@@ -23,6 +25,7 @@ class App extends Component {
 
     scrollManger = (container) => {
         const scroll = container.scrollTop;
+        console.log(scroll);
         if (scroll > 1000) return;
         this.props.updateScroll(scroll)
     };
@@ -34,7 +37,7 @@ class App extends Component {
                 <Header/>
                 <Route path={this.props.location.pathname.substring(0, this.props.location.pathname.length - 4) + 'auth'} component={AuthDialogOpener}/>
                 <main style={{height: '100vh'}}>
-                    <PerfectScrollbar onScrollY={this.props.location.pathname === '/home' ? (container) => this.scrollManger(container) : void 0} >
+                    <PerfectScrollbar onScrollY={this.props.location.pathname === '/home' ? (container) => this.scrollManger(container) : void 0}>
                         <Switch>
                             <Route path="/products/:productId" component={ProductPage}/>
                             <Route path="/products" component={Products}/>
@@ -48,6 +51,7 @@ class App extends Component {
                     </PerfectScrollbar>
                 </main>
                 <RDialog/>
+                <ToastMessage/>
             </Fragment>
         )
     }

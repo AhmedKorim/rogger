@@ -19,14 +19,14 @@ class LandingPage extends React.Component {
                             heading="Categories Cards"
                         >
                             <div>
-                                Categories
+                                Categories comming soon
                             </div>
                         </Pannel>
                         <Pannel
-                            heading="Categories Cards"
+                            heading="Featured products"
                         >
                             <div>
-                                Featured products
+                                Featured products comming soon
                             </div>
                         </Pannel>
                     </Grid>

@@ -3,7 +3,7 @@ import CardActions from "@material-ui/core/CardActions/CardActions";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import {connect} from "react-redux";
-import {ADD_TO_CART, LIKE, MANAGE_COMPARED} from "../../../dux/actions/actionTypes";
+import {ADD_TO_CART, LIKE, MANAGE_COMPARED, SNACK_BAR_NEW_MESSAGE} from "../../../dux/actions/actionTypes";
 
 const ProductActions = props => {
     const classes = {
@@ -21,7 +21,8 @@ const ProductActions = props => {
         addToCart,
         cartAr,
         toggleCompared,
-        comparedArr
+        comparedArr,
+        message
     } = props;
     const liked = !!likedAr.find(item => item.id === id);
     const onCart = !!cartAr.find(item => item.id === id);
@@ -36,7 +37,10 @@ const ProductActions = props => {
                 </IconButton>
             </Tooltip>
             <Tooltip title="add to cart" placement="bottom-start">
-                <IconButton aria-label="add to cart" color={onCart ? 'primary' : 'default'} onClick={() => addToCart(id, 'add')}>
+                <IconButton aria-label="add to cart" color={onCart ? 'primary' : 'default'} onClick={() => {
+                    addToCart(id, 'add');
+                    message(`add successful to cart` ,'success',2000)
+                }}>
                     <i className="material-icons">
                         add_shopping_cart
                     </i>
@@ -64,6 +68,7 @@ const mapDispatchToProps = dispatch => {
         toggleLike: (id) => dispatch({type: LIKE, payload: {item: {id}}}),
         addToCart: (id, action) => dispatch({type: ADD_TO_CART, payload: {item: {id}}, action: action}),
         toggleCompared:(id) => dispatch({type: MANAGE_COMPARED, payload: {item: {id}}}),
+        message: (message,variant,duration) => dispatch({type:SNACK_BAR_NEW_MESSAGE ,payload:{message,variant,duration}})
     }
 };
 const mapStateToProps = state => {
