@@ -59,15 +59,18 @@ class PoductImgaes extends Component {
                             variant="fab" color="default"
                             onClick={() => mainSwiperNav('next')}
                             mini><Icon>chevron_right</Icon></Button></Tooltip>
-                <Swiper {...parms} ref={(node) => node ? this.mainSwiper = node.swiper : void 0} className="swiperContainer">
-                    {imagesArray.map(image => <div className="SlideItem" key={Object.keys(image)[0]}>
-                            <div className="imgWrapper">
-                                <div data-background={Object.values(image)[0]} className="swiper-lazy"></div>
+                <div className="swipperWrapper">
+                    <Swiper {...parms} ref={(node) => node ? this.mainSwiper = node.swiper : void 0} className="swiperContainer">
+                        {imagesArray.map(image => <div className="SlideItem" key={Object.keys(image)[0]}>
+                                <div className="imgWrapper">
+                                    <div data-background={Object.values(image)[0]} className="swiper-lazy"></div>
+                                </div>
+                                <div className="swiper-lazy-preloader"></div>
                             </div>
-                            <div className="swiper-lazy-preloader"></div>
-                        </div>
-                    )}
-                </Swiper>
+                        )}
+                    </Swiper>
+                </div>
+
             </div>
         )
     }

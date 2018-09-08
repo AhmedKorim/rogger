@@ -45,45 +45,47 @@ class ProductPage extends React.Component {
                 {product && <Fragment>
                     <Breadcrumbs/>
                     <Container>
-                            <Grid container alignItems="flex-start">
-                                <Grid item container xs lg={10}>
+                        <Grid container alignItems="flex-start">
+                            <Grid item container xs lg={10}>
+                                <div className="imgaeswrapperPP">
                                     <ProductDetails product={product}/>
-                                    <Grid container>
-                                        <Grid xs>
-                                            <Card className={classes.root}>
-                                                <EnhancedTabs
-                                                    value={0}
-                                                    tab={[
-                                                        {label: 'about'},
-                                                        {label: 'reviews'},
-                                                        {label: 'FQA'}
-                                                    ]}
-                                                >
-                                                    <div>
-                                                        <Typography variant="subheading">About</Typography>
-                                                        <br/>
-                                                        <br/>
-                                                        <br/>
-                                                        <br/>
-                                                        <br/>
-                                                    </div>
-                                                    <div>
-                                                        <Typography variant="subheading">reviews</Typography>
-                                                    </div>
-                                                    <div>
-                                                        <Typography variant="subheading">FQA</Typography>
-                                                    </div>
-                                                </EnhancedTabs>
-                                            </Card>
-                                        </Grid>
+                                </div>
+                                <Grid container>
+                                    <Grid xs>
+                                        <Card className={classes.root}>
+                                            <EnhancedTabs
+                                                value={0}
+                                                tab={[
+                                                    {label: 'about'},
+                                                    {label: 'reviews'},
+                                                    {label: 'FQA'}
+                                                ]}
+                                            >
+                                                <div>
+                                                    <Typography variant="subheading">About</Typography>
+                                                    <br/>
+                                                    <br/>
+                                                    <br/>
+                                                    <br/>
+                                                    <br/>
+                                                </div>
+                                                <div>
+                                                    <Typography variant="subheading">reviews</Typography>
+                                                </div>
+                                                <div>
+                                                    <Typography variant="subheading">FQA</Typography>
+                                                </div>
+                                            </EnhancedTabs>
+                                        </Card>
                                     </Grid>
                                 </Grid>
-                                {(width === 'lg' || width === 'xl') ? (
-                                    <Grid item lg className={classes.pannerCont}>
-                                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => <div key={i * index + Math.random().toFixed(2)}><Panner/></div>)}
-                                    </Grid>
-                                ) : null}
                             </Grid>
+                            {(width === 'lg' || width === 'xl') ? (
+                                <Grid item lg className={classes.pannerCont}>
+                                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => <div key={i * index + Math.random().toFixed(2)}><Panner/></div>)}
+                                </Grid>
+                            ) : null}
+                        </Grid>
                     </Container>
                 </Fragment>}
             </div>
