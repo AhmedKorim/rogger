@@ -1,6 +1,6 @@
 import axios from "axios";
 import axiosBase from "../../axios/axios";
-import {AUTH_FAIL, AUTH_LOGOUT, AUTH_START, AUTH_SUCCESS, LOGIN, SNACK_BAR_NEW_MESSAGE} from "./actionTypes";
+import {AUTH_FAIL, AUTH_LOGOUT, AUTH_START, AUTH_SUCCESS, LOGIN, LOGOUT, SNACK_BAR_NEW_MESSAGE} from "./actionTypes";
 
 const clearToken = (expirationTime) => {
     return dispatch => {
@@ -10,9 +10,16 @@ const clearToken = (expirationTime) => {
     }
 
 };
+export const logout = () => {
+    return dispatch => {
+        dispatch({type: LOGOUT});
+        dispatch({type: AUTH_LOGOUT});
+        localStorage.clear();
+    }
+}
+
 
 const authFail = (error) => {
-
     return {
         type: AUTH_FAIL,
         payload: {error}
@@ -45,10 +52,12 @@ export const auth = ({email, password, gender, username}, signUp) => {
                 // create a new node to uses if it is sighnUp || get the data from the node
                 if (signUp) {
                     const userData = {
-                        id,
-                        email: resp.data.email,
-                        gender: gender,
-                        name: username,
+                        info: {
+                            id,
+                            email: resp.data.email,
+                            gender: gender,
+                            name: username,
+                        },
                         cart: [],
                         wishList: [],
                         compared: [],
@@ -56,35 +65,35 @@ export const auth = ({email, password, gender, username}, signUp) => {
                         liked: []
                     }
                     console.log('[id from post method]', id);
-
                     axiosBase.post('/users.json', userData).then(resp => {
                             dispatch({
                                 type: SNACK_BAR_NEW_MESSAGE,
                                 payload: {
-                                    message: `welcome to  ${ userData.gender === "femal" ? "MRS: " : "MR: " } ${userData.name}`,
+                                    message: `welcome to  ${ userData.gender === "femal" ? "MRS: " : "MR: " } ${userData.info.name}`,
                                     variant: 'success',
                                     duration: 3000
                                 }
                             })
-                            console.log(resp);
-                            dispatch({type: LOGIN, payload: {info: {...userData}}})
+                            dispatch({type: LOGIN, payload: {...userData}})
                             dispatch(authSuccess({id, idToken, email: userData.email}));
                         }
                     )
                 } else {
                     axiosBase.get('/users.json').then(resp => {
-                        const fetchedUserdata = Object.entries(resp.data).find(item => item[1].id === id)
+                        const fetchedUserdata = Object.entries(resp.data).find(item => item[1].info.id === id)
                         const userData = {...fetchedUserdata[1], id: fetchedUserdata[0]};
+                        const {gender, name} = userData.info;
                         dispatch({
                             type: SNACK_BAR_NEW_MESSAGE,
                             payload: {
-                                message: `welcome to  ${ userData.gender === "female" ? "MRS: " : "MR: " } ${userData.name}`,
+                                message: `welcome to  ${ gender === "female" ? "MRS: " : "MR: " } ${name}`,
                                 variant: 'success',
                                 duration: 3000
                             }
                         })
                         authSuccess({id, idToken, email: userData.email})
-                        dispatch({type: LOGIN, payload: {info: {...userData}}})
+                        dispatch({type: LOGIN, payload: {...userData}})
+
                     })
                 }
                 clearToken(resp.data.expiresIn)
@@ -112,18 +121,20 @@ export const tryLogin = () => {
             dispatch(authFail(null))
         } else {
             axiosBase.get('/users.json').then(resp => {
-                const fetchedUserdata = Object.entries(resp.data).find(item => item[1].id === id)
+                const fetchedUserdata = Object.entries(resp.data).find(item => item[1].info.id === id)
                 const userData = {...fetchedUserdata[1], id: fetchedUserdata[0]};
+                const {gender, name} = userData.info;
+
                 dispatch({
                     type: SNACK_BAR_NEW_MESSAGE,
                     payload: {
-                        message: `welcome to  ${ userData.gender === "female" ? "MRS: " : "MR: " } ${userData.name}`,
+                        message: `welcome to  ${ gender === "female" ? "MRS: " : "MR: " } ${name}`,
                         variant: 'success',
                         duration: 3000
                     }
                 })
                 authSuccess({id, token, email: userData.email})
-                dispatch({type: LOGIN, payload: {info: {...userData}}})
+                dispatch({type: LOGIN, payload: {...userData}})
             })
         }
     }

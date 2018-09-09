@@ -38,6 +38,7 @@ const addToCart = (action, state) => {
     return [...cart, {...action.payload.item, count: 1}]
 };
 
+
 const filterCart = (action, state) => {
     const id = action.payload.item.id;
     if (!id) return state;
@@ -48,7 +49,6 @@ const filterCart = (action, state) => {
 const liked = (action, state) => {
     const id = action.payload.item.id;
     if (!id) return state;
-
     const item = state.liked.find(item => item.id === id);
 
     if (!item) return [...state.liked, {id: id}];
@@ -85,7 +85,7 @@ const userReducer = (state = initalState, action) => {
                 wishList: action.payload.wishList || [],
                 compared: action.payload.compared || [],
                 orders: action.payload.orders || [],
-                liked: action.payload.liked || [    ]
+                liked: action.payload.liked || []
 
             };
         case LOGOUT :
@@ -111,7 +111,7 @@ const userReducer = (state = initalState, action) => {
         case LIKE:
             return {
                 ...state,
-                liked: liked(action, state)
+                liked: action.payload.liked
             };
         case MANAGE_COMPARED:
             return {
