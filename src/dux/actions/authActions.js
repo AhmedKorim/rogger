@@ -19,6 +19,8 @@ const authFail = (error) => {
     }
 };
 const authSuccess = ({idToken, id, email}) => {
+    localStorage.setItem('idToken', idToken);
+
     return {
         type: AUTH_SUCCESS,
         payload: {idToken, id, email}
@@ -36,10 +38,8 @@ export const auth = ({email, password, gender, username}, signUp) => {
         }
         axios.post(url, requestHeaper)
             .then(resp => {
-
                 const id = resp.data.localId;
                 const idToken = resp.data.idToken
-                // console.log(resp);
                 // create a new node to uses if it is sighnUp || get the data from the node
                 if (signUp) {
                     const userData = {
@@ -63,7 +63,7 @@ export const auth = ({email, password, gender, username}, signUp) => {
                                     duration: 3000
                                 }
                             })
-                            dispatch(authSuccess({id, idToken, email: userData.email}));
+                            authSuccess({id, idToken, email: userData.email})
                         }
                     )
                 } else {
@@ -78,13 +78,14 @@ export const auth = ({email, password, gender, username}, signUp) => {
                                 duration: 3000
                             }
                         })
+                        authSuccess({id, idToken, email: userData.email})
                         dispatch({type: LOGIN, payload: {info: {...userData}}})
                     })
                 }
                 clearToken(resp.data.expiresIn)
             })
             .catch(err => {
-                const error = err.response.data.error.message.replace(/_/g  , ' ');
+                const error = err.response.data.error.message.replace(/_/g, ' ');
                 dispatch(authFail(error));
                 dispatch({
                     type: SNACK_BAR_NEW_MESSAGE,
