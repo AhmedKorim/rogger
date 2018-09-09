@@ -5,6 +5,7 @@ const intialState = {
     auth: false,
     error: null,
     token: null,
+    email: null,
     id: null
 };
 const authReducer = (state = intialState, action) => {
@@ -17,8 +18,10 @@ const authReducer = (state = intialState, action) => {
         case AUTH_SUCCESS:
             return {
                 ...intialState,
+                auth: true,
                 token: action.payload.idToken,
-                id: action.payload.localId
+                id: action.payload.localId,
+                email: action.payload.email
             };
         case AUTH_FAIL:
             return {

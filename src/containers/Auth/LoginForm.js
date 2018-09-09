@@ -12,8 +12,8 @@ class LoginForm extends React.Component {
 
     state = {
         controllers: [
-            {value: '', label: 'E-mail', id: 'E-mail', type: 'email'},
-            {value: '', label: 'Password', id: "user password", type: 'password'},
+            {value: '', label: 'E-mail', id: 'email', type: 'email'},
+            {value: '', label: 'Password', id: "password", type: 'password'},
             {value: false, label: 'keep login', id: 'keepLogin', type: 'checkBox'}
         ]
     };
@@ -28,7 +28,10 @@ class LoginForm extends React.Component {
     sumbitLogin = (event) => {
         event.preventDefault();
         const controllers = this.state.controllers;
-        this.props.onAuth(controllers[0].value, controllers[1].value)
+        this.props.onAuth({
+            email: controllers[0].value,
+            password: controllers[1].value
+        })
     };
 
 
@@ -72,7 +75,7 @@ class LoginForm extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password) => dispatch(auth(email, password,false))
+        onAuth: (userData) => dispatch(auth(userData, false))
     }
 };
-export default connect(null,mapDispatchToProps)(LoginForm);
+export default connect(null, mapDispatchToProps)(LoginForm);

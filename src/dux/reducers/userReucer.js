@@ -5,10 +5,12 @@ const initalState = {
         admin: false,
         anonymous: true,
         name: 'anonymous',
+        id: null,
+        gender: null,
         email: 'anonymous@rogger.com',
         avatar: 'A',
-        balance: 0,
-        paymentVerified: false,
+        // balance: 0,
+        // paymentVerified: false,
 
     },
     cart: [],
@@ -20,7 +22,7 @@ const initalState = {
 
 const addToCart = (action, state) => {
     const id = action.payload.item.id;
-    if(!id) return state;
+    if (!id) return state;
     const hasItem = state.cart.find(item => item.id === id);
     const cart = [...state.cart];
 
@@ -38,14 +40,14 @@ const addToCart = (action, state) => {
 
 const filterCart = (action, state) => {
     const id = action.payload.item.id;
-    if(!id) return state;
+    if (!id) return state;
 
     return [...state.cart].filter(item => item.id !== id)
 };
 
 const liked = (action, state) => {
     const id = action.payload.item.id;
-    if(!id) return state;
+    if (!id) return state;
 
     const item = state.liked.find(item => item.id === id);
 
@@ -56,7 +58,7 @@ const liked = (action, state) => {
 
 const manageCompared = (action, state) => {
     const id = action.payload.item.id;
-    if(!id) return state;
+    if (!id) return state;
 
     // item on compared
     const item = state.compared.find(item => item.id === id);
@@ -68,35 +70,22 @@ const manageCompared = (action, state) => {
 const userReducer = (state = initalState, action) => {
     switch (action.type) {
         case LOGIN :
-            const {
-                payload: {
-                    info: {
-                        name,
-                        balance,
-                        paymentVerified,
-                        avatar
-                    },
-                    cart,
-                    wishList,
-                    compared,
-                    orders
-
-                }
-            } = action;
             return {
                 ...state,
                 info: {
                     ...state.info,
                     anonymous: false,
-                    name,
-                    balance,
-                    paymentVerified,
-                    avatar
+                    name: action.payload.info.name,
+                    gender: action.payload.info.gender,
+                    avatar: action.payload.info.name.substr(0, 2),
+                    email: action.payload.info.email,
+                    id: action.payload.info.id,
                 },
-                cart,
-                wishList,
-                compared,
-                orders
+                cart: action.payload.cart || [],
+                wishList: action.payload.wishList || [],
+                compared: action.payload.compared || [],
+                orders: action.payload.orders || [],
+                liked: action.payload.liked || [    ]
 
             };
         case LOGOUT :

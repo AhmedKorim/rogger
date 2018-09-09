@@ -12,9 +12,9 @@ class LoginForm extends React.Component {
 
     state = {
         controllers: [
-            {value: '', label: 'User Name', id: 'userNameLogin', type: 'text'},
-            {value: '', label: 'Password', id: "user passwordLogin", type: 'password'},
-            {value: '', label: 're-enter password', id: "userpasswordLogin", type: 'password'},
+            {value: '', label: 'User Name', id: 'userName', type: 'text'},
+            {value: '', label: 'Password', id: "password", type: 'password'},
+            {value: '', label: 're-enter password', id: "reEnterPassword", type: 'password'},
             {value: '', label: 'email', id: "userEmail", type: 'email'},
             {value: 'male', label: 'Gender', id: "userGender", type: 'select', options: ['male', 'female', 'it is secret']},
 
@@ -29,8 +29,15 @@ class LoginForm extends React.Component {
     };
     sumbitLogin = (event) => {
         event.preventDefault();
-        const controllers = this.state.controllers;
-        this.props.onAuth(controllers[3].value, controllers[1].value)
+        const controllers = this.state.controllers
+            .filter(controller => controller.id !== 'reEnterPassword')
+            .reduce((accumulator, controller) => ({
+                    ...accumulator,
+                    [controller.label.toLowerCase().replace(/ /g, '')]: controller.value
+                })
+                , {})
+console.log(controllers);
+        this.props.onAuth(controllers)
 
     };
 
@@ -76,7 +83,7 @@ class LoginForm extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password) => dispatch(auth(email, password, true))
+        onAuth: (userData) => dispatch(auth(userData, true))
     }
 };
 export default connect(null, mapDispatchToProps)(LoginForm);

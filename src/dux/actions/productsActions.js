@@ -16,7 +16,6 @@ export const getData = () => {
 
                 const keys = Object.keys(_products).filter(key => key.indexOf('productImg') >= 0)
                     .filter(key => key !== "productImg");
-
                 const imagesArray = keys.map(key => {
                     const imgUrl = {[key]: _products[key]};
                     delete _products[key];
