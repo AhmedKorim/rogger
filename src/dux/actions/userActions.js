@@ -12,26 +12,41 @@ const messge = (message, variant, duration) => {
     }
 }
 
+const syncActions = (userData, userId, path, data, message, variant) => {
+    if (!userData.info.anonymous) {
+        return dispatch => {
+            axiosBase.put(`/${path}/${userId}/liked.json`, data)
+                .then(resp => {
+                    dispatch(messge(message, variant, 2000))
+                })
+                .catch(error => messge(error.response.data.error.message, 'error'))
+        }
+    }
+}
+
 export const like = (id) => {
     return (dispatch, getState) => {
         const State = {...getState()};
         const userData = {...State.user};
-        const userLikedItems = [...userData.liked];
-        const likedItemsArray = () => {
-            if (!id) return userLikedItems;
-            const item = userLikedItems.find(item => item.id === id);
-            if (!item) return [...userLikedItems, {id: id}];
-            return userLikedItems.filter(item => item.id !== id);
+        const userId = State.auth.id;
+        let likedArray = [...userData.liked];
+        if (!id) {
+            dispatch({type: LIKE, payload: {liked: likedArray}});
+            syncActions(likedArray, userId, 'users', '', '')
+            return;
         }
-        dispatch({type: LIKE, payload: {liked: likedItemsArray()}});
-
-        if (!userData.info.anonymous) {
-            console.log(userData.info.id);
-            axiosBase.post(`users/${userData.id}.json`, likedItemsArray())
-                .then(resp => {
-                    dispatch(messge('item added to wish list ', 'success', 2000))
-                })
+        const item = likedArray.find(item => item.id === id);
+        if (!item) {
+            const addedArray =[...likedArray, {id: id}]
+            dispatch({type: LIKE, payload: {liked:addedArray }});
+            syncActions(userData, userId, 'users', '', '')
+            return
         }
+        const filtredArray =likedArray.filter(item => item.id !== id);
+        dispatch({type: LIKE, payload: {liked: filtredArray}});
+        syncActions(filtredArray, userId, 'users', 'item removed from wish list', '')
 
     }
+
+
 }

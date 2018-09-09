@@ -20,7 +20,7 @@ const authReducer = (state = intialState, action) => {
                 ...intialState,
                 auth: true,
                 token: action.payload.idToken,
-                id: action.payload.localId,
+                id: action.payload.activeUserNodeID,
                 email: action.payload.email
             };
         case AUTH_FAIL:

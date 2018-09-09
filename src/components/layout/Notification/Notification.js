@@ -1,4 +1,5 @@
 import React from 'react'
+import {like} from "../../../dux/actions/userActions";
 import EnhancedTabs from "../../UI/EnhancedTabs/EnhancedTabs";
 import './Notification.scss';
 import {connect} from "react-redux";
@@ -54,7 +55,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        toggleLike: (id) => dispatch({type: LIKE, payload: {item: {id}}}),
+        toggleLike: (id) => dispatch(like(id)),
         toggleCompared: (id) => dispatch({type: MANAGE_COMPARED, payload: {item: {id}}}),
 
     }

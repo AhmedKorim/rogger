@@ -2,14 +2,6 @@ import axios from "axios";
 import axiosBase from "../../axios/axios";
 import {AUTH_FAIL, AUTH_LOGOUT, AUTH_START, AUTH_SUCCESS, LOGIN, LOGOUT, SNACK_BAR_NEW_MESSAGE} from "./actionTypes";
 
-const clearToken = (expirationTime) => {
-    return dispatch => {
-        setTimeout(() => {
-            dispatch({type: AUTH_LOGOUT})
-        }, +expirationTime * 1000)
-    }
-
-};
 export const logout = () => {
     return dispatch => {
         dispatch({type: LOGOUT});
@@ -25,13 +17,26 @@ const authFail = (error) => {
         payload: {error}
     }
 };
-const authSuccess = ({idToken, id, email}) => {
+
+const clearToken = (expirationTime) => {
+    console.log(expirationTime)
+    setTimeout(() => {
+        logout();
+    }, +expirationTime * 1000)
+
+
+};
+const authSuccess = ({idToken, id, userId, email}) => {
+    /*
+    *
+    * id => id of the data base  saved on local storage for re login
+    * user id id of the auth   saved on the store local id
+    * */
     localStorage.setItem('idToken', idToken);
     localStorage.setItem('id', id);
-
     return {
         type: AUTH_SUCCESS,
-        payload: {idToken, id, email}
+        payload: {idToken, activeUserNodeID: userId, email}
     }
 };
 
@@ -75,13 +80,30 @@ export const auth = ({email, password, gender, username}, signUp) => {
                                 }
                             })
                             dispatch({type: LOGIN, payload: {...userData}})
-                            dispatch(authSuccess({id, idToken, email: userData.email}));
+                            dispatch(authSuccess({id: userData.id, userId: userData.info.id, idToken, email: userData.email}));
                         }
                     )
                 } else {
+
+                    /*{
+                          "info": {
+                            "email": "ahmedkorrim@gmail.com",
+                            "gender": "male",
+                            "id": "bUiwRcNe53hIEoKBD6VrDT3IZPs1",
+                            "name": "ahmed korim"
+                          },
+                          "id": "-LLza96nRjMH9pVhmhRm"
+                        }
+                    * */
                     axiosBase.get('/users.json').then(resp => {
                         const fetchedUserdata = Object.entries(resp.data).find(item => item[1].info.id === id)
                         const userData = {...fetchedUserdata[1], id: fetchedUserdata[0]};
+                        const mapeduserData = {
+                            info: userData.info,
+                            liked: userData.liked || []
+
+
+                        }
                         const {gender, name} = userData.info;
                         dispatch({
                             type: SNACK_BAR_NEW_MESSAGE,
@@ -91,8 +113,10 @@ export const auth = ({email, password, gender, username}, signUp) => {
                                 duration: 3000
                             }
                         })
-                        authSuccess({id, idToken, email: userData.email})
-                        dispatch({type: LOGIN, payload: {...userData}})
+                        const userDataA = {...userData}
+                        console.log(userDataA);
+                        dispatch(authSuccess({id: userData.info.id, userId: userData.id, idToken, email: userData.email}));
+                        dispatch({type: LOGIN, payload: {...mapeduserData}})
 
                     })
                 }
@@ -122,9 +146,14 @@ export const tryLogin = () => {
         } else {
             axiosBase.get('/users.json').then(resp => {
                 const fetchedUserdata = Object.entries(resp.data).find(item => item[1].info.id === id)
+                console.log(fetchedUserdata);
+                console.log(resp);
                 const userData = {...fetchedUserdata[1], id: fetchedUserdata[0]};
                 const {gender, name} = userData.info;
-
+                const mapeduserData = {
+                    info: userData.info,
+                    liked: userData.liked || []
+                }
                 dispatch({
                     type: SNACK_BAR_NEW_MESSAGE,
                     payload: {
@@ -133,8 +162,9 @@ export const tryLogin = () => {
                         duration: 3000
                     }
                 })
-                authSuccess({id, token, email: userData.email})
-                dispatch({type: LOGIN, payload: {...userData}})
+                console.log(userData);
+                dispatch(authSuccess({id: userData.info.id, userId: userData.id, idToken: token, email: userData.email}));
+                dispatch({type: LOGIN, payload: {...mapeduserData}})
             })
         }
     }
