@@ -21,11 +21,12 @@ const UserWidget = props => {
             name,
             avatar,
             anonymous,
-          /*  admin,
-            email*/
+            gender,
+            email
         }
     } = props;
-    const HIText = anonymous ? 'login now' : 'welcome MR' + name;
+    console.log(props);
+    const HIText = anonymous ? 'login now' : gender === 'female' ? 'welcome MRS ' : 'welcome MR ' + name.split(' ')[0];
     return (
         <div className="userWidget">
             <Grid container justify="center">
@@ -33,7 +34,7 @@ const UserWidget = props => {
                     <header>
                         <Grid container justify="center" alignItems="center" className="noWrapper">
                             <Grid item xs={3}>
-                                <Avatar>{avatar}</Avatar>
+                                <Avatar>{avatar.toUpperCase()}</Avatar>
                             </Grid>
                             <Grid item container alignItems="center" justify="center" xs={7} className="userMetaData">
                                 <Grid item xs={12}><Typography className="typo1">{name}</Typography></Grid>
@@ -57,22 +58,23 @@ const UserWidget = props => {
                                     <Grid item xs><Typography className="typo2">My DashBoard</Typography></Grid>
                                 </Grid>
                             </ListItem>
-                            <ListItem component="li" button className="userListItem" onClick={() => push(pathname + '/auth')}>
-                                <Grid container justify="center" alignItems="center">
-                                    <Grid item xs={4}>
-                                        <div><Icon className="iconCol">lock</Icon></div>
+                            {anonymous ? <ListItem component="li" button className="userListItem" onClick={() => push(pathname + '/auth')}>
+                                    <Grid container justify="center" alignItems="center">
+                                        <Grid item xs={4}>
+                                            <div><Icon className="iconCol">lock</Icon></div>
+                                        </Grid>
+                                        <Grid item xs><Typography className="typo2"> Log In</Typography></Grid>
                                     </Grid>
-                                    <Grid item xs><Typography className="typo2"> Log In</Typography></Grid>
-                                </Grid>
-                                <Divider/>
-                            </ListItem> <ListItem component="li" button className="userListItem">
-                            <Grid container justify="center" alignItems="center">
-                                <Grid item xs={4}>
-                                    <div><Icon className="iconCol">power_settings_new</Icon></div>
-                                </Grid>
-                                <Grid item xs><Typography className="typo2"> Log Out</Typography></Grid>
-                            </Grid>
-                        </ListItem>
+                                    <Divider/>
+                                </ListItem> :
+                                <ListItem component="li" button className="userListItem">
+                                    <Grid container justify="center" alignItems="center">
+                                        <Grid item xs={4}>
+                                            <div><Icon className="iconCol">power_settings_new</Icon></div>
+                                        </Grid>
+                                        <Grid item xs><Typography className="typo2"> Log Out</Typography></Grid>
+                                    </Grid>
+                                </ListItem>}
                         </List>
                     </div>
                 </Grid>

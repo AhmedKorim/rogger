@@ -84,7 +84,7 @@ export const auth = ({email, password, gender, username}, signUp) => {
                 clearToken(resp.data.expiresIn)
             })
             .catch(err => {
-                const error = err.response.data.error.message.replace(/_/g, ' ');
+                const error = err.response.data.error.message.replace(/_/g  , ' ');
                 dispatch(authFail(error));
                 dispatch({
                     type: SNACK_BAR_NEW_MESSAGE,
