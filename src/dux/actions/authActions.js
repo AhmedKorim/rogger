@@ -100,7 +100,10 @@ export const auth = ({email, password, gender, username}, signUp) => {
                         const userData = {...fetchedUserdata[1], id: fetchedUserdata[0]};
                         const mapeduserData = {
                             info: userData.info,
-                            liked: userData.liked || []
+                            liked: userData.liked || [],
+                            compared: userData.compared || [],
+                            cart: userData.compared || []
+
 
 
                         }
@@ -152,7 +155,9 @@ export const tryLogin = () => {
                 const {gender, name} = userData.info;
                 const mapeduserData = {
                     info: userData.info,
-                    liked: userData.liked || []
+                    liked: userData.liked || [],
+                    compared: userData.compared || [],
+                    cart: userData.compared || []
                 }
                 dispatch({
                     type: SNACK_BAR_NEW_MESSAGE,

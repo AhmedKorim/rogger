@@ -46,6 +46,7 @@ const filterCart = (action, state) => {
     return [...state.cart].filter(item => item.id !== id)
 };
 
+/*
 const liked = (action, state) => {
     const id = action.payload.item.id;
     if (!id) return state;
@@ -65,6 +66,7 @@ const manageCompared = (action, state) => {
     if (!item) return [...state.compared, {id: id}];
     return state.compared.filter(item => item.id !== id);
 };
+*/
 
 
 const userReducer = (state = initalState, action) => {
@@ -116,7 +118,7 @@ const userReducer = (state = initalState, action) => {
         case MANAGE_COMPARED:
             return {
                 ...state,
-                compared: manageCompared(action, state)
+                compared: action.payload.compared
             };
         default:
             return state;

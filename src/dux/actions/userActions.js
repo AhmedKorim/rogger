@@ -1,5 +1,5 @@
 import axiosBase from "../../axios/axios";
-import {LIKE, SNACK_BAR_NEW_MESSAGE} from "./actionTypes";
+import {ADD_TO_CART, LIKE, MANAGE_COMPARED, SNACK_BAR_NEW_MESSAGE} from "./actionTypes";
 
 const messge = (message, variant, duration) => {
     return {
@@ -28,7 +28,6 @@ export const like = (id) => {
         dispatch({type: LIKE, payload: {liked: likedArray}});
 
         if (!userData.info.anonymous) {
-            console.log(userId, likedArray);
             axiosBase.put(`users/${userId}/liked.json`, likedArray)
                 .then(resp => {
                     dispatch(messge('item added to wish list ', 'success', 2000))
@@ -37,4 +36,108 @@ export const like = (id) => {
         }
 
     }
-}
+};
+
+export const compared = (id) => {
+    return (dispatch, getState) => {
+        const State = {...getState()};
+        const userData = {...State.user};
+        const userId = State.auth.id;
+        const comparedItems = [...userData.compared];
+        const getLikedItemsArray = () => {
+            if (!id) return comparedItems;
+            const item = comparedItems.find(item => item.id === id);
+            if (!item) return [...comparedItems, {id: id}];
+            return comparedItems.filter(item => item.id !== id);
+        }
+        const comparedArray = getLikedItemsArray();
+        dispatch({type: MANAGE_COMPARED, payload: {compared: comparedArray}});
+
+        if (!userData.info.anonymous) {
+            console.log(userId, comparedArray);
+            axiosBase.put(`users/${userId}/compared.json`, comparedArray)
+                .then(resp => {
+                    dispatch(messge('item added to compared list ', 'success', 2000))
+                })
+                .catch(error => messge(error.response.data.error.message, 'error'))
+        }
+
+    }
+};
+
+
+export const addToCart = (id, action) => {
+    return (dispatch, getState) => {
+        const State = {...getState()};
+        const userData = {...State.user};
+        const userId = State.auth.id;
+        const cart = [...userData.cart];
+        if (!id) {
+            dispatch({type: ADD_TO_CART, cart: cart})
+            return;
+        }
+        const hasItem = State.cart.find(item => item.id === id);
+        if (hasItem && action === 'add') {
+            dispatch({type: ADD_TO_CART, cart: cart})
+            if (!userData.info.anonymous) {
+                axiosBase.put(`users/${userId}/liked.json`, cart)
+                    .then(resp => {
+                        dispatch(messge('item added to cart ', 'success', 2000))
+                    })
+                    .catch(error => messge(error.response.data.error.message, 'error'))
+            }
+            return;
+        }
+        // TODO : outsourse to thnk remove item from cart if it's coutn is ===0;
+        if (action !== 'add') {
+            const inc = action === 'addOne' ? 1 : -1;
+            if (hasItem) {
+                dispatch({
+                    type: ADD_TO_CART,
+                    cart: cart.map(item => {
+                        const newItem = item.id === id ? (item.count = item.count + inc >= 0 ? item.count + inc : 0  , item) : item;
+                        return newItem;
+                    })
+                })
+                if (!userData.info.anonymous) {
+                    axiosBase.put(`users/${userId}/liked.json`, cart)
+                        .then(resp => {
+                            dispatch(messge(`${inc} item ${action ==='addOne' ? "added" :" removed"} to cart `, 'success', 10000))
+                        })
+                        .catch(error => messge(error.response.data.error.message, 'error'))
+                }
+            }
+            return;
+        }
+        dispatch({type: ADD_TO_CART, cart: [...cart, {...action.payload.item, count: 1}]})
+
+
+    }
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

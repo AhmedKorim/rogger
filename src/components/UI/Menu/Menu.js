@@ -55,7 +55,6 @@ class AKmenu extends React.Component {
         console.log('done');
         this.arrowREf.style.transform = `translate3d(0,0,0)`;
         this.arrowREf.style.opacity = `0`;
-
         this.arrowTimeout = setTimeout(() => {
             const target = this.anchorEl;
             const follower = this.arrowREf;
@@ -64,7 +63,6 @@ class AKmenu extends React.Component {
             this.arrowREf.style.transform = `translate3d(${offset}px,0,0)`;
             this.arrowREf.style.opacity = `1`;
         }, 135)
-
     }
     handelChange = (event, val) => {
         console.log(val);
