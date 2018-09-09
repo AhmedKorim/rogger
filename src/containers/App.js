@@ -9,6 +9,7 @@ import Spinner from "../components/UI/Spinner/Spinner";
 
 import ToastMessage from "../components/UI/ToastMessage/ToastMessage";
 import {SCROLL_Y} from "../dux/actions/actionTypes";
+import {tryLogin} from "../dux/actions/authActions";
 import {getData} from "../dux/actions/productsActions";
 import AdminDashboard from "./Admin/Dashboard/AdminDashboard";
 import './App.scss';
@@ -22,6 +23,7 @@ class App extends Component {
 
     componentDidMount() {
         this.props.getData()
+        this.props.tryLogin();
     }
 
     scrollManger = (container) => {
@@ -66,7 +68,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getData: () => dispatch(getData()),
-        updateScroll: (scrollY) => dispatch({type: SCROLL_Y, payload: {scrollY}})
+        updateScroll: (scrollY) => dispatch({type: SCROLL_Y, payload: {scrollY}}),
+        tryLogin: () => dispatch(tryLogin())
     }
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

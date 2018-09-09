@@ -20,6 +20,7 @@ const authFail = (error) => {
 };
 const authSuccess = ({idToken, id, email}) => {
     localStorage.setItem('idToken', idToken);
+    localStorage.setItem('id', id);
 
     return {
         type: AUTH_SUCCESS,
@@ -36,6 +37,7 @@ export const auth = ({email, password, gender, username}, signUp) => {
         if (!signUp) {
             url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyBUGx-6HjRWtjS7kA4bUCgqr65Ni_J4Olg`;
         }
+
         axios.post(url, requestHeaper)
             .then(resp => {
                 const id = resp.data.localId;
@@ -46,14 +48,15 @@ export const auth = ({email, password, gender, username}, signUp) => {
                         id,
                         email: resp.data.email,
                         gender: gender,
-                        name: username
-                        ,
+                        name: username,
                         cart: [],
                         wishList: [],
                         compared: [],
                         orders: [],
                         liked: []
                     }
+                    console.log('[id from post method]', id);
+
                     axiosBase.post('/users.json', userData).then(resp => {
                             dispatch({
                                 type: SNACK_BAR_NEW_MESSAGE,
@@ -63,7 +66,9 @@ export const auth = ({email, password, gender, username}, signUp) => {
                                     duration: 3000
                                 }
                             })
-                            authSuccess({id, idToken, email: userData.email})
+                            console.log(resp);
+                            dispatch({type: LOGIN, payload: {info: {...userData}}})
+                            dispatch(authSuccess({id, idToken, email: userData.email}));
                         }
                     )
                 } else {
@@ -73,7 +78,7 @@ export const auth = ({email, password, gender, username}, signUp) => {
                         dispatch({
                             type: SNACK_BAR_NEW_MESSAGE,
                             payload: {
-                                message: `welcome to  ${ userData.gender === "femal" ? "MRS: " : "MR: " } ${userData.name}`,
+                                message: `welcome to  ${ userData.gender === "female" ? "MRS: " : "MR: " } ${userData.name}`,
                                 variant: 'success',
                                 duration: 3000
                             }
@@ -98,4 +103,30 @@ export const auth = ({email, password, gender, username}, signUp) => {
             })
     }
 };
+
+export const tryLogin = () => {
+    const token = localStorage.getItem('idToken');
+    const id = localStorage.getItem('id');
+    return dispatch => {
+        if (!(id && token)) {
+            dispatch(authFail(null))
+        } else {
+            axiosBase.get('/users.json').then(resp => {
+                const fetchedUserdata = Object.entries(resp.data).find(item => item[1].id === id)
+                const userData = {...fetchedUserdata[1], id: fetchedUserdata[0]};
+                dispatch({
+                    type: SNACK_BAR_NEW_MESSAGE,
+                    payload: {
+                        message: `welcome to  ${ userData.gender === "female" ? "MRS: " : "MR: " } ${userData.name}`,
+                        variant: 'success',
+                        duration: 3000
+                    }
+                })
+                authSuccess({id, token, email: userData.email})
+                dispatch({type: LOGIN, payload: {info: {...userData}}})
+            })
+        }
+    }
+}
+
 

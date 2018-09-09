@@ -25,8 +25,8 @@ const UserWidget = props => {
             email
         }
     } = props;
-    console.log(props);
-    const HIText = anonymous ? 'login now' : gender === 'female' ? 'welcome MRS ' : 'welcome MR ' + name.split(' ')[0];
+    console.log(name);
+    const HIText = anonymous ? 'login now' : gender === 'female' ? 'welcome MRS ' : 'welcome MR ' + name;
     return (
         <div className="userWidget">
             <Grid container justify="center">
