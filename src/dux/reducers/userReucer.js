@@ -101,7 +101,7 @@ const userReducer = (state = initalState, action) => {
 
             return {
                 ...state,
-                cart: addToCart(action, state)
+                cart: action.cart
             };
 
         case REMOVE_FROM_CART:

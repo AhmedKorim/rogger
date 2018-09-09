@@ -71,49 +71,62 @@ export const addToCart = (id, action) => {
         const State = {...getState()};
         const userData = {...State.user};
         const userId = State.auth.id;
-        const cart = [...userData.cart];
+            const cart = [...userData.cart];
         if (!id) {
             dispatch({type: ADD_TO_CART, cart: cart})
             return;
         }
-        const hasItem = State.cart.find(item => item.id === id);
-        if (hasItem && action === 'add') {
-            dispatch({type: ADD_TO_CART, cart: cart})
-            if (!userData.info.anonymous) {
-                axiosBase.put(`users/${userId}/liked.json`, cart)
-                    .then(resp => {
-                        dispatch(messge('item added to cart ', 'success', 2000))
-                    })
-                    .catch(error => messge(error.response.data.error.message, 'error'))
-            }
-            return;
-        }
+        const hasItem = cart.find(item => item.id === id);
+        /*  if (hasItem && action === 'add') {
+              dispatch({type: ADD_TO_CART, cart: cart})
+              if (!userData.info.anonymous) {
+                  axiosBase.put(`users/${userId}/cart.json`, cart)
+                      .then(resp => {
+                          dispatch(messge('item added to cart ', 'success', 2000))
+                      })
+                      .catch(error => messge(error.response.data.error.message, 'error'))
+              }
+              return;
+          }*/
         // TODO : outsourse to thnk remove item from cart if it's coutn is ===0;
         if (action !== 'add') {
             const inc = action === 'addOne' ? 1 : -1;
+            let deleteIndex =null;
             if (hasItem) {
+                console.log(cart);
+                const cartToSend = cart.map((item, index) => {
+                    if (item.id !== id) return item;
+                    const newItem = {...item, count: item.count + inc};
+                    if (newItem.count <= 0) deleteIndex = index;
+                    return newItem;
+                })
+                console.log(cartToSend);
                 dispatch({
                     type: ADD_TO_CART,
-                    cart: cart.map(item => {
-                        const newItem = item.id === id ? (item.count = item.count + inc >= 0 ? item.count + inc : 0  , item) : item;
-                        return newItem;
-                    })
+                    cart: cartToSend
+
                 })
+
                 if (!userData.info.anonymous) {
-                    axiosBase.put(`users/${userId}/liked.json`, cart)
+                    axiosBase.put(`users/${userId}/cart.json`, cartToSend)
                         .then(resp => {
-                            dispatch(messge(`${inc} item ${action ==='addOne' ? "added" :" removed"} to cart `, 'success', 10000))
+                            dispatch(messge(` one item ${action === 'addOne' ? "added" : " removed"} to cart `, 'success', 1000))
                         })
                         .catch(error => messge(error.response.data.error.message, 'error'))
                 }
             }
             return;
         }
-        dispatch({type: ADD_TO_CART, cart: [...cart, {...action.payload.item, count: 1}]})
-
-
+        const cartToSend = [...cart, {id, count: 1}]
+        dispatch({type: ADD_TO_CART, cart: cartToSend})
+        if (!userData.info.anonymous) {
+            axiosBase.put(`users/${userId}/cart.json`, cartToSend)
+                .then(resp => {
+                    dispatch(messge(` added  to cart `, 'success', 1000))
+                })
+                .catch(error => messge(error.response.data.error.message, 'error'))
+        }
     }
-
 };
 
 

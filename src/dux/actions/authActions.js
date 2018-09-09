@@ -69,7 +69,6 @@ export const auth = ({email, password, gender, username}, signUp) => {
                         orders: [],
                         liked: []
                     }
-                    console.log('[id from post method]', id);
                     axiosBase.post('/users.json', userData).then(resp => {
                             dispatch({
                                 type: SNACK_BAR_NEW_MESSAGE,
@@ -80,21 +79,11 @@ export const auth = ({email, password, gender, username}, signUp) => {
                                 }
                             })
                             dispatch({type: LOGIN, payload: {...userData}})
-                            dispatch(authSuccess({id: userData.id, userId: userData.info.id, idToken, email: userData.email}));
+                            dispatch(authSuccess({idToken: id, userId: userData.info.id, email: userData.email}));
                         }
                     )
                 } else {
 
-                    /*{
-                          "info": {
-                            "email": "ahmedkorrim@gmail.com",
-                            "gender": "male",
-                            "id": "bUiwRcNe53hIEoKBD6VrDT3IZPs1",
-                            "name": "ahmed korim"
-                          },
-                          "id": "-LLza96nRjMH9pVhmhRm"
-                        }
-                    * */
                     axiosBase.get('/users.json').then(resp => {
                         const fetchedUserdata = Object.entries(resp.data).find(item => item[1].info.id === id)
                         const userData = {...fetchedUserdata[1], id: fetchedUserdata[0]};
@@ -103,9 +92,6 @@ export const auth = ({email, password, gender, username}, signUp) => {
                             liked: userData.liked || [],
                             compared: userData.compared || [],
                             cart: userData.compared || []
-
-
-
                         }
                         const {gender, name} = userData.info;
                         dispatch({
@@ -121,6 +107,19 @@ export const auth = ({email, password, gender, username}, signUp) => {
                         dispatch(authSuccess({id: userData.info.id, userId: userData.id, idToken, email: userData.email}));
                         dispatch({type: LOGIN, payload: {...mapeduserData}})
 
+                    }).catch(error => {
+
+
+                        dispatch({
+                                type: SNACK_BAR_NEW_MESSAGE,
+                                payload: {
+                                    message: ` this account is deleted `,
+                                    variant: 'warning',
+                                    duration: 3000
+                                }
+
+                            }
+                        )
                     })
                 }
                 clearToken(resp.data.expiresIn)
@@ -148,16 +147,38 @@ export const tryLogin = () => {
             dispatch(authFail(null))
         } else {
             axiosBase.get('/users.json').then(resp => {
-                const fetchedUserdata = Object.entries(resp.data).find(item => item[1].info.id === id)
-                console.log(fetchedUserdata);
-                console.log(resp);
+
+                if (!resp.data) {
+                    dispatch({
+                        type: SNACK_BAR_NEW_MESSAGE,
+                        payload: {
+                            message: ` please login again`,
+                            variant: 'info',
+                            duration: 3000
+                        }
+                    })
+                    return;
+                }
+                const fetchedUserdata = Object.entries(resp.data).find(item => (item[1].info || {id: null}).id === id)
+                if (!fetchedUserdata) {
+                    dispatch({
+                        type: SNACK_BAR_NEW_MESSAGE,
+                        payload: {
+                            message: ` please login again`,
+                            variant: 'info',
+                            duration: 3000
+                        }
+                    })
+                    return;
+
+                }
                 const userData = {...fetchedUserdata[1], id: fetchedUserdata[0]};
                 const {gender, name} = userData.info;
                 const mapeduserData = {
                     info: userData.info,
                     liked: userData.liked || [],
                     compared: userData.compared || [],
-                    cart: userData.compared || []
+                    cart: userData.cart || []
                 }
                 dispatch({
                     type: SNACK_BAR_NEW_MESSAGE,
@@ -167,7 +188,6 @@ export const tryLogin = () => {
                         duration: 3000
                     }
                 })
-                console.log(userData);
                 dispatch(authSuccess({id: userData.info.id, userId: userData.id, idToken: token, email: userData.email}));
                 dispatch({type: LOGIN, payload: {...mapeduserData}})
             })

@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 import {ADD_TO_CART, REMOVE_FROM_CART} from "../../../../dux/actions/actionTypes";
+import {addToCart} from "../../../../dux/actions/userActions";
 
 const styles = theme => ({
     shadow: {
@@ -72,7 +73,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        addToCart: (id, action) => dispatch({type: ADD_TO_CART, payload: {item: {id}}, action: action}),
+        addToCart: (id, action) => dispatch(addToCart(id,action)),
         removeFromCart: (id) => dispatch({type: REMOVE_FROM_CART, payload: {item: {id}}})
     }
 };

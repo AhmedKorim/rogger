@@ -7,6 +7,7 @@ import AkTable from "../../../components/UI/Table/Table";
 import {connect} from "react-redux";
 import CartActions from "../../../components/layout/Cart/CartActions/CartActions";
 import {ADD_TO_CART, REMOVE_FROM_CART} from "../../../dux/actions/actionTypes";
+import {addToCart} from "../../../dux/actions/userActions";
 
 class UserCart extends React.Component {
 
@@ -79,7 +80,7 @@ const mapstateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         removeFromCart: (id) => dispatch({type: REMOVE_FROM_CART, payload: {item: {id}}}),
-        addToCart: (id, action) => dispatch({type: ADD_TO_CART, payload: {item: {id}}, action: action}),
+        addToCart: (id, action) => dispatch(addToCart(id, action)),
     }
 };
 
