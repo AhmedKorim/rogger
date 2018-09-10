@@ -30,8 +30,7 @@ class UserCart extends React.Component {
             /*     addOne,
                  removeOne*/
         } = this;
-
-        const productsOnCart = cart.map(item => products.find(product => product.id === item.id));
+        const productsOnCart  = products.filter(product => cart.find(cartItem => product.id === cartItem.id));
         const dataTable = productsOnCart.map(productOnCart => {
             const cartItem = cart.find(item => item.id === (productOnCart || {}).id);
             if (cartItem) {
@@ -40,6 +39,7 @@ class UserCart extends React.Component {
                 return {productName, count, productPrice: productPrice * count, saved: preDiscount ? (preDiscount - productPrice) * count : 0, id}
             }
         });
+        console.log(dataTable);
         const itemCount = cart.reduce((acc, item) => acc + item.count, 0);
         return (
             <div className="userCart">
