@@ -64,7 +64,7 @@ const ProductDetails = props => {
                         </div>
                         <Divider className="proDivider"/>
                     </div>
-                    <ProductActions id={product.id}/>
+                    <ProductActions id={product.id} favorite compare/>
                 </Grid>
             </Grid>
         </div>

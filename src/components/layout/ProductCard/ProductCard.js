@@ -137,7 +137,11 @@ class ProductCard extends React.Component {
                                 liked,
                                 id
                             }
-                        )} id={id}/>
+                        )} id={id}
+                                        details
+                                        compare
+                                        favorite
+                        />
                     </Card>
                 </div>
             </div>

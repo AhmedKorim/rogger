@@ -1,8 +1,11 @@
+import Button from "@material-ui/core/Button/Button";
 import Grid from "@material-ui/core/es/Grid/Grid";
+import Icon from "@material-ui/core/Icon/Icon";
 import Typography from "@material-ui/core/Typography/Typography";
 import React from "react";
 import {connect} from "react-redux";
 import CartActions from "../../../../components/layout/Cart/CartActions/CartActions";
+import ProductActions from "../../../../components/layout/productActions/ProdcutsAcitons";
 import AkTable from "../../../../components/UI/Table/Table";
 import {REMOVE_FROM_CART} from "../../../../dux/actions/actionTypes";
 import {addToCart, like} from "../../../../dux/actions/userActions";
@@ -55,7 +58,10 @@ class UserWishList extends React.Component {
                             <Grid item xs={12}>
                                 <div className="tableWrapper">
                                     {dataTabel[0] &&
-                                    <AkTable data={dataTabel} action={(id) => <CartActions id={id}/>}
+                                    <AkTable data={dataTabel} action={(id) => <div>
+                                        <ProductActions id={id} favorite details />
+
+                                    </div>}
                                              labels={['name', 'price']}/>}
                                 </div>
                             </Grid>
