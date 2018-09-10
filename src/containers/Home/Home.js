@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
+import {getSlide} from "../../dux/actions/productsActions";
 import withPadding from "../../HOC/WithPadding/WithPadding";
 import SwiperEl from "../../components/UI/swiper/Swiper";
 import Swiper from 'react-id-swiper';
@@ -24,6 +25,9 @@ class Home extends React.Component {
         this.mainSwiper.slideNext();
     };
 
+    componentDidMount() {
+        this.props.getSlides();
+    }
 
     render() {
         const parms = {
@@ -115,4 +119,9 @@ class Home extends React.Component {
 const mapStateToPorps = state => ({
     slides: state.UI.homepage.slides
 })
-export default connect(mapStateToPorps)(withPadding(Home));
+const mapDispatchToprops = dispatch => {
+    return {
+        getSlides: () => dispatch(getSlide())
+    }
+}
+export default connect(mapStateToPorps, mapDispatchToprops)(withPadding(Home));

@@ -1,13 +1,13 @@
-import React from 'react';
 import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography/Typography";
-
-import './UserCart.scss'
-import AkTable from "../../../components/UI/Table/Table";
+import React from 'react';
 import {connect} from "react-redux";
 import CartActions from "../../../components/layout/Cart/CartActions/CartActions";
-import {ADD_TO_CART, REMOVE_FROM_CART} from "../../../dux/actions/actionTypes";
+import AkTable from "../../../components/UI/Table/Table";
+import {REMOVE_FROM_CART} from "../../../dux/actions/actionTypes";
 import {addToCart} from "../../../dux/actions/userActions";
+
+import './UserCart.scss'
 
 class UserCart extends React.Component {
 
@@ -27,13 +27,13 @@ class UserCart extends React.Component {
                 cart,
                 products
             },
-       /*     addOne,
-            removeOne*/
+            /*     addOne,
+                 removeOne*/
         } = this;
 
         const productsOnCart = cart.map(item => products.find(product => product.id === item.id));
         const dataTable = productsOnCart.map(productOnCart => {
-            const cartItem = cart.find(item => item.id === productOnCart.id);
+            const cartItem = cart.find(item => item.id === (productOnCart || {}).id);
             if (cartItem) {
                 const {productName, productPrice, preDiscount, id} = productOnCart;
                 const count = cartItem.count;
@@ -41,7 +41,6 @@ class UserCart extends React.Component {
             }
         });
         const itemCount = cart.reduce((acc, item) => acc + item.count, 0);
-        console.log(dataTable);
         return (
             <div className="userCart">
                 <Grid container justify="center" alignItems="flex-start">
@@ -58,8 +57,9 @@ class UserCart extends React.Component {
                             </Grid>
                             <Grid item xs={12}>
                                 <div className="tableWrapper">
+                                    {dataTable[0] &&
                                     <AkTable data={dataTable} action={(id) => <CartActions id={id}/>}
-                                             labels={['name', 'count', 'price', 'saved']}/>
+                                             labels={['name', 'count', 'price', 'saved']}/>}
                                 </div>
                             </Grid>
                         </Grid>

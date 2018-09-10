@@ -1,4 +1,12 @@
-import {CLOSE_TOAST_MESSAGE, EDIT_HOMEPAGE_CAROUSEL, HEADER_DIM, PRODUCT_CARD_DETAILS, SCROLL_Y, SNACK_BAR_NEW_MESSAGE} from "../actions/actionTypes";
+import {
+    CLOSE_TOAST_MESSAGE,
+    EDIT_HOMEPAGE_CAROUSEL,
+    HEADER_DIM, HIDE_SPINNER,
+    PRODUCT_CARD_DETAILS,
+    SCROLL_Y,
+    SHOW_SPINNER,
+    SNACK_BAR_NEW_MESSAGE
+} from "../actions/actionTypes";
 
 
 const initialState = {
@@ -27,7 +35,7 @@ const initialState = {
     aside: {
         open: false
     },
-
+    spinnerVisabity: false
 };
 export default (state = initialState, action) => {
     switch (action.type) {
@@ -75,6 +83,16 @@ export default (state = initialState, action) => {
                     message: '',
                     variant: ''
                 }
+            }
+        case SHOW_SPINNER:
+            return {
+                ...state,
+                spinnerVisabity: true
+            }
+        case HIDE_SPINNER:
+            return {
+                ...state,
+                spinnerVisabity: false
             }
         default :
             return state;

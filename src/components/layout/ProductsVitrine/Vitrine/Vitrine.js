@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './Vitrine.scss';
 import {withStyles, withWidth} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid/Grid";
-import withSpinner from "../../../../HOC/WithSpinner/WithSpinner";
 import ProductCard from "../../ProductCard/ProductCard";
 
 const styles = theme => ({
@@ -43,5 +42,4 @@ class Vitrine extends Component {
     }
 }
 
-
-export default withStyles(styles)(withWidth()(withSpinner(Vitrine)));
+export default withStyles(styles)(withWidth()(Vitrine));

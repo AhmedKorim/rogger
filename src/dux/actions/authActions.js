@@ -43,13 +43,13 @@ const authSuccess = ({idToken, id, userId, email}) => {
 
 export const auth = ({email, password, gender, username}, signUp) => {
     return (dispatch, getState) => {
+        dispatch({type: AUTH_START});
         const {
             user: {
                 liked, wishList, compared, cart, orders
 
             }
         } = getState()
-        dispatch({type: AUTH_START});
         const requestHeaper = {email, password, returnSecureToken: true};
         let url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyBUGx-6HjRWtjS7kA4bUCgqr65Ni_J4Olg`;
         if (!signUp) {
@@ -148,6 +148,7 @@ export const tryLogin = () => {
     const token = localStorage.getItem('idToken');
     const id = localStorage.getItem('id');
     return dispatch => {
+        dispatch({type: AUTH_START});
         if (!(id && token)) {
             dispatch(authFail(null))
         } else {

@@ -31,7 +31,6 @@ const withSpinner = (WrappedComponent) => {
         componentDidUpdate(nextProps) {
             if (nextProps.products.length === this.props.products.length) return;
             this.setState({loading: false})
-
         }
 
         render() {

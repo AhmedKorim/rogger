@@ -1,10 +1,11 @@
 import axios from "../../axios/axios";
-import {EDIT_HOMEPAGE_CAROUSEL, GET_DATA} from "./actionTypes";
+import {EDIT_HOMEPAGE_CAROUSEL, GET_DATA, HIDE_SPINNER, SHOW_SPINNER, SNACK_BAR_NEW_MESSAGE} from "./actionTypes";
 
 
 export const getData = () => {
 
     return dispatch => {
+        dispatch({type: SHOW_SPINNER})
         axios.get('/products.json').then(({data}) => {
             data = data || {};
             const enhancedData = Object.entries(data).map(product => {
@@ -27,12 +28,26 @@ export const getData = () => {
                 }
             });
             dispatch({type: GET_DATA, data: enhancedData})
-        })
-        axios.get('/homepage/slides/-LLtvPDWdOalG2wBAhCM.json')
-            .then(resp => dispatch({type: EDIT_HOMEPAGE_CAROUSEL, payload: {slides: resp.data}}))
-            .catch(error => console.log(error.response))
+            dispatch({type: HIDE_SPINNER});
+        }).catch(error => {
+            dispatch({type: HIDE_SPINNER});
+            dispatch({type: SNACK_BAR_NEW_MESSAGE, payload: {message: 'error getting products data make sure you are online'}});})
 
     }
 };
+
+export const getSlide = () => {
+    return dispatch => {
+        dispatch({type: SHOW_SPINNER});
+        axios.get('/homepage/slides/-LLtvPDWdOalG2wBAhCM.json')
+            .then(resp => {
+                dispatch({type: HIDE_SPINNER});
+                dispatch({type: EDIT_HOMEPAGE_CAROUSEL, payload: {slides: resp.data}});
+            })
+            .catch(error => dispatch({type: SNACK_BAR_NEW_MESSAGE, payload: {message: 'error getting products slides'}}))
+    }
+}
+
+
 
 
