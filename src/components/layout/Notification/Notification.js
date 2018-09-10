@@ -28,11 +28,13 @@ const Notification = props => {
                 rootClass='notificationRoot'
                 tabRootClass='notificaitonTabRoot'
                 indercatorClass='notificationTabIndector'
-                paddges={[{label: 'compared', count: compared.length, icon: 'compared'}, {label: 'wish list', count: liked.length, icon: 'favourite'}, {
-                    label: 'orders',
-                    count: orders.length,
-                    icon: 'list'
-                }]}
+                paddges={[{label: 'compared', count: compared.length, icon: 'compared'},
+                    {label: 'wish list', count: liked.length, icon: 'favourite'},
+                    // {
+                    // label: 'orders',
+                    // count: orders.length,
+                    // icon: 'list'}
+                    ]}
             >
                 <div className="tabView">
                     <ItemsList listItems={comparedList} message="you have no items on compare yet!" deleteBtnclick={toggleCompared}/>
@@ -40,7 +42,7 @@ const Notification = props => {
                 <div className="tabView">
                     <ItemsList listItems={wishList} message="your wish list is empty!" deleteBtnclick={toggleLike}/>
                 </div>
-                <div>orders</div>
+                {/*<div>orders</div>*/}
             </EnhancedTabs>
         </div>
     )

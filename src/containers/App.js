@@ -49,7 +49,7 @@ class App extends Component {
                         <Switch>
                             <Redirect from="/" to="/home" exact/>
                             <Route path="/home" component={Home}/>
-                            <Route path="/dashboard" component={AdminDashboard}/>
+                            <Route path="/admin_dashboard" component={AdminDashboard}/>
                             <Route path="/my_dashboard" component={UserDashboard}/>
                         </Switch>
                     </PerfectScrollbar>

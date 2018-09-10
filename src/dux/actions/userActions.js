@@ -134,7 +134,7 @@ export const addToCart = (id, action) => {
 };
 
 
-export const addOrder = (order) => {
+export const addOrder = (order,callBack) => {
     console.log('sending');
     return (dispatch, getState) => {
         const state = {...getState()};
@@ -146,20 +146,26 @@ export const addOrder = (order) => {
         }
 
         dispatch({type: SHOW_SPINNER});
-        const orderDate = new Date();
+        const orderDate = new Date().toISOString();
         const ordersToSend = [...orders, {
             ...order,
-            date: ` ${orderDate.getFullYear()}/${orderDate.getMonth() + 1}/${orderDate.getDay()}`
+            date: orderDate
         }]
-        axiosBase.put(`/users/${userId}/orders.json`, ordersToSend).then(resp => {
-            dispatch({type: HIDE_SPINNER});
-            dispatch({type:ADD_ORDER,payload:{orders:ordersToSend}})
-            dispatch(messge('orders submitted', 'success', 4000))
-        }).catch(erro => {
-            dispatch({type: HIDE_SPINNER});
-            dispatch(messge('network error ', 'warn', 6000))
+        axiosBase.put(`/users/${userId}/orders.json`, ordersToSend)
+            .then(resp => {
+                dispatch({type: ADD_ORDER, payload: {orders: ordersToSend}})
+            })
+            .then(_ => axiosBase.put(`/users/${userId}/cart.json`, [])
+                .then(resp => {
+                    dispatch({type: HIDE_SPINNER});
+                    dispatch(messge('orders submitted', 'success', 4000))
+                    callBack();
+                }))
+            .catch(erro => {
+                dispatch({type: HIDE_SPINNER});
+                dispatch(messge('network error ', 'warn', 6000))
 
-        })
+            })
     }
 }
 

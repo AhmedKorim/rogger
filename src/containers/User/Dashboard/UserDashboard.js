@@ -4,6 +4,7 @@ import WithHeight from "../../../HOC/WithHeight";
 import withPadding from "../../../HOC/WithPadding/WithPadding";
 import UserCart from "../UserCart/UserCart";
 import ComparedList from "./CompareList/ComparedList";
+import Orders from "./Orders/Orders";
 import UserWishList from "./UserWishList/UserWishList";
 
 class UserDashboard extends React.Component {
@@ -20,21 +21,17 @@ class UserDashboard extends React.Component {
                 <Dashboard
                     tabs={[
                         // {label: 'Profile'},
-                        {label: 'cart'},
+                        {label: 'check out'},
                         {label: 'Orders'},
                         {label: 'wish list'},
                         {label: 'compared'},
-
                     ]}
                 >
-                    {/*                 <WithHeight maxHeight={headerHeight + 120}>
-                        <div>profile</div>
-                    </WithHeight>*/}
                     <WithHeight maxHeight={headerHeight + 120}>
                         <UserCart/>
                     </WithHeight>
                     <WithHeight maxHeight={headerHeight + 120}>
-                        <div>Orders</div>
+                        <Orders/>
                     </WithHeight>
                     <WithHeight maxHeight={headerHeight + 120}>
                         <UserWishList/>

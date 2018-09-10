@@ -9,7 +9,7 @@ const styles = {
         flexGrow: 1,
     },
 };
-const routering = ["home", "products", "dashboard"];
+const routering = ["home", "products", "admin dashboard"];
 
 class Navigation extends React.Component {
     constructor(props) {
@@ -30,7 +30,7 @@ class Navigation extends React.Component {
     }
 
     handleChange = (event, value) => {
-        this.props.history.push(`/${routering[value]}`);
+        this.props.history.push(`/${routering[value].replace(/ /g ,"_")}`);
         this.setState({value});
     };
 

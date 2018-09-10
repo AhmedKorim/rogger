@@ -27,15 +27,14 @@ class UserCart extends React.Component {
     render() {
         const {
             props: {
-                // removeFromCart,
+
                 cart,
                 products,
                 history: {
                     push
                 }
             },
-            /*     addOne,
-                 removeOne*/
+
         } = this;
         const productsOnCart = products.filter(product => cart.find(cartItem => product.id === cartItem.id));
         const dataTable = productsOnCart.map(productOnCart => {
@@ -66,7 +65,7 @@ class UserCart extends React.Component {
                 <Grid container justify="center" alignItems="flex-start">
                     <Grid item container xs sm={10} justify="center" alignItems="center">
                         <Grid item xs={12}>
-                            <Typography className="header" variant="subheading" component="h3"> cart</Typography>
+                            <Typography className="header" variant="subheading" component="h3"> check out</Typography>
                         </Grid>
                         <Grid item container xs={11} justify="center">
                             <Grid item xs={12}>
@@ -104,7 +103,7 @@ class UserCart extends React.Component {
                                 </Button>*/}
                                 {dataTable.length > 0 &&
 
-                                <Button variant="raised" color="primary" onClick={() => this.props.addOrder(orderSummery)}>
+                                <Button variant="raised" color="primary" onClick={() => this.props.addOrder(orderSummery,() => push('/products'))}>
                                     <Typography component="span" variant="subheading" className="SOText"> order
                                         now</Typography>
                                 </Button>}
@@ -128,7 +127,7 @@ const mapDispatchToProps = dispatch => {
     return {
         removeFromCart: (id) => dispatch({type: REMOVE_FROM_CART, payload: {item: {id}}}),
         addToCart: (id, action) => dispatch(addToCart(id, action)),
-        addOrder: (order) => dispatch(addOrder(order))
+        addOrder: (order,callBack) => dispatch(addOrder(order,callBack))
     }
 };
 
