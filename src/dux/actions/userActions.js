@@ -1,5 +1,5 @@
 import axiosBase from "../../axios/axios";
-import {ADD_TO_CART, HIDE_SPINNER, LIKE, MANAGE_COMPARED, SHOW_SPINNER, SNACK_BAR_NEW_MESSAGE} from "./actionTypes";
+import {ADD_ORDER, ADD_TO_CART, HIDE_SPINNER, LIKE, MANAGE_COMPARED, SHOW_SPINNER, SNACK_BAR_NEW_MESSAGE} from "./actionTypes";
 
 const messge = (message, variant, duration) => {
     return {
@@ -153,6 +153,7 @@ export const addOrder = (order) => {
         }]
         axiosBase.put(`/users/${userId}/orders.json`, ordersToSend).then(resp => {
             dispatch({type: HIDE_SPINNER});
+            dispatch({type:ADD_ORDER,payload:{orders:ordersToSend}})
             dispatch(messge('orders submitted', 'success', 4000))
         }).catch(erro => {
             dispatch({type: HIDE_SPINNER});

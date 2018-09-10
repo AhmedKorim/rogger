@@ -31,6 +31,12 @@
       color: #43A047;
     }
   }
+  .SOText {
+    font-weight: bold;
+    text-align: center;
+    color: transparentize(black, .4);
+    font-size: .9rem;
+  }
 
   .orderSubmitionButton {
     width: 67.6666%;
@@ -38,10 +44,7 @@
     text-align: right;
     padding-top: 2rem;
     .SOText {
-      font-weight: bold;
-      text-align: center;
       color: #ffe;
-      font-size: .9rem;
     }
     .saveItForNow {
       backgorund-color: #4FC3F7;

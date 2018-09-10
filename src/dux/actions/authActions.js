@@ -98,7 +98,8 @@ export const auth = ({email, password, gender, username}, signUp) => {
                             info: userData.info,
                             liked: userData.liked || [],
                             compared: userData.compared || [],
-                            cart: userData.compared || []
+                            cart: userData.cart || [],
+                            orders: userData.orders || []
                         }
                         const {gender, name} = userData.info;
                         dispatch({
@@ -184,7 +185,8 @@ export const tryLogin = () => {
                     info: userData.info,
                     liked: userData.liked || [],
                     compared: userData.compared || [],
-                    cart: userData.cart || []
+                    cart: userData.cart || [],
+                    orders: userData.orders || []
                 }
                 dispatch({
                     type: SNACK_BAR_NEW_MESSAGE,

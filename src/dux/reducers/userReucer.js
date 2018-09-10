@@ -1,4 +1,4 @@
-import {ADD_TO_CART, LIKE, LOGIN, LOGOUT, MANAGE_COMPARED, REMOVE_FROM_CART} from "../actions/actionTypes";
+import {ADD_ORDER, ADD_TO_CART, LIKE, LOGIN, LOGOUT, MANAGE_COMPARED, REMOVE_FROM_CART} from "../actions/actionTypes";
 
 const initalState = {
     info: {
@@ -120,6 +120,12 @@ const userReducer = (state = initalState, action) => {
                 ...state,
                 compared: action.payload.compared
             };
+        case ADD_ORDER:
+            return {
+                ...state,
+                cart: [],
+                orders: action.payload.orders
+            }
         default:
             return state;
     }

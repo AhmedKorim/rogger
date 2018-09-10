@@ -2,8 +2,9 @@ import Button from "@material-ui/core/Button/Button";
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
 import Typography from "@material-ui/core/Typography/Typography";
-import React from 'react';
+import React, {Fragment} from 'react';
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 import CartActions from "../../../components/layout/Cart/CartActions/CartActions";
 import AkTable from "../../../components/UI/Table/Table";
 import {REMOVE_FROM_CART} from "../../../dux/actions/actionTypes";
@@ -23,13 +24,15 @@ class UserCart extends React.Component {
     };
 
 
-
     render() {
         const {
             props: {
                 // removeFromCart,
                 cart,
-                products
+                products,
+                history: {
+                    push
+                }
             },
             /*     addOne,
                  removeOne*/
@@ -68,13 +71,25 @@ class UserCart extends React.Component {
                         <Grid item container xs={11} justify="center">
                             <Grid item xs={12}>
                                 <Typography variant="subheading" className="summery" component="p">
-                                    you have <span className="cartcount">{itemCount}</span> items on your cart
-                                    that casts <span className="priceToPay">150$</span> adn you have saved <span className="savedPrice">32$</span>
+                                    {orderSummery.price > 0 ? <Fragment>
+                                            you have <span className="cartcount">{itemCount}</span> items on your cart
+                                            that casts <span className="priceToPay">{orderSummery.price + '$'}</span>
+                                            {/*150$ adn you have saved <span
+                                     className="savedPrice">32$</span>*/}
+                                        </Fragment> :
+                                        <Fragment>
+                                            <span>your cart is empty</span>
+                                            <Button className="shopNow" mini onClick={() => push('/products')}>
+                                                <Typography component="span" variant="subheading" className="SOText"> shop
+                                                    now</Typography>
+                                            </Button>
+                                        </Fragment>
+                                    }
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>
                                 <div className="tableWrapper">
-                                    {dataTable[0] &&
+                                    {dataTable.length > 0 &&
                                     <AkTable data={dataTable} action={(id) => <CartActions id={id}/>}
                                              labels={['name', 'count', 'price', 'saved']}/>}
                                 </div>
@@ -87,10 +102,12 @@ class UserCart extends React.Component {
                                 {/*   <Button variant="raised" color="primary" className="saveItForNow">
                                     <Typography component="span" variant="subheading" className="SOText">save </Typography>
                                 </Button>*/}
+                                {dataTable.length > 0 &&
+
                                 <Button variant="raised" color="primary" onClick={() => this.props.addOrder(orderSummery)}>
                                     <Typography component="span" variant="subheading" className="SOText"> order
                                         now</Typography>
-                                </Button>
+                                </Button>}
                             </div>
                         </Grid>
                     </Grid>
@@ -115,4 +132,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapstateToProps, mapDispatchToProps)(UserCart);
+export default withRouter(connect(mapstateToProps, mapDispatchToProps)(UserCart));
