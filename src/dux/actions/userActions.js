@@ -1,8 +1,8 @@
 import axiosBase from "../../axios/axios";
-import {ADD_TO_CART, LIKE, MANAGE_COMPARED, SNACK_BAR_NEW_MESSAGE} from "./actionTypes";
+import {ADD_TO_CART, HIDE_SPINNER, LIKE, MANAGE_COMPARED, SHOW_SPINNER, SNACK_BAR_NEW_MESSAGE} from "./actionTypes";
 
 const messge = (message, variant, duration) => {
-            return {
+    return {
         type: SNACK_BAR_NEW_MESSAGE,
         payload: {
             message: message,
@@ -134,8 +134,33 @@ export const addToCart = (id, action) => {
 };
 
 
+export const addOrder = (order) => {
+    console.log('sending');
+    return (dispatch, getState) => {
+        const state = {...getState()};
+        const userId = state.auth.id;
+        const orders = [...state.user.orders];
+        if (!userId) {
+            dispatch(messge('you must login first to order', 'error', 6000))
+            return;
+        }
 
+        dispatch({type: SHOW_SPINNER});
+        const orderDate = new Date();
+        const ordersToSend = [...orders, {
+            ...order,
+            date: ` ${orderDate.getFullYear()}/${orderDate.getMonth() + 1}/${orderDate.getDay()}`
+        }]
+        axiosBase.put(`/users/${userId}/orders.json`, ordersToSend).then(resp => {
+            dispatch({type: HIDE_SPINNER});
+            dispatch(messge('orders submitted', 'success', 4000))
+        }).catch(erro => {
+            dispatch({type: HIDE_SPINNER});
+            dispatch(messge('network error ', 'warn', 6000))
 
+        })
+    }
+}
 
 
 // TODO: refactor this file and authActions file

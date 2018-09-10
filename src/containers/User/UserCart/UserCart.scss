@@ -1,27 +1,51 @@
-.userCart{
+.userCart {
   padding-top: 1rem;
-  .header{
+  .tabel {
+
+    tr > td > {
+      padding: 0 !important;
+    }
+  }
+
+  .header {
     font-weight: bold;
     text-transform: uppercase;
-    font-size:1.5rem;
+    font-size: 1.5rem;
   }
-  .summery{
-    font-size:1rem;
+  .summery {
+    font-size: 1rem;
     text-align: center;
     line-height: 36px;
 
-    .priceToPay{
+    .priceToPay {
       font-weight: bold;
       text-transform: uppercase;
-      
+
     }
-    .tableWrapper{
+    .tableWrapper {
       margin: auto;
     }
-    .savedPrice{
+    .savedPrice {
       font-weight: bold;
       text-transform: uppercase;
       color: #43A047;
     }
   }
+
+  .orderSubmitionButton {
+    width: 67.6666%;
+    margin: auto;
+    text-align: right;
+    padding-top: 2rem;
+    .SOText {
+      font-weight: bold;
+      text-align: center;
+      color: #ffe;
+      font-size: .9rem;
+    }
+    .saveItForNow {
+      backgorund-color: #4FC3F7;
+    }
+  }
+
 }

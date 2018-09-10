@@ -1,11 +1,13 @@
+import Button from "@material-ui/core/Button/Button";
 import Grid from "@material-ui/core/Grid/Grid";
+import Paper from "@material-ui/core/Paper/Paper";
 import Typography from "@material-ui/core/Typography/Typography";
 import React from 'react';
 import {connect} from "react-redux";
 import CartActions from "../../../components/layout/Cart/CartActions/CartActions";
 import AkTable from "../../../components/UI/Table/Table";
 import {REMOVE_FROM_CART} from "../../../dux/actions/actionTypes";
-import {addToCart} from "../../../dux/actions/userActions";
+import {addOrder, addToCart} from "../../../dux/actions/userActions";
 
 import './UserCart.scss'
 
@@ -20,6 +22,8 @@ class UserCart extends React.Component {
 
     };
 
+
+
     render() {
         const {
             props: {
@@ -30,7 +34,7 @@ class UserCart extends React.Component {
             /*     addOne,
                  removeOne*/
         } = this;
-        const productsOnCart  = products.filter(product => cart.find(cartItem => product.id === cartItem.id));
+        const productsOnCart = products.filter(product => cart.find(cartItem => product.id === cartItem.id));
         const dataTable = productsOnCart.map(productOnCart => {
             const cartItem = cart.find(item => item.id === (productOnCart || {}).id);
             if (cartItem) {
@@ -39,8 +43,21 @@ class UserCart extends React.Component {
                 return {productName, count, productPrice: productPrice * count, saved: preDiscount ? (preDiscount - productPrice) * count : 0, id}
             }
         });
-        console.log(dataTable);
         const itemCount = cart.reduce((acc, item) => acc + item.count, 0);
+        const orderSummery = dataTable.reduce((accumelator, {productName, productPrice, count, id}) => {
+            const itemOnOrder = {
+                productName,
+                productPrice,
+                count,
+                id
+            }
+            return {
+                ...accumelator,
+                items: [...accumelator.items, {...itemOnOrder}],
+                price: accumelator.price + (+productPrice * count)
+            }
+        }, {items: [], price: 0})
+
         return (
             <div className="userCart">
                 <Grid container justify="center" alignItems="flex-start">
@@ -64,6 +81,19 @@ class UserCart extends React.Component {
                             </Grid>
                         </Grid>
                     </Grid>
+                    <Grid item container xs sm={10} justify="center" alignItems="center">
+                        <Grid xs={11}>
+                            <div className="orderSubmitionButton">
+                                {/*   <Button variant="raised" color="primary" className="saveItForNow">
+                                    <Typography component="span" variant="subheading" className="SOText">save </Typography>
+                                </Button>*/}
+                                <Button variant="raised" color="primary" onClick={() => this.props.addOrder(orderSummery)}>
+                                    <Typography component="span" variant="subheading" className="SOText"> order
+                                        now</Typography>
+                                </Button>
+                            </div>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </div>
         )
@@ -81,6 +111,7 @@ const mapDispatchToProps = dispatch => {
     return {
         removeFromCart: (id) => dispatch({type: REMOVE_FROM_CART, payload: {item: {id}}}),
         addToCart: (id, action) => dispatch(addToCart(id, action)),
+        addOrder: (order) => dispatch(addOrder(order))
     }
 };
 

@@ -1,15 +1,12 @@
-import Button from "@material-ui/core/Button/Button";
 import Grid from "@material-ui/core/es/Grid/Grid";
-import Icon from "@material-ui/core/Icon/Icon";
 import Typography from "@material-ui/core/Typography/Typography";
 import React from "react";
 import {connect} from "react-redux";
-import CartActions from "../../../../components/layout/Cart/CartActions/CartActions";
 import ProductActions from "../../../../components/layout/productActions/ProdcutsAcitons";
 import AkTable from "../../../../components/UI/Table/Table";
 import {REMOVE_FROM_CART} from "../../../../dux/actions/actionTypes";
 import {addToCart, like} from "../../../../dux/actions/userActions";
-
+import '../../UserCart/UserCart.scss';
 class UserWishList extends React.Component {
 
     addOne = (id) => {

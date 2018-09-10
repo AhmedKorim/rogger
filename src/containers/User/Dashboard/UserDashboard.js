@@ -3,6 +3,7 @@ import Dashboard from "../../../components/layout/Dashboard/Dashboard";
 import WithHeight from "../../../HOC/WithHeight";
 import withPadding from "../../../HOC/WithPadding/WithPadding";
 import UserCart from "../UserCart/UserCart";
+import ComparedList from "./CompareList/ComparedList";
 import UserWishList from "./UserWishList/UserWishList";
 
 class UserDashboard extends React.Component {
@@ -36,10 +37,10 @@ class UserDashboard extends React.Component {
                         <div>Orders</div>
                     </WithHeight>
                     <WithHeight maxHeight={headerHeight + 120}>
-                       <UserWishList/>
+                        <UserWishList/>
                     </WithHeight>
                     <WithHeight maxHeight={headerHeight + 120}>
-                        <div>compared</div>
+                        <ComparedList/>
                     </WithHeight>
                 </Dashboard>
             </Fragment>

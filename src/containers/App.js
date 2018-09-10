@@ -35,6 +35,7 @@ class App extends Component {
 
 
     render() {
+        console.log("spinner", (this.props.spinnerVisabity || this.props.authLoading));
         return (
             <Fragment>
                 <Header/>
@@ -53,7 +54,7 @@ class App extends Component {
                         </Switch>
                     </PerfectScrollbar>
                 </main>
-               { (this.props.spinnerVisabity ||this.props.authLoading )&&<Spinner/>}
+                {(this.props.spinnerVisabity || this.props.authLoading) && <Spinner/>}
                 <RDialog/>
                 <ToastMessage/>
             </Fragment>
@@ -64,8 +65,8 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         headerHeight: state.UI.headerHeight,
-        authLoading:state.auth.loading,
-        spinnerVisabity:state.UI.spinner
+        authLoading: state.auth.loading,
+        spinnerVisabity: state.UI.spinnerVisabity
     }
 };
 const mapDispatchToProps = dispatch => {
