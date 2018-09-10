@@ -2,7 +2,7 @@ import axiosBase from "../../axios/axios";
 import {ADD_TO_CART, LIKE, MANAGE_COMPARED, SNACK_BAR_NEW_MESSAGE} from "./actionTypes";
 
 const messge = (message, variant, duration) => {
-    return {
+            return {
         type: SNACK_BAR_NEW_MESSAGE,
         payload: {
             message: message,
@@ -32,7 +32,7 @@ export const like = (id) => {
                 .then(resp => {
                     dispatch(messge('item added to wish list ', 'success', 2000))
                 })
-                .catch(error => messge(error.response.data.error.message, 'error'))
+                .catch(error => dispatch(messge(error.response.data.error.message, 'error')))
         }
 
     }
@@ -59,7 +59,8 @@ export const compared = (id) => {
                 .then(resp => {
                     dispatch(messge('item added to compared list ', 'success', 2000))
                 })
-                .catch(error => messge(error.response.data.error.message, 'error'))
+                .catch(error => dispatch(messge(error.response.data.error.message, 'error')))
+
         }
 
     }
@@ -71,7 +72,7 @@ export const addToCart = (id, action) => {
         const State = {...getState()};
         const userData = {...State.user};
         const userId = State.auth.id;
-            const cart = [...userData.cart];
+        const cart = [...userData.cart];
         if (!id) {
             dispatch({type: ADD_TO_CART, cart: cart})
             return;
@@ -91,7 +92,7 @@ export const addToCart = (id, action) => {
         // TODO : outsourse to thnk remove item from cart if it's coutn is ===0;
         if (action !== 'add') {
             const inc = action === 'addOne' ? 1 : -1;
-            let deleteIndex =null;
+            let deleteIndex = null;
             if (hasItem) {
                 console.log(cart);
                 const cartToSend = cart.map((item, index) => {
@@ -100,19 +101,18 @@ export const addToCart = (id, action) => {
                     if (newItem.count <= 0) deleteIndex = index;
                     return newItem;
                 })
-                console.log(cartToSend);
                 dispatch({
                     type: ADD_TO_CART,
                     cart: cartToSend
 
                 })
-
                 if (!userData.info.anonymous) {
                     axiosBase.put(`users/${userId}/cart.json`, cartToSend)
                         .then(resp => {
                             dispatch(messge(` one item ${action === 'addOne' ? "added" : " removed"} to cart `, 'success', 1000))
                         })
-                        .catch(error => messge(error.response.data.error.message, 'error'))
+                        .catch(error => dispatch(messge(error.response.data.error.message, 'error')))
+
                 }
             }
             return;
@@ -124,7 +124,11 @@ export const addToCart = (id, action) => {
                 .then(resp => {
                     dispatch(messge(` added  to cart `, 'success', 1000))
                 })
-                .catch(error => messge(error.response.data.error.message, 'error'))
+                .catch(error => {
+
+                    dispatch(messge('failed to save your data please make sure you are online', 'error'))
+                })
+
         }
     }
 };
