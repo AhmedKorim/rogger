@@ -77,9 +77,10 @@ export const auth = ({email, password, gender, username}, signUp) => {
                                     variant: 'success',
                                     duration: 3000
                                 }
-                            })
+                            });
+                            console.log(resp.data);
                             dispatch({type: LOGIN, payload: {...userData}})
-                            dispatch(authSuccess({idToken: id, userId: userData.info.id, email: userData.email}));
+                                dispatch(authSuccess({idToken, id, userId: resp.data.name, email: userData.email}));
                         }
                     )
                 } else {
@@ -103,12 +104,10 @@ export const auth = ({email, password, gender, username}, signUp) => {
                             }
                         })
                         const userDataA = {...userData}
-                        console.log(userDataA);
                         dispatch(authSuccess({id: userData.info.id, userId: userData.id, idToken, email: userData.email}));
                         dispatch({type: LOGIN, payload: {...mapeduserData}})
 
                     }).catch(error => {
-
 
                         dispatch({
                                 type: SNACK_BAR_NEW_MESSAGE,
