@@ -42,7 +42,13 @@ const authSuccess = ({idToken, id, userId, email}) => {
 
 
 export const auth = ({email, password, gender, username}, signUp) => {
-    return dispatch => {
+    return (dispatch, getState) => {
+        const {
+            user: {
+                liked, wishList, compared, cart, orders
+
+            }
+        } = getState()
         dispatch({type: AUTH_START});
         const requestHeaper = {email, password, returnSecureToken: true};
         let url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyBUGx-6HjRWtjS7kA4bUCgqr65Ni_J4Olg`;
@@ -63,11 +69,11 @@ export const auth = ({email, password, gender, username}, signUp) => {
                             gender: gender,
                             name: username,
                         },
-                        cart: [],
-                        wishList: [],
-                        compared: [],
-                        orders: [],
-                        liked: []
+                        cart: cart,
+                        wishList: wishList,
+                        compared: compared,
+                        orders: wishList,
+                        liked: liked
                     }
                     axiosBase.post('/users.json', userData).then(resp => {
                             dispatch({
@@ -80,7 +86,7 @@ export const auth = ({email, password, gender, username}, signUp) => {
                             });
                             console.log(resp.data);
                             dispatch({type: LOGIN, payload: {...userData}})
-                                dispatch(authSuccess({idToken, id, userId: resp.data.name, email: userData.email}));
+                            dispatch(authSuccess({idToken, id, userId: resp.data.name, email: userData.email}));
                         }
                     )
                 } else {
