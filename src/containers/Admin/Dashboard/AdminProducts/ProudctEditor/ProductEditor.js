@@ -1,15 +1,15 @@
-import React from 'react';
-import FormController from "../../../../../components/UI/FormControles/FormControle";
-import Grid from "@material-ui/core/Grid/Grid";
-import ProductCard from "../../../../../components/layout/ProductCard/ProductCard";
-import './ProductEditor.scss';
 import Button from "@material-ui/core/Button/Button";
+import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography/Typography";
-import axios from "../../../../../axios/axios";
+import React from 'react';
 import {connect} from "react-redux";
-import {ADD_ITEM, SNACK_BAR_NEW_MESSAGE, UPDATE_ITEM} from "../../../../../dux/actions/actionTypes";
+import axios from "../../../../../axios/axios";
+import ProductCard from "../../../../../components/layout/ProductCard/ProductCard";
 
 import {categories} from "../../../../../components/layout/ProductsVitrine/VitrineControler/VitrineControler";
+import FormController from "../../../../../components/UI/FormControles/FormControle";
+import {ADD_ITEM, HIDE_SPINNER, SHOW_SPINNER, SNACK_BAR_NEW_MESSAGE, UPDATE_ITEM} from "../../../../../dux/actions/actionTypes";
+import './ProductEditor.scss';
 
 
 const mainCategories = categories.map(item => Object.keys(item)[0]);
@@ -153,10 +153,13 @@ class ProductEditor extends React.Component {
     sendData = (event) => {
         event.preventDefault();
         const dataToSend = {...this.productData};
+        this.props.showSpinner()
         if (!this.state.editmood) {
             axios.post('/products.json', dataToSend).then(resp => {
                     this.props.addItem({id: resp.data.name, ...dataToSend})
                     this.props.message('item has been added successful', 'success', 4000)
+                    this.props.hideSpinner()
+
                 }
             ).catch(error => this.props.message('failed to update due to network', 'error', 6000))
             return;
@@ -168,6 +171,7 @@ class ProductEditor extends React.Component {
         console.log(mergedData);
         axios.put(`/products/${id}.json`, mergedData).then(resp => {
             this.props.updateIem(id, {...mergedData, id: id})
+            this.props.hideSpinner()
             this.props.message('item has been updated successful', 'success', 4000)
         }).catch(error => this.props.message('failed to update due to network', 'error', 6000))
     };
@@ -232,8 +236,9 @@ const mapDispatchToProps = dispatch => {
     return {
         updateIem: (id, data) => dispatch({type: UPDATE_ITEM, id, data}),
         addItem: (data) => dispatch({type: ADD_ITEM, data}),
-        message: (message, variant, duration) => dispatch({type: SNACK_BAR_NEW_MESSAGE, payload: {message, variant, duration}})
-
+        message: (message, variant, duration) => dispatch({type: SNACK_BAR_NEW_MESSAGE, payload: {message, variant, duration}}),
+        showSpinner:() => dispatch({type:SHOW_SPINNER}),
+        hideSpinner:() => dispatch({type:HIDE_SPINNER})
     }
 };
 export default connect(null, mapDispatchToProps)(ProductEditor);

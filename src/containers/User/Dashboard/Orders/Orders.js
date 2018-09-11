@@ -1,5 +1,5 @@
 import Button from "@material-ui/core/Button/Button";
-import Grid from "@material-ui/core/es/Grid/Grid";
+import Grid from "@material-ui/core/Grid/Grid";
 import Icon from "@material-ui/core/Icon/Icon";
 import Typography from "@material-ui/core/Typography/Typography";
 import React, {Fragment} from "react";

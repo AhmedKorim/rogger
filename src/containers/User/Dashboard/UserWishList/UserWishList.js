@@ -1,4 +1,4 @@
-import Grid from "@material-ui/core/es/Grid/Grid";
+import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography/Typography";
 import React from "react";
 import {connect} from "react-redux";
