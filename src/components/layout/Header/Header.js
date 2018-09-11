@@ -178,7 +178,7 @@ class Header extends React.Component {
             manageScroll,
             loadRichHeader
         } = this;
-        const notificationCount = orders.concat(liked, compared).length;
+        const notificationCount = liked.concat(compared).length;
         const mobile = (width === 'xs' || width === 'sm');
         return (
             <AppBar position="fixed" className={[classes.shadow, 'mainHeader'].join(' ')}>
