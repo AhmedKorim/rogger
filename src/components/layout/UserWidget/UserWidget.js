@@ -60,7 +60,7 @@ const UserWidget = props => {
                                     <Grid item xs><Typography className="typo2">My DashBoard</Typography></Grid>
                                 </Grid>
                             </ListItem>
-                            {anonymous ? <ListItem component="li" button className="userListItem" onClick={() => push(pathname + '/auth')}>
+                            {anonymous ? <ListItem component="li" button className="userListItem" onClick={() => push('/auth')}>
                                     <Grid container justify="center" alignItems="center">
                                         <Grid item xs={4}>
                                             <div><Icon className="iconCol">lock</Icon></div>

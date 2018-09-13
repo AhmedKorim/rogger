@@ -40,21 +40,24 @@ class App extends Component {
         return (
             <Fragment>
                 <Header/>
-                <Route path={this.props.location.pathname.substring(0, this.props.location.pathname.length - 4) + 'auth'} component={Auth}/>
-                <main style={{height: '100vh'}}>
-                    <PerfectScrollbar onScrollY={this.props.location.pathname === '/home' ? (container) => this.scrollManger(container) : void 0}>
-                        <Switch>
-                            <Route path="/products/:productId" component={ProductPage}/>
-                            <Route path="/products/" component={Products}/>
-                        </Switch>
-                        <Switch>
-                            <Redirect from="/" to="/home" exact/>
-                            <Route path="/home" component={Home}/>
-                            <Route path="/admin_dashboard" component={AdminDashboard}/>
-                            <Route path="/my_dashboard" component={UserDashboard}/>
-                        </Switch>
-                    </PerfectScrollbar>
-                </main>
+                <Switch>
+                    {/*<Route path={this.props.location.pathname.substring(0, this.props.location.pathname.length - 4) + 'auth'} component={Auth}/>*/}
+                    <Route path='/auth' component={Auth}/>
+                    <main style={{height: '100vh'}}>
+                        <PerfectScrollbar onScrollY={this.props.location.pathname === '/home' ? (container) => this.scrollManger(container) : void 0}>
+                            <Switch>
+                                <Route path="/products/:productId" component={ProductPage}/>
+                                <Route path="/products/" component={Products}/>
+                            </Switch>
+                            <Switch>
+                                <Redirect from="/" to="/home" exact/>
+                                <Route path="/home" component={Home}/>
+                                <Route path="/admin_dashboard" component={AdminDashboard}/>
+                                <Route path="/my_dashboard" component={UserDashboard}/>
+                            </Switch>
+                        </PerfectScrollbar>
+                    </main>
+                </Switch>
                 {(this.props.spinnerVisabity || this.props.authLoading) && <Spinner/>}
                 <RDialog/>
                 <ToastMessage/>

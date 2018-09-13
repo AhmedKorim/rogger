@@ -1,4 +1,5 @@
-.auth{
+.auth {
+  margin-top: 2rem;
   .input {
     width: 100%;
     height: auto;
@@ -10,18 +11,18 @@
       max-width: unset;
     }
   }
-  form{
+  form {
     padding: .5rem 0 1rem;
   }
-  .GridPadding{
+  .GridPadding {
     padding: .4rem;
   }
-  .buttonT{
+  .buttonT {
     text-transform: capitalize;
     font-weight: bold;
     color: #fff;
   }
-  .sighupButtonGrid{
+  .sighupButtonGrid {
     padding: .4rem;
     text-align: center;
   }
