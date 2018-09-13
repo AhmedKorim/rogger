@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import withPadding from "../../../HOC/WithPadding/WithPadding";
 import './AdminDashboard.scss'
+import AdminOrders from "./AdminOrders/AdminOrders";
 import AdminProducts from "./AdminProducts/AdminProducts";
 import WithHeight from "../../../HOC/WithHeight";
 import Dashboard from "../../../components/layout/Dashboard/Dashboard";
@@ -33,19 +34,19 @@ class AdminDashboard extends React.Component {
                     tabs={[
                         {label: 'Orders'},
                         {label: 'Products'},
-                        {label: 'Clients'},
-                        {label: 'Statics'},
+                        /*            {label: 'Clients'},
+                                    {label: 'Statics'},*/
                         {label: 'landing page'},
                     ]}
                 >
                     <WithHeight maxHeight={headerHeight + 100}>
-                        <div>Orders</div>
+                        <AdminOrders/>
                     </WithHeight>
                     <WithHeight maxHeight={headerHeight + 100}>
                         <AdminProducts/>
                     </WithHeight>
-                    <div>Clients</div>
-                    <div>Statics</div>
+                    {/*            <div>Clients</div>
+                    <div>Statics</div>*/}
                     <WithHeight>
                         <LandingPage/>
                     </WithHeight>

@@ -28,3 +28,6 @@ export const GET_DATA = 'GET_DATA';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
 export const ADD_ITEM = 'ADD_ITEM';
 export const ADD_ORDER ='ADD_ORDER';
+
+
+export const GET_ORDERS = 'GET_ORDERS'

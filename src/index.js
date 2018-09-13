@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './containers/App';
+import adminReducer from "./dux/reducers/adminReducer";
 import registerServiceWorker from './registerServiceWorker';
 import {createMuiTheme} from "@material-ui/core";
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
@@ -35,7 +36,8 @@ const store = createStore(
         UI: UIReducer,
         products: productsReducer,
         user: userReducer,
-        auth: authReducer
+        auth: authReducer,
+        admin: adminReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
 );
