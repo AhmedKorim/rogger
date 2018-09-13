@@ -31,14 +31,17 @@ export const getData = () => {
             dispatch({type: HIDE_SPINNER});
         }).catch(error => {
             dispatch({type: HIDE_SPINNER});
-            dispatch({type: SNACK_BAR_NEW_MESSAGE, payload: {message: 'error getting products data make sure you are online'}});})
+            dispatch({type: SNACK_BAR_NEW_MESSAGE, payload: {message: 'error getting products data make sure you are online'}});
+        })
 
     }
 };
 
 export const getSlide = () => {
-    return dispatch => {
-        dispatch({type: SHOW_SPINNER});
+    return (dispatch, getState) => {
+        if (getState().UI.homepage.slides.length <= 1) {
+            dispatch({type: SHOW_SPINNER});
+        }
         axios.get('/homepage/slides/-LLtvPDWdOalG2wBAhCM.json')
             .then(resp => {
                 dispatch({type: HIDE_SPINNER});

@@ -35,7 +35,7 @@ class Products extends React.Component {
             view: 'normal',
             pages: props.products ? Math.ceil(props.products / 5) : 0,
             currentPage: 0,
-            itemPerPage: 5,
+            itemPerPage: 15,
 
         };
     }

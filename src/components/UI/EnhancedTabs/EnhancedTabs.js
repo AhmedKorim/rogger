@@ -16,7 +16,12 @@ const styles = theme => ({
         justifyContent: 'center'
     },
     margin: {
-        margin: theme.spacing.unit ,
+        margin: theme.spacing.unit,
+    },
+    fullWidthTabs: {
+        width: '100%',
+        display:"flex",
+        justifyContent: "center"
     },
     padding: {
         padding: `0 ${theme.spacing.unit }px`,
@@ -105,7 +110,7 @@ class EnhancedTabs extends React.Component {
                         scrollButtons={(width === 'xs') ? 'on' : 'off'}
                         classes={{
                             scrollButtons: 'scrollingButton',
-                            root: rootClass,
+                            root: [classes.fullWidthTabs,rootClass].join(' '),
                             indicator: indercatorClass
                         }}
                     >
