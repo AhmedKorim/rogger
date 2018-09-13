@@ -84,7 +84,8 @@ class EnhancedTabs extends React.Component {
                 rootClass,
                 tabRootClass,
                 selectClass,
-                paddges
+                paddges,
+                noscroll
             },
             handleChange,
             handleChangeIndex
@@ -106,7 +107,7 @@ class EnhancedTabs extends React.Component {
                         onChange={handleChange}
                         indicatorColor="primary"
                         textColor="primary"
-                        scrollable={width === 'xs'}
+                        scrollable={noscroll ? false : width === 'xs' }
                         scrollButtons={(width === 'xs') ? 'on' : 'off'}
                         classes={{
                             scrollButtons: 'scrollingButton',

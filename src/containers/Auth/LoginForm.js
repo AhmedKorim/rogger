@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from "react-router-dom";
 import FormController from "../../components/UI/FormControles/FormControle";
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
@@ -31,7 +32,7 @@ class LoginForm extends React.Component {
         this.props.onAuth({
             email: controllers[0].value,
             password: controllers[1].value
-        })
+        }, null, this.props.history.push)
     };
 
 
@@ -47,7 +48,7 @@ class LoginForm extends React.Component {
             <div className="loginForm">
                 <div>
                     <Grid container justify="center" alignItems="center">
-                        <Grid xs md={10} lg={6} container item justify="center" alignItems="center">
+                        <Grid xs container item justify="center" alignItems="center">
                             <Grid xs item container justify="center" alignItems="center">
                                 <form onSubmit={sumbitLogin}>
                                     <Paper elevation={2}>
@@ -75,7 +76,7 @@ class LoginForm extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (userData) => dispatch(auth(userData, false))
+        onAuth: (userData,_,push) => dispatch(auth(userData, false,push))
     }
 };
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default withRouter(connect(null, mapDispatchToProps)(LoginForm));

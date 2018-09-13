@@ -28,6 +28,7 @@ const Notification = props => {
                 rootClass='notificationRoot'
                 tabRootClass='notificaitonTabRoot'
                 indercatorClass='notificationTabIndector'
+                noscroll
                 paddges={[{label: 'compared', count: compared.length, icon: 'compared'},
                     {label: 'wish list', count: liked.length, icon: 'favourite'},
                     // {

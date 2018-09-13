@@ -41,7 +41,7 @@ const authSuccess = ({idToken, id, userId, email}) => {
 };
 
 
-export const auth = ({email, password, gender, username}, signUp) => {
+export const auth = ({email, password, gender, username}, signUp, push) => {
     return (dispatch, getState) => {
         dispatch({type: AUTH_START});
         const {
@@ -84,9 +84,9 @@ export const auth = ({email, password, gender, username}, signUp) => {
                                     duration: 3000
                                 }
                             });
-                            console.log(resp.data);
                             dispatch({type: LOGIN, payload: {...userData}})
                             dispatch(authSuccess({idToken, id, userId: resp.data.name, email: userData.email}));
+                            push('/products')
                         }
                     )
                 } else {
@@ -113,9 +113,8 @@ export const auth = ({email, password, gender, username}, signUp) => {
                         const userDataA = {...userData}
                         dispatch(authSuccess({id: userData.info.id, userId: userData.id, idToken, email: userData.email}));
                         dispatch({type: LOGIN, payload: {...mapeduserData}})
-
+                        push('/products')
                     }).catch(error => {
-
                         dispatch({
                                 type: SNACK_BAR_NEW_MESSAGE,
                                 payload: {

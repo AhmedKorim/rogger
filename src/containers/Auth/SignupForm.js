@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from "react-router-dom";
 import FormController from "../../components/UI/FormControles/FormControle";
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
@@ -36,8 +37,8 @@ class LoginForm extends React.Component {
                     [controller.label.toLowerCase().replace(/ /g, '')]: controller.value
                 })
                 , {})
-console.log(controllers);
-        this.props.onAuth(controllers)
+        console.log(controllers);
+        this.props.onAuth(controllers, null, this.props.history.push)
 
     };
 
@@ -54,12 +55,12 @@ console.log(controllers);
             <div className="loginForm authForm">
                 <div>
                     <Grid container justify="center" alignItems="center">
-                        <Grid xs md={10} lg={6} container item justify="center" alignItems="center">
-                            <Grid xs item container justify="center" alignItems="center">
+                        <Grid xs container item justify="center" alignItems="center">
+                            <Grid xs={11} item container justify="center" alignItems="center">
                                 <form onSubmit={sumbitLogin}>
                                     <Paper elevation={2}>
                                         <Grid xs item container justify="center" alignItems="center">
-                                            {controllers.map(controller => <Grid item xs={12} className="GridPadding">
+                                            {controllers.map(controller => <Grid item xs={11} className="GridPadding">
                                                 <FormController
                                                     changeHandler={changeHandler}
                                                     payload={{...controller, classes: ['input']}}
@@ -83,7 +84,7 @@ console.log(controllers);
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (userData) => dispatch(auth(userData, true))
+        onAuth: (userData, _, push) => dispatch(auth(userData, true, push))
     }
 };
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default withRouter(connect(null, mapDispatchToProps)(LoginForm));

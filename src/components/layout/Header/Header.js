@@ -204,8 +204,8 @@ class Header extends React.Component {
                                                     <ListItem button selected={activeItem('/products')}
                                                               onClick={() => navigate('/products')}><Typography variant="subheading" component="span"
                                                                                                                 className="slideLink">products</Typography></ListItem>
-                                                    <ListItem button selected={activeItem('/dashboard')}
-                                                              onClick={() => navigate('/dashboard')}><Typography variant="subheading" component="span"
+                                                    <ListItem button selected={activeItem('/admin dashboard')}
+                                                              onClick={() => navigate('/admin_dashboard')}><Typography variant="subheading" component="span"
                                                                                                                  className="slideLink">dashboard</Typography></ListItem>
                                                 </List>
                                             </Fragment>

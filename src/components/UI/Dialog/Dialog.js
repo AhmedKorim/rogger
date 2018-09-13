@@ -35,10 +35,6 @@ class RDialog extends React.Component {
             case 'ProductEditor':
                 componentToLoad = <ProductEditor data={data}/>;
                 break;
-            case 'AuthComponent' :
-                console.log('dilog opend');
-                componentToLoad = <Auth data={data}/>;
-                break;
             default:
                 componentToLoad = null;
         }

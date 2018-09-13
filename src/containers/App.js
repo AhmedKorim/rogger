@@ -13,6 +13,7 @@ import {tryLogin} from "../dux/actions/authActions";
 import {getData} from "../dux/actions/productsActions";
 import AdminDashboard from "./Admin/Dashboard/AdminDashboard";
 import './App.scss';
+import Auth from "./Auth/Auth";
 import AuthDialogOpener from "./Auth/AuthDialogOpener";
 import Home from "./Home/Home";
 import Products from "./Products/Products";
@@ -39,7 +40,7 @@ class App extends Component {
         return (
             <Fragment>
                 <Header/>
-                <Route path={this.props.location.pathname.substring(0, this.props.location.pathname.length - 4) + 'auth'} component={AuthDialogOpener}/>
+                <Route path={this.props.location.pathname.substring(0, this.props.location.pathname.length - 4) + 'auth'} component={Auth}/>
                 <main style={{height: '100vh'}}>
                     <PerfectScrollbar onScrollY={this.props.location.pathname === '/home' ? (container) => this.scrollManger(container) : void 0}>
                         <Switch>
